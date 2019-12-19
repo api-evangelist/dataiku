@@ -1,0 +1,50 @@
+{
+    "name": "Dataiku",
+    "description": "Dataiku's collaborative data science platform enables the whole data team to explore, prototype, build and deliver their own data products more efficiently.",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/28238-www-dataiku-com.jpg",
+    "tags": [
+        "api provider",
+        "api service provider",
+        "data",
+        "have api"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/dataiku\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Dataiku",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/28238-www-dataiku-com.jpg",
+            "humanURL": "https:\/\/www.dataiku.com",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/dataiku-openapi.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Blog",
+            "url": "https:\/\/blog.dataiku.com\/"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/dataiku"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/dataiku"
+        },
+        {
+            "type": "Website",
+            "url": "https:\/\/www.dataiku.com"
+        }
+    ]
+}
