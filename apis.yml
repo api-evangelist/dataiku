@@ -1,0 +1,109 @@
+name: Dataiku
+description: Dataiku is an advanced data science and machine learning platform that enables teams to build and deploy AI applications at scale.
+image: https://www.dataiku.com/static/img/logo.png
+tags:
+- data science
+- machine learning
+- artificial intelligence
+- analytics
+- data platform
+created: '2024'
+modified: '2024'
+url: https://www.dataiku.com
+specificationVersion: '0.18'
+apis:
+- name: Dataiku Public API
+  description: REST API for managing Dataiku DSS instances, projects, datasets, and workflows programmatically
+  image: https://www.dataiku.com/static/img/logo.png
+  humanURL: https://www.dataiku.com
+  baseURL: https://dss.example.com/public/api
+  tags:
+  - data science
+  - projects
+  - datasets
+  - workflows
+  properties:
+  - type: Documentation
+    url: https://doc.dataiku.com/dss/latest/publicapi/index.html
+  - type: OpenAPI
+    url: https://doc.dataiku.com/dss/latest/publicapi/rest/index.html
+  - type: Authentication
+    url: https://doc.dataiku.com/dss/latest/publicapi/rest/authentication.html
+  contact:
+  - FN: Dataiku Support
+    email: support@dataiku.com
+    url: https://www.dataiku.com/support
+- name: Dataiku Python API
+  description: Python client library for interacting with Dataiku DSS
+  image: https://www.dataiku.com/static/img/logo.png
+  humanURL: https://www.dataiku.com
+  baseURL: https://pypi.org/project/dataiku-api-client/
+  tags:
+  - python
+  - sdk
+  - client library
+  properties:
+  - type: Documentation
+    url: https://doc.dataiku.com/dss/latest/python-api/index.html
+  - type: PyPI Package
+    url: https://pypi.org/project/dataiku-api-client/
+  - type: Examples
+    url: https://doc.dataiku.com/dss/latest/python-api/examples.html
+  contact:
+  - FN: Dataiku Support
+    email: support@dataiku.com
+- name: Dataiku Internal API
+  description: Internal API for use within recipes, notebooks, and plugins in Dataiku DSS
+  image: https://www.dataiku.com/static/img/logo.png
+  humanURL: https://www.dataiku.com
+  tags:
+  - internal
+  - recipes
+  - plugins
+  properties:
+  - type: Documentation
+    url: https://doc.dataiku.com/dss/latest/python-api/internal.html
+  - type: Plugin Development
+    url: https://doc.dataiku.com/dss/latest/plugins/index.html
+  contact:
+  - FN: Dataiku Support
+    email: support@dataiku.com
+- name: Dataiku R API
+  description: R client library for interacting with Dataiku DSS
+  image: https://www.dataiku.com/static/img/logo.png
+  humanURL: https://www.dataiku.com
+  tags:
+  - r language
+  - sdk
+  - client library
+  properties:
+  - type: Documentation
+    url: https://doc.dataiku.com/dss/latest/R-api/index.html
+  - type: CRAN Package
+    url: https://cran.r-project.org/package=dataiku
+  contact:
+  - FN: Dataiku Support
+    email: support@dataiku.com
+maintainers:
+- FN: Dataiku
+  email: info@dataiku.com
+  url: https://www.dataiku.com
+common:
+- type: Getting Started
+  url: https://www.dataiku.com/product/get-started/
+- type: Documentation
+  url: https://doc.dataiku.com/
+- type: Community
+  url: https://community.dataiku.com/
+- type: Academy
+  url: https://academy.dataiku.com/
+- type: Pricing
+  url: https://www.dataiku.com/product/pricing/
+- type: Blog
+  url: https://blog.dataiku.com/
+- type: GitHub
+  url: https://github.com/dataiku
+- type: Terms of Service
+  url: https://www.dataiku.com/terms/
+- type: Privacy Policy
+  url: https://www.dataiku.com/privacy/
