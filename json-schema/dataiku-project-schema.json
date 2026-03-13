@@ -1,0 +1,237 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://doc.dataiku.com/schemas/dataiku/project.json",
+  "title": "Dataiku DSS Project",
+  "description": "A project in Dataiku DSS that serves as the top-level organizational unit containing datasets, recipes, models, scenarios, and other data science artifacts.",
+  "type": "object",
+  "required": ["projectKey", "name"],
+  "properties": {
+    "projectKey": {
+      "type": "string",
+      "description": "Unique project key identifier, typically uppercase letters and numbers",
+      "pattern": "^[A-Z][A-Z0-9_]*$",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the project",
+      "minLength": 1
+    },
+    "owner": {
+      "type": "string",
+      "description": "Login of the project owner"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the project"
+    },
+    "shortDesc": {
+      "type": "string",
+      "description": "Short one-line description of the project"
+    },
+    "projectStatus": {
+      "type": "string",
+      "enum": ["Sandbox", "In Design", "In Production", "Archived"],
+      "description": "Current lifecycle status of the project"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags associated with the project for categorization"
+    },
+    "checklists": {
+      "type": "object",
+      "description": "Project checklists for tracking tasks and milestones",
+      "properties": {
+        "checklists": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Checklist"
+          }
+        }
+      }
+    },
+    "permissions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Permission"
+      },
+      "description": "Access permissions for the project"
+    },
+    "creationTag": {
+      "$ref": "#/$defs/VersionTag"
+    },
+    "versionTag": {
+      "$ref": "#/$defs/VersionTag"
+    },
+    "settings": {
+      "$ref": "#/$defs/ProjectSettings"
+    }
+  },
+  "$defs": {
+    "VersionTag": {
+      "type": "object",
+      "description": "Version tracking information",
+      "properties": {
+        "versionNumber": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Sequential version number"
+        },
+        "lastModifiedBy": {
+          "type": "object",
+          "properties": {
+            "login": {
+              "type": "string",
+              "description": "Login of the user who made the modification"
+            }
+          }
+        },
+        "lastModifiedOn": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of the last modification"
+        }
+      }
+    },
+    "Permission": {
+      "type": "object",
+      "description": "A permission entry granting access to a user or group",
+      "properties": {
+        "group": {
+          "type": "string",
+          "description": "Group name to grant permissions to"
+        },
+        "user": {
+          "type": "string",
+          "description": "User login to grant permissions to"
+        },
+        "readProjectContent": {
+          "type": "boolean",
+          "description": "Can read project content"
+        },
+        "writeProjectContent": {
+          "type": "boolean",
+          "description": "Can write project content"
+        },
+        "admin": {
+          "type": "boolean",
+          "description": "Has admin permissions on the project"
+        },
+        "readDashboards": {
+          "type": "boolean",
+          "description": "Can read dashboards"
+        },
+        "writeDashboards": {
+          "type": "boolean",
+          "description": "Can write dashboards"
+        },
+        "runScenarios": {
+          "type": "boolean",
+          "description": "Can run scenarios"
+        },
+        "manageDashboardAuthorizations": {
+          "type": "boolean",
+          "description": "Can manage dashboard authorizations"
+        },
+        "executeApp": {
+          "type": "boolean",
+          "description": "Can execute project as an application"
+        }
+      }
+    },
+    "Checklist": {
+      "type": "object",
+      "description": "A checklist with title and items",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Checklist title"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "done": {
+                "type": "boolean",
+                "description": "Whether the item is completed"
+              },
+              "text": {
+                "type": "string",
+                "description": "Item description"
+              },
+              "createdBy": {
+                "type": "string",
+                "description": "User who created the item"
+              },
+              "createdOn": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        }
+      }
+    },
+    "ProjectSettings": {
+      "type": "object",
+      "description": "Project-level settings",
+      "properties": {
+        "flowBuildSettings": {
+          "type": "object",
+          "description": "Default build settings for the project flow",
+          "properties": {
+            "mergeSparkPipelines": {
+              "type": "boolean"
+            },
+            "pruneBeforeSparkPipelines": {
+              "type": "boolean"
+            }
+          }
+        },
+        "codeEnvs": {
+          "type": "object",
+          "description": "Code environment settings",
+          "properties": {
+            "python": {
+              "type": "object",
+              "properties": {
+                "mode": {
+                  "type": "string",
+                  "enum": ["INHERIT", "EXPLICIT_ENV", "CUSTOM"],
+                  "description": "Python environment selection mode"
+                },
+                "envName": {
+                  "type": "string",
+                  "description": "Name of the code environment"
+                }
+              }
+            },
+            "r": {
+              "type": "object",
+              "properties": {
+                "mode": {
+                  "type": "string",
+                  "enum": ["INHERIT", "EXPLICIT_ENV", "CUSTOM"],
+                  "description": "R environment selection mode"
+                },
+                "envName": {
+                  "type": "string",
+                  "description": "Name of the code environment"
+                }
+              }
+            }
+          }
+        },
+        "integrations": {
+          "type": "object",
+          "description": "Integration settings (Git, etc.)"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,197 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "dataiku": "https://doc.dataiku.com/schemas/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "Project": {
+      "@id": "dataiku:Project",
+      "@context": {
+        "projectKey": "dataiku:projectKey",
+        "name": "schema:name",
+        "description": "schema:description",
+        "owner": "dataiku:owner",
+        "projectStatus": "dataiku:projectStatus",
+        "tags": "schema:keywords",
+        "createdOn": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "modifiedOn": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Dataset": {
+      "@id": "dataiku:Dataset",
+      "@context": {
+        "name": "schema:name",
+        "type": "dataiku:datasetType",
+        "managed": {
+          "@id": "dataiku:managed",
+          "@type": "xsd:boolean"
+        },
+        "formatType": "dataiku:formatType",
+        "projectKey": "dataiku:projectKey",
+        "connection": "dataiku:connection"
+      }
+    },
+
+    "Recipe": {
+      "@id": "dataiku:Recipe",
+      "@context": {
+        "name": "schema:name",
+        "type": "dataiku:recipeType",
+        "projectKey": "dataiku:projectKey"
+      }
+    },
+
+    "SavedModel": {
+      "@id": "dataiku:SavedModel",
+      "@context": {
+        "name": "schema:name",
+        "type": "dataiku:modelType",
+        "projectKey": "dataiku:projectKey",
+        "activeVersion": "dataiku:activeVersion"
+      }
+    },
+
+    "Scenario": {
+      "@id": "dataiku:Scenario",
+      "@context": {
+        "name": "schema:name",
+        "type": "dataiku:scenarioType",
+        "projectKey": "dataiku:projectKey",
+        "active": {
+          "@id": "dataiku:active",
+          "@type": "xsd:boolean"
+        }
+      }
+    },
+
+    "Job": {
+      "@id": "dataiku:Job",
+      "@context": {
+        "state": "dataiku:jobState",
+        "initiator": "dataiku:initiator",
+        "projectKey": "dataiku:projectKey",
+        "startTime": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "endTime": {
+          "@id": "dataiku:endTime",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "ManagedFolder": {
+      "@id": "dataiku:ManagedFolder",
+      "@context": {
+        "name": "schema:name",
+        "type": "dataiku:folderType",
+        "projectKey": "dataiku:projectKey"
+      }
+    },
+
+    "Connection": {
+      "@id": "dataiku:Connection",
+      "@context": {
+        "name": "schema:name",
+        "type": "dataiku:connectionType",
+        "allowWrite": {
+          "@id": "dataiku:allowWrite",
+          "@type": "xsd:boolean"
+        },
+        "allowManagedDatasets": {
+          "@id": "dataiku:allowManagedDatasets",
+          "@type": "xsd:boolean"
+        }
+      }
+    },
+
+    "CodeEnv": {
+      "@id": "dataiku:CodeEnv",
+      "@context": {
+        "envName": "schema:name",
+        "envLang": "dataiku:envLang",
+        "deploymentMode": "dataiku:deploymentMode"
+      }
+    },
+
+    "User": {
+      "@id": "dataiku:User",
+      "@context": {
+        "login": "dataiku:login",
+        "displayName": "schema:name",
+        "email": "schema:email",
+        "userProfile": "dataiku:userProfile",
+        "enabled": {
+          "@id": "dataiku:enabled",
+          "@type": "xsd:boolean"
+        }
+      }
+    },
+
+    "Plugin": {
+      "@id": "dataiku:Plugin",
+      "@context": {
+        "label": "schema:name",
+        "description": "schema:description",
+        "version": "schema:version",
+        "author": "schema:author",
+        "installedOn": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Blueprint": {
+      "@id": "dataiku:Blueprint",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "artifactCount": {
+          "@id": "dataiku:artifactCount",
+          "@type": "xsd:integer"
+        }
+      }
+    },
+
+    "GovernArtifact": {
+      "@id": "dataiku:GovernArtifact",
+      "@context": {
+        "name": "schema:name",
+        "blueprintId": "dataiku:blueprintId",
+        "status": "dataiku:artifactStatus",
+        "createdOn": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "createdBy": "dataiku:createdBy"
+      }
+    },
+
+    "APINodeService": {
+      "@id": "dataiku:APINodeService",
+      "@context": {
+        "serviceId": "dataiku:serviceId",
+        "enabled": {
+          "@id": "dataiku:enabled",
+          "@type": "xsd:boolean"
+        },
+        "activeGeneration": "dataiku:activeGeneration",
+        "generationCount": {
+          "@id": "dataiku:generationCount",
+          "@type": "xsd:integer"
+        }
+      }
+    }
+  }
+}

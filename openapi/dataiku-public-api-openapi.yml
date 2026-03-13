@@ -1,0 +1,1889 @@
+openapi: 3.1.0
+info:
+  title: Dataiku DSS Public API
+  description: >-
+    REST API for managing Dataiku DSS instances, projects, datasets, recipes,
+    jobs, scenarios, models, and other platform resources programmatically.
+    Provides full control over DSS operations including data preparation,
+    machine learning model management, and workflow automation.
+  version: '13.0'
+  contact:
+    name: Dataiku Support
+    url: https://www.dataiku.com/support
+    email: support@dataiku.com
+  termsOfService: https://www.dataiku.com/terms/
+externalDocs:
+  description: Dataiku DSS Public API Documentation
+  url: https://doc.dataiku.com/dss/latest/publicapi/rest/index.html
+servers:
+  - url: https://{dss-host}/public/api
+    description: Dataiku DSS Instance
+    variables:
+      dss-host:
+        default: dss.example.com
+        description: Hostname of the Dataiku DSS instance
+tags:
+  - name: Projects
+    description: Manage DSS projects
+  - name: Datasets
+    description: Manage datasets within projects
+  - name: Recipes
+    description: Manage recipes and data transformations
+  - name: Jobs
+    description: Run and monitor build jobs
+  - name: Scenarios
+    description: Manage and trigger automation scenarios
+  - name: Managed Folders
+    description: Manage folders for unstructured data
+  - name: Saved Models
+    description: Manage trained machine learning models
+  - name: Model Evaluation Stores
+    description: Manage model evaluation stores
+  - name: SQL Queries
+    description: Execute SQL queries on connections
+  - name: Bundles
+    description: Import and export project bundles
+  - name: Connections
+    description: Manage data connections
+  - name: Code Envs
+    description: Manage code environments for Python and R
+  - name: Users
+    description: Manage DSS users
+  - name: Groups
+    description: Manage DSS groups
+  - name: Global API Keys
+    description: Manage global API keys
+  - name: General Settings
+    description: Manage instance-level settings
+  - name: Meanings
+    description: Manage user-defined meanings
+  - name: Plugins
+    description: Manage DSS plugins
+security:
+  - apiKeyAuth: []
+paths:
+  /projects:
+    get:
+      operationId: listProjects
+      summary: List projects
+      description: Retrieve a list of all projects the API key has access to.
+      tags:
+        - Projects
+      responses:
+        '200':
+          description: List of projects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectSummary'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createProject
+      summary: Create a project
+      description: Create a new DSS project.
+      tags:
+        - Projects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectRequest'
+      responses:
+        '200':
+          description: Project created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectSummary'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '409':
+          description: Project key already exists
+  /projects/{projectKey}:
+    get:
+      operationId: getProject
+      summary: Get project details
+      description: Retrieve metadata and settings for a specific project.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+      responses:
+        '200':
+          description: Project details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Project not found
+    delete:
+      operationId: deleteProject
+      summary: Delete a project
+      description: Delete a project and all its contents.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+      responses:
+        '204':
+          description: Project deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Project not found
+  /projects/{projectKey}/metadata:
+    get:
+      operationId: getProjectMetadata
+      summary: Get project metadata
+      description: Retrieve metadata (labels, description, tags, etc.) for a project.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+      responses:
+        '200':
+          description: Project metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectMetadata'
+        '404':
+          description: Project not found
+    put:
+      operationId: setProjectMetadata
+      summary: Set project metadata
+      description: Update metadata for a project.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectMetadata'
+      responses:
+        '200':
+          description: Metadata updated
+        '404':
+          description: Project not found
+  /projects/{projectKey}/datasets:
+    get:
+      operationId: listDatasets
+      summary: List datasets
+      description: List all datasets in a project.
+      tags:
+        - Datasets
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+      responses:
+        '200':
+          description: List of datasets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dataset'
+        '404':
+          description: Project not found
+    post:
+      operationId: createDataset
+      summary: Create a dataset
+      description: Create a new dataset in the project.
+      tags:
+        - Datasets
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDatasetRequest'
+      responses:
+        '200':
+          description: Dataset created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dataset'
+        '400':
+          description: Invalid request
+        '409':
+          description: Dataset name already exists
+  /projects/{projectKey}/datasets/{datasetName}:
+    get:
+      operationId: getDataset
+      summary: Get dataset details
+      description: Get the definition and schema of a dataset.
+      tags:
+        - Datasets
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/datasetName'
+      responses:
+        '200':
+          description: Dataset details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dataset'
+        '404':
+          description: Dataset not found
+    put:
+      operationId: updateDataset
+      summary: Update a dataset
+      description: Update the definition of a dataset.
+      tags:
+        - Datasets
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/datasetName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dataset'
+      responses:
+        '200':
+          description: Dataset updated
+        '404':
+          description: Dataset not found
+    delete:
+      operationId: deleteDataset
+      summary: Delete a dataset
+      description: Delete a dataset from the project.
+      tags:
+        - Datasets
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/datasetName'
+      responses:
+        '204':
+          description: Dataset deleted
+        '404':
+          description: Dataset not found
+  /projects/{projectKey}/datasets/{datasetName}/data:
+    get:
+      operationId: getDatasetData
+      summary: Read dataset data
+      description: >-
+        Read rows from a dataset. Returns data in JSON format with columns and
+        rows.
+      tags:
+        - Datasets
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/datasetName'
+        - name: limit
+          in: query
+          description: Maximum number of rows to return
+          schema:
+            type: integer
+            default: 20000
+        - name: partitions
+          in: query
+          description: Comma-separated list of partition identifiers to read from
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Dataset data rows
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetData'
+        '404':
+          description: Dataset not found
+  /projects/{projectKey}/datasets/{datasetName}/schema:
+    get:
+      operationId: getDatasetSchema
+      summary: Get dataset schema
+      description: Get the schema (column names and types) of a dataset.
+      tags:
+        - Datasets
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/datasetName'
+      responses:
+        '200':
+          description: Dataset schema
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetSchema'
+        '404':
+          description: Dataset not found
+    put:
+      operationId: setDatasetSchema
+      summary: Set dataset schema
+      description: Update the schema of a dataset.
+      tags:
+        - Datasets
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/datasetName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DatasetSchema'
+      responses:
+        '200':
+          description: Schema updated
+        '404':
+          description: Dataset not found
+  /projects/{projectKey}/recipes:
+    get:
+      operationId: listRecipes
+      summary: List recipes
+      description: List all recipes in a project.
+      tags:
+        - Recipes
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+      responses:
+        '200':
+          description: List of recipes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RecipeSummary'
+        '404':
+          description: Project not found
+  /projects/{projectKey}/recipes/{recipeName}:
+    get:
+      operationId: getRecipe
+      summary: Get recipe details
+      description: Get the full definition of a recipe.
+      tags:
+        - Recipes
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/recipeName'
+      responses:
+        '200':
+          description: Recipe details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipe'
+        '404':
+          description: Recipe not found
+    delete:
+      operationId: deleteRecipe
+      summary: Delete a recipe
+      description: Delete a recipe from the project.
+      tags:
+        - Recipes
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/recipeName'
+      responses:
+        '204':
+          description: Recipe deleted
+        '404':
+          description: Recipe not found
+  /projects/{projectKey}/jobs:
+    get:
+      operationId: listJobs
+      summary: List jobs
+      description: List jobs in a project.
+      tags:
+        - Jobs
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+      responses:
+        '200':
+          description: List of jobs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobSummary'
+        '404':
+          description: Project not found
+    post:
+      operationId: startJob
+      summary: Start a new job
+      description: Start a new build job in the project.
+      tags:
+        - Jobs
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartJobRequest'
+      responses:
+        '200':
+          description: Job started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+        '400':
+          description: Invalid request
+  /projects/{projectKey}/jobs/{jobId}:
+    get:
+      operationId: getJob
+      summary: Get job status
+      description: Retrieve the status and details of a specific job.
+      tags:
+        - Jobs
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/jobId'
+      responses:
+        '200':
+          description: Job details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+        '404':
+          description: Job not found
+    delete:
+      operationId: abortJob
+      summary: Abort a job
+      description: Abort a running job.
+      tags:
+        - Jobs
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/jobId'
+      responses:
+        '204':
+          description: Job aborted
+        '404':
+          description: Job not found
+  /projects/{projectKey}/scenarios:
+    get:
+      operationId: listScenarios
+      summary: List scenarios
+      description: List all scenarios in a project.
+      tags:
+        - Scenarios
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+      responses:
+        '200':
+          description: List of scenarios
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ScenarioSummary'
+        '404':
+          description: Project not found
+  /projects/{projectKey}/scenarios/{scenarioId}:
+    get:
+      operationId: getScenario
+      summary: Get scenario details
+      description: Get the full definition of a scenario.
+      tags:
+        - Scenarios
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/scenarioId'
+      responses:
+        '200':
+          description: Scenario details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scenario'
+        '404':
+          description: Scenario not found
+  /projects/{projectKey}/scenarios/{scenarioId}/run:
+    post:
+      operationId: runScenario
+      summary: Run a scenario
+      description: Trigger execution of a scenario.
+      tags:
+        - Scenarios
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/scenarioId'
+      responses:
+        '200':
+          description: Scenario run started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScenarioRun'
+        '404':
+          description: Scenario not found
+  /projects/{projectKey}/scenarios/{scenarioId}/light:
+    get:
+      operationId: getScenarioRunStatus
+      summary: Get scenario run status
+      description: Get lightweight status of the last runs of a scenario.
+      tags:
+        - Scenarios
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/scenarioId'
+      responses:
+        '200':
+          description: Scenario run status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScenarioLight'
+        '404':
+          description: Scenario not found
+  /projects/{projectKey}/managedfolders:
+    get:
+      operationId: listManagedFolders
+      summary: List managed folders
+      description: List all managed folders in a project.
+      tags:
+        - Managed Folders
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+      responses:
+        '200':
+          description: List of managed folders
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ManagedFolder'
+        '404':
+          description: Project not found
+  /projects/{projectKey}/managedfolders/{folderId}/contents:
+    get:
+      operationId: listManagedFolderContents
+      summary: List managed folder contents
+      description: List the files in a managed folder.
+      tags:
+        - Managed Folders
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/folderId'
+      responses:
+        '200':
+          description: Folder contents
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedFolderContents'
+        '404':
+          description: Managed folder not found
+  /projects/{projectKey}/savedmodels:
+    get:
+      operationId: listSavedModels
+      summary: List saved models
+      description: List all saved models in a project.
+      tags:
+        - Saved Models
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+      responses:
+        '200':
+          description: List of saved models
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SavedModelSummary'
+        '404':
+          description: Project not found
+  /projects/{projectKey}/savedmodels/{savedModelId}:
+    get:
+      operationId: getSavedModel
+      summary: Get saved model details
+      description: Get details of a saved model including its active version.
+      tags:
+        - Saved Models
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/savedModelId'
+      responses:
+        '200':
+          description: Saved model details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavedModel'
+        '404':
+          description: Saved model not found
+  /projects/{projectKey}/modelevaluationstores:
+    get:
+      operationId: listModelEvaluationStores
+      summary: List model evaluation stores
+      description: List all model evaluation stores in a project.
+      tags:
+        - Model Evaluation Stores
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+      responses:
+        '200':
+          description: List of model evaluation stores
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ModelEvaluationStoreSummary'
+        '404':
+          description: Project not found
+  /projects/{projectKey}/bundles:
+    get:
+      operationId: listBundles
+      summary: List bundles
+      description: List all exported bundles of a project.
+      tags:
+        - Bundles
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+      responses:
+        '200':
+          description: List of bundles
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BundleSummary'
+        '404':
+          description: Project not found
+    post:
+      operationId: createBundle
+      summary: Create a bundle
+      description: Create a new export bundle for the project.
+      tags:
+        - Bundles
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBundleRequest'
+      responses:
+        '200':
+          description: Bundle created
+        '400':
+          description: Invalid request
+  /sql/queries:
+    post:
+      operationId: executeSqlQuery
+      summary: Execute a SQL query
+      description: >-
+        Execute a SQL query on a DSS connection and retrieve the results.
+      tags:
+        - SQL Queries
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SqlQueryRequest'
+      responses:
+        '200':
+          description: Query results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SqlQueryResult'
+        '400':
+          description: Invalid query
+  /admin/connections:
+    get:
+      operationId: listConnections
+      summary: List connections
+      description: List all data connections configured on the DSS instance.
+      tags:
+        - Connections
+      responses:
+        '200':
+          description: List of connections
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConnectionSummary'
+        '401':
+          description: Unauthorized
+  /admin/connections/{connectionName}:
+    get:
+      operationId: getConnection
+      summary: Get connection details
+      description: Get the full definition of a connection.
+      tags:
+        - Connections
+      parameters:
+        - $ref: '#/components/parameters/connectionName'
+      responses:
+        '200':
+          description: Connection details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connection'
+        '404':
+          description: Connection not found
+  /admin/code-envs:
+    get:
+      operationId: listCodeEnvs
+      summary: List code environments
+      description: List all code environments on the DSS instance.
+      tags:
+        - Code Envs
+      responses:
+        '200':
+          description: List of code environments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CodeEnvSummary'
+        '401':
+          description: Unauthorized
+  /admin/code-envs/{envLang}/{envName}:
+    get:
+      operationId: getCodeEnv
+      summary: Get code environment details
+      description: Get the definition of a code environment.
+      tags:
+        - Code Envs
+      parameters:
+        - $ref: '#/components/parameters/envLang'
+        - $ref: '#/components/parameters/envName'
+      responses:
+        '200':
+          description: Code environment details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CodeEnv'
+        '404':
+          description: Code environment not found
+  /admin/users:
+    get:
+      operationId: listUsers
+      summary: List users
+      description: List all users on the DSS instance.
+      tags:
+        - Users
+      responses:
+        '200':
+          description: List of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createUser
+      summary: Create a user
+      description: Create a new user on the DSS instance.
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+      responses:
+        '200':
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid request
+        '409':
+          description: User already exists
+  /admin/users/{login}:
+    get:
+      operationId: getUser
+      summary: Get user details
+      description: Get the details of a specific user.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/login'
+      responses:
+        '200':
+          description: User details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+    put:
+      operationId: updateUser
+      summary: Update a user
+      description: Update the details of a user.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/login'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: User updated
+        '404':
+          description: User not found
+    delete:
+      operationId: deleteUser
+      summary: Delete a user
+      description: Delete a user from the DSS instance.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/login'
+      responses:
+        '204':
+          description: User deleted
+        '404':
+          description: User not found
+  /admin/groups:
+    get:
+      operationId: listGroups
+      summary: List groups
+      description: List all groups on the DSS instance.
+      tags:
+        - Groups
+      responses:
+        '200':
+          description: List of groups
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Group'
+        '401':
+          description: Unauthorized
+  /admin/groups/{groupName}:
+    get:
+      operationId: getGroup
+      summary: Get group details
+      description: Get the details of a specific group.
+      tags:
+        - Groups
+      parameters:
+        - $ref: '#/components/parameters/groupName'
+      responses:
+        '200':
+          description: Group details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '404':
+          description: Group not found
+  /admin/globalAPIKeys:
+    get:
+      operationId: listGlobalAPIKeys
+      summary: List global API keys
+      description: List all global API keys on the DSS instance.
+      tags:
+        - Global API Keys
+      responses:
+        '200':
+          description: List of API keys
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GlobalAPIKey'
+        '401':
+          description: Unauthorized
+  /admin/general-settings:
+    get:
+      operationId: getGeneralSettings
+      summary: Get general settings
+      description: Get the general settings of the DSS instance.
+      tags:
+        - General Settings
+      responses:
+        '200':
+          description: General settings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralSettings'
+        '401':
+          description: Unauthorized
+    put:
+      operationId: setGeneralSettings
+      summary: Update general settings
+      description: Update the general settings of the DSS instance.
+      tags:
+        - General Settings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GeneralSettings'
+      responses:
+        '200':
+          description: Settings updated
+        '401':
+          description: Unauthorized
+  /meanings:
+    get:
+      operationId: listMeanings
+      summary: List meanings
+      description: List all user-defined meanings on the DSS instance.
+      tags:
+        - Meanings
+      responses:
+        '200':
+          description: List of meanings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Meaning'
+        '401':
+          description: Unauthorized
+  /plugins:
+    get:
+      operationId: listPlugins
+      summary: List plugins
+      description: List all installed plugins on the DSS instance.
+      tags:
+        - Plugins
+      responses:
+        '200':
+          description: List of plugins
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PluginSummary'
+        '401':
+          description: Unauthorized
+  /plugins/{pluginId}:
+    get:
+      operationId: getPlugin
+      summary: Get plugin details
+      description: Get the details of an installed plugin.
+      tags:
+        - Plugins
+      parameters:
+        - $ref: '#/components/parameters/pluginId'
+      responses:
+        '200':
+          description: Plugin details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+        '404':
+          description: Plugin not found
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        API key authentication. Pass the API key as a Bearer token in the
+        Authorization header.
+  parameters:
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      description: Unique project key identifier
+      schema:
+        type: string
+    datasetName:
+      name: datasetName
+      in: path
+      required: true
+      description: Dataset name within the project
+      schema:
+        type: string
+    recipeName:
+      name: recipeName
+      in: path
+      required: true
+      description: Recipe name within the project
+      schema:
+        type: string
+    jobId:
+      name: jobId
+      in: path
+      required: true
+      description: Unique job identifier
+      schema:
+        type: string
+    scenarioId:
+      name: scenarioId
+      in: path
+      required: true
+      description: Scenario identifier
+      schema:
+        type: string
+    folderId:
+      name: folderId
+      in: path
+      required: true
+      description: Managed folder identifier
+      schema:
+        type: string
+    savedModelId:
+      name: savedModelId
+      in: path
+      required: true
+      description: Saved model identifier
+      schema:
+        type: string
+    connectionName:
+      name: connectionName
+      in: path
+      required: true
+      description: Connection name
+      schema:
+        type: string
+    envLang:
+      name: envLang
+      in: path
+      required: true
+      description: Code environment language (PYTHON or R)
+      schema:
+        type: string
+        enum:
+          - PYTHON
+          - R
+    envName:
+      name: envName
+      in: path
+      required: true
+      description: Code environment name
+      schema:
+        type: string
+    login:
+      name: login
+      in: path
+      required: true
+      description: User login name
+      schema:
+        type: string
+    groupName:
+      name: groupName
+      in: path
+      required: true
+      description: Group name
+      schema:
+        type: string
+    pluginId:
+      name: pluginId
+      in: path
+      required: true
+      description: Plugin identifier
+      schema:
+        type: string
+  schemas:
+    ProjectSummary:
+      type: object
+      properties:
+        projectKey:
+          type: string
+          description: Unique project key
+        name:
+          type: string
+          description: Display name of the project
+        owner:
+          type: string
+          description: Login of the project owner
+        projectStatus:
+          type: string
+          description: Current status of the project
+    CreateProjectRequest:
+      type: object
+      required:
+        - projectKey
+        - name
+      properties:
+        projectKey:
+          type: string
+          description: Unique project key (uppercase letters and numbers)
+          pattern: '^[A-Z][A-Z0-9_]*$'
+        name:
+          type: string
+          description: Display name for the project
+        owner:
+          type: string
+          description: Login of the project owner
+    Project:
+      type: object
+      properties:
+        projectKey:
+          type: string
+          description: Unique project key
+        name:
+          type: string
+          description: Display name of the project
+        owner:
+          type: string
+          description: Login of the project owner
+        projectStatus:
+          type: string
+          description: Current status of the project
+        creationTag:
+          $ref: '#/components/schemas/Tag'
+        versionTag:
+          $ref: '#/components/schemas/Tag'
+        description:
+          type: string
+          description: Short description of the project
+    ProjectMetadata:
+      type: object
+      properties:
+        label:
+          type: string
+          description: Display label for the project
+        description:
+          type: string
+          description: Project description
+        shortDesc:
+          type: string
+          description: Short description
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags associated with the project
+        checklists:
+          type: object
+          description: Checklists for the project
+    Tag:
+      type: object
+      properties:
+        versionNumber:
+          type: integer
+          description: Version number
+        lastModifiedBy:
+          type: object
+          properties:
+            login:
+              type: string
+        lastModifiedOn:
+          type: string
+          format: date-time
+          description: Timestamp of last modification
+    Dataset:
+      type: object
+      properties:
+        projectKey:
+          type: string
+          description: Project key the dataset belongs to
+        name:
+          type: string
+          description: Dataset name
+        type:
+          type: string
+          description: Dataset type (e.g., Filesystem, PostgreSQL, S3, HDFS)
+        managed:
+          type: boolean
+          description: Whether the dataset is managed by DSS
+        schema:
+          $ref: '#/components/schemas/DatasetSchema'
+        formatType:
+          type: string
+          description: Data format type (e.g., csv, parquet, json)
+        params:
+          type: object
+          description: Type-specific parameters
+        flowOptions:
+          type: object
+          description: Flow options for the dataset
+        creationTag:
+          $ref: '#/components/schemas/Tag'
+        versionTag:
+          $ref: '#/components/schemas/Tag'
+    CreateDatasetRequest:
+      type: object
+      required:
+        - name
+        - type
+      properties:
+        name:
+          type: string
+          description: Dataset name
+        type:
+          type: string
+          description: Dataset type
+        params:
+          type: object
+          description: Type-specific parameters
+        formatType:
+          type: string
+          description: Data format type
+        formatParams:
+          type: object
+          description: Format-specific parameters
+    DatasetSchema:
+      type: object
+      properties:
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/SchemaColumn'
+          description: List of columns in the dataset
+        userModified:
+          type: boolean
+          description: Whether the schema was manually modified
+    SchemaColumn:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Column name
+        type:
+          type: string
+          description: Column data type (e.g., string, bigint, double, boolean, date)
+        meaning:
+          type: string
+          description: Semantic meaning assigned to the column
+        maxLength:
+          type: integer
+          description: Maximum length for string columns
+    DatasetData:
+      type: object
+      properties:
+        columns:
+          type: array
+          items:
+            type: string
+          description: Column names
+        rows:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+          description: Data rows
+        totalCount:
+          type: integer
+          description: Total number of rows in the dataset
+    RecipeSummary:
+      type: object
+      properties:
+        projectKey:
+          type: string
+          description: Project key
+        name:
+          type: string
+          description: Recipe name
+        type:
+          type: string
+          description: Recipe type (e.g., prepare, python, sql, join, sync)
+    Recipe:
+      type: object
+      properties:
+        projectKey:
+          type: string
+          description: Project key
+        name:
+          type: string
+          description: Recipe name
+        type:
+          type: string
+          description: Recipe type
+        inputs:
+          type: object
+          description: Input datasets and roles
+        outputs:
+          type: object
+          description: Output datasets and roles
+        params:
+          type: object
+          description: Recipe-specific parameters
+        creationTag:
+          $ref: '#/components/schemas/Tag'
+        versionTag:
+          $ref: '#/components/schemas/Tag'
+    JobSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique job identifier
+        projectKey:
+          type: string
+          description: Project key
+        state:
+          type: string
+          enum:
+            - NOT_STARTED
+            - RUNNING
+            - DONE
+            - FAILED
+            - ABORTED
+          description: Current state of the job
+        initiator:
+          type: string
+          description: User who started the job
+        startTime:
+          type: integer
+          format: int64
+          description: Job start time as epoch milliseconds
+    Job:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique job identifier
+        projectKey:
+          type: string
+          description: Project key
+        state:
+          type: string
+          enum:
+            - NOT_STARTED
+            - RUNNING
+            - DONE
+            - FAILED
+            - ABORTED
+          description: Current state of the job
+        initiator:
+          type: string
+          description: User who started the job
+        startTime:
+          type: integer
+          format: int64
+          description: Job start time as epoch milliseconds
+        endTime:
+          type: integer
+          format: int64
+          description: Job end time as epoch milliseconds
+        activities:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobActivity'
+          description: List of activities in the job
+    StartJobRequest:
+      type: object
+      required:
+        - outputs
+      properties:
+        outputs:
+          type: array
+          items:
+            type: object
+            properties:
+              projectKey:
+                type: string
+              id:
+                type: string
+              type:
+                type: string
+                enum:
+                  - DATASET
+                  - MANAGED_FOLDER
+                  - SAVED_MODEL
+          description: List of outputs to build
+    JobActivity:
+      type: object
+      properties:
+        recipeProjectKey:
+          type: string
+        recipeName:
+          type: string
+        state:
+          type: string
+          enum:
+            - NOT_STARTED
+            - RUNNING
+            - DONE
+            - FAILED
+            - ABORTED
+          description: Activity state
+    ScenarioSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Scenario identifier
+        projectKey:
+          type: string
+          description: Project key
+        name:
+          type: string
+          description: Scenario name
+        active:
+          type: boolean
+          description: Whether the scenario is active
+        type:
+          type: string
+          description: Scenario type (step_based or custom_python)
+    Scenario:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Scenario identifier
+        projectKey:
+          type: string
+          description: Project key
+        name:
+          type: string
+          description: Scenario name
+        active:
+          type: boolean
+          description: Whether the scenario is active
+        type:
+          type: string
+          description: Scenario type
+        params:
+          type: object
+          description: Scenario parameters
+        triggers:
+          type: array
+          items:
+            type: object
+          description: Scenario triggers
+    ScenarioRun:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Run identifier
+        scenarioId:
+          type: string
+          description: Scenario identifier
+        trigger:
+          type: object
+          description: Trigger information
+        result:
+          type: object
+          description: Run result
+    ScenarioLight:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Scenario identifier
+        running:
+          type: boolean
+          description: Whether the scenario is currently running
+        lastRun:
+          type: object
+          description: Information about the last run
+    ManagedFolder:
+      type: object
+      properties:
+        projectKey:
+          type: string
+          description: Project key
+        id:
+          type: string
+          description: Managed folder identifier
+        name:
+          type: string
+          description: Managed folder name
+        type:
+          type: string
+          description: Storage type
+    ManagedFolderContents:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              path:
+                type: string
+                description: File path within the folder
+              size:
+                type: integer
+                format: int64
+                description: File size in bytes
+              lastModified:
+                type: integer
+                format: int64
+                description: Last modified timestamp
+          description: List of items in the folder
+    SavedModelSummary:
+      type: object
+      properties:
+        projectKey:
+          type: string
+          description: Project key
+        id:
+          type: string
+          description: Saved model identifier
+        name:
+          type: string
+          description: Saved model name
+        type:
+          type: string
+          description: Model type (PREDICTION or CLUSTERING)
+    SavedModel:
+      type: object
+      properties:
+        projectKey:
+          type: string
+          description: Project key
+        id:
+          type: string
+          description: Saved model identifier
+        name:
+          type: string
+          description: Saved model name
+        type:
+          type: string
+          description: Model type
+        activeVersion:
+          type: string
+          description: Identifier of the active model version
+        versions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModelVersion'
+    ModelVersion:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Version identifier
+        active:
+          type: boolean
+          description: Whether this is the active version
+        snippet:
+          type: object
+          description: Summary metrics for the model version
+    ModelEvaluationStoreSummary:
+      type: object
+      properties:
+        projectKey:
+          type: string
+          description: Project key
+        id:
+          type: string
+          description: Model evaluation store identifier
+        name:
+          type: string
+          description: Display name
+    BundleSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Bundle identifier
+        projectKey:
+          type: string
+          description: Project key
+        createdOn:
+          type: integer
+          format: int64
+          description: Creation timestamp
+        createdBy:
+          type: string
+          description: User who created the bundle
+    CreateBundleRequest:
+      type: object
+      required:
+        - bundleId
+      properties:
+        bundleId:
+          type: string
+          description: Identifier for the new bundle
+    SqlQueryRequest:
+      type: object
+      required:
+        - connection
+        - query
+      properties:
+        connection:
+          type: string
+          description: Name of the DSS connection to query
+        query:
+          type: string
+          description: SQL query to execute
+        preQueries:
+          type: array
+          items:
+            type: string
+          description: SQL statements to execute before the main query
+        postQueries:
+          type: array
+          items:
+            type: string
+          description: SQL statements to execute after the main query
+    SqlQueryResult:
+      type: object
+      properties:
+        columns:
+          type: array
+          items:
+            type: string
+          description: Column names
+        rows:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+          description: Result rows
+    ConnectionSummary:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Connection name
+        type:
+          type: string
+          description: Connection type (e.g., PostgreSQL, S3, HDFS)
+    Connection:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Connection name
+        type:
+          type: string
+          description: Connection type
+        params:
+          type: object
+          description: Connection-specific parameters
+        allowWrite:
+          type: boolean
+          description: Whether write operations are allowed
+        allowManagedDatasets:
+          type: boolean
+          description: Whether managed datasets are allowed
+    CodeEnvSummary:
+      type: object
+      properties:
+        envName:
+          type: string
+          description: Code environment name
+        envLang:
+          type: string
+          enum:
+            - PYTHON
+            - R
+          description: Programming language
+    CodeEnv:
+      type: object
+      properties:
+        envName:
+          type: string
+          description: Code environment name
+        envLang:
+          type: string
+          enum:
+            - PYTHON
+            - R
+          description: Programming language
+        deploymentMode:
+          type: string
+          description: Deployment mode
+        specPackageList:
+          type: string
+          description: Pip or CRAN package specification
+        pythonInterpreter:
+          type: string
+          description: Python interpreter path (Python envs only)
+    User:
+      type: object
+      properties:
+        login:
+          type: string
+          description: User login name
+        displayName:
+          type: string
+          description: Display name
+        email:
+          type: string
+          format: email
+          description: Email address
+        groups:
+          type: array
+          items:
+            type: string
+          description: Groups the user belongs to
+        userProfile:
+          type: string
+          description: User profile (e.g., READER, DATA_ANALYST, DATA_ENGINEER, ADMIN)
+        enabled:
+          type: boolean
+          description: Whether the account is enabled
+    CreateUserRequest:
+      type: object
+      required:
+        - login
+        - password
+      properties:
+        login:
+          type: string
+          description: User login name
+        password:
+          type: string
+          description: Initial password
+        displayName:
+          type: string
+          description: Display name
+        email:
+          type: string
+          format: email
+          description: Email address
+        groups:
+          type: array
+          items:
+            type: string
+          description: Groups to assign
+        userProfile:
+          type: string
+          description: User profile
+    Group:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Group name
+        description:
+          type: string
+          description: Group description
+        admin:
+          type: boolean
+          description: Whether this is an admin group
+        sourceType:
+          type: string
+          description: Group source type (LOCAL, LDAP)
+    GlobalAPIKey:
+      type: object
+      properties:
+        id:
+          type: string
+          description: API key identifier
+        key:
+          type: string
+          description: The API key value
+        label:
+          type: string
+          description: Label for the API key
+        createdOn:
+          type: integer
+          format: int64
+          description: Creation timestamp
+        createdBy:
+          type: string
+          description: User who created the key
+        globalPermissions:
+          type: object
+          description: Global permissions granted
+    GeneralSettings:
+      type: object
+      properties:
+        permissions:
+          type: object
+          description: Global permission settings
+        ldapSettings:
+          type: object
+          description: LDAP configuration
+        ssoSettings:
+          type: object
+          description: SSO configuration
+        theme:
+          type: object
+          description: UI theme settings
+    Meaning:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Meaning identifier
+        label:
+          type: string
+          description: Display label
+        description:
+          type: string
+          description: Meaning description
+        type:
+          type: string
+          enum:
+            - DECLARATIVE
+            - VALUES_LIST
+            - VALUES_MAPPING
+            - PATTERN
+          description: Meaning type
+    PluginSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Plugin identifier
+        version:
+          type: string
+          description: Plugin version
+        label:
+          type: string
+          description: Display label
+        installedOn:
+          type: integer
+          format: int64
+          description: Installation timestamp
+    Plugin:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Plugin identifier
+        version:
+          type: string
+          description: Plugin version
+        label:
+          type: string
+          description: Display label
+        description:
+          type: string
+          description: Plugin description
+        author:
+          type: string
+          description: Plugin author
+        installedOn:
+          type: integer
+          format: int64
+          description: Installation timestamp
