@@ -39,7 +39,7 @@ paths:
   /services:
     get:
       operationId: listServices
-      summary: List deployed services
+      summary: Dataiku List deployed services
       description: >-
         List all services currently deployed on this API node.
       tags:
@@ -58,7 +58,7 @@ paths:
   /services/{serviceId}:
     get:
       operationId: getService
-      summary: Get service details
+      summary: Dataiku Get service details
       description: >-
         Retrieve the details and configuration of a deployed service.
       tags:
@@ -78,7 +78,7 @@ paths:
           description: Service not found
     delete:
       operationId: deleteService
-      summary: Delete a service
+      summary: Dataiku Delete a service
       description: >-
         Remove a deployed service and all its generations from the API node.
       tags:
@@ -95,7 +95,7 @@ paths:
   /services/{serviceId}/enable:
     post:
       operationId: enableService
-      summary: Enable a service
+      summary: Dataiku Enable a service
       description: Enable a deployed service to accept prediction requests.
       tags:
         - Services
@@ -109,7 +109,7 @@ paths:
   /services/{serviceId}/disable:
     post:
       operationId: disableService
-      summary: Disable a service
+      summary: Dataiku Disable a service
       description: Disable a service to stop accepting prediction requests.
       tags:
         - Services
@@ -123,7 +123,7 @@ paths:
   /services/{serviceId}/generations:
     get:
       operationId: listGenerations
-      summary: List generations
+      summary: Dataiku List generations
       description: >-
         List all generations (deployed versions) of a service.
       tags:
@@ -143,7 +143,7 @@ paths:
           description: Service not found
     post:
       operationId: importGeneration
-      summary: Import a generation
+      summary: Dataiku Import a generation
       description: >-
         Import a new generation (bundle) for a service from a ZIP archive.
       tags:
@@ -175,7 +175,7 @@ paths:
   /services/{serviceId}/generations/{generationId}:
     get:
       operationId: getGeneration
-      summary: Get generation details
+      summary: Dataiku Get generation details
       description: >-
         Get the details of a specific generation.
       tags:
@@ -194,7 +194,7 @@ paths:
           description: Generation not found
     delete:
       operationId: deleteGeneration
-      summary: Delete a generation
+      summary: Dataiku Delete a generation
       description: >-
         Delete a specific generation from a service.
       tags:
@@ -210,7 +210,7 @@ paths:
   /services/{serviceId}/generations/{generationId}/preload:
     post:
       operationId: preloadGeneration
-      summary: Preload a generation
+      summary: Dataiku Preload a generation
       description: >-
         Preload a generation into memory to reduce cold-start latency.
       tags:
@@ -226,7 +226,7 @@ paths:
   /services/{serviceId}/generations/{generationId}/switch:
     post:
       operationId: switchGeneration
-      summary: Switch to a generation
+      summary: Dataiku Switch to a generation
       description: >-
         Set a generation as the active generation for the service.
       tags:
@@ -242,7 +242,7 @@ paths:
   /auth/keys:
     get:
       operationId: listAuthKeys
-      summary: List authentication keys
+      summary: Dataiku List authentication keys
       description: >-
         List all API authentication keys configured for accessing services.
       tags:
@@ -260,7 +260,7 @@ paths:
           description: Unauthorized
     post:
       operationId: createAuthKey
-      summary: Create an authentication key
+      summary: Dataiku Create an authentication key
       description: >-
         Create a new authentication key for accessing API node services.
       tags:
@@ -283,7 +283,7 @@ paths:
   /auth/keys/{keyId}:
     get:
       operationId: getAuthKey
-      summary: Get authentication key details
+      summary: Dataiku Get authentication key details
       description: >-
         Retrieve details of a specific authentication key.
       tags:
@@ -301,7 +301,7 @@ paths:
           description: Key not found
     delete:
       operationId: deleteAuthKey
-      summary: Delete an authentication key
+      summary: Dataiku Delete an authentication key
       description: >-
         Delete an authentication key.
       tags:
@@ -316,7 +316,7 @@ paths:
   /metrics:
     get:
       operationId: getMetrics
-      summary: Get API node metrics
+      summary: Dataiku Get API node metrics
       description: >-
         Retrieve metrics about the API node including request counts,
         latencies, and error rates.
@@ -334,7 +334,7 @@ paths:
   /health:
     get:
       operationId: getHealth
-      summary: Get API node health
+      summary: Dataiku Get API node health
       description: >-
         Check the health status of the API node.
       tags:

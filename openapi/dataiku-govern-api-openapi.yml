@@ -43,7 +43,7 @@ paths:
   /blueprints:
     get:
       operationId: listBlueprints
-      summary: List blueprints
+      summary: Dataiku List blueprints
       description: >-
         Retrieve a list of all governance blueprints. Blueprints define the
         structure and lifecycle of governed artifacts.
@@ -62,7 +62,7 @@ paths:
           description: Unauthorized
     post:
       operationId: createBlueprint
-      summary: Create a blueprint
+      summary: Dataiku Create a blueprint
       description: Create a new governance blueprint.
       tags:
         - Blueprints
@@ -84,7 +84,7 @@ paths:
   /blueprints/{blueprintId}:
     get:
       operationId: getBlueprint
-      summary: Get blueprint details
+      summary: Dataiku Get blueprint details
       description: Retrieve the full definition of a governance blueprint.
       tags:
         - Blueprints
@@ -101,7 +101,7 @@ paths:
           description: Blueprint not found
     put:
       operationId: updateBlueprint
-      summary: Update a blueprint
+      summary: Dataiku Update a blueprint
       description: Update the definition of a governance blueprint.
       tags:
         - Blueprints
@@ -120,7 +120,7 @@ paths:
           description: Blueprint not found
     delete:
       operationId: deleteBlueprint
-      summary: Delete a blueprint
+      summary: Dataiku Delete a blueprint
       description: Delete a governance blueprint and its versions.
       tags:
         - Blueprints
@@ -134,7 +134,7 @@ paths:
   /blueprints/{blueprintId}/versions:
     get:
       operationId: listBlueprintVersions
-      summary: List blueprint versions
+      summary: Dataiku List blueprint versions
       description: List all versions of a governance blueprint.
       tags:
         - Blueprint Versions
@@ -153,7 +153,7 @@ paths:
           description: Blueprint not found
     post:
       operationId: createBlueprintVersion
-      summary: Create a blueprint version
+      summary: Dataiku Create a blueprint version
       description: Create a new version of a governance blueprint.
       tags:
         - Blueprint Versions
@@ -177,7 +177,7 @@ paths:
   /blueprints/{blueprintId}/versions/{versionId}:
     get:
       operationId: getBlueprintVersion
-      summary: Get blueprint version details
+      summary: Dataiku Get blueprint version details
       description: Get the full definition of a blueprint version.
       tags:
         - Blueprint Versions
@@ -196,7 +196,7 @@ paths:
   /artifacts:
     get:
       operationId: listArtifacts
-      summary: List artifacts
+      summary: Dataiku List artifacts
       description: >-
         List governed artifacts, optionally filtered by blueprint.
       tags:
@@ -220,7 +220,7 @@ paths:
           description: Unauthorized
     post:
       operationId: createArtifact
-      summary: Create an artifact
+      summary: Dataiku Create an artifact
       description: Create a new governed artifact under a blueprint.
       tags:
         - Artifacts
@@ -242,7 +242,7 @@ paths:
   /artifacts/{artifactId}:
     get:
       operationId: getArtifact
-      summary: Get artifact details
+      summary: Dataiku Get artifact details
       description: Retrieve the details of a governed artifact.
       tags:
         - Artifacts
@@ -259,7 +259,7 @@ paths:
           description: Artifact not found
     put:
       operationId: updateArtifact
-      summary: Update an artifact
+      summary: Dataiku Update an artifact
       description: Update the details of a governed artifact.
       tags:
         - Artifacts
@@ -278,7 +278,7 @@ paths:
           description: Artifact not found
     delete:
       operationId: deleteArtifact
-      summary: Delete an artifact
+      summary: Dataiku Delete an artifact
       description: Delete a governed artifact.
       tags:
         - Artifacts
@@ -292,7 +292,7 @@ paths:
   /artifacts/{artifactId}/custom-fields:
     get:
       operationId: getArtifactCustomFields
-      summary: Get artifact custom fields
+      summary: Dataiku Get artifact custom fields
       description: Retrieve all custom field values for an artifact.
       tags:
         - Custom Fields
@@ -310,7 +310,7 @@ paths:
           description: Artifact not found
     put:
       operationId: setArtifactCustomFields
-      summary: Set artifact custom fields
+      summary: Dataiku Set artifact custom fields
       description: Update custom field values for an artifact.
       tags:
         - Custom Fields
@@ -331,7 +331,7 @@ paths:
   /artifacts/{artifactId}/sign-offs:
     get:
       operationId: listArtifactSignOffs
-      summary: List artifact sign-offs
+      summary: Dataiku List artifact sign-offs
       description: List all sign-off steps and their status for an artifact.
       tags:
         - Artifact Sign-Offs
@@ -351,7 +351,7 @@ paths:
   /artifacts/{artifactId}/sign-offs/{signOffStepId}:
     get:
       operationId: getArtifactSignOff
-      summary: Get sign-off step details
+      summary: Dataiku Get sign-off step details
       description: Get details of a specific sign-off step for an artifact.
       tags:
         - Artifact Sign-Offs
@@ -370,7 +370,7 @@ paths:
   /artifacts/{artifactId}/sign-offs/{signOffStepId}/delegate:
     post:
       operationId: delegateSignOff
-      summary: Delegate a sign-off
+      summary: Dataiku Delegate a sign-off
       description: Delegate a sign-off step to another user.
       tags:
         - Artifact Sign-Offs
@@ -391,7 +391,7 @@ paths:
   /artifacts/{artifactId}/sign-offs/{signOffStepId}/reviews:
     post:
       operationId: addSignOffReview
-      summary: Add a sign-off review
+      summary: Dataiku Add a sign-off review
       description: Add a review (approve or reject) to a sign-off step.
       tags:
         - Artifact Sign-Offs
@@ -418,7 +418,7 @@ paths:
   /roles:
     get:
       operationId: listRoles
-      summary: List roles
+      summary: Dataiku List roles
       description: List all governance roles.
       tags:
         - Roles
@@ -436,7 +436,7 @@ paths:
   /users:
     get:
       operationId: listGovernUsers
-      summary: List Govern users
+      summary: Dataiku List Govern users
       description: List all users in the Govern instance.
       tags:
         - Users
