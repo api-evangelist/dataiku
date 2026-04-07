@@ -23,42 +23,42 @@ servers:
         default: dss.example.com
         description: Hostname of the Dataiku DSS instance
 tags:
-  - name: Projects
-    description: Manage DSS projects
-  - name: Datasets
-    description: Manage datasets within projects
-  - name: Recipes
-    description: Manage recipes and data transformations
-  - name: Jobs
-    description: Run and monitor build jobs
-  - name: Scenarios
-    description: Manage and trigger automation scenarios
-  - name: Managed Folders
-    description: Manage folders for unstructured data
-  - name: Saved Models
-    description: Manage trained machine learning models
-  - name: Model Evaluation Stores
-    description: Manage model evaluation stores
-  - name: SQL Queries
-    description: Execute SQL queries on connections
   - name: Bundles
     description: Import and export project bundles
-  - name: Connections
-    description: Manage data connections
   - name: Code Envs
     description: Manage code environments for Python and R
-  - name: Users
-    description: Manage DSS users
-  - name: Groups
-    description: Manage DSS groups
-  - name: Global API Keys
-    description: Manage global API keys
+  - name: Connections
+    description: Manage data connections
+  - name: Datasets
+    description: Manage datasets within projects
   - name: General Settings
     description: Manage instance-level settings
+  - name: Global API Keys
+    description: Manage global API keys
+  - name: Groups
+    description: Manage DSS groups
+  - name: Jobs
+    description: Run and monitor build jobs
+  - name: Managed Folders
+    description: Manage folders for unstructured data
   - name: Meanings
     description: Manage user-defined meanings
+  - name: Model Evaluation Stores
+    description: Manage model evaluation stores
   - name: Plugins
     description: Manage DSS plugins
+  - name: Projects
+    description: Manage DSS projects
+  - name: Recipes
+    description: Manage recipes and data transformations
+  - name: Saved Models
+    description: Manage trained machine learning models
+  - name: Scenarios
+    description: Manage and trigger automation scenarios
+  - name: SQL Queries
+    description: Execute SQL queries on connections
+  - name: Users
+    description: Manage DSS users
 security:
   - apiKeyAuth: []
 paths:

@@ -23,14 +23,14 @@ servers:
         default: govern.example.com
         description: Hostname of the Dataiku Govern instance
 tags:
-  - name: Blueprints
-    description: Manage governance blueprints that define artifact types
-  - name: Blueprint Versions
-    description: Manage blueprint version definitions
-  - name: Artifacts
-    description: Manage governed artifacts (models, projects, etc.)
   - name: Artifact Sign-Offs
     description: Manage sign-off workflows on artifacts
+  - name: Artifacts
+    description: Manage governed artifacts (models, projects, etc.)
+  - name: Blueprint Versions
+    description: Manage blueprint version definitions
+  - name: Blueprints
+    description: Manage governance blueprints that define artifact types
   - name: Custom Fields
     description: Manage custom fields on artifacts
   - name: Roles

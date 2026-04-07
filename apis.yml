@@ -1,13 +1,12 @@
 name: Dataiku
-description: Dataiku is an advanced data science and machine learning platform 
-  that enables teams to build and deploy AI applications at scale.
+description: Dataiku is an advanced data science and machine learning platform that enables teams to build and deploy AI applications at scale.
 image: https://www.dataiku.com/static/img/logo.png
 tags:
-  - data science
-  - machine learning
-  - artificial intelligence
-  - analytics
-  - data platform
+  - Analytics
+  - Artificial Intelligence
+  - Data Platform
+  - Data Science
+  - Machine Learning
 created: '2024'
 modified: '2026-03-16'
 url: https://www.dataiku.com
@@ -21,23 +20,21 @@ apis:
     humanURL: https://www.dataiku.com
     baseURL: https://dss.example.com/public/api
     tags:
-      - data science
-      - projects
-      - datasets
-      - workflows
+      - Data Science
+      - Datasets
+      - Projects
+      - Workflows
     properties:
       - type: Documentation
         url: https://doc.dataiku.com/dss/latest/publicapi/index.html
       - type: OpenAPI
         url: https://doc.dataiku.com/dss/latest/publicapi/rest/index.html
       - type: Authentication
-        url: 
-          https://doc.dataiku.com/dss/latest/publicapi/rest/authentication.html
+        url: https://doc.dataiku.com/dss/latest/publicapi/rest/authentication.html
       - type: API Reference
         url: https://doc.dataiku.com/dss/api/latest/rest/
       - type: Getting Started
-        url: 
-          https://developer.dataiku.com/latest/tutorials/devtools/public-api-intro/index.html
+        url: https://developer.dataiku.com/latest/tutorials/devtools/public-api-intro/index.html
       - type: OpenAPI
         url: openapi/dataiku-public-api-openapi.yml
     contact:
@@ -51,9 +48,9 @@ apis:
     humanURL: https://www.dataiku.com
     baseURL: https://pypi.org/project/dataiku-api-client/
     tags:
-      - python
-      - sdk
-      - client library
+      - Client Library
+      - Python
+      - Sdk
     properties:
       - type: Documentation
         url: https://doc.dataiku.com/dss/latest/python-api/index.html
@@ -62,11 +59,9 @@ apis:
       - type: Examples
         url: https://doc.dataiku.com/dss/latest/python-api/examples.html
       - type: API Reference
-        url: 
-          https://developer.dataiku.com/latest/api-reference/python/index.html
+        url: https://developer.dataiku.com/latest/api-reference/python/index.html
       - type: Getting Started
-        url: 
-          https://developer.dataiku.com/latest/getting-started/dataiku-python-apis/index.html
+        url: https://developer.dataiku.com/latest/getting-started/dataiku-python-apis/index.html
     contact:
       - FN: Dataiku Support
         email: support@dataiku.com
@@ -76,17 +71,16 @@ apis:
     image: https://www.dataiku.com/static/img/logo.png
     humanURL: https://www.dataiku.com
     tags:
-      - internal
-      - recipes
-      - plugins
+      - Internal
+      - Plugins
+      - Recipes
     properties:
       - type: Documentation
         url: https://doc.dataiku.com/dss/latest/python-api/internal.html
       - type: Plugin Development
         url: https://doc.dataiku.com/dss/latest/plugins/index.html
       - type: API Reference
-        url: 
-          https://doc.dataiku.com/dss/latest/python-api/dataiku-reference.html
+        url: https://doc.dataiku.com/dss/latest/python-api/dataiku-reference.html
     contact:
       - FN: Dataiku Support
         email: support@dataiku.com
@@ -96,9 +90,9 @@ apis:
     image: https://www.dataiku.com/static/img/logo.png
     humanURL: https://www.dataiku.com
     tags:
-      - r language
-      - sdk
-      - client library
+      - Client Library
+      - R Language
+      - Sdk
     properties:
       - type: Documentation
         url: https://doc.dataiku.com/dss/latest/R-api/index.html
@@ -114,9 +108,9 @@ apis:
     image: https://www.dataiku.com/static/img/logo.png
     humanURL: https://doc.dataiku.com/dss/latest/api/js/index.html
     tags:
-      - javascript
-      - webapps
-      - visualization
+      - Javascript
+      - Visualization
+      - Webapps
     properties:
       - type: Documentation
         url: https://doc.dataiku.com/dss/latest/api/js/index.html
@@ -130,9 +124,9 @@ apis:
     image: https://www.dataiku.com/static/img/logo.png
     humanURL: https://doc.dataiku.com/dss/latest/api/scala/index.html
     tags:
-      - scala
-      - spark
-      - big data
+      - Big Data
+      - Scala
+      - Spark
     properties:
       - type: Documentation
         url: https://doc.dataiku.com/dss/latest/api/scala/index.html
@@ -146,16 +140,15 @@ apis:
     image: https://www.dataiku.com/static/img/logo.png
     humanURL: https://doc.dataiku.com/dss/latest/apinode/index.html
     tags:
-      - api node
-      - deployment
-      - real-time
-      - model serving
+      - Api Node
+      - Deployment
+      - Model Serving
+      - Real-Time
     properties:
       - type: Documentation
         url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html
       - type: Getting Started
-        url: 
-          https://doc.dataiku.com/dss/latest/apinode/first-service-apideployer.html
+        url: https://doc.dataiku.com/dss/latest/apinode/first-service-apideployer.html
       - type: Security
         url: https://doc.dataiku.com/dss/latest/apinode/security.html
       - type: OpenAPI
@@ -170,10 +163,10 @@ apis:
     image: https://www.dataiku.com/static/img/logo.png
     humanURL: https://doc.dataiku.com/dss/latest/governance/index.html
     tags:
-      - governance
-      - compliance
-      - ai governance
-      - blueprints
+      - Ai Governance
+      - Blueprints
+      - Compliance
+      - Governance
     properties:
       - type: Documentation
         url: https://doc.dataiku.com/dss/latest/governance/publicapi/index.html
@@ -191,15 +184,14 @@ apis:
     image: https://www.dataiku.com/static/img/logo.png
     humanURL: https://doc.dataiku.com/dss/latest/plugins/index.html
     tags:
-      - plugins
-      - extensions
-      - custom components
+      - Custom Components
+      - Extensions
+      - Plugins
     properties:
       - type: Documentation
         url: https://doc.dataiku.com/dss/latest/plugins/reference/index.html
       - type: API Reference
-        url: 
-          https://developer.dataiku.com/latest/api-reference/python/plugins.html
+        url: https://developer.dataiku.com/latest/api-reference/python/plugins.html
       - type: Getting Started
         url: https://developer.dataiku.com/latest/tutorials/plugins/index.html
     contact:

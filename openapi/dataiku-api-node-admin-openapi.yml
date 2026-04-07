@@ -25,12 +25,10 @@ servers:
         default: '12443'
         description: Admin API port
 tags:
-  - name: Services
-    description: Manage deployed services on the API node
-  - name: Generations
-    description: Manage service generations (versions)
   - name: Authentication
     description: Manage API keys for service access
+  - name: Generations
+    description: Manage service generations (versions)
   - name: Metrics
     description: Retrieve metrics and health information
 security:
@@ -42,8 +40,7 @@ paths:
       summary: Dataiku List deployed services
       description: >-
         List all services currently deployed on this API node.
-      tags:
-        - Services
+      tags: []
       responses:
         '200':
           description: List of deployed services
@@ -61,8 +58,7 @@ paths:
       summary: Dataiku Get service details
       description: >-
         Retrieve the details and configuration of a deployed service.
-      tags:
-        - Services
+      tags: []
       parameters:
         - $ref: '#/components/parameters/serviceId'
       responses:
@@ -81,8 +77,7 @@ paths:
       summary: Dataiku Delete a service
       description: >-
         Remove a deployed service and all its generations from the API node.
-      tags:
-        - Services
+      tags: []
       parameters:
         - $ref: '#/components/parameters/serviceId'
       responses:
@@ -97,8 +92,7 @@ paths:
       operationId: enableService
       summary: Dataiku Enable a service
       description: Enable a deployed service to accept prediction requests.
-      tags:
-        - Services
+      tags: []
       parameters:
         - $ref: '#/components/parameters/serviceId'
       responses:
@@ -111,8 +105,7 @@ paths:
       operationId: disableService
       summary: Dataiku Disable a service
       description: Disable a service to stop accepting prediction requests.
-      tags:
-        - Services
+      tags: []
       parameters:
         - $ref: '#/components/parameters/serviceId'
       responses:
