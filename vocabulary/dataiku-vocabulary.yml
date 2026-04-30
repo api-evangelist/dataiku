@@ -1,0 +1,63 @@
+name: Dataiku Vocabulary
+description: >-
+  Shared vocabulary of terms used across Dataiku DSS, the API Node, Govern,
+  plugins, and the Public, Internal, Python, R, JavaScript, and Scala APIs.
+terms:
+  - term: DSS
+    definition: >-
+      Dataiku Data Science Studio, the core platform that hosts projects,
+      datasets, recipes, and model deployments.
+  - term: Project
+    definition: >-
+      A workspace in DSS containing datasets, recipes, models, and
+      deployments related to a single use case.
+  - term: Dataset
+    definition: >-
+      A logical reference to data stored in a connection such as a
+      database, file system, or cloud bucket.
+  - term: Recipe
+    definition: >-
+      A transformation step in DSS such as a visual recipe, code recipe,
+      or plugin recipe applied to one or more datasets.
+  - term: Workflow
+    definition: >-
+      The visual flow of datasets and recipes that defines a project's
+      data pipeline.
+  - term: Scenario
+    definition: >-
+      A scheduled or triggered orchestration of recipes, builds, and
+      checks within DSS.
+  - term: API Node
+    definition: >-
+      A standalone Dataiku component for serving real-time prediction
+      and lookup endpoints with version generations.
+  - term: API Service
+    definition: >-
+      A deployed bundle on the API Node providing one or more endpoints.
+  - term: Generation
+    definition: >-
+      A specific deployed version of an API service on the API Node.
+  - term: Govern
+    definition: >-
+      The Dataiku module managing AI governance, blueprints, artifacts,
+      sign-offs, and compliance workflows.
+  - term: Blueprint
+    definition: >-
+      A Govern template defining the lifecycle, attributes, and sign-offs
+      for a class of artifact.
+  - term: Artifact
+    definition: >-
+      A Govern-tracked instance of a blueprint such as a model, dataset,
+      or use case.
+  - term: Plugin
+    definition: >-
+      A packaged extension to DSS adding custom datasets, recipes,
+      processors, or web applications.
+  - term: Notebook
+    definition: >-
+      A Jupyter or RStudio notebook hosted by DSS for data exploration
+      and prototyping.
+  - term: Authentication Key
+    definition: >-
+      A credential issued by DSS or the API Node admin API used to
+      authenticate API calls.

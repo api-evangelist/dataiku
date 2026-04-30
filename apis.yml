@@ -1,18 +1,25 @@
+aid: dataiku
 name: Dataiku
 description: Dataiku is an advanced data science and machine learning platform that enables teams to build and deploy AI applications at scale.
 image: https://www.dataiku.com/static/img/logo.png
+type: Index
 tags:
   - Analytics
   - Artificial Intelligence
   - Data Platform
   - Data Science
   - Machine Learning
-created: '2024'
-modified: '2026-03-16'
-url: https://www.dataiku.com
-specificationVersion: '0.18'
+created: '2024-01-01'
+modified: '2026-04-28'
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/dataiku/refs/heads/main/apis.yml
+specificationVersion: '0.19'
+xType: company
+position: Consumer
+access: 3rd-Party
 apis:
-  - name: Dataiku Public API
+  - aid: dataiku:dataiku-public-api
+    name: Dataiku Public API
     description: >-
       REST API for managing Dataiku DSS instances, projects, datasets, and workflows
       programmatically.
@@ -41,7 +48,8 @@ apis:
       - FN: Dataiku Support
         email: support@dataiku.com
         url: https://www.dataiku.com/support
-  - name: Dataiku Python API
+  - aid: dataiku:dataiku-python-api
+    name: Dataiku Python API
     description: >-
       Python client library for interacting with Dataiku DSS.
     image: https://www.dataiku.com/static/img/logo.png
@@ -65,7 +73,8 @@ apis:
     contact:
       - FN: Dataiku Support
         email: support@dataiku.com
-  - name: Dataiku Internal API
+  - aid: dataiku:dataiku-internal-api
+    name: Dataiku Internal API
     description: >-
       Internal API for use within recipes, notebooks, and plugins in Dataiku DSS.
     image: https://www.dataiku.com/static/img/logo.png
@@ -84,7 +93,8 @@ apis:
     contact:
       - FN: Dataiku Support
         email: support@dataiku.com
-  - name: Dataiku R API
+  - aid: dataiku:dataiku-r-api
+    name: Dataiku R API
     description: >-
       R client library for interacting with Dataiku DSS.
     image: https://www.dataiku.com/static/img/logo.png
@@ -101,7 +111,8 @@ apis:
     contact:
       - FN: Dataiku Support
         email: support@dataiku.com
-  - name: Dataiku JavaScript API
+  - aid: dataiku:dataiku-javascript-api
+    name: Dataiku JavaScript API
     description: >-
       JavaScript API for building custom web applications that read from Dataiku datasets
       within DSS.
@@ -117,7 +128,8 @@ apis:
     contact:
       - FN: Dataiku Support
         email: support@dataiku.com
-  - name: Dataiku Scala API
+  - aid: dataiku:dataiku-scala-api
+    name: Dataiku Scala API
     description: >-
       Scala API for reading and writing DSS datasets from the Spark and Scala environment
       within Dataiku DSS.
@@ -133,7 +145,8 @@ apis:
     contact:
       - FN: Dataiku Support
         email: support@dataiku.com
-  - name: Dataiku API Node Administration API
+  - aid: dataiku:dataiku-api-node-administration-api
+    name: Dataiku API Node Administration API
     description: >-
       REST API for administering Dataiku API Nodes, managing deployed services, generations,
       and authentication keys for real-time API serving.
@@ -156,7 +169,8 @@ apis:
     contact:
       - FN: Dataiku Support
         email: support@dataiku.com
-  - name: Dataiku Govern API
+  - aid: dataiku:dataiku-govern-api
+    name: Dataiku Govern API
     description: >-
       Public REST API for interacting with Dataiku Govern to manage AI governance,
       blueprints, artifacts, sign-offs, and compliance workflows.
@@ -177,7 +191,8 @@ apis:
     contact:
       - FN: Dataiku Support
         email: support@dataiku.com
-  - name: Dataiku Plugin API
+  - aid: dataiku:dataiku-plugin-api
+    name: Dataiku Plugin API
     description: >-
       API for developing custom plugins that extend Dataiku DSS with custom datasets,
       recipes, processors, and web applications.
@@ -248,3 +263,9 @@ common:
     url: json-schema/dataiku-project-schema.json
   - type: JSONSchema
     url: json-schema/dataiku-dataset-schema.json
+  - type: Vocabulary
+    url: vocabulary/dataiku-vocabulary.yml
+  - type: Capabilities
+    url: capabilities/dataiku-capabilities.yml
+  - type: Rules
+    url: rules/dataiku-rules.yml

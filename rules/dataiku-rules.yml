@@ -1,0 +1,40 @@
+extends:
+  - spectral:oas
+rules:
+  dataiku-info-contact:
+    description: API info should include a contact for Dataiku support.
+    given: $.info
+    severity: warn
+    then:
+      field: contact
+      function: truthy
+  dataiku-public-api-prefix:
+    description: Public API paths must be served under /public/api.
+    given: $.paths
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/public/api"
+  dataiku-operation-tags:
+    description: Every operation must declare at least one tag.
+    given: $.paths[*][*]
+    severity: error
+    then:
+      field: tags
+      function: truthy
+  dataiku-server-https:
+    description: Server URLs must use HTTPS.
+    given: $.servers[*].url
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+  dataiku-project-key-pattern:
+    description: ProjectKey path parameters must follow the upper-case alphanumeric convention.
+    given: $.paths.*.*.parameters[?(@.name=='projectKey')].schema
+    severity: warn
+    then:
+      field: pattern
+      function: truthy

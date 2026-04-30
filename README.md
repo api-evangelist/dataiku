@@ -1,95 +1,72 @@
 # Dataiku (dataiku)
-Dataiku is an advanced data science and machine learning platform that enables teams to build and deploy AI applications at scale.
+Dataiku is an advanced data science and machine learning platform that enables teams to build and deploy AI applications at scale, exposing public REST, Python, R, JavaScript, Scala, and Plugin APIs alongside the API Node and Govern surfaces.
 
-**URL:** [Visit APIs.json URL](https://www.dataiku.com)
+**URL:** [Visit APIs.yml URL](https://raw.githubusercontent.com/api-evangelist/dataiku/refs/heads/main/apis.yml)
 
-## Tags:
+## Scope
 
- - data science, machine learning, artificial intelligence, analytics, data platform
+- **Type:** Index
+- **Position:** Consumer
+- **Access:** 3rd-Party
+- **xType:** company
+
+## Tags
+
+- Analytics, Artificial Intelligence, Data Platform, Data Science, Machine Learning
 
 ## Timestamps
 
-- **Created:** 2024 
-- **Modified:** 2024 
+- **Created:** 2024-01-01
+- **Modified:** 2026-04-28
 
 ## APIs
 
 ### Dataiku Public API
-REST API for managing Dataiku DSS instances, projects, datasets, and workflows programmatically
+REST API for managing DSS instances, projects, datasets, and workflows.
 
-**Human URL:** [https://www.dataiku.com](https://www.dataiku.com)
-
-
-#### Tags:
-
- - data science, projects, datasets, workflows
-
-#### Properties
-
-- [Documentation](https://doc.dataiku.com/dss/latest/publicapi/index.html)
-- [OpenAPI](https://doc.dataiku.com/dss/latest/publicapi/rest/index.html)
-- [Authentication](https://doc.dataiku.com/dss/latest/publicapi/rest/authentication.html)
+- [OpenAPI](openapi/dataiku-public-api-openapi.yml)
 
 ### Dataiku Python API
-Python client library for interacting with Dataiku DSS
-
-**Human URL:** [https://www.dataiku.com](https://www.dataiku.com)
-
-
-#### Tags:
-
- - python, sdk, client library
-
-#### Properties
-
-- [Documentation](https://doc.dataiku.com/dss/latest/python-api/index.html)
-- [PyPI Package](https://pypi.org/project/dataiku-api-client/)
-- [Examples](https://doc.dataiku.com/dss/latest/python-api/examples.html)
+Python client library for interacting with Dataiku DSS.
 
 ### Dataiku Internal API
-Internal API for use within recipes, notebooks, and plugins in Dataiku DSS
-
-**Human URL:** [https://www.dataiku.com](https://www.dataiku.com)
-
-
-#### Tags:
-
- - internal, recipes, plugins
-
-#### Properties
-
-- [Documentation](https://doc.dataiku.com/dss/latest/python-api/internal.html)
-- [Plugin Development](https://doc.dataiku.com/dss/latest/plugins/index.html)
+Internal API for use within recipes, notebooks, and plugins in Dataiku DSS.
 
 ### Dataiku R API
-R client library for interacting with Dataiku DSS
+R client library for interacting with Dataiku DSS.
 
-**Human URL:** [https://www.dataiku.com](https://www.dataiku.com)
+### Dataiku JavaScript API
+JavaScript API for building custom web applications that read from Dataiku datasets.
 
+### Dataiku Scala API
+Scala API for reading and writing DSS datasets from the Spark and Scala environment.
 
-#### Tags:
+### Dataiku API Node Administration API
+REST API for administering Dataiku API Nodes, deployed services, generations, and authentication keys.
 
- - r language, sdk, client library
+- [OpenAPI](openapi/dataiku-api-node-admin-openapi.yml)
 
-#### Properties
+### Dataiku Govern API
+Public REST API for managing AI governance, blueprints, artifacts, sign-offs, and compliance.
 
-- [Documentation](https://doc.dataiku.com/dss/latest/R-api/index.html)
-- [CRAN Package](https://cran.r-project.org/package=dataiku)
+- [OpenAPI](openapi/dataiku-govern-api-openapi.yml)
+
+### Dataiku Plugin API
+API for developing custom plugins that extend Dataiku DSS.
 
 ## Common Properties
 
-- [Getting Started](https://www.dataiku.com/product/get-started/)
 - [Documentation](https://doc.dataiku.com/)
-- [Community](https://community.dataiku.com/)
-- [Academy](https://academy.dataiku.com/)
-- [Pricing](https://www.dataiku.com/product/pricing/)
-- [Blog](https://blog.dataiku.com/)
 - [GitHub](https://github.com/dataiku)
-- [Terms of Service](https://www.dataiku.com/terms/)
-- [Privacy Policy](https://www.dataiku.com/privacy/)
+- [Developer Portal](https://developer.dataiku.com/latest/)
+- [JSON-LD](json-ld/dataiku-context.jsonld)
+- [JSONSchema (Project)](json-schema/dataiku-project-schema.json)
+- [JSONSchema (Dataset)](json-schema/dataiku-dataset-schema.json)
+- [Vocabulary](vocabulary/dataiku-vocabulary.yml)
+- [Capabilities](capabilities/dataiku-capabilities.yml)
+- [Rules](rules/dataiku-rules.yml)
 
 ## Maintainers
 
-**FN:** Dataiku
-
-**Email:** info@dataiku.com
+- **FN:** Kin Lane
+- **Email:** kin@apievangelist.com

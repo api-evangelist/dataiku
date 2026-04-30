@@ -1,0 +1,52 @@
+name: Dataiku Capabilities
+description: >-
+  Capabilities exposed across Dataiku's Public, Internal, Python, R,
+  JavaScript, Scala, API Node admin, Govern, and Plugin APIs.
+capabilities:
+  - name: Project Management
+    description: Create, list, update, export, and import DSS projects via the Public API.
+    api: dataiku:dataiku-public-api
+  - name: Dataset Management
+    description: Read, write, and inspect datasets across DSS connections.
+    api: dataiku:dataiku-public-api
+  - name: Recipe and Flow Operations
+    description: Build datasets, run recipes, and orchestrate scenarios programmatically.
+    api: dataiku:dataiku-public-api
+  - name: Python SDK
+    description: Interact with DSS objects from Python notebooks, recipes, and plugins.
+    api: dataiku:dataiku-python-api
+  - name: Internal API
+    description: Use the bundled API for code recipes, notebooks, and plugins inside DSS.
+    api: dataiku:dataiku-internal-api
+  - name: R SDK
+    description: Read and write DSS datasets from R recipes and notebooks.
+    api: dataiku:dataiku-r-api
+  - name: JavaScript SDK
+    description: Build webapps that read DSS datasets in the browser.
+    api: dataiku:dataiku-javascript-api
+  - name: Scala/Spark SDK
+    description: Read and write DSS datasets from Spark and Scala environments.
+    api: dataiku:dataiku-scala-api
+  - name: API Node Administration
+    description: Manage API Node services, generations, and authentication keys.
+    api: dataiku:dataiku-api-node-administration-api
+  - name: Real-Time Model Serving
+    description: Serve real-time prediction and lookup endpoints from the API Node.
+    api: dataiku:dataiku-api-node-administration-api
+  - name: Govern API
+    description: Manage AI governance blueprints, artifacts, sign-offs, and compliance.
+    api: dataiku:dataiku-govern-api
+  - name: Plugin Development
+    description: Build custom datasets, recipes, processors, and webapps as plugins.
+    api: dataiku:dataiku-plugin-api
+use_cases:
+  - name: End-to-end data science automation
+    description: Drive project, dataset, recipe, and scenario lifecycle from CI/CD.
+  - name: Real-time AI deployment
+    description: Serve trained models behind low-latency API Node endpoints.
+  - name: AI governance
+    description: Manage blueprints, sign-offs, and compliance for regulated AI workloads.
+  - name: Custom platform extensions
+    description: Package reusable datasets, recipes, and webapps as plugins.
+  - name: Multi-language analytics
+    description: Build pipelines that combine Python, R, Scala, and JavaScript code.
