@@ -1,0 +1,12 @@
+---
+title: "Data wrangling at scale: from data preparation to enterprise AI enablement"
+url: "https://www.dataiku.com/stories/blog/data-wrangling-challenges-in-enterprises"
+date: "Tue, 28 Apr 2026 15:39:17 GMT"
+author: "Jed Dougherty"
+feed_url: "https://www.dataiku.com/stories/blog/rss.xml"
+---
+<div class="hs-featured-image-wrapper"> 
+ <a class="hs-featured-image-link" href="https://www.dataiku.com/stories/blog/data-wrangling-challenges-in-enterprises" title=""> <img alt="Data Wrangling at Scale: Challenges and Modern Approaches" class="hs-featured-image" src="https://2123903.fs1.hubspotusercontent-na1.net/hubfs/2123903/data%20wrangling%20at%20scale%20(2).png" style="width: auto !important; float: left; margin: 0 15px 15px 0;" /> </a> 
+</div> 
+<p>Data practitioners spend <a href="https://gitnux.org/data-standardization-statistics/">most of their time on data preparation</a>, which leaves relatively little time for the analysis and modeling that drives actual business value.<br /><br />For a single project, that ratio is a productivity issue. Multiply it across dozens of teams building machine learning models, generative AI (GenAI) applications, and AI agents, and it becomes a bottleneck for every AI initiative the business tries to run. GenAI and agentic systems raise the stakes further: They amplify whatever is in the data they consume, producing confident outputs from flawed inputs and executing autonomous decisions on preparation logic that nobody documented.<br /><br />When dozens of teams wrangle data independently using different tools, naming conventions, and quality thresholds, the result is risk: models trained on inconsistently prepared data, compliance gaps that surface only in audit, and decisions made on datasets that no one can fully trace.<br /><br />Data wrangling, sometimes called data munging, is the process of gathering, selecting, transforming, and structuring raw data into a format suitable for analysis or model training. In this article, we examine the key challenges of data wrangling at enterprise scale and explore modern approaches to building governed, reusable, and AI-ready data preparation workflows.</p>  
+<img alt="" height="1" src="https://track.hubspot.com/__ptq.gif?a=2123903&amp;k=14&amp;r=https%3A%2F%2Fwww.dataiku.com%2Fstories%2Fblog%2Fdata-wrangling-challenges-in-enterprises&amp;bu=https%253A%252F%252Fwww.dataiku.com%252Fstories%252Fblog&amp;bvt=rss" style="width: 1px!important;" width="1" />

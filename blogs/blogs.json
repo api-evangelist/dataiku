@@ -1,0 +1,13 @@
+{
+  "repo": "dataiku",
+  "feeds": [
+    {
+      "source": "https://blog.dataiku.com/",
+      "feed_url": "https://www.dataiku.com/stories/blog/rss.xml",
+      "saved": 10,
+      "title": "The Dataiku Blog"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:26:53Z"
+}
