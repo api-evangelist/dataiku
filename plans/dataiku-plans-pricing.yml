@@ -4,175 +4,127 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Dataiku
 providerId: dataiku
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Analytics
   - Artificial Intelligence
   - Data Platform
   - Data Science
   - Machine Learning
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+description: Dataiku is sold via three on-ramps. A 14-day Cloud Trial requires no credit card,
+  supports up to 5 users, allocates 4 CPUs and 32 GB of elastic compute, and includes all features
+  except Govern and advanced LLM Mesh. A Free Edition is downloadable for on-prem installation on
+  Mac, Linux, and Windows (experimental). Commercial editions (Discover, Business, Enterprise) and
+  Govern are quoted by sales — Dataiku does not publish numeric per-user / per-node prices on the
+  public website.
+sources:
+  - https://www.dataiku.com/product/get-started/
+  - https://www.dataiku.com
+notes: Cloud Trial details are public. Commercial edition prices are gated behind sales contact.
 plans:
-  - id: dataiku-free
-    name: Free
+  - id: dataiku-cloud-trial
+    name: Cloud Trial
     type: freemium
-    description: Free entry tier for the Dataiku API surface. Intended for evaluation, prototyping, and
-      low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
+    description: 14-day fully managed cloud trial. No credit card required. Includes all features
+      except Govern and advanced LLM Mesh.
     entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
+      - label: Trial duration
+        name: trial_duration
+        type: flat
+        metric: day
+        limit: 14
+        timeFrame: usage
         geo: global
-        domains:
-          - https://dss.example.com/public/api
-          - https://pypi.org/project/dataiku-api-client/
         unit: 1
         price: '0.00'
         userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
+      - label: Trial users
+        name: trial_users
+        type: quota
+        metric: seat
+        limit: 5
+        timeFrame: usage
         geo: global
-        domains:
-          - https://dss.example.com/public/api
-          - https://pypi.org/project/dataiku-api-client/
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Compute (CPU)
+        name: trial_cpu
+        type: quota
+        metric: cpu
+        limit: 4
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Compute (memory)
+        name: trial_memory
+        type: quota
+        metric: GB
+        limit: 32
+        timeFrame: usage
+        geo: global
         unit: 1
         price: '0.00'
         userMultiplied: false
     elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
+      - name: Fully managed cloud
+      - name: Ready in under two minutes
+      - name: All features except Govern
+      - name: All features except advanced LLM Mesh
       - name: Dataiku Public API
       - name: Dataiku Python API
-      - name: Dataiku Internal API
       - name: Dataiku R API
       - name: Dataiku JavaScript API
       - name: Dataiku Scala API
-      - name: Dataiku API Node Administration API
-      - name: Dataiku Govern API
-  - id: dataiku-pro
-    name: Professional
-    type: paid
-    description: Production tier for Dataiku. Provides higher quotas, priority support, and access to
-      the broader API portfolio. Pricing placeholder; align with the provider's pricing page.
+  - id: dataiku-free-edition
+    name: Free Edition
+    type: freemium
+    description: Downloadable on-prem free edition for Mac, Linux, and Windows (Windows is
+      experimental). Feature-restricted compared to commercial editions.
     entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://dss.example.com/public/api
-          - https://pypi.org/project/dataiku-api-client/
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://dss.example.com/public/api
-          - https://pypi.org/project/dataiku-api-client/
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
+      - label: License
+        name: license
+        type: flat
+        metric: month
         limit: -1
-        timeFrame: month
+        timeFrame: usage
         geo: global
-        domains:
-          - https://dss.example.com/public/api
-          - https://pypi.org/project/dataiku-api-client/
-        unit: 1000
-        price: TBD
+        unit: 1
+        price: '0.00'
         userMultiplied: false
     elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Dataiku Public API
-      - name: Dataiku Python API
-      - name: Dataiku Internal API
-      - name: Dataiku R API
-      - name: Dataiku JavaScript API
-      - name: Dataiku Scala API
-      - name: Dataiku API Node Administration API
-      - name: Dataiku Govern API
-      - name: Dataiku Plugin API
-  - id: dataiku-enterprise
-    name: Enterprise
+      - name: On-premise install
+      - name: Mac, Linux supported
+      - name: Windows experimental
+      - name: Feature-restricted vs commercial editions
+  - id: dataiku-commercial
+    name: Commercial Editions
     type: enterprise
-    description: Custom-negotiated tier for Dataiku. Includes dedicated capacity, contractual SLAs, security
-      review, data residency options, and named technical account management.
+    description: Discover, Business, and Enterprise commercial editions plus Govern and advanced
+      LLM Mesh add-ons. Quoted by sales — pricing not published.
     entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: configurable
-        domains:
-          - https://dss.example.com/public/api
-          - https://pypi.org/project/dataiku-api-client/
+      - label: Subscription
+        name: subscription
+        type: subscription
+        metric: contract
+        limit: see dataiku.com
+        timeFrame: year
+        geo: global
         unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains:
-          - https://dss.example.com/public/api
-          - https://pypi.org/project/dataiku-api-client/
-        unit: 1
-        price: custom
-        userMultiplied: false
+        price: contact sales
+        userMultiplied: true
     elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Dataiku Public API
-      - name: Dataiku Python API
-      - name: Dataiku Internal API
-      - name: Dataiku R API
-      - name: Dataiku JavaScript API
-      - name: Dataiku Scala API
+      - name: Discover edition
+      - name: Business edition
+      - name: Enterprise edition
+      - name: Dataiku Govern
+      - name: Advanced LLM Mesh
       - name: Dataiku API Node Administration API
-      - name: Dataiku Govern API
       - name: Dataiku Plugin API
+      - name: Dataiku Govern API
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

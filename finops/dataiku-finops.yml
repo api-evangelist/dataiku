@@ -1,5 +1,6 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -9,191 +10,97 @@ alignedWith:
 provider: Dataiku
 providerId: dataiku
 publisherName: Dataiku
-serviceCategory: API
+serviceCategory: AI Platform
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Analytics
   - Artificial Intelligence
   - Data Platform
-  - Data Science
   - Machine Learning
   - FinOps
-  - Cost Management
   - FOCUS
-description: FinOps framework definition for the Dataiku API surface. Provides a FOCUS-aligned mapping
-  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+description: 'FOCUS-aligned FinOps for Dataiku: enterprise SaaS / on-prem subscription billed
+  primarily by user (seat) tier and node count, with optional Govern and LLM Mesh add-ons. Cloud
+  Trial and Free Edition are no-charge. Commercial pricing is quoted by sales and is not public.'
+sources:
+  - https://www.dataiku.com/product/get-started/
+  - https://www.dataiku.com
+notes: No public commercial pricing. Meters reflect the typical Dataiku billing shape (seats,
+  nodes, compute) but dollar values are contract-specific.
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
+  pricingCategory: Subscription
+  billingFrequency: Annual
   billingCurrency: USD
   chargeCategories:
-    - Usage
     - Purchase
-    - Tax
-    - Credit
+    - Usage
     - Adjustment
-  chargeFrequency: Recurring
 focusColumns:
   ServiceName: Dataiku
-  ServiceCategory: Developer Tools / API
+  ServiceCategory: AI Platform
+  ServiceSubcategory: Data Science Platform
   ProviderName: Dataiku
   PublisherName: Dataiku
   InvoiceIssuerName: Dataiku
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  PricingCategory: Subscription
+  PricingUnit: seat
   BillingCurrency: USD
-  ChargeCategory: Usage
+  ChargeCategory: Purchase
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: user_seats
+    description: Active named-user seats by edition (Discover, Business, Enterprise). Primary
+      billable line.
+    unit: seat
+    aggregation: max
+    dimensions:
+      - edition
+      - role
+      - tenant
+  - name: dss_nodes
+    description: DSS design / automation / API nodes provisioned in the deployment.
+    unit: node
+    aggregation: max
+    dimensions:
+      - node_type
+      - environment
+  - name: api_node_compute
+    description: Real-time scoring compute consumed by API Node services.
+    unit: instance-hour
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
+      - service
+      - environment
+  - name: govern_addon
+    description: Dataiku Govern add-on subscription.
+    unit: month
+    aggregation: max
+    dimensions:
+      - tenant
+  - name: llm_mesh_tokens
+    description: LLM token consumption routed through advanced LLM Mesh (passthrough to upstream
+      providers; LLM Mesh itself is a feature-add).
+    unit: token
     aggregation: sum
     dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Dataiku Public API
-    baseURL: https://dss.example.com/public/api
-    tags:
-      - Data Science
-      - Datasets
-      - Projects
-      - Workflows
-    serviceName: Dataiku Public API
-    serviceCategory: API
-  - name: Dataiku Python API
-    baseURL: https://pypi.org/project/dataiku-api-client/
-    tags:
-      - Client Library
-      - Python
-      - Sdk
-    serviceName: Dataiku Python API
-    serviceCategory: API
-  - name: Dataiku Internal API
-    baseURL: ''
-    tags:
-      - Internal
-      - Plugins
-      - Recipes
-    serviceName: Dataiku Internal API
-    serviceCategory: API
-  - name: Dataiku R API
-    baseURL: ''
-    tags:
-      - Client Library
-      - R Language
-      - Sdk
-    serviceName: Dataiku R API
-    serviceCategory: API
-  - name: Dataiku JavaScript API
-    baseURL: ''
-    tags:
-      - Javascript
-      - Visualization
-      - Webapps
-    serviceName: Dataiku JavaScript API
-    serviceCategory: API
-  - name: Dataiku Scala API
-    baseURL: ''
-    tags:
-      - Big Data
-      - Scala
-      - Spark
-    serviceName: Dataiku Scala API
-    serviceCategory: API
-  - name: Dataiku API Node Administration API
-    baseURL: ''
-    tags:
-      - Api Node
-      - Deployment
-      - Model Serving
-      - Real-Time
-    serviceName: Dataiku API Node Administration API
-    serviceCategory: API
-  - name: Dataiku Govern API
-    baseURL: ''
-    tags:
-      - Ai Governance
-      - Blueprints
-      - Compliance
-      - Governance
-    serviceName: Dataiku Govern API
-    serviceCategory: API
-  - name: Dataiku Plugin API
-    baseURL: ''
-    tags:
-      - Custom Components
-      - Extensions
-      - Plugins
-    serviceName: Dataiku Plugin API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+      - model
+      - upstream_provider
+principles:
+  - name: Visibility
+    description: Use the DSS administration UI for active-user counts, node inventory, and project
+      activity. Reconcile against the Dataiku invoice quarterly. For LLM Mesh, attribute upstream
+      provider charges back to the calling project.
+  - name: Allocation
+    description: Use Dataiku project ownership and group membership to attribute seats and node
+      hours back to consuming teams. Tag API Node services with environment and team.
+  - name: Optimization
+    description: Reclaim inactive seats during renewal, right-size design vs automation node
+      counts, schedule API Node downscaling for low-traffic windows, and prefer batch scoring for
+      non-real-time workloads.
+  - name: Accountability
+    description: Designate a Dataiku platform owner who reviews seat utilization, node sprawl, and
+      LLM Mesh spend monthly; align renewals with team-level ROI evidence.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

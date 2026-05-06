@@ -4,126 +4,57 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Dataiku
 providerId: dataiku
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Analytics
   - Artificial Intelligence
   - Data Platform
-  - Data Science
   - Machine Learning
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Dataiku API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+description: Dataiku DSS is typically self-hosted (or hosted in a customer's cloud tenant), so
+  there are no global vendor-imposed rate limits on the Public API or Internal API. Throughput is
+  bounded by the DSS backend node CPU/memory, the API Node deployment for real-time scoring, and
+  per-API-service quotas defined by the operator. The Cloud Trial exposes a fixed compute envelope
+  (4 CPUs, 32 GB) which effectively caps trial throughput.
+sources:
+  - https://www.dataiku.com/product/get-started/
+  - https://doc.dataiku.com/
+notes: No public numeric rate limits. Operators define rate-limit middleware per API Node service
+  if needed.
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
   serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Dataiku Public API
-      - Dataiku Python API
-      - Dataiku Internal API
-      - Dataiku R API
-      - Dataiku JavaScript API
-      - Dataiku Scala API
-      - Dataiku API Node Administration API
-      - Dataiku Govern API
-      - Dataiku Plugin API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Dataiku Public API
-      - Dataiku Python API
-      - Dataiku Internal API
-      - Dataiku R API
-      - Dataiku JavaScript API
-      - Dataiku Scala API
-      - Dataiku API Node Administration API
-      - Dataiku Govern API
-      - Dataiku Plugin API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Dataiku Public API
-      - Dataiku Python API
-      - Dataiku Internal API
-      - Dataiku R API
-      - Dataiku JavaScript API
-      - Dataiku Scala API
-      - Dataiku API Node Administration API
-      - Dataiku Govern API
-      - Dataiku Plugin API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Dataiku Public API
-      - Dataiku Python API
-      - Dataiku Internal API
-      - Dataiku R API
-      - Dataiku JavaScript API
-      - Dataiku Scala API
-      - Dataiku API Node Administration API
-      - Dataiku Govern API
-      - Dataiku Plugin API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Dataiku Public API
-      - Dataiku Python API
-      - Dataiku Internal API
-      - Dataiku R API
-      - Dataiku JavaScript API
-      - Dataiku Scala API
-      - Dataiku API Node Administration API
-      - Dataiku Govern API
-      - Dataiku Plugin API
+  - name: Cloud Trial compute envelope
+    scope: trial-tenant
+    metric: varies
+    limit: 4 CPUs and 32 GB elastic compute
+    notes: Trial throughput is capped by allocated CPU/memory rather than a request-per-second
+      ceiling.
+  - name: DSS backend capacity
+    scope: deployment
+    metric: requests_per_second
+    limit: operator-defined — bounded by backend node sizing
+    notes: Self-hosted; the Public and Internal APIs throughput depends on the DSS node sizing.
+  - name: API Node service quotas
+    scope: per-service
+    metric: requests_per_second
+    limit: operator-defined per API Service
+    notes: Real-time scoring services on the API Node can be configured with per-service rate
+      limits and concurrency caps via the Administration API.
 policies:
+  - name: API Node Sizing
+    description: For real-time scoring, scale API Node replicas horizontally and use a load
+      balancer; per-service concurrency is controlled in the API Service deployment configuration.
   - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+    description: Clients should retry on 429/503 with exponential backoff and jitter.
+  - name: Public API vs Internal API
+    description: The Public API is the supported integration surface for Projects, Datasets, and
+      Workflows. The Internal API is undocumented and may change without notice; use sparingly.
+  - name: Bulk Operations
+    description: Prefer bulk endpoints (multi-row scoring, bulk dataset write) over per-row calls
+      to reduce request volume.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
