@@ -3,11 +3,11 @@
   "feeds": [
     {
       "source": "https://blog.dataiku.com/",
-      "feed_url": "https://www.dataiku.com/stories/blog/rss.xml",
-      "saved": 10,
-      "title": "The Dataiku Blog"
+      "feed_url": "https://blog.dataiku.com/atom.xml",
+      "title": "The Dataiku Blog",
+      "saved": 8
     }
   ],
-  "post_count": 10,
-  "fetched": "2026-05-03T23:26:53Z"
+  "post_count": 18,
+  "fetched": "2026-05-09T20:17:51Z"
 }
