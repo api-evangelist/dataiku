@@ -212,6 +212,11 @@ apis:
     contact:
       - FN: Dataiku Support
         email: support@dataiku.com
+integrations:
+  - name: AWS
+  - name: Databricks
+  - name: Deloitte
+  - name: Snowflake
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
@@ -269,3 +274,5 @@ common:
     url: capabilities/dataiku-capabilities.yml
   - type: Rules
     url: rules/dataiku-rules.yml
+  - type: Integrations
+    url: https://www.dataiku.com/partners/
