@@ -14,7 +14,7 @@ modified: '2026-04-28'
 url: >-
   https://raw.githubusercontent.com/api-evangelist/dataiku/refs/heads/main/apis.yml
 specificationVersion: '0.19'
-xType: company
+kind: company
 position: Consumer
 access: 3rd-Party
 apis:
@@ -38,9 +38,9 @@ apis:
         url: https://doc.dataiku.com/dss/latest/publicapi/rest/index.html
       - type: Authentication
         url: https://doc.dataiku.com/dss/latest/publicapi/rest/authentication.html
-      - type: API Reference
+      - type: APIReference
         url: https://doc.dataiku.com/dss/api/latest/rest/
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developer.dataiku.com/latest/tutorials/devtools/public-api-intro/index.html
       - type: OpenAPI
         url: openapi/dataiku-public-api-openapi.yml
@@ -66,9 +66,9 @@ apis:
         url: https://pypi.org/project/dataiku-api-client/
       - type: Examples
         url: https://doc.dataiku.com/dss/latest/python-api/examples.html
-      - type: API Reference
+      - type: APIReference
         url: https://developer.dataiku.com/latest/api-reference/python/index.html
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developer.dataiku.com/latest/getting-started/dataiku-python-apis/index.html
     contact:
       - FN: Dataiku Support
@@ -88,7 +88,7 @@ apis:
         url: https://doc.dataiku.com/dss/latest/python-api/internal.html
       - type: Plugin Development
         url: https://doc.dataiku.com/dss/latest/plugins/index.html
-      - type: API Reference
+      - type: APIReference
         url: https://doc.dataiku.com/dss/latest/python-api/dataiku-reference.html
     contact:
       - FN: Dataiku Support
@@ -160,7 +160,7 @@ apis:
     properties:
       - type: Documentation
         url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html
-      - type: Getting Started
+      - type: GettingStarted
         url: https://doc.dataiku.com/dss/latest/apinode/first-service-apideployer.html
       - type: Security
         url: https://doc.dataiku.com/dss/latest/apinode/security.html
@@ -184,7 +184,7 @@ apis:
     properties:
       - type: Documentation
         url: https://doc.dataiku.com/dss/latest/governance/publicapi/index.html
-      - type: API Reference
+      - type: APIReference
         url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html
       - type: OpenAPI
         url: openapi/dataiku-govern-api-openapi.yml
@@ -205,9 +205,9 @@ apis:
     properties:
       - type: Documentation
         url: https://doc.dataiku.com/dss/latest/plugins/reference/index.html
-      - type: API Reference
+      - type: APIReference
         url: https://developer.dataiku.com/latest/api-reference/python/plugins.html
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developer.dataiku.com/latest/tutorials/plugins/index.html
     contact:
       - FN: Dataiku Support
@@ -222,7 +222,7 @@ maintainers:
     email: kin@apievangelist.com
     url: https://www.dataiku.com
 common:
-  - type: Getting Started
+  - type: GettingStarted
     url: https://www.dataiku.com/product/get-started/
   - type: Documentation
     url: https://doc.dataiku.com/
@@ -236,19 +236,19 @@ common:
     url: https://blog.dataiku.com/
   - type: GitHub
     url: https://github.com/dataiku
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://www.dataiku.com/terms/
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://www.dataiku.com/privacy/
   - type: Portal
     url: https://developer.dataiku.com/latest/
-  - type: API Reference
+  - type: APIReference
     url: https://developer.dataiku.com/latest/api-reference/index.html
   - type: Support
     url: https://support.dataiku.com/
   - type: Knowledge Base
     url: https://knowledge.dataiku.com/latest/
-  - type: Change Log
+  - type: ChangeLog
     url: https://doc.dataiku.com/dss/latest/release_notes/index.html
   - type: Trust Center
     url: https://www.dataiku.com/legal/trust/
@@ -256,13 +256,13 @@ common:
     url: https://www.dataiku.com/product/plugins/
   - type: Webinars
     url: https://www.dataiku.com/stories/webinars/
-  - type: Sign Up
+  - type: SignUp
     url: https://www.dataiku.com/product/get-started/
   - type: LinkedIn
     url: https://www.linkedin.com/company/dataiku
   - type: X
     url: https://twitter.com/dataiku
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/dataiku-context.jsonld
   - type: JSONSchema
     url: json-schema/dataiku-project-schema.json
