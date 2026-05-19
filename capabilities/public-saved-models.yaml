@@ -1,0 +1,104 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Dataiku DSS Public API — Saved Models
+  description: 'Dataiku DSS Public API — Saved Models. 2 operations. Lead operation: Dataiku List saved models. Self-contained
+    Naftiko capability covering one Dataiku business surface.'
+  tags:
+  - Dataiku
+  - Saved Models
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DATAIKU_API_KEY: DATAIKU_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: public-saved-models
+    baseUri: https://{dss-host}/public/api
+    description: Dataiku DSS Public API — Saved Models business capability. Self-contained, no shared references.
+    resources:
+    - name: projects-projectKey-savedmodels
+      path: /projects/{projectKey}/savedmodels
+      operations:
+      - name: listsavedmodels
+        method: GET
+        description: Dataiku List saved models
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: projects-projectKey-savedmodels-savedModelId
+      path: /projects/{projectKey}/savedmodels/{savedModelId}
+      operations:
+      - name: getsavedmodel
+        method: GET
+        description: Dataiku Get saved model details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.DATAIKU_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: public-saved-models-rest
+    port: 8080
+    description: REST adapter for Dataiku DSS Public API — Saved Models. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/projects/{projectkey}/savedmodels
+      name: projects-projectkey-savedmodels
+      description: REST surface for projects-projectKey-savedmodels.
+      operations:
+      - method: GET
+        name: listsavedmodels
+        description: Dataiku List saved models
+        call: public-saved-models.listsavedmodels
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/projects/{projectkey}/savedmodels/{savedmodelid}
+      name: projects-projectkey-savedmodels-savedmodelid
+      description: REST surface for projects-projectKey-savedmodels-savedModelId.
+      operations:
+      - method: GET
+        name: getsavedmodel
+        description: Dataiku Get saved model details
+        call: public-saved-models.getsavedmodel
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: public-saved-models-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Dataiku DSS Public API — Saved Models. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: dataiku-list-saved-models
+      description: Dataiku List saved models
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: public-saved-models.listsavedmodels
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dataiku-get-saved-model-details
+      description: Dataiku Get saved model details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: public-saved-models.getsavedmodel
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,228 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Dataiku API Node Administration API — Generations
+  description: 'Dataiku API Node Administration API — Generations. 6 operations. Lead operation: Dataiku List generations.
+    Self-contained Naftiko capability covering one Dataiku business surface.'
+  tags:
+  - Dataiku
+  - Generations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DATAIKU_API_KEY: DATAIKU_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: api-node-admin-generations
+    baseUri: https://{apinode-host}:{port}/admin/api
+    description: Dataiku API Node Administration API — Generations business capability. Self-contained, no shared references.
+    resources:
+    - name: services-serviceId-generations
+      path: /services/{serviceId}/generations
+      operations:
+      - name: listgenerations
+        method: GET
+        description: Dataiku List generations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: importgeneration
+        method: POST
+        description: Dataiku Import a generation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: services-serviceId-generations-generationId
+      path: /services/{serviceId}/generations/{generationId}
+      operations:
+      - name: getgeneration
+        method: GET
+        description: Dataiku Get generation details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletegeneration
+        method: DELETE
+        description: Dataiku Delete a generation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: services-serviceId-generations-generationId-preload
+      path: /services/{serviceId}/generations/{generationId}/preload
+      operations:
+      - name: preloadgeneration
+        method: POST
+        description: Dataiku Preload a generation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: services-serviceId-generations-generationId-switch
+      path: /services/{serviceId}/generations/{generationId}/switch
+      operations:
+      - name: switchgeneration
+        method: POST
+        description: Dataiku Switch to a generation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.DATAIKU_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: api-node-admin-generations-rest
+    port: 8080
+    description: REST adapter for Dataiku API Node Administration API — Generations. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/services/{serviceid}/generations
+      name: services-serviceid-generations
+      description: REST surface for services-serviceId-generations.
+      operations:
+      - method: GET
+        name: listgenerations
+        description: Dataiku List generations
+        call: api-node-admin-generations.listgenerations
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: importgeneration
+        description: Dataiku Import a generation
+        call: api-node-admin-generations.importgeneration
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/services/{serviceid}/generations/{generationid}
+      name: services-serviceid-generations-generationid
+      description: REST surface for services-serviceId-generations-generationId.
+      operations:
+      - method: GET
+        name: getgeneration
+        description: Dataiku Get generation details
+        call: api-node-admin-generations.getgeneration
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletegeneration
+        description: Dataiku Delete a generation
+        call: api-node-admin-generations.deletegeneration
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/services/{serviceid}/generations/{generationid}/preload
+      name: services-serviceid-generations-generationid-preload
+      description: REST surface for services-serviceId-generations-generationId-preload.
+      operations:
+      - method: POST
+        name: preloadgeneration
+        description: Dataiku Preload a generation
+        call: api-node-admin-generations.preloadgeneration
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/services/{serviceid}/generations/{generationid}/switch
+      name: services-serviceid-generations-generationid-switch
+      description: REST surface for services-serviceId-generations-generationId-switch.
+      operations:
+      - method: POST
+        name: switchgeneration
+        description: Dataiku Switch to a generation
+        call: api-node-admin-generations.switchgeneration
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: api-node-admin-generations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Dataiku API Node Administration API — Generations. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: dataiku-list-generations
+      description: Dataiku List generations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: api-node-admin-generations.listgenerations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dataiku-import-generation
+      description: Dataiku Import a generation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: api-node-admin-generations.importgeneration
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dataiku-get-generation-details
+      description: Dataiku Get generation details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: api-node-admin-generations.getgeneration
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dataiku-delete-generation
+      description: Dataiku Delete a generation
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: api-node-admin-generations.deletegeneration
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dataiku-preload-generation
+      description: Dataiku Preload a generation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: api-node-admin-generations.preloadgeneration
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dataiku-switch-generation
+      description: Dataiku Switch to a generation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: api-node-admin-generations.switchgeneration
+      outputParameters:
+      - type: object
+        mapping: $.

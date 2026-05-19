@@ -1,0 +1,139 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Dataiku Govern API — Blueprint Versions
+  description: 'Dataiku Govern API — Blueprint Versions. 3 operations. Lead operation: Dataiku List blueprint versions. Self-contained
+    Naftiko capability covering one Dataiku business surface.'
+  tags:
+  - Dataiku
+  - Blueprint Versions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DATAIKU_API_KEY: DATAIKU_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: govern-blueprint-versions
+    baseUri: https://{govern-host}/public/api
+    description: Dataiku Govern API — Blueprint Versions business capability. Self-contained, no shared references.
+    resources:
+    - name: blueprints-blueprintId-versions
+      path: /blueprints/{blueprintId}/versions
+      operations:
+      - name: listblueprintversions
+        method: GET
+        description: Dataiku List blueprint versions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createblueprintversion
+        method: POST
+        description: Dataiku Create a blueprint version
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: blueprints-blueprintId-versions-versionId
+      path: /blueprints/{blueprintId}/versions/{versionId}
+      operations:
+      - name: getblueprintversion
+        method: GET
+        description: Dataiku Get blueprint version details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.DATAIKU_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: govern-blueprint-versions-rest
+    port: 8080
+    description: REST adapter for Dataiku Govern API — Blueprint Versions. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/blueprints/{blueprintid}/versions
+      name: blueprints-blueprintid-versions
+      description: REST surface for blueprints-blueprintId-versions.
+      operations:
+      - method: GET
+        name: listblueprintversions
+        description: Dataiku List blueprint versions
+        call: govern-blueprint-versions.listblueprintversions
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createblueprintversion
+        description: Dataiku Create a blueprint version
+        call: govern-blueprint-versions.createblueprintversion
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/blueprints/{blueprintid}/versions/{versionid}
+      name: blueprints-blueprintid-versions-versionid
+      description: REST surface for blueprints-blueprintId-versions-versionId.
+      operations:
+      - method: GET
+        name: getblueprintversion
+        description: Dataiku Get blueprint version details
+        call: govern-blueprint-versions.getblueprintversion
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: govern-blueprint-versions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Dataiku Govern API — Blueprint Versions. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: dataiku-list-blueprint-versions
+      description: Dataiku List blueprint versions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: govern-blueprint-versions.listblueprintversions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dataiku-create-blueprint-version
+      description: Dataiku Create a blueprint version
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: govern-blueprint-versions.createblueprintversion
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dataiku-get-blueprint-version-details
+      description: Dataiku Get blueprint version details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: govern-blueprint-versions.getblueprintversion
+      outputParameters:
+      - type: object
+        mapping: $.

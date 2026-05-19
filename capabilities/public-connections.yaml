@@ -1,0 +1,104 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Dataiku DSS Public API — Connections
+  description: 'Dataiku DSS Public API — Connections. 2 operations. Lead operation: Dataiku List connections. Self-contained
+    Naftiko capability covering one Dataiku business surface.'
+  tags:
+  - Dataiku
+  - Connections
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DATAIKU_API_KEY: DATAIKU_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: public-connections
+    baseUri: https://{dss-host}/public/api
+    description: Dataiku DSS Public API — Connections business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-connections
+      path: /admin/connections
+      operations:
+      - name: listconnections
+        method: GET
+        description: Dataiku List connections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-connections-connectionName
+      path: /admin/connections/{connectionName}
+      operations:
+      - name: getconnection
+        method: GET
+        description: Dataiku Get connection details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.DATAIKU_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: public-connections-rest
+    port: 8080
+    description: REST adapter for Dataiku DSS Public API — Connections. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/admin/connections
+      name: admin-connections
+      description: REST surface for admin-connections.
+      operations:
+      - method: GET
+        name: listconnections
+        description: Dataiku List connections
+        call: public-connections.listconnections
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/connections/{connectionname}
+      name: admin-connections-connectionname
+      description: REST surface for admin-connections-connectionName.
+      operations:
+      - method: GET
+        name: getconnection
+        description: Dataiku Get connection details
+        call: public-connections.getconnection
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: public-connections-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Dataiku DSS Public API — Connections. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: dataiku-list-connections
+      description: Dataiku List connections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: public-connections.listconnections
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dataiku-get-connection-details
+      description: Dataiku Get connection details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: public-connections.getconnection
+      outputParameters:
+      - type: object
+        mapping: $.

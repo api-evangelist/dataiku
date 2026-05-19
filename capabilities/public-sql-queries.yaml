@@ -1,0 +1,82 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Dataiku DSS Public API — SQL Queries
+  description: 'Dataiku DSS Public API — SQL Queries. 1 operations. Lead operation: Dataiku Execute a SQL query. Self-contained
+    Naftiko capability covering one Dataiku business surface.'
+  tags:
+  - Dataiku
+  - SQL Queries
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DATAIKU_API_KEY: DATAIKU_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: public-sql-queries
+    baseUri: https://{dss-host}/public/api
+    description: Dataiku DSS Public API — SQL Queries business capability. Self-contained, no shared references.
+    resources:
+    - name: sql-queries
+      path: /sql/queries
+      operations:
+      - name: executesqlquery
+        method: POST
+        description: Dataiku Execute a SQL query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.DATAIKU_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: public-sql-queries-rest
+    port: 8080
+    description: REST adapter for Dataiku DSS Public API — SQL Queries. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/sql/queries
+      name: sql-queries
+      description: REST surface for sql-queries.
+      operations:
+      - method: POST
+        name: executesqlquery
+        description: Dataiku Execute a SQL query
+        call: public-sql-queries.executesqlquery
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: public-sql-queries-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Dataiku DSS Public API — SQL Queries. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: dataiku-execute-sql-query
+      description: Dataiku Execute a SQL query
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: public-sql-queries.executesqlquery
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

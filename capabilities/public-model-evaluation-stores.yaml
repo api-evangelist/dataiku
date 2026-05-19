@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Dataiku DSS Public API — Model Evaluation Stores
+  description: 'Dataiku DSS Public API — Model Evaluation Stores. 1 operations. Lead operation: Dataiku List model evaluation
+    stores. Self-contained Naftiko capability covering one Dataiku business surface.'
+  tags:
+  - Dataiku
+  - Model Evaluation Stores
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DATAIKU_API_KEY: DATAIKU_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: public-model-evaluation-stores
+    baseUri: https://{dss-host}/public/api
+    description: Dataiku DSS Public API — Model Evaluation Stores business capability. Self-contained, no shared references.
+    resources:
+    - name: projects-projectKey-modelevaluationstores
+      path: /projects/{projectKey}/modelevaluationstores
+      operations:
+      - name: listmodelevaluationstores
+        method: GET
+        description: Dataiku List model evaluation stores
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.DATAIKU_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: public-model-evaluation-stores-rest
+    port: 8080
+    description: REST adapter for Dataiku DSS Public API — Model Evaluation Stores. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/projects/{projectkey}/modelevaluationstores
+      name: projects-projectkey-modelevaluationstores
+      description: REST surface for projects-projectKey-modelevaluationstores.
+      operations:
+      - method: GET
+        name: listmodelevaluationstores
+        description: Dataiku List model evaluation stores
+        call: public-model-evaluation-stores.listmodelevaluationstores
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: public-model-evaluation-stores-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Dataiku DSS Public API — Model Evaluation Stores. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: dataiku-list-model-evaluation-stores
+      description: Dataiku List model evaluation stores
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: public-model-evaluation-stores.listmodelevaluationstores
+      outputParameters:
+      - type: object
+        mapping: $.

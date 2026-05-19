@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Dataiku Govern API — Roles
+  description: 'Dataiku Govern API — Roles. 1 operations. Lead operation: Dataiku List roles. Self-contained Naftiko capability
+    covering one Dataiku business surface.'
+  tags:
+  - Dataiku
+  - Roles
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DATAIKU_API_KEY: DATAIKU_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: govern-roles
+    baseUri: https://{govern-host}/public/api
+    description: Dataiku Govern API — Roles business capability. Self-contained, no shared references.
+    resources:
+    - name: roles
+      path: /roles
+      operations:
+      - name: listroles
+        method: GET
+        description: Dataiku List roles
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.DATAIKU_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: govern-roles-rest
+    port: 8080
+    description: REST adapter for Dataiku Govern API — Roles. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/roles
+      name: roles
+      description: REST surface for roles.
+      operations:
+      - method: GET
+        name: listroles
+        description: Dataiku List roles
+        call: govern-roles.listroles
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: govern-roles-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Dataiku Govern API — Roles. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: dataiku-list-roles
+      description: Dataiku List roles
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: govern-roles.listroles
+      outputParameters:
+      - type: object
+        mapping: $.

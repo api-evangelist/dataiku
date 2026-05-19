@@ -1,0 +1,107 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Dataiku DSS Public API — General Settings
+  description: 'Dataiku DSS Public API — General Settings. 2 operations. Lead operation: Dataiku Get general settings. Self-contained
+    Naftiko capability covering one Dataiku business surface.'
+  tags:
+  - Dataiku
+  - General Settings
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DATAIKU_API_KEY: DATAIKU_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: public-general-settings
+    baseUri: https://{dss-host}/public/api
+    description: Dataiku DSS Public API — General Settings business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-general-settings
+      path: /admin/general-settings
+      operations:
+      - name: getgeneralsettings
+        method: GET
+        description: Dataiku Get general settings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: setgeneralsettings
+        method: PUT
+        description: Dataiku Update general settings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.DATAIKU_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: public-general-settings-rest
+    port: 8080
+    description: REST adapter for Dataiku DSS Public API — General Settings. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/admin/general-settings
+      name: admin-general-settings
+      description: REST surface for admin-general-settings.
+      operations:
+      - method: GET
+        name: getgeneralsettings
+        description: Dataiku Get general settings
+        call: public-general-settings.getgeneralsettings
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: setgeneralsettings
+        description: Dataiku Update general settings
+        call: public-general-settings.setgeneralsettings
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: public-general-settings-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Dataiku DSS Public API — General Settings. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: dataiku-get-general-settings
+      description: Dataiku Get general settings
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: public-general-settings.getgeneralsettings
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dataiku-update-general-settings
+      description: Dataiku Update general settings
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: public-general-settings.setgeneralsettings
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,107 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Dataiku DSS Public API — Bundles
+  description: 'Dataiku DSS Public API — Bundles. 2 operations. Lead operation: Dataiku List bundles. Self-contained Naftiko
+    capability covering one Dataiku business surface.'
+  tags:
+  - Dataiku
+  - Bundles
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DATAIKU_API_KEY: DATAIKU_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: public-bundles
+    baseUri: https://{dss-host}/public/api
+    description: Dataiku DSS Public API — Bundles business capability. Self-contained, no shared references.
+    resources:
+    - name: projects-projectKey-bundles
+      path: /projects/{projectKey}/bundles
+      operations:
+      - name: listbundles
+        method: GET
+        description: Dataiku List bundles
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createbundle
+        method: POST
+        description: Dataiku Create a bundle
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.DATAIKU_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: public-bundles-rest
+    port: 8080
+    description: REST adapter for Dataiku DSS Public API — Bundles. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/projects/{projectkey}/bundles
+      name: projects-projectkey-bundles
+      description: REST surface for projects-projectKey-bundles.
+      operations:
+      - method: GET
+        name: listbundles
+        description: Dataiku List bundles
+        call: public-bundles.listbundles
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createbundle
+        description: Dataiku Create a bundle
+        call: public-bundles.createbundle
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: public-bundles-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Dataiku DSS Public API — Bundles. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: dataiku-list-bundles
+      description: Dataiku List bundles
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: public-bundles.listbundles
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dataiku-create-bundle
+      description: Dataiku Create a bundle
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: public-bundles.createbundle
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

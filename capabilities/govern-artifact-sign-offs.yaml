@@ -1,0 +1,188 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Dataiku Govern API — Artifact Sign-Offs
+  description: 'Dataiku Govern API — Artifact Sign-Offs. 4 operations. Lead operation: Dataiku List artifact sign-offs. Self-contained
+    Naftiko capability covering one Dataiku business surface.'
+  tags:
+  - Dataiku
+  - Artifact Sign-Offs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DATAIKU_API_KEY: DATAIKU_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: govern-artifact-sign-offs
+    baseUri: https://{govern-host}/public/api
+    description: Dataiku Govern API — Artifact Sign-Offs business capability. Self-contained, no shared references.
+    resources:
+    - name: artifacts-artifactId-sign-offs
+      path: /artifacts/{artifactId}/sign-offs
+      operations:
+      - name: listartifactsignoffs
+        method: GET
+        description: Dataiku List artifact sign-offs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: artifacts-artifactId-sign-offs-signOffStepId
+      path: /artifacts/{artifactId}/sign-offs/{signOffStepId}
+      operations:
+      - name: getartifactsignoff
+        method: GET
+        description: Dataiku Get sign-off step details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: artifacts-artifactId-sign-offs-signOffStepId-delegate
+      path: /artifacts/{artifactId}/sign-offs/{signOffStepId}/delegate
+      operations:
+      - name: delegatesignoff
+        method: POST
+        description: Dataiku Delegate a sign-off
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: artifacts-artifactId-sign-offs-signOffStepId-reviews
+      path: /artifacts/{artifactId}/sign-offs/{signOffStepId}/reviews
+      operations:
+      - name: addsignoffreview
+        method: POST
+        description: Dataiku Add a sign-off review
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.DATAIKU_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: govern-artifact-sign-offs-rest
+    port: 8080
+    description: REST adapter for Dataiku Govern API — Artifact Sign-Offs. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/artifacts/{artifactid}/sign-offs
+      name: artifacts-artifactid-sign-offs
+      description: REST surface for artifacts-artifactId-sign-offs.
+      operations:
+      - method: GET
+        name: listartifactsignoffs
+        description: Dataiku List artifact sign-offs
+        call: govern-artifact-sign-offs.listartifactsignoffs
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/artifacts/{artifactid}/sign-offs/{signoffstepid}
+      name: artifacts-artifactid-sign-offs-signoffstepid
+      description: REST surface for artifacts-artifactId-sign-offs-signOffStepId.
+      operations:
+      - method: GET
+        name: getartifactsignoff
+        description: Dataiku Get sign-off step details
+        call: govern-artifact-sign-offs.getartifactsignoff
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/artifacts/{artifactid}/sign-offs/{signoffstepid}/delegate
+      name: artifacts-artifactid-sign-offs-signoffstepid-delegate
+      description: REST surface for artifacts-artifactId-sign-offs-signOffStepId-delegate.
+      operations:
+      - method: POST
+        name: delegatesignoff
+        description: Dataiku Delegate a sign-off
+        call: govern-artifact-sign-offs.delegatesignoff
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/artifacts/{artifactid}/sign-offs/{signoffstepid}/reviews
+      name: artifacts-artifactid-sign-offs-signoffstepid-reviews
+      description: REST surface for artifacts-artifactId-sign-offs-signOffStepId-reviews.
+      operations:
+      - method: POST
+        name: addsignoffreview
+        description: Dataiku Add a sign-off review
+        call: govern-artifact-sign-offs.addsignoffreview
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: govern-artifact-sign-offs-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Dataiku Govern API — Artifact Sign-Offs. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: dataiku-list-artifact-sign-offs
+      description: Dataiku List artifact sign-offs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: govern-artifact-sign-offs.listartifactsignoffs
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dataiku-get-sign-off-step
+      description: Dataiku Get sign-off step details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: govern-artifact-sign-offs.getartifactsignoff
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dataiku-delegate-sign-off
+      description: Dataiku Delegate a sign-off
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: govern-artifact-sign-offs.delegatesignoff
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dataiku-add-sign-off-review
+      description: Dataiku Add a sign-off review
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: govern-artifact-sign-offs.addsignoffreview
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

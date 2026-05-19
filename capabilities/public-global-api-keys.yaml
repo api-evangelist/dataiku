@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Dataiku DSS Public API — Global API Keys
+  description: 'Dataiku DSS Public API — Global API Keys. 1 operations. Lead operation: Dataiku List global API keys. Self-contained
+    Naftiko capability covering one Dataiku business surface.'
+  tags:
+  - Dataiku
+  - Global API Keys
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DATAIKU_API_KEY: DATAIKU_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: public-global-api-keys
+    baseUri: https://{dss-host}/public/api
+    description: Dataiku DSS Public API — Global API Keys business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-globalAPIKeys
+      path: /admin/globalAPIKeys
+      operations:
+      - name: listglobalapikeys
+        method: GET
+        description: Dataiku List global API keys
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.DATAIKU_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: public-global-api-keys-rest
+    port: 8080
+    description: REST adapter for Dataiku DSS Public API — Global API Keys. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/admin/globalapikeys
+      name: admin-globalapikeys
+      description: REST surface for admin-globalAPIKeys.
+      operations:
+      - method: GET
+        name: listglobalapikeys
+        description: Dataiku List global API keys
+        call: public-global-api-keys.listglobalapikeys
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: public-global-api-keys-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Dataiku DSS Public API — Global API Keys. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: dataiku-list-global-api-keys
+      description: Dataiku List global API keys
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: public-global-api-keys.listglobalapikeys
+      outputParameters:
+      - type: object
+        mapping: $.
