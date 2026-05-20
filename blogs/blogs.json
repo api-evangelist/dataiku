@@ -5,9 +5,10 @@
       "source": "https://blog.dataiku.com/",
       "feed_url": "https://blog.dataiku.com/atom.xml",
       "title": "The Dataiku Blog",
-      "saved": 8
+      "saved": 0,
+      "last_error": "http_404"
     }
   ],
   "post_count": 18,
-  "fetched": "2026-05-09T20:17:51Z"
+  "fetched": "2026-05-17T20:20:35Z"
 }
