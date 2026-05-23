@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SignOff",
+  "title": "SignOff",
+  "type": "object",
+  "properties": {
+    "stepId": {
+      "type": "string",
+      "description": "Sign-off step identifier"
+    },
+    "stepName": {
+      "type": "string",
+      "description": "Step display name"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "NOT_STARTED",
+        "IN_PROGRESS",
+        "APPROVED",
+        "REJECTED",
+        "DELEGATED"
+      ],
+      "description": "Current sign-off status"
+    },
+    "reviews": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SignOffReview"
+      },
+      "description": "Reviews submitted for this step"
+    },
+    "delegatedTo": {
+      "type": "string",
+      "description": "User the step was delegated to"
+    }
+  }
+}

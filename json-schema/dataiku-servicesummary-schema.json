@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ServiceSummary",
+  "title": "ServiceSummary",
+  "type": "object",
+  "properties": {
+    "serviceId": {
+      "type": "string",
+      "description": "Unique service identifier"
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the service is enabled"
+    },
+    "activeGeneration": {
+      "type": "string",
+      "description": "Currently active generation identifier"
+    },
+    "generationCount": {
+      "type": "integer",
+      "description": "Number of available generations"
+    }
+  }
+}

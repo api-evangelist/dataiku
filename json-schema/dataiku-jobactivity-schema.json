@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JobActivity",
+  "title": "JobActivity",
+  "type": "object",
+  "properties": {
+    "recipeProjectKey": {
+      "type": "string"
+    },
+    "recipeName": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "NOT_STARTED",
+        "RUNNING",
+        "DONE",
+        "FAILED",
+        "ABORTED"
+      ],
+      "description": "Activity state"
+    }
+  }
+}

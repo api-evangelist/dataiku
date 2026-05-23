@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Group",
+  "title": "Group",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Group name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Group description"
+    },
+    "admin": {
+      "type": "boolean",
+      "description": "Whether this is an admin group"
+    },
+    "sourceType": {
+      "type": "string",
+      "description": "Group source type (LOCAL, LDAP)"
+    }
+  }
+}

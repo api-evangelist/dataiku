@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GlobalAPIKey",
+  "title": "GlobalAPIKey",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "API key identifier"
+    },
+    "key": {
+      "type": "string",
+      "description": "The API key value"
+    },
+    "label": {
+      "type": "string",
+      "description": "Label for the API key"
+    },
+    "createdOn": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Creation timestamp"
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "User who created the key"
+    },
+    "globalPermissions": {
+      "type": "object",
+      "description": "Global permissions granted"
+    }
+  }
+}

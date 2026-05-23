@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GeneralSettings",
+  "title": "GeneralSettings",
+  "type": "object",
+  "properties": {
+    "permissions": {
+      "type": "object",
+      "description": "Global permission settings"
+    },
+    "ldapSettings": {
+      "type": "object",
+      "description": "LDAP configuration"
+    },
+    "ssoSettings": {
+      "type": "object",
+      "description": "SSO configuration"
+    },
+    "theme": {
+      "type": "object",
+      "description": "UI theme settings"
+    }
+  }
+}

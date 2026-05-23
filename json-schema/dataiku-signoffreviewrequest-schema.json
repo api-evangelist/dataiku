@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SignOffReviewRequest",
+  "title": "SignOffReviewRequest",
+  "type": "object",
+  "required": [
+    "outcome"
+  ],
+  "properties": {
+    "outcome": {
+      "type": "string",
+      "enum": [
+        "APPROVED",
+        "REJECTED"
+      ],
+      "description": "Review outcome"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Review comment"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Connection",
+  "title": "Connection",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Connection name"
+    },
+    "type": {
+      "type": "string",
+      "description": "Connection type"
+    },
+    "params": {
+      "type": "object",
+      "description": "Connection-specific parameters"
+    },
+    "allowWrite": {
+      "type": "boolean",
+      "description": "Whether write operations are allowed"
+    },
+    "allowManagedDatasets": {
+      "type": "boolean",
+      "description": "Whether managed datasets are allowed"
+    }
+  }
+}

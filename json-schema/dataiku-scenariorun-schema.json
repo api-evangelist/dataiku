@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ScenarioRun",
+  "title": "ScenarioRun",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Run identifier"
+    },
+    "scenarioId": {
+      "type": "string",
+      "description": "Scenario identifier"
+    },
+    "trigger": {
+      "type": "object",
+      "description": "Trigger information"
+    },
+    "result": {
+      "type": "object",
+      "description": "Run result"
+    }
+  }
+}

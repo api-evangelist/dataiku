@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ManagedFolderContents",
+  "title": "ManagedFolderContents",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "File path within the folder"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int64",
+            "description": "File size in bytes"
+          },
+          "lastModified": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Last modified timestamp"
+          }
+        }
+      },
+      "description": "List of items in the folder"
+    }
+  }
+}

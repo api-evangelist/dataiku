@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateBlueprintRequest",
+  "title": "CreateBlueprintRequest",
+  "type": "object",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Blueprint display name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Blueprint description"
+    },
+    "icon": {
+      "type": "string",
+      "description": "Icon identifier"
+    }
+  }
+}

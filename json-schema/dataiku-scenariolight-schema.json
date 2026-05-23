@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ScenarioLight",
+  "title": "ScenarioLight",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Scenario identifier"
+    },
+    "running": {
+      "type": "boolean",
+      "description": "Whether the scenario is currently running"
+    },
+    "lastRun": {
+      "type": "object",
+      "description": "Information about the last run"
+    }
+  }
+}

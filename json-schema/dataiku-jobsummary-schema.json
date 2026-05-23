@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JobSummary",
+  "title": "JobSummary",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique job identifier"
+    },
+    "projectKey": {
+      "type": "string",
+      "description": "Project key"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "NOT_STARTED",
+        "RUNNING",
+        "DONE",
+        "FAILED",
+        "ABORTED"
+      ],
+      "description": "Current state of the job"
+    },
+    "initiator": {
+      "type": "string",
+      "description": "User who started the job"
+    },
+    "startTime": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Job start time as epoch milliseconds"
+    }
+  }
+}

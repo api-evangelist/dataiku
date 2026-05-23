@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FieldSetting",
+  "title": "FieldSetting",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Field identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Field display name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Field description"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "TEXT",
+        "LONG_TEXT",
+        "NUMBER",
+        "BOOLEAN",
+        "DATE",
+        "SELECT",
+        "MULTISELECT",
+        "USER",
+        "USERS"
+      ],
+      "description": "Field type"
+    },
+    "required": {
+      "type": "boolean",
+      "description": "Whether the field is required"
+    },
+    "options": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Available options for SELECT and MULTISELECT types"
+    }
+  }
+}

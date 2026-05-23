@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BlueprintVersion",
+  "title": "BlueprintVersion",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Version identifier"
+    },
+    "blueprintId": {
+      "type": "string",
+      "description": "Parent blueprint ID"
+    },
+    "versionNumber": {
+      "type": "integer",
+      "description": "Version number"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "DRAFT",
+        "PUBLISHED",
+        "ARCHIVED"
+      ],
+      "description": "Version status"
+    },
+    "fieldSettings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/FieldSetting"
+      },
+      "description": "Custom field definitions"
+    },
+    "signOffConfiguration": {
+      "$ref": "#/components/schemas/SignOffConfiguration"
+    },
+    "createdOn": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Creation timestamp"
+    }
+  }
+}

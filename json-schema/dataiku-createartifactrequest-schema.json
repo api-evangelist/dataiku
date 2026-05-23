@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateArtifactRequest",
+  "title": "CreateArtifactRequest",
+  "type": "object",
+  "required": [
+    "name",
+    "blueprintId"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Artifact display name"
+    },
+    "blueprintId": {
+      "type": "string",
+      "description": "Blueprint to associate with"
+    },
+    "blueprintVersionId": {
+      "type": "string",
+      "description": "Specific blueprint version to use"
+    },
+    "customFields": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Initial custom field values"
+    }
+  }
+}

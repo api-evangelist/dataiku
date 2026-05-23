@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SavedModelSummary",
+  "title": "SavedModelSummary",
+  "type": "object",
+  "properties": {
+    "projectKey": {
+      "type": "string",
+      "description": "Project key"
+    },
+    "id": {
+      "type": "string",
+      "description": "Saved model identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Saved model name"
+    },
+    "type": {
+      "type": "string",
+      "description": "Model type (PREDICTION or CLUSTERING)"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ManagedFolder",
+  "title": "ManagedFolder",
+  "type": "object",
+  "properties": {
+    "projectKey": {
+      "type": "string",
+      "description": "Project key"
+    },
+    "id": {
+      "type": "string",
+      "description": "Managed folder identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Managed folder name"
+    },
+    "type": {
+      "type": "string",
+      "description": "Storage type"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Meaning",
+  "title": "Meaning",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Meaning identifier"
+    },
+    "label": {
+      "type": "string",
+      "description": "Display label"
+    },
+    "description": {
+      "type": "string",
+      "description": "Meaning description"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "DECLARATIVE",
+        "VALUES_LIST",
+        "VALUES_MAPPING",
+        "PATTERN"
+      ],
+      "description": "Meaning type"
+    }
+  }
+}

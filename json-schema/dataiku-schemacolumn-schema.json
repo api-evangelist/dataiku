@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SchemaColumn",
+  "title": "SchemaColumn",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Column name"
+    },
+    "type": {
+      "type": "string",
+      "description": "Column data type (e.g., string, bigint, double, boolean, date)"
+    },
+    "meaning": {
+      "type": "string",
+      "description": "Semantic meaning assigned to the column"
+    },
+    "maxLength": {
+      "type": "integer",
+      "description": "Maximum length for string columns"
+    }
+  }
+}

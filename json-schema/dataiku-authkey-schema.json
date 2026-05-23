@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AuthKey",
+  "title": "AuthKey",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Key identifier"
+    },
+    "key": {
+      "type": "string",
+      "description": "The API key value"
+    },
+    "label": {
+      "type": "string",
+      "description": "Descriptive label"
+    },
+    "createdOn": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Creation timestamp"
+    },
+    "allowedServices": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of services this key can access (empty means all)"
+    }
+  }
+}

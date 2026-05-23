@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WorkflowStatus",
+  "title": "WorkflowStatus",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Status identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Status display name"
+    },
+    "color": {
+      "type": "string",
+      "description": "Status color code"
+    }
+  }
+}

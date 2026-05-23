@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProjectMetadata",
+  "title": "ProjectMetadata",
+  "type": "object",
+  "properties": {
+    "label": {
+      "type": "string",
+      "description": "Display label for the project"
+    },
+    "description": {
+      "type": "string",
+      "description": "Project description"
+    },
+    "shortDesc": {
+      "type": "string",
+      "description": "Short description"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags associated with the project"
+    },
+    "checklists": {
+      "type": "object",
+      "description": "Checklists for the project"
+    }
+  }
+}

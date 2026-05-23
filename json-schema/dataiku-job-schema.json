@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Job",
+  "title": "Job",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique job identifier"
+    },
+    "projectKey": {
+      "type": "string",
+      "description": "Project key"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "NOT_STARTED",
+        "RUNNING",
+        "DONE",
+        "FAILED",
+        "ABORTED"
+      ],
+      "description": "Current state of the job"
+    },
+    "initiator": {
+      "type": "string",
+      "description": "User who started the job"
+    },
+    "startTime": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Job start time as epoch milliseconds"
+    },
+    "endTime": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Job end time as epoch milliseconds"
+    },
+    "activities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/JobActivity"
+      },
+      "description": "List of activities in the job"
+    }
+  }
+}

@@ -1,0 +1,730 @@
+{
+  "provider": "Dataiku",
+  "providerId": "dataiku",
+  "kind": "json-structure",
+  "description": "Structural overview of the Dataiku API surface; extracted from openapi/.",
+  "schemaCount": 42,
+  "operationCount": 50,
+  "schemas": [
+    {
+      "name": "ProjectSummary",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "CreateProjectRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "projectKey",
+        "name"
+      ]
+    },
+    {
+      "name": "Project",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "ProjectMetadata",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "Tag",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "Dataset",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "CreateDatasetRequest",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "name",
+        "type"
+      ]
+    },
+    {
+      "name": "DatasetSchema",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "SchemaColumn",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "DatasetData",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "RecipeSummary",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "Recipe",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "JobSummary",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "Job",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "StartJobRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "outputs"
+      ]
+    },
+    {
+      "name": "JobActivity",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ScenarioSummary",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "Scenario",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "ScenarioRun",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "ScenarioLight",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ManagedFolder",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "ManagedFolderContents",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "SavedModelSummary",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "SavedModel",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "ModelVersion",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ModelEvaluationStoreSummary",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "BundleSummary",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "CreateBundleRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "bundleId"
+      ]
+    },
+    {
+      "name": "SqlQueryRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "connection",
+        "query"
+      ]
+    },
+    {
+      "name": "SqlQueryResult",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ConnectionSummary",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "Connection",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "CodeEnvSummary",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "CodeEnv",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "User",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "CreateUserRequest",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "login",
+        "password"
+      ]
+    },
+    {
+      "name": "Group",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "GlobalAPIKey",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "GeneralSettings",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "Meaning",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "PluginSummary",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "Plugin",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/projects",
+      "operationId": "listProjects",
+      "summary": "Dataiku List projects",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/projects",
+      "operationId": "createProject",
+      "summary": "Dataiku Create a project",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/projects/{projectKey}",
+      "operationId": "getProject",
+      "summary": "Dataiku Get project details",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/projects/{projectKey}",
+      "operationId": "deleteProject",
+      "summary": "Dataiku Delete a project",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/projects/{projectKey}/metadata",
+      "operationId": "getProjectMetadata",
+      "summary": "Dataiku Get project metadata",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/projects/{projectKey}/metadata",
+      "operationId": "setProjectMetadata",
+      "summary": "Dataiku Set project metadata",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/projects/{projectKey}/datasets",
+      "operationId": "listDatasets",
+      "summary": "Dataiku List datasets",
+      "tags": [
+        "Datasets"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/projects/{projectKey}/datasets",
+      "operationId": "createDataset",
+      "summary": "Dataiku Create a dataset",
+      "tags": [
+        "Datasets"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/projects/{projectKey}/datasets/{datasetName}",
+      "operationId": "getDataset",
+      "summary": "Dataiku Get dataset details",
+      "tags": [
+        "Datasets"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/projects/{projectKey}/datasets/{datasetName}",
+      "operationId": "updateDataset",
+      "summary": "Dataiku Update a dataset",
+      "tags": [
+        "Datasets"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/projects/{projectKey}/datasets/{datasetName}",
+      "operationId": "deleteDataset",
+      "summary": "Dataiku Delete a dataset",
+      "tags": [
+        "Datasets"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/projects/{projectKey}/datasets/{datasetName}/data",
+      "operationId": "getDatasetData",
+      "summary": "Dataiku Read dataset data",
+      "tags": [
+        "Datasets"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/projects/{projectKey}/datasets/{datasetName}/schema",
+      "operationId": "getDatasetSchema",
+      "summary": "Dataiku Get dataset schema",
+      "tags": [
+        "Datasets"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/projects/{projectKey}/datasets/{datasetName}/schema",
+      "operationId": "setDatasetSchema",
+      "summary": "Dataiku Set dataset schema",
+      "tags": [
+        "Datasets"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/projects/{projectKey}/recipes",
+      "operationId": "listRecipes",
+      "summary": "Dataiku List recipes",
+      "tags": [
+        "Recipes"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/projects/{projectKey}/recipes/{recipeName}",
+      "operationId": "getRecipe",
+      "summary": "Dataiku Get recipe details",
+      "tags": [
+        "Recipes"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/projects/{projectKey}/recipes/{recipeName}",
+      "operationId": "deleteRecipe",
+      "summary": "Dataiku Delete a recipe",
+      "tags": [
+        "Recipes"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/projects/{projectKey}/jobs",
+      "operationId": "listJobs",
+      "summary": "Dataiku List jobs",
+      "tags": [
+        "Jobs"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/projects/{projectKey}/jobs",
+      "operationId": "startJob",
+      "summary": "Dataiku Start a new job",
+      "tags": [
+        "Jobs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/projects/{projectKey}/jobs/{jobId}",
+      "operationId": "getJob",
+      "summary": "Dataiku Get job status",
+      "tags": [
+        "Jobs"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/projects/{projectKey}/jobs/{jobId}",
+      "operationId": "abortJob",
+      "summary": "Dataiku Abort a job",
+      "tags": [
+        "Jobs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/projects/{projectKey}/scenarios",
+      "operationId": "listScenarios",
+      "summary": "Dataiku List scenarios",
+      "tags": [
+        "Scenarios"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/projects/{projectKey}/scenarios/{scenarioId}",
+      "operationId": "getScenario",
+      "summary": "Dataiku Get scenario details",
+      "tags": [
+        "Scenarios"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/projects/{projectKey}/scenarios/{scenarioId}/run",
+      "operationId": "runScenario",
+      "summary": "Dataiku Run a scenario",
+      "tags": [
+        "Scenarios"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/projects/{projectKey}/scenarios/{scenarioId}/light",
+      "operationId": "getScenarioRunStatus",
+      "summary": "Dataiku Get scenario run status",
+      "tags": [
+        "Scenarios"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/projects/{projectKey}/managedfolders",
+      "operationId": "listManagedFolders",
+      "summary": "Dataiku List managed folders",
+      "tags": [
+        "Managed Folders"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/projects/{projectKey}/managedfolders/{folderId}/contents",
+      "operationId": "listManagedFolderContents",
+      "summary": "Dataiku List managed folder contents",
+      "tags": [
+        "Managed Folders"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/projects/{projectKey}/savedmodels",
+      "operationId": "listSavedModels",
+      "summary": "Dataiku List saved models",
+      "tags": [
+        "Saved Models"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/projects/{projectKey}/savedmodels/{savedModelId}",
+      "operationId": "getSavedModel",
+      "summary": "Dataiku Get saved model details",
+      "tags": [
+        "Saved Models"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/projects/{projectKey}/modelevaluationstores",
+      "operationId": "listModelEvaluationStores",
+      "summary": "Dataiku List model evaluation stores",
+      "tags": [
+        "Model Evaluation Stores"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/projects/{projectKey}/bundles",
+      "operationId": "listBundles",
+      "summary": "Dataiku List bundles",
+      "tags": [
+        "Bundles"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/projects/{projectKey}/bundles",
+      "operationId": "createBundle",
+      "summary": "Dataiku Create a bundle",
+      "tags": [
+        "Bundles"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/sql/queries",
+      "operationId": "executeSqlQuery",
+      "summary": "Dataiku Execute a SQL query",
+      "tags": [
+        "SQL Queries"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/admin/connections",
+      "operationId": "listConnections",
+      "summary": "Dataiku List connections",
+      "tags": [
+        "Connections"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/admin/connections/{connectionName}",
+      "operationId": "getConnection",
+      "summary": "Dataiku Get connection details",
+      "tags": [
+        "Connections"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/admin/code-envs",
+      "operationId": "listCodeEnvs",
+      "summary": "Dataiku List code environments",
+      "tags": [
+        "Code Envs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/admin/code-envs/{envLang}/{envName}",
+      "operationId": "getCodeEnv",
+      "summary": "Dataiku Get code environment details",
+      "tags": [
+        "Code Envs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/admin/users",
+      "operationId": "listUsers",
+      "summary": "Dataiku List users",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/admin/users",
+      "operationId": "createUser",
+      "summary": "Dataiku Create a user",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/admin/users/{login}",
+      "operationId": "getUser",
+      "summary": "Dataiku Get user details",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/admin/users/{login}",
+      "operationId": "updateUser",
+      "summary": "Dataiku Update a user",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/admin/users/{login}",
+      "operationId": "deleteUser",
+      "summary": "Dataiku Delete a user",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/admin/groups",
+      "operationId": "listGroups",
+      "summary": "Dataiku List groups",
+      "tags": [
+        "Groups"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/admin/groups/{groupName}",
+      "operationId": "getGroup",
+      "summary": "Dataiku Get group details",
+      "tags": [
+        "Groups"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/admin/globalAPIKeys",
+      "operationId": "listGlobalAPIKeys",
+      "summary": "Dataiku List global API keys",
+      "tags": [
+        "Global API Keys"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/admin/general-settings",
+      "operationId": "getGeneralSettings",
+      "summary": "Dataiku Get general settings",
+      "tags": [
+        "General Settings"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/admin/general-settings",
+      "operationId": "setGeneralSettings",
+      "summary": "Dataiku Update general settings",
+      "tags": [
+        "General Settings"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/meanings",
+      "operationId": "listMeanings",
+      "summary": "Dataiku List meanings",
+      "tags": [
+        "Meanings"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/plugins",
+      "operationId": "listPlugins",
+      "summary": "Dataiku List plugins",
+      "tags": [
+        "Plugins"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/plugins/{pluginId}",
+      "operationId": "getPlugin",
+      "summary": "Dataiku Get plugin details",
+      "tags": [
+        "Plugins"
+      ]
+    }
+  ]
+}

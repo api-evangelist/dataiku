@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Metrics",
+  "title": "Metrics",
+  "type": "object",
+  "properties": {
+    "totalRequests": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Total number of requests processed"
+    },
+    "activeRequests": {
+      "type": "integer",
+      "description": "Number of currently active requests"
+    },
+    "averageLatencyMs": {
+      "type": "number",
+      "format": "double",
+      "description": "Average request latency in milliseconds"
+    },
+    "errorCount": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Total number of error responses"
+    },
+    "serviceMetrics": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "requestCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "averageLatencyMs": {
+            "type": "number",
+            "format": "double"
+          },
+          "errorCount": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "description": "Per-service metrics keyed by service ID"
+    }
+  }
+}

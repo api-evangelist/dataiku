@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DelegateSignOffRequest",
+  "title": "DelegateSignOffRequest",
+  "type": "object",
+  "required": [
+    "delegateTo"
+  ],
+  "properties": {
+    "delegateTo": {
+      "type": "string",
+      "description": "Login of the user to delegate to"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Delegation comment"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Artifact",
+  "title": "Artifact",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Artifact identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Artifact display name"
+    },
+    "blueprintId": {
+      "type": "string",
+      "description": "Blueprint ID"
+    },
+    "blueprintVersionId": {
+      "type": "string",
+      "description": "Blueprint version ID"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current workflow status"
+    },
+    "customFields": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Custom field values"
+    },
+    "createdOn": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Creation timestamp"
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "User who created the artifact"
+    },
+    "lastModifiedOn": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Last modification timestamp"
+    },
+    "lastModifiedBy": {
+      "type": "string",
+      "description": "User who last modified the artifact"
+    }
+  }
+}

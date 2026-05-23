@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HealthStatus",
+  "title": "HealthStatus",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "HEALTHY",
+        "DEGRADED",
+        "UNHEALTHY"
+      ],
+      "description": "Overall health status"
+    },
+    "details": {
+      "type": "object",
+      "description": "Additional health check details"
+    }
+  }
+}

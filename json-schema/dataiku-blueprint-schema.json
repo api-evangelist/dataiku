@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Blueprint",
+  "title": "Blueprint",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique blueprint identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Blueprint display name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Blueprint description"
+    },
+    "icon": {
+      "type": "string",
+      "description": "Icon identifier"
+    },
+    "artifactCount": {
+      "type": "integer",
+      "description": "Number of artifacts"
+    },
+    "fieldSettings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/FieldSetting"
+      },
+      "description": "Custom field definitions for this blueprint"
+    },
+    "signOffConfiguration": {
+      "$ref": "#/components/schemas/SignOffConfiguration"
+    },
+    "workflowConfiguration": {
+      "$ref": "#/components/schemas/WorkflowConfiguration"
+    }
+  }
+}

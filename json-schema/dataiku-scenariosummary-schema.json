@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ScenarioSummary",
+  "title": "ScenarioSummary",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Scenario identifier"
+    },
+    "projectKey": {
+      "type": "string",
+      "description": "Project key"
+    },
+    "name": {
+      "type": "string",
+      "description": "Scenario name"
+    },
+    "active": {
+      "type": "boolean",
+      "description": "Whether the scenario is active"
+    },
+    "type": {
+      "type": "string",
+      "description": "Scenario type (step_based or custom_python)"
+    }
+  }
+}

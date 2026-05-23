@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BlueprintSummary",
+  "title": "BlueprintSummary",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique blueprint identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Blueprint display name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Blueprint description"
+    },
+    "artifactCount": {
+      "type": "integer",
+      "description": "Number of artifacts using this blueprint"
+    },
+    "icon": {
+      "type": "string",
+      "description": "Icon identifier"
+    }
+  }
+}

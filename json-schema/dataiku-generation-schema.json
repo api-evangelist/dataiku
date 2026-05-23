@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Generation",
+  "title": "Generation",
+  "type": "object",
+  "properties": {
+    "generationId": {
+      "type": "string",
+      "description": "Generation identifier"
+    },
+    "active": {
+      "type": "boolean",
+      "description": "Whether this is the active generation"
+    },
+    "createdOn": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Creation timestamp"
+    },
+    "endpoints": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Endpoint"
+      },
+      "description": "Endpoints in this generation"
+    },
+    "preloaded": {
+      "type": "boolean",
+      "description": "Whether this generation is preloaded in memory"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Endpoint",
+  "title": "Endpoint",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Endpoint identifier"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "STD_PREDICTION",
+        "CUSTOM_PREDICTION",
+        "R_PREDICTION",
+        "CUSTOM_R_PREDICTION",
+        "SQL_QUERY",
+        "DATASET_LOOKUP",
+        "R_FUNCTION",
+        "PYTHON_FUNCTION"
+      ],
+      "description": "Endpoint type"
+    },
+    "modelRef": {
+      "type": "string",
+      "description": "Reference to the model used by this endpoint"
+    }
+  }
+}

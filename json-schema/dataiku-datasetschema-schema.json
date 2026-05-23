@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DatasetSchema",
+  "title": "DatasetSchema",
+  "type": "object",
+  "properties": {
+    "columns": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SchemaColumn"
+      },
+      "description": "List of columns in the dataset"
+    },
+    "userModified": {
+      "type": "boolean",
+      "description": "Whether the schema was manually modified"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CodeEnv",
+  "title": "CodeEnv",
+  "type": "object",
+  "properties": {
+    "envName": {
+      "type": "string",
+      "description": "Code environment name"
+    },
+    "envLang": {
+      "type": "string",
+      "enum": [
+        "PYTHON",
+        "R"
+      ],
+      "description": "Programming language"
+    },
+    "deploymentMode": {
+      "type": "string",
+      "description": "Deployment mode"
+    },
+    "specPackageList": {
+      "type": "string",
+      "description": "Pip or CRAN package specification"
+    },
+    "pythonInterpreter": {
+      "type": "string",
+      "description": "Python interpreter path (Python envs only)"
+    }
+  }
+}

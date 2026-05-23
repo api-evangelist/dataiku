@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/User",
+  "title": "User",
+  "type": "object",
+  "properties": {
+    "login": {
+      "type": "string",
+      "description": "User login name"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Display name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "groups": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Groups the user belongs to"
+    },
+    "userProfile": {
+      "type": "string",
+      "description": "User profile (e.g., READER, DATA_ANALYST, DATA_ENGINEER, ADMIN)"
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the account is enabled"
+    }
+  }
+}

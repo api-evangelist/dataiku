@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StartJobRequest",
+  "title": "StartJobRequest",
+  "type": "object",
+  "required": [
+    "outputs"
+  ],
+  "properties": {
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "projectKey": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "DATASET",
+              "MANAGED_FOLDER",
+              "SAVED_MODEL"
+            ]
+          }
+        }
+      },
+      "description": "List of outputs to build"
+    }
+  }
+}

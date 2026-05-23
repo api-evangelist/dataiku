@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ArtifactSummary",
+  "title": "ArtifactSummary",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Artifact identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Artifact display name"
+    },
+    "blueprintId": {
+      "type": "string",
+      "description": "Blueprint this artifact belongs to"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current workflow status"
+    },
+    "createdOn": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Creation timestamp"
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "User who created the artifact"
+    }
+  }
+}

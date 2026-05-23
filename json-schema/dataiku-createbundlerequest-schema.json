@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateBundleRequest",
+  "title": "CreateBundleRequest",
+  "type": "object",
+  "required": [
+    "bundleId"
+  ],
+  "properties": {
+    "bundleId": {
+      "type": "string",
+      "description": "Identifier for the new bundle"
+    }
+  }
+}

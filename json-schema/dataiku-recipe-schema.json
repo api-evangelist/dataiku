@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Recipe",
+  "title": "Recipe",
+  "type": "object",
+  "properties": {
+    "projectKey": {
+      "type": "string",
+      "description": "Project key"
+    },
+    "name": {
+      "type": "string",
+      "description": "Recipe name"
+    },
+    "type": {
+      "type": "string",
+      "description": "Recipe type"
+    },
+    "inputs": {
+      "type": "object",
+      "description": "Input datasets and roles"
+    },
+    "outputs": {
+      "type": "object",
+      "description": "Output datasets and roles"
+    },
+    "params": {
+      "type": "object",
+      "description": "Recipe-specific parameters"
+    },
+    "creationTag": {
+      "$ref": "#/components/schemas/Tag"
+    },
+    "versionTag": {
+      "$ref": "#/components/schemas/Tag"
+    }
+  }
+}

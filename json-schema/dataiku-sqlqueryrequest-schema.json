@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SqlQueryRequest",
+  "title": "SqlQueryRequest",
+  "type": "object",
+  "required": [
+    "connection",
+    "query"
+  ],
+  "properties": {
+    "connection": {
+      "type": "string",
+      "description": "Name of the DSS connection to query"
+    },
+    "query": {
+      "type": "string",
+      "description": "SQL query to execute"
+    },
+    "preQueries": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "SQL statements to execute before the main query"
+    },
+    "postQueries": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "SQL statements to execute after the main query"
+    }
+  }
+}

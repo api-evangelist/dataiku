@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Plugin",
+  "title": "Plugin",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Plugin identifier"
+    },
+    "version": {
+      "type": "string",
+      "description": "Plugin version"
+    },
+    "label": {
+      "type": "string",
+      "description": "Display label"
+    },
+    "description": {
+      "type": "string",
+      "description": "Plugin description"
+    },
+    "author": {
+      "type": "string",
+      "description": "Plugin author"
+    },
+    "installedOn": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Installation timestamp"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Tag",
+  "title": "Tag",
+  "type": "object",
+  "properties": {
+    "versionNumber": {
+      "type": "integer",
+      "description": "Version number"
+    },
+    "lastModifiedBy": {
+      "type": "object",
+      "properties": {
+        "login": {
+          "type": "string"
+        }
+      }
+    },
+    "lastModifiedOn": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of last modification"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WorkflowConfiguration",
+  "title": "WorkflowConfiguration",
+  "type": "object",
+  "properties": {
+    "statuses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/WorkflowStatus"
+      },
+      "description": "Available statuses"
+    },
+    "transitions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/WorkflowTransition"
+      },
+      "description": "Allowed status transitions"
+    }
+  }
+}

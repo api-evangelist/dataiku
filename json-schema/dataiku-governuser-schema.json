@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GovernUser",
+  "title": "GovernUser",
+  "type": "object",
+  "properties": {
+    "login": {
+      "type": "string",
+      "description": "User login"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Display name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "roles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Assigned role IDs"
+    }
+  }
+}

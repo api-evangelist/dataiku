@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SignOffReview",
+  "title": "SignOffReview",
+  "type": "object",
+  "properties": {
+    "reviewer": {
+      "type": "string",
+      "description": "Login of the reviewer"
+    },
+    "outcome": {
+      "type": "string",
+      "enum": [
+        "APPROVED",
+        "REJECTED"
+      ],
+      "description": "Review outcome"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Review comment"
+    },
+    "reviewedOn": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Review timestamp"
+    }
+  }
+}

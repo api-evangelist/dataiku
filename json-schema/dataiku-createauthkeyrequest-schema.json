@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateAuthKeyRequest",
+  "title": "CreateAuthKeyRequest",
+  "type": "object",
+  "properties": {
+    "label": {
+      "type": "string",
+      "description": "Descriptive label for the key"
+    },
+    "allowedServices": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of services this key can access"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RecipeSummary",
+  "title": "RecipeSummary",
+  "type": "object",
+  "properties": {
+    "projectKey": {
+      "type": "string",
+      "description": "Project key"
+    },
+    "name": {
+      "type": "string",
+      "description": "Recipe name"
+    },
+    "type": {
+      "type": "string",
+      "description": "Recipe type (e.g., prepare, python, sql, join, sync)"
+    }
+  }
+}

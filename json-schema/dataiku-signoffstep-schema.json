@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SignOffStep",
+  "title": "SignOffStep",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Step identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Step display name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Step description"
+    },
+    "requiredReviewers": {
+      "type": "integer",
+      "description": "Number of required reviewers"
+    },
+    "assigneeType": {
+      "type": "string",
+      "enum": [
+        "ROLE",
+        "USER",
+        "GROUP"
+      ],
+      "description": "How reviewers are assigned"
+    }
+  }
+}
