@@ -1,0 +1,80 @@
+arazzo: 1.0.1
+info:
+  title: Dataiku Teardown Project
+  summary: Verify a project, delete a dataset within it, then delete the project itself.
+  description: >-
+    Cleanly decommissions a Dataiku DSS project. The workflow confirms the
+    project exists, deletes a named dataset inside it, and then deletes the
+    project and all of its remaining contents. The delete steps assert the
+    documented 204 No Content response. Every step inlines its request so the
+    flow can be executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dssPublicApi
+  url: ../openapi/dataiku-public-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: teardown-project
+  summary: Delete a dataset and then delete the project.
+  description: >-
+    Verifies the project, deletes a dataset, then deletes the project.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - projectKey
+    - datasetName
+    properties:
+      apiKey:
+        type: string
+        description: DSS API key passed as a Bearer token in the Authorization header.
+      projectKey:
+        type: string
+        description: Project key to tear down.
+      datasetName:
+        type: string
+        description: Name of the dataset to delete before deleting the project.
+  steps:
+  - stepId: verifyProject
+    description: Confirm the project exists before deleting any of its contents.
+    operationId: getProject
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: projectKey
+      in: path
+      value: $inputs.projectKey
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      projectKey: $response.body#/projectKey
+  - stepId: deleteDataset
+    description: Delete the named dataset from the project.
+    operationId: deleteDataset
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: projectKey
+      in: path
+      value: $inputs.projectKey
+    - name: datasetName
+      in: path
+      value: $inputs.datasetName
+    successCriteria:
+    - condition: $statusCode == 204
+  - stepId: deleteProject
+    description: Delete the project and all of its remaining contents.
+    operationId: deleteProject
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: projectKey
+      in: path
+      value: $inputs.projectKey
+    successCriteria:
+    - condition: $statusCode == 204
+  outputs:
+    deletedProjectKey: $steps.verifyProject.outputs.projectKey

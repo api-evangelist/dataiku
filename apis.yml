@@ -268,6 +268,63 @@ maintainers:
   email: kin@apievangelist.com
   url: https://www.dataiku.com
 common:
+- type: ArazzoWorkflows
+  url: arazzo/
+  workflows:
+  - url: arazzo/dataiku-audit-recipe-and-jobs-workflow.yml
+    name: Dataiku Audit Recipe and Project Jobs
+    summary: List a project's recipes, read one recipe's inputs and outputs, and list the project's jobs.
+  - url: arazzo/dataiku-bootstrap-project-workflow.yml
+    name: Dataiku Bootstrap Project with First Dataset
+    summary: Create a DSS project, add a managed dataset to it, and confirm the dataset definition.
+  - url: arazzo/dataiku-browse-managed-folder-workflow.yml
+    name: Dataiku Browse Managed Folder Contents
+    summary: List a project's managed folders and read the file contents of one folder.
+  - url: arazzo/dataiku-build-dataset-job-workflow.yml
+    name: Dataiku Build Dataset and Poll Job
+    summary: Start a build job for a dataset output and poll the job until it reaches a terminal state.
+  - url: arazzo/dataiku-create-dataset-set-schema-build-workflow.yml
+    name: Dataiku Create Dataset, Set Schema, and Build
+    summary: Create a dataset, apply an explicit schema to it, and kick off a build job.
+  - url: arazzo/dataiku-create-govern-artifact-workflow.yml
+    name: Dataiku Create Govern Artifact with Custom Fields
+    summary: Create a governed artifact under a blueprint, set its custom field values, and read them back.
+  - url: arazzo/dataiku-create-govern-blueprint-version-workflow.yml
+    name: Dataiku Create Govern Blueprint and Version
+    summary: Create a governance blueprint, add a first version to it, and read the version back.
+  - url: arazzo/dataiku-export-project-bundle-workflow.yml
+    name: Dataiku Export Project Bundle
+    summary: Verify a project, create an export bundle for it, and list bundles to confirm the export.
+  - url: arazzo/dataiku-import-and-preload-generation-workflow.yml
+    name: Dataiku Import and Preload API Node Generation
+    summary: Import a generation bundle for a service, preload it into memory, then switch the service to it.
+  - url: arazzo/dataiku-inspect-and-read-dataset-workflow.yml
+    name: Dataiku Inspect and Read a Dataset
+    summary: List a project's datasets, fetch a dataset definition, and read a sample of its rows.
+  - url: arazzo/dataiku-inspect-saved-model-workflow.yml
+    name: Dataiku Inspect Saved Model
+    summary: List a project's saved models and fetch the details of one model including its active version.
+  - url: arazzo/dataiku-promote-apinode-generation-workflow.yml
+    name: Dataiku Promote API Node Generation
+    summary: Verify a deployed service, list its generations, switch the active generation, and enable the service.
+  - url: arazzo/dataiku-provision-user-workflow.yml
+    name: Dataiku Provision DSS User
+    summary: Create a DSS user, confirm it by reading the user back, and assign groups via update.
+  - url: arazzo/dataiku-review-artifact-signoff-workflow.yml
+    name: Dataiku Review Artifact Sign-Off
+    summary: List an artifact's sign-off steps, read one step, and add an approve or reject review to it.
+  - url: arazzo/dataiku-run-scenario-and-poll-workflow.yml
+    name: Dataiku Run Scenario and Poll to Completion
+    summary: Trigger a scenario run and poll its lightweight status until it is no longer running.
+  - url: arazzo/dataiku-run-sql-query-workflow.yml
+    name: Dataiku Resolve Connection and Run SQL Query
+    summary: Verify a DSS connection exists, then execute a SQL query against it and return the rows.
+  - url: arazzo/dataiku-tag-project-metadata-workflow.yml
+    name: Dataiku Tag Project Metadata
+    summary: Read a project's current metadata, then write an updated label, description, and tags.
+  - url: arazzo/dataiku-teardown-project-workflow.yml
+    name: Dataiku Teardown Project
+    summary: Verify a project, delete a dataset within it, then delete the project itself.
 - type: GettingStarted
   url: https://www.dataiku.com/product/get-started/
 - type: Documentation

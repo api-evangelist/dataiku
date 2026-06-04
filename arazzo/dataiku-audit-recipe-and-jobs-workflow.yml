@@ -1,0 +1,87 @@
+arazzo: 1.0.1
+info:
+  title: Dataiku Audit Recipe and Project Jobs
+  summary: List a project's recipes, read one recipe's inputs and outputs, and list the project's jobs.
+  description: >-
+    Audits a transformation step in a Dataiku DSS flow. The workflow lists the
+    recipes in a project, reads the full definition of one recipe to inspect its
+    inputs, outputs, and type, and then lists the project's jobs so recent runs
+    that exercised the recipe can be reviewed. Every step inlines its request so
+    the flow can be executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dssPublicApi
+  url: ../openapi/dataiku-public-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: audit-recipe-and-jobs
+  summary: Inspect a recipe and review the project's jobs.
+  description: >-
+    Lists recipes, gets one recipe's definition, then lists the project's jobs.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - projectKey
+    - recipeName
+    properties:
+      apiKey:
+        type: string
+        description: DSS API key passed as a Bearer token in the Authorization header.
+      projectKey:
+        type: string
+        description: Project key to audit.
+      recipeName:
+        type: string
+        description: Name of the recipe to inspect.
+  steps:
+  - stepId: listRecipes
+    description: List all recipes in the project.
+    operationId: listRecipes
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: projectKey
+      in: path
+      value: $inputs.projectKey
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      recipes: $response.body
+  - stepId: getRecipe
+    description: Read the recipe's definition to inspect its inputs, outputs, and type.
+    operationId: getRecipe
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: projectKey
+      in: path
+      value: $inputs.projectKey
+    - name: recipeName
+      in: path
+      value: $inputs.recipeName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      recipeType: $response.body#/type
+      inputs: $response.body#/inputs
+      outputs: $response.body#/outputs
+  - stepId: listJobs
+    description: List the project's jobs to review recent runs that exercised the recipe.
+    operationId: listJobs
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: projectKey
+      in: path
+      value: $inputs.projectKey
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      jobs: $response.body
+  outputs:
+    recipeType: $steps.getRecipe.outputs.recipeType
+    jobs: $steps.listJobs.outputs.jobs

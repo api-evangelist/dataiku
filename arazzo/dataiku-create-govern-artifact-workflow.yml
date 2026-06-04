@@ -1,0 +1,94 @@
+arazzo: 1.0.1
+info:
+  title: Dataiku Create Govern Artifact with Custom Fields
+  summary: Create a governed artifact under a blueprint, set its custom field values, and read them back.
+  description: >-
+    Registers a governed artifact in Dataiku Govern and populates its metadata.
+    The workflow creates an artifact under a blueprint, writes a set of custom
+    field values to the artifact, and reads the custom field values back to
+    confirm they were applied. Every step inlines its request so the flow can be
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dssGovernApi
+  url: ../openapi/dataiku-govern-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-govern-artifact
+  summary: Create an artifact, set custom fields, and confirm them.
+  description: >-
+    Creates a governed artifact under a blueprint, sets custom field values,
+    then reads the custom fields back.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - name
+    - blueprintId
+    - customFields
+    properties:
+      apiKey:
+        type: string
+        description: Govern API key passed as a Bearer token in the Authorization header.
+      name:
+        type: string
+        description: Display name for the artifact.
+      blueprintId:
+        type: string
+        description: Blueprint to associate the artifact with.
+      blueprintVersionId:
+        type: string
+        description: Specific blueprint version to use.
+      customFields:
+        type: object
+        description: Custom field values to apply to the artifact.
+  steps:
+  - stepId: createArtifact
+    description: Create a new governed artifact under the supplied blueprint.
+    operationId: createArtifact
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.name
+        blueprintId: $inputs.blueprintId
+        blueprintVersionId: $inputs.blueprintVersionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      artifactId: $response.body#/id
+  - stepId: setCustomFields
+    description: Write the supplied custom field values to the artifact.
+    operationId: setArtifactCustomFields
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: artifactId
+      in: path
+      value: $steps.createArtifact.outputs.artifactId
+    requestBody:
+      contentType: application/json
+      payload: $inputs.customFields
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: confirmCustomFields
+    description: Read the custom field values back to confirm they were applied.
+    operationId: getArtifactCustomFields
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: artifactId
+      in: path
+      value: $steps.createArtifact.outputs.artifactId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      fields: $response.body
+  outputs:
+    artifactId: $steps.createArtifact.outputs.artifactId
+    fields: $steps.confirmCustomFields.outputs.fields

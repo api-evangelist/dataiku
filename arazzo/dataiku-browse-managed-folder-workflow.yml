@@ -1,0 +1,71 @@
+arazzo: 1.0.1
+info:
+  title: Dataiku Browse Managed Folder Contents
+  summary: List a project's managed folders and read the file contents of one folder.
+  description: >-
+    Explores the files stored in a Dataiku DSS managed folder. The workflow
+    lists the managed folders in a project and then lists the file contents of a
+    single managed folder by its id. Every step inlines its request so the flow
+    can be executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dssPublicApi
+  url: ../openapi/dataiku-public-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: browse-managed-folder
+  summary: List managed folders and read one folder's contents.
+  description: >-
+    Lists managed folders in a project, then lists the files inside the target
+    folder.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - projectKey
+    - folderId
+    properties:
+      apiKey:
+        type: string
+        description: DSS API key passed as a Bearer token in the Authorization header.
+      projectKey:
+        type: string
+        description: Project key to inspect.
+      folderId:
+        type: string
+        description: Identifier of the managed folder to browse.
+  steps:
+  - stepId: listFolders
+    description: List all managed folders in the project.
+    operationId: listManagedFolders
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: projectKey
+      in: path
+      value: $inputs.projectKey
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      folders: $response.body
+  - stepId: listContents
+    description: List the file contents of the target managed folder.
+    operationId: listManagedFolderContents
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: projectKey
+      in: path
+      value: $inputs.projectKey
+    - name: folderId
+      in: path
+      value: $inputs.folderId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      contents: $response.body
+  outputs:
+    folders: $steps.listFolders.outputs.folders
+    contents: $steps.listContents.outputs.contents

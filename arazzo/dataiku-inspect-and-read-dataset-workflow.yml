@@ -1,0 +1,100 @@
+arazzo: 1.0.1
+info:
+  title: Dataiku Inspect and Read a Dataset
+  summary: List a project's datasets, fetch a dataset definition, and read a sample of its rows.
+  description: >-
+    Walks the discovery path for a Dataiku DSS dataset. The workflow lists every
+    dataset in a project, reads the full definition of the named dataset to
+    confirm its type and schema, and then reads a bounded sample of rows from
+    the dataset. Every step inlines its request so the flow can be executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dssPublicApi
+  url: ../openapi/dataiku-public-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: inspect-and-read-dataset
+  summary: Discover a dataset and read a sample of its rows.
+  description: >-
+    Lists datasets in a project, gets one dataset definition, and reads a
+    limited number of rows from it.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - projectKey
+    - datasetName
+    properties:
+      apiKey:
+        type: string
+        description: DSS API key passed as a Bearer token in the Authorization header.
+      projectKey:
+        type: string
+        description: Project key to inspect.
+      datasetName:
+        type: string
+        description: Name of the dataset to read.
+      limit:
+        type: integer
+        description: Maximum number of rows to return.
+        default: 100
+  steps:
+  - stepId: listDatasets
+    description: List all datasets in the project to confirm the target is present.
+    operationId: listDatasets
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: projectKey
+      in: path
+      value: $inputs.projectKey
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      datasets: $response.body
+  - stepId: getDataset
+    description: Read the dataset definition to confirm its type and schema.
+    operationId: getDataset
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: projectKey
+      in: path
+      value: $inputs.projectKey
+    - name: datasetName
+      in: path
+      value: $inputs.datasetName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      datasetType: $response.body#/type
+      schema: $response.body#/schema
+  - stepId: readData
+    description: Read a bounded sample of rows from the dataset.
+    operationId: getDatasetData
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: projectKey
+      in: path
+      value: $inputs.projectKey
+    - name: datasetName
+      in: path
+      value: $inputs.datasetName
+    - name: limit
+      in: query
+      value: $inputs.limit
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      columns: $response.body#/columns
+      rows: $response.body#/rows
+      totalCount: $response.body#/totalCount
+  outputs:
+    datasetType: $steps.getDataset.outputs.datasetType
+    columns: $steps.readData.outputs.columns
+    totalCount: $steps.readData.outputs.totalCount

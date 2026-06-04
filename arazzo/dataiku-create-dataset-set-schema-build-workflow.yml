@@ -1,0 +1,115 @@
+arazzo: 1.0.1
+info:
+  title: Dataiku Create Dataset, Set Schema, and Build
+  summary: Create a dataset, apply an explicit schema to it, and kick off a build job.
+  description: >-
+    Provisions a fully defined Dataiku DSS dataset end to end. The workflow
+    creates a dataset, applies an explicit column schema to it, and then starts
+    a build job so the dataset is materialized. Every step inlines its request
+    so the flow can be executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dssPublicApi
+  url: ../openapi/dataiku-public-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-dataset-set-schema-build
+  summary: Create a dataset, set its schema, and start a build.
+  description: >-
+    Creates a dataset, applies a column schema with setDatasetSchema, then
+    starts a build job for the dataset.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - projectKey
+    - datasetName
+    - datasetType
+    - columns
+    properties:
+      apiKey:
+        type: string
+        description: DSS API key passed as a Bearer token in the Authorization header.
+      projectKey:
+        type: string
+        description: Project key that will own the dataset.
+      datasetName:
+        type: string
+        description: Name of the dataset to create.
+      datasetType:
+        type: string
+        description: Dataset type (e.g. Filesystem, PostgreSQL).
+      datasetParams:
+        type: object
+        description: Type-specific connection parameters for the dataset.
+      columns:
+        type: array
+        description: Column definitions to apply as the dataset schema.
+        items:
+          type: object
+  steps:
+  - stepId: createDataset
+    description: Create the dataset shell in the project.
+    operationId: createDataset
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: projectKey
+      in: path
+      value: $inputs.projectKey
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.datasetName
+        type: $inputs.datasetType
+        params: $inputs.datasetParams
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      datasetName: $response.body#/name
+  - stepId: setSchema
+    description: Apply the explicit column schema to the newly created dataset.
+    operationId: setDatasetSchema
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: projectKey
+      in: path
+      value: $inputs.projectKey
+    - name: datasetName
+      in: path
+      value: $steps.createDataset.outputs.datasetName
+    requestBody:
+      contentType: application/json
+      payload:
+        columns: $inputs.columns
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: buildDataset
+    description: Start a build job for the dataset now that its schema is set.
+    operationId: startJob
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: projectKey
+      in: path
+      value: $inputs.projectKey
+    requestBody:
+      contentType: application/json
+      payload:
+        outputs:
+        - projectKey: $inputs.projectKey
+          id: $steps.createDataset.outputs.datasetName
+          type: DATASET
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      jobId: $response.body#/id
+      state: $response.body#/state
+  outputs:
+    datasetName: $steps.createDataset.outputs.datasetName
+    jobId: $steps.buildDataset.outputs.jobId

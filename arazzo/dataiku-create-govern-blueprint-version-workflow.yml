@@ -1,0 +1,96 @@
+arazzo: 1.0.1
+info:
+  title: Dataiku Create Govern Blueprint and Version
+  summary: Create a governance blueprint, add a first version to it, and read the version back.
+  description: >-
+    Stands up a new governance blueprint in Dataiku Govern. The workflow creates
+    a blueprint from a name and description, creates a first version under that
+    blueprint, and reads the version back to confirm its status. Every step
+    inlines its request so the flow can be executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dssGovernApi
+  url: ../openapi/dataiku-govern-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-govern-blueprint-version
+  summary: Create a blueprint, add a version, and confirm the version.
+  description: >-
+    Creates a governance blueprint, creates a version under it, and gets the
+    version to confirm its status.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - name
+    properties:
+      apiKey:
+        type: string
+        description: Govern API key passed as a Bearer token in the Authorization header.
+      name:
+        type: string
+        description: Display name for the new blueprint.
+      description:
+        type: string
+        description: Description of the blueprint.
+      icon:
+        type: string
+        description: Icon identifier for the blueprint.
+  steps:
+  - stepId: createBlueprint
+    description: Create a new governance blueprint.
+    operationId: createBlueprint
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.name
+        description: $inputs.description
+        icon: $inputs.icon
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      blueprintId: $response.body#/id
+  - stepId: createVersion
+    description: Create a first version under the newly created blueprint.
+    operationId: createBlueprintVersion
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: blueprintId
+      in: path
+      value: $steps.createBlueprint.outputs.blueprintId
+    requestBody:
+      contentType: application/json
+      payload: {}
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      versionId: $response.body#/id
+  - stepId: confirmVersion
+    description: Read the blueprint version back to confirm its status.
+    operationId: getBlueprintVersion
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: blueprintId
+      in: path
+      value: $steps.createBlueprint.outputs.blueprintId
+    - name: versionId
+      in: path
+      value: $steps.createVersion.outputs.versionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      versionNumber: $response.body#/versionNumber
+  outputs:
+    blueprintId: $steps.createBlueprint.outputs.blueprintId
+    versionId: $steps.createVersion.outputs.versionId
+    status: $steps.confirmVersion.outputs.status

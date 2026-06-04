@@ -1,0 +1,135 @@
+arazzo: 1.0.1
+info:
+  title: Dataiku Review Artifact Sign-Off
+  summary: List an artifact's sign-off steps, read one step, and add an approve or reject review to it.
+  description: >-
+    Drives a governance sign-off decision in Dataiku Govern. The workflow lists
+    the sign-off steps for an artifact, reads the target step to confirm it is
+    in progress, and adds a review with an approve or reject outcome. After the
+    review is recorded the step is re-read so the resulting status can be
+    branched on. Every step inlines its request so the flow can be executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dssGovernApi
+  url: ../openapi/dataiku-govern-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: review-artifact-signoff
+  summary: Add an approve or reject review to an artifact sign-off step.
+  description: >-
+    Lists sign-offs, reads the target step, adds a review, then re-reads the
+    step to branch on the resulting status.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - artifactId
+    - signOffStepId
+    - outcome
+    properties:
+      apiKey:
+        type: string
+        description: Govern API key passed as a Bearer token in the Authorization header.
+      artifactId:
+        type: string
+        description: Identifier of the governed artifact.
+      signOffStepId:
+        type: string
+        description: Identifier of the sign-off step to review.
+      outcome:
+        type: string
+        description: Review outcome, either APPROVED or REJECTED.
+      comment:
+        type: string
+        description: Optional review comment.
+  steps:
+  - stepId: listSignOffs
+    description: List all sign-off steps and their status for the artifact.
+    operationId: listArtifactSignOffs
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: artifactId
+      in: path
+      value: $inputs.artifactId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      signOffs: $response.body
+  - stepId: getSignOff
+    description: Read the target sign-off step to confirm its current status.
+    operationId: getArtifactSignOff
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: artifactId
+      in: path
+      value: $inputs.artifactId
+    - name: signOffStepId
+      in: path
+      value: $inputs.signOffStepId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+  - stepId: addReview
+    description: Add an approve or reject review to the sign-off step.
+    operationId: addSignOffReview
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: artifactId
+      in: path
+      value: $inputs.artifactId
+    - name: signOffStepId
+      in: path
+      value: $inputs.signOffStepId
+    requestBody:
+      contentType: application/json
+      payload:
+        outcome: $inputs.outcome
+        comment: $inputs.comment
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      reviewer: $response.body#/reviewer
+      reviewOutcome: $response.body#/outcome
+  - stepId: reReadSignOff
+    description: >-
+      Re-read the sign-off step. If the step is now APPROVED the workflow ends;
+      if it is REJECTED the workflow also ends, exposing the final status.
+    operationId: getArtifactSignOff
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: artifactId
+      in: path
+      value: $inputs.artifactId
+    - name: signOffStepId
+      in: path
+      value: $inputs.signOffStepId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      finalStatus: $response.body#/status
+    onSuccess:
+    - name: approved
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == "APPROVED"
+        type: jsonpath
+    - name: rejected
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == "REJECTED"
+        type: jsonpath
+  outputs:
+    reviewOutcome: $steps.addReview.outputs.reviewOutcome
+    finalStatus: $steps.reReadSignOff.outputs.finalStatus

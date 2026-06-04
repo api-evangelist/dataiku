@@ -1,0 +1,84 @@
+arazzo: 1.0.1
+info:
+  title: Dataiku Resolve Connection and Run SQL Query
+  summary: Verify a DSS connection exists, then execute a SQL query against it and return the rows.
+  description: >-
+    Runs an ad-hoc SQL query against a Dataiku DSS connection safely. The
+    workflow lists the available connections, confirms the target connection by
+    fetching its details, and then executes the supplied SQL query against that
+    connection, returning the result columns and rows. Every step inlines its
+    request so the flow can be executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dssPublicApi
+  url: ../openapi/dataiku-public-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: run-sql-query
+  summary: Confirm a connection and execute a SQL query against it.
+  description: >-
+    Lists connections, gets the target connection, then runs a SQL query and
+    returns the columns and rows.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - connectionName
+    - query
+    properties:
+      apiKey:
+        type: string
+        description: DSS API key passed as a Bearer token in the Authorization header.
+      connectionName:
+        type: string
+        description: Name of the DSS connection to query.
+      query:
+        type: string
+        description: SQL query to execute.
+  steps:
+  - stepId: listConnections
+    description: List the DSS connections available on the instance.
+    operationId: listConnections
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      connections: $response.body
+  - stepId: getConnection
+    description: Fetch the target connection's details to confirm it exists and is usable.
+    operationId: getConnection
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: connectionName
+      in: path
+      value: $inputs.connectionName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      connection: $response.body
+  - stepId: runQuery
+    description: Execute the SQL query against the confirmed connection.
+    operationId: executeSqlQuery
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    requestBody:
+      contentType: application/json
+      payload:
+        connection: $inputs.connectionName
+        query: $inputs.query
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      columns: $response.body#/columns
+      rows: $response.body#/rows
+  outputs:
+    columns: $steps.runQuery.outputs.columns
+    rows: $steps.runQuery.outputs.rows

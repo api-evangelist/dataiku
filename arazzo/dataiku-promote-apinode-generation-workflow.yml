@@ -1,0 +1,98 @@
+arazzo: 1.0.1
+info:
+  title: Dataiku Promote API Node Generation
+  summary: Verify a deployed service, list its generations, switch the active generation, and enable the service.
+  description: >-
+    Promotes a new model generation on a Dataiku DSS API node. The workflow
+    confirms the deployed service exists, lists its available generations,
+    switches the service to the requested generation, and enables the service so
+    it accepts prediction requests. Every step inlines its request so the flow
+    can be executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dssApiNodeAdminApi
+  url: ../openapi/dataiku-api-node-admin-openapi.yml
+  type: openapi
+workflows:
+- workflowId: promote-apinode-generation
+  summary: Switch a service to a new generation and enable it.
+  description: >-
+    Confirms a service, lists generations, switches to the target generation,
+    and enables the service.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - serviceId
+    - generationId
+    properties:
+      apiKey:
+        type: string
+        description: API node admin key passed as a Bearer token in the Authorization header.
+      serviceId:
+        type: string
+        description: Identifier of the deployed service.
+      generationId:
+        type: string
+        description: Identifier of the generation to promote to active.
+  steps:
+  - stepId: getService
+    description: Confirm the deployed service exists before changing its active generation.
+    operationId: getService
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: serviceId
+      in: path
+      value: $inputs.serviceId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      serviceId: $response.body#/serviceId
+      activeGeneration: $response.body#/activeGeneration
+  - stepId: listGenerations
+    description: List the available generations of the service.
+    operationId: listGenerations
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: serviceId
+      in: path
+      value: $inputs.serviceId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      generations: $response.body
+  - stepId: switchGeneration
+    description: Set the requested generation as the active generation for the service.
+    operationId: switchGeneration
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: serviceId
+      in: path
+      value: $inputs.serviceId
+    - name: generationId
+      in: path
+      value: $inputs.generationId
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: enableService
+    description: Enable the service so it accepts prediction requests on the new generation.
+    operationId: enableService
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: serviceId
+      in: path
+      value: $inputs.serviceId
+    successCriteria:
+    - condition: $statusCode == 200
+  outputs:
+    serviceId: $steps.getService.outputs.serviceId
+    previousActiveGeneration: $steps.getService.outputs.activeGeneration
+    promotedGeneration: $inputs.generationId

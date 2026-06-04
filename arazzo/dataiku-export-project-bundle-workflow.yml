@@ -1,0 +1,85 @@
+arazzo: 1.0.1
+info:
+  title: Dataiku Export Project Bundle
+  summary: Verify a project, create an export bundle for it, and list bundles to confirm the export.
+  description: >-
+    Packages a Dataiku DSS project for deployment by creating an export bundle.
+    The workflow confirms the project exists, creates a new bundle with the
+    supplied bundle id, and then lists the project's bundles to confirm the new
+    bundle is present. Every step inlines its request so the flow can be
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dssPublicApi
+  url: ../openapi/dataiku-public-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: export-project-bundle
+  summary: Create a project export bundle and confirm it in the bundle list.
+  description: >-
+    Verifies the project, creates a bundle, then lists bundles to confirm the
+    new bundle exists.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - projectKey
+    - bundleId
+    properties:
+      apiKey:
+        type: string
+        description: DSS API key passed as a Bearer token in the Authorization header.
+      projectKey:
+        type: string
+        description: Project key to export.
+      bundleId:
+        type: string
+        description: Identifier for the new export bundle.
+  steps:
+  - stepId: verifyProject
+    description: Confirm the project exists before exporting it.
+    operationId: getProject
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: projectKey
+      in: path
+      value: $inputs.projectKey
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      projectKey: $response.body#/projectKey
+  - stepId: createBundle
+    description: Create a new export bundle for the project.
+    operationId: createBundle
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: projectKey
+      in: path
+      value: $inputs.projectKey
+    requestBody:
+      contentType: application/json
+      payload:
+        bundleId: $inputs.bundleId
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: listBundles
+    description: List the project's bundles to confirm the new bundle is present.
+    operationId: listBundles
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: projectKey
+      in: path
+      value: $inputs.projectKey
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      bundles: $response.body
+  outputs:
+    projectKey: $steps.verifyProject.outputs.projectKey
+    bundles: $steps.listBundles.outputs.bundles

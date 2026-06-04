@@ -1,0 +1,112 @@
+arazzo: 1.0.1
+info:
+  title: Dataiku Bootstrap Project with First Dataset
+  summary: Create a DSS project, add a managed dataset to it, and confirm the dataset definition.
+  description: >-
+    The canonical starting point for any Dataiku DSS automation. The workflow
+    creates a new project from a project key and display name, creates an
+    initial dataset inside that project, and then reads the dataset definition
+    back to confirm it was registered with the expected type and schema. Every
+    step inlines its request so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dssPublicApi
+  url: ../openapi/dataiku-public-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: bootstrap-project
+  summary: Create a project and seed it with a first dataset.
+  description: >-
+    Creates a DSS project, creates a dataset within it, and fetches the dataset
+    definition to confirm it exists.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - projectKey
+    - projectName
+    - datasetName
+    - datasetType
+    properties:
+      apiKey:
+        type: string
+        description: DSS API key passed as a Bearer token in the Authorization header.
+      projectKey:
+        type: string
+        description: Unique project key (uppercase letters and numbers, e.g. SALES_ANALYTICS).
+      projectName:
+        type: string
+        description: Display name for the new project.
+      owner:
+        type: string
+        description: Login of the project owner.
+      datasetName:
+        type: string
+        description: Name of the dataset to create in the project.
+      datasetType:
+        type: string
+        description: Dataset type (e.g. Filesystem, PostgreSQL, S3).
+      datasetParams:
+        type: object
+        description: Type-specific parameters for the dataset connection.
+  steps:
+  - stepId: createProject
+    description: Create the DSS project from the supplied project key and name.
+    operationId: createProject
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    requestBody:
+      contentType: application/json
+      payload:
+        projectKey: $inputs.projectKey
+        name: $inputs.projectName
+        owner: $inputs.owner
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      createdProjectKey: $response.body#/projectKey
+  - stepId: createDataset
+    description: Create the first dataset inside the newly created project.
+    operationId: createDataset
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: projectKey
+      in: path
+      value: $steps.createProject.outputs.createdProjectKey
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.datasetName
+        type: $inputs.datasetType
+        params: $inputs.datasetParams
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      datasetName: $response.body#/name
+  - stepId: confirmDataset
+    description: Read the dataset definition back to confirm it was registered.
+    operationId: getDataset
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: projectKey
+      in: path
+      value: $steps.createProject.outputs.createdProjectKey
+    - name: datasetName
+      in: path
+      value: $steps.createDataset.outputs.datasetName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      datasetType: $response.body#/type
+      managed: $response.body#/managed
+  outputs:
+    projectKey: $steps.createProject.outputs.createdProjectKey
+    datasetName: $steps.createDataset.outputs.datasetName
+    datasetType: $steps.confirmDataset.outputs.datasetType

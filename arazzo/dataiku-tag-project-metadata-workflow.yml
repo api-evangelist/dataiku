@@ -1,0 +1,95 @@
+arazzo: 1.0.1
+info:
+  title: Dataiku Tag Project Metadata
+  summary: Read a project's current metadata, then write an updated label, description, and tags.
+  description: >-
+    Curates the metadata of an existing Dataiku DSS project. The workflow
+    confirms the project exists, reads its current metadata, and then writes an
+    updated label, description, and tag set back to the project. Every step
+    inlines its request so the flow can be executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dssPublicApi
+  url: ../openapi/dataiku-public-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: tag-project-metadata
+  summary: Update a project's metadata label, description, and tags.
+  description: >-
+    Verifies the project, reads existing metadata, and sets new metadata values.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - projectKey
+    - label
+    - tags
+    properties:
+      apiKey:
+        type: string
+        description: DSS API key passed as a Bearer token in the Authorization header.
+      projectKey:
+        type: string
+        description: Project key to update.
+      label:
+        type: string
+        description: New display label for the project.
+      description:
+        type: string
+        description: New project description.
+      tags:
+        type: array
+        description: Tags to associate with the project.
+        items:
+          type: string
+  steps:
+  - stepId: verifyProject
+    description: Confirm the project exists before mutating its metadata.
+    operationId: getProject
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: projectKey
+      in: path
+      value: $inputs.projectKey
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      projectKey: $response.body#/projectKey
+  - stepId: readMetadata
+    description: Read the project's current metadata so it can be reviewed before overwriting.
+    operationId: getProjectMetadata
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: projectKey
+      in: path
+      value: $inputs.projectKey
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      currentTags: $response.body#/tags
+  - stepId: writeMetadata
+    description: Write the updated label, description, and tags to the project.
+    operationId: setProjectMetadata
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: projectKey
+      in: path
+      value: $inputs.projectKey
+    requestBody:
+      contentType: application/json
+      payload:
+        label: $inputs.label
+        description: $inputs.description
+        tags: $inputs.tags
+    successCriteria:
+    - condition: $statusCode == 200
+  outputs:
+    projectKey: $steps.verifyProject.outputs.projectKey
+    previousTags: $steps.readMetadata.outputs.currentTags

@@ -1,0 +1,109 @@
+arazzo: 1.0.1
+info:
+  title: Dataiku Provision DSS User
+  summary: Create a DSS user, confirm it by reading the user back, and assign groups via update.
+  description: >-
+    Onboards a new user onto a Dataiku DSS instance. The workflow creates a user
+    with a login and initial password, reads the user back to confirm it was
+    created, and then updates the user to apply the desired group memberships
+    and profile. Every step inlines its request so the flow can be executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dssPublicApi
+  url: ../openapi/dataiku-public-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-user
+  summary: Create a DSS user, confirm it, and assign groups.
+  description: >-
+    Creates a user, reads it back to confirm, then updates group membership and
+    profile.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - login
+    - password
+    properties:
+      apiKey:
+        type: string
+        description: DSS API key passed as a Bearer token in the Authorization header.
+      login:
+        type: string
+        description: Login name for the new user.
+      password:
+        type: string
+        description: Initial password for the new user.
+      displayName:
+        type: string
+        description: Display name for the user.
+      email:
+        type: string
+        description: Email address for the user.
+      groups:
+        type: array
+        description: Groups to assign to the user.
+        items:
+          type: string
+      userProfile:
+        type: string
+        description: User profile to assign.
+  steps:
+  - stepId: createUser
+    description: Create the new DSS user with a login and initial password.
+    operationId: createUser
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    requestBody:
+      contentType: application/json
+      payload:
+        login: $inputs.login
+        password: $inputs.password
+        displayName: $inputs.displayName
+        email: $inputs.email
+        groups: $inputs.groups
+        userProfile: $inputs.userProfile
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      login: $inputs.login
+  - stepId: confirmUser
+    description: Read the user back to confirm it was created.
+    operationId: getUser
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: login
+      in: path
+      value: $steps.createUser.outputs.login
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      user: $response.body
+  - stepId: assignGroups
+    description: Update the user to apply the desired groups and profile.
+    operationId: updateUser
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiKey
+    - name: login
+      in: path
+      value: $steps.createUser.outputs.login
+    requestBody:
+      contentType: application/json
+      payload:
+        login: $inputs.login
+        displayName: $inputs.displayName
+        email: $inputs.email
+        groups: $inputs.groups
+        userProfile: $inputs.userProfile
+    successCriteria:
+    - condition: $statusCode == 200
+  outputs:
+    login: $steps.createUser.outputs.login
+    user: $steps.confirmUser.outputs.user
