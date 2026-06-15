@@ -1,0 +1,3308 @@
+{
+  "item": [
+    {
+      "id": "2972528e-28ab-48f3-96cd-633a5f6b0fa3",
+      "name": "Authentication",
+      "description": {
+        "content": "Manage API keys for service access",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a5621de3-a513-4dda-b0c5-e12e88911d3a",
+          "name": "Dataiku List authentication keys",
+          "request": {
+            "name": "Dataiku List authentication keys",
+            "description": {
+              "content": "List all API authentication keys configured for accessing services.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "auth",
+                "keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b8e1953f-71ed-41d6-9835-a06184c28271",
+              "name": "List of authentication keys",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"key\": \"string\",\n    \"label\": \"string\",\n    \"createdOn\": 4954,\n    \"allowedServices\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"id\": \"string\",\n    \"key\": \"string\",\n    \"label\": \"string\",\n    \"createdOn\": 1132,\n    \"allowedServices\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d799ff67-370f-4d45-88a2-d74c938afa4d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5960b0ff-7d25-4af4-a1f3-b29bb1a2e87d",
+          "name": "Dataiku Create an authentication key",
+          "request": {
+            "name": "Dataiku Create an authentication key",
+            "description": {
+              "content": "Create a new authentication key for accessing API node services.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "auth",
+                "keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"label\": \"<string>\",\n  \"allowedServices\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "647dd0c0-845f-419b-b932-1811e0d4a771",
+              "name": "Authentication key created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"<string>\",\n  \"allowedServices\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"key\": \"string\",\n  \"label\": \"string\",\n  \"createdOn\": 7121,\n  \"allowedServices\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "04fabf0d-7df8-4e31-811e-d67f192e7946",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"<string>\",\n  \"allowedServices\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a546e45-7cf4-46d4-859e-b9826b70877f",
+          "name": "Dataiku Get authentication key details",
+          "request": {
+            "name": "Dataiku Get authentication key details",
+            "description": {
+              "content": "Retrieve details of a specific authentication key.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "auth",
+                "keys",
+                ":keyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "keyId",
+                  "description": "(Required) Authentication key identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "958aaf3c-91e1-4b45-a921-37351e9c7a57",
+              "name": "Authentication key details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "keys",
+                    ":keyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) Authentication key identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"key\": \"string\",\n  \"label\": \"string\",\n  \"createdOn\": 7121,\n  \"allowedServices\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7356be91-4c17-4e28-9359-877d4fbc1aa3",
+              "name": "Key not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "keys",
+                    ":keyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) Authentication key identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "868041fb-a881-4e07-93c8-ae10c1c2b5db",
+          "name": "Dataiku Delete an authentication key",
+          "request": {
+            "name": "Dataiku Delete an authentication key",
+            "description": {
+              "content": "Delete an authentication key.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "auth",
+                "keys",
+                ":keyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "keyId",
+                  "description": "(Required) Authentication key identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ec8e75b-6a35-4ec0-bd04-d2ffdafefc7e",
+              "name": "Key deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "keys",
+                    ":keyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) Authentication key identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b05887ce-95ba-4971-ba5f-8c3ec0e12435",
+              "name": "Key not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "keys",
+                    ":keyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) Authentication key identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "90f49e7c-546a-47e9-99c3-0f190b12b2a5",
+      "name": "Generations",
+      "description": {
+        "content": "Manage service generations (versions)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ca7e3d2b-0c65-4c76-b3e1-6733cdbcf56a",
+          "name": "Dataiku List generations",
+          "request": {
+            "name": "Dataiku List generations",
+            "description": {
+              "content": "List all generations (deployed versions) of a service.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                ":serviceId",
+                "generations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceId",
+                  "description": "(Required) Unique service identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "088284dd-417a-44e3-b141-d85fcac0a613",
+              "name": "List of generations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":serviceId",
+                    "generations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serviceId",
+                      "description": "(Required) Unique service identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"generationId\": \"string\",\n    \"active\": true,\n    \"createdOn\": 1851\n  },\n  {\n    \"generationId\": \"string\",\n    \"active\": false,\n    \"createdOn\": 887\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd50b3d7-6587-462f-a84b-a604359e4075",
+              "name": "Service not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":serviceId",
+                    "generations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serviceId",
+                      "description": "(Required) Unique service identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d241d510-83ae-41f1-a4d2-d0e042b95ed2",
+          "name": "Dataiku Import a generation",
+          "request": {
+            "name": "Dataiku Import a generation",
+            "description": {
+              "content": "Import a new generation (bundle) for a service from a ZIP archive.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                ":serviceId",
+                "generations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceId",
+                  "description": "(Required) Unique service identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "ZIP archive containing the generation bundle"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b3aab20a-4312-4163-868b-8e98ebf39c79",
+              "name": "Generation imported",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":serviceId",
+                    "generations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serviceId",
+                      "description": "(Required) Unique service identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "ZIP archive containing the generation bundle",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"generationId\": \"string\",\n  \"active\": true,\n  \"createdOn\": 3115\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57ac9f54-0c8b-4078-801e-70054e4b3780",
+              "name": "Invalid bundle",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":serviceId",
+                    "generations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serviceId",
+                      "description": "(Required) Unique service identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "ZIP archive containing the generation bundle",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7daae60b-2402-4d60-8a65-5957525a60f3",
+              "name": "Service not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":serviceId",
+                    "generations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serviceId",
+                      "description": "(Required) Unique service identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "ZIP archive containing the generation bundle",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1b05c8f8-4725-427e-9594-807b604d41be",
+          "name": "Dataiku Get generation details",
+          "request": {
+            "name": "Dataiku Get generation details",
+            "description": {
+              "content": "Get the details of a specific generation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                ":serviceId",
+                "generations",
+                ":generationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceId",
+                  "description": "(Required) Unique service identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "generationId",
+                  "description": "(Required) Generation (version) identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "95573372-fe3e-4082-b131-95dd3dfa38aa",
+              "name": "Generation details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":serviceId",
+                    "generations",
+                    ":generationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serviceId",
+                      "description": "(Required) Unique service identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "generationId",
+                      "description": "(Required) Generation (version) identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"generationId\": \"string\",\n  \"active\": true,\n  \"createdOn\": 8439,\n  \"endpoints\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"DATASET_LOOKUP\",\n      \"modelRef\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"CUSTOM_PREDICTION\",\n      \"modelRef\": \"string\"\n    }\n  ],\n  \"preloaded\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33d712d8-245b-488a-99bb-243e957086f5",
+              "name": "Generation not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":serviceId",
+                    "generations",
+                    ":generationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serviceId",
+                      "description": "(Required) Unique service identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "generationId",
+                      "description": "(Required) Generation (version) identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a9684b24-a8d8-4ca0-ba93-d9afaecf1452",
+          "name": "Dataiku Delete a generation",
+          "request": {
+            "name": "Dataiku Delete a generation",
+            "description": {
+              "content": "Delete a specific generation from a service.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                ":serviceId",
+                "generations",
+                ":generationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceId",
+                  "description": "(Required) Unique service identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "generationId",
+                  "description": "(Required) Generation (version) identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "505680d6-a859-4a5d-a20e-21fb40fa0b7b",
+              "name": "Generation deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":serviceId",
+                    "generations",
+                    ":generationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serviceId",
+                      "description": "(Required) Unique service identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "generationId",
+                      "description": "(Required) Generation (version) identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fc9b8d8c-e828-48e6-a2c0-22a71b23529d",
+              "name": "Generation not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":serviceId",
+                    "generations",
+                    ":generationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serviceId",
+                      "description": "(Required) Unique service identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "generationId",
+                      "description": "(Required) Generation (version) identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cccfa651-1b8a-456c-bd5d-271999f23f5c",
+          "name": "Dataiku Preload a generation",
+          "request": {
+            "name": "Dataiku Preload a generation",
+            "description": {
+              "content": "Preload a generation into memory to reduce cold-start latency.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                ":serviceId",
+                "generations",
+                ":generationId",
+                "preload"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceId",
+                  "description": "(Required) Unique service identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "generationId",
+                  "description": "(Required) Generation (version) identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b457efa0-12a5-4c09-a518-cedeef089a57",
+              "name": "Generation preloaded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":serviceId",
+                    "generations",
+                    ":generationId",
+                    "preload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serviceId",
+                      "description": "(Required) Unique service identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "generationId",
+                      "description": "(Required) Generation (version) identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e1a814ba-bf18-43c6-83e9-d7f88e482728",
+              "name": "Generation not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":serviceId",
+                    "generations",
+                    ":generationId",
+                    "preload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serviceId",
+                      "description": "(Required) Unique service identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "generationId",
+                      "description": "(Required) Generation (version) identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9258e220-7593-4fc2-807c-d7459a3939f9",
+          "name": "Dataiku Switch to a generation",
+          "request": {
+            "name": "Dataiku Switch to a generation",
+            "description": {
+              "content": "Set a generation as the active generation for the service.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                ":serviceId",
+                "generations",
+                ":generationId",
+                "switch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceId",
+                  "description": "(Required) Unique service identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "generationId",
+                  "description": "(Required) Generation (version) identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "47089418-7a19-46ce-9dfa-e1cc978c3f58",
+              "name": "Generation switched",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":serviceId",
+                    "generations",
+                    ":generationId",
+                    "switch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serviceId",
+                      "description": "(Required) Unique service identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "generationId",
+                      "description": "(Required) Generation (version) identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "080cf074-8fc1-4225-ac78-9ec8b0f1938c",
+              "name": "Generation not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":serviceId",
+                    "generations",
+                    ":generationId",
+                    "switch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serviceId",
+                      "description": "(Required) Unique service identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "generationId",
+                      "description": "(Required) Generation (version) identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "c35ca2a9-154e-4c02-9e50-e0b543f9f95a",
+      "name": "Metrics",
+      "description": {
+        "content": "Retrieve metrics and health information",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "eb4f31db-a953-495e-89f1-e8618c364c0d",
+          "name": "Dataiku Get API node metrics",
+          "request": {
+            "name": "Dataiku Get API node metrics",
+            "description": {
+              "content": "Retrieve metrics about the API node including request counts, latencies, and error rates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metrics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "02375869-3945-460a-9592-fc4bc5bc0761",
+              "name": "API node metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalRequests\": 7988,\n  \"activeRequests\": 2544,\n  \"averageLatencyMs\": 8017.891831003247,\n  \"errorCount\": 8830,\n  \"serviceMetrics\": {\n    \"key_0\": {\n      \"requestCount\": 7999,\n      \"averageLatencyMs\": 6945.2945870865415,\n      \"errorCount\": 6184\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d804bd44-6b82-4251-bdaa-bd5726a56770",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9578a0fb-dab6-4c54-b8fb-2f3af6f1fa27",
+          "name": "Dataiku Get API node health",
+          "request": {
+            "name": "Dataiku Get API node health",
+            "description": {
+              "content": "Check the health status of the API node.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "af8a9e2a-53eb-4e78-b6f8-6cb727a85f61",
+              "name": "API node is healthy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"UNHEALTHY\",\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "9d25628a-3f5f-4539-9f08-53097e64868a",
+      "name": "Dataiku List deployed services",
+      "request": {
+        "name": "Dataiku List deployed services",
+        "description": {
+          "content": "List all services currently deployed on this API node.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "services"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "description": "Hostname of the Dataiku API Node",
+              "type": "any",
+              "value": "{{apinode-host}}",
+              "key": "apinode-host"
+            },
+            {
+              "description": "Admin API port",
+              "type": "any",
+              "value": "{{port}}",
+              "key": "port"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "50dcf520-4935-4046-b415-e793bbe8f97e",
+          "name": "List of deployed services",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "services"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"serviceId\": \"string\",\n    \"enabled\": true,\n    \"activeGeneration\": \"string\",\n    \"generationCount\": 3006\n  },\n  {\n    \"serviceId\": \"string\",\n    \"enabled\": false,\n    \"activeGeneration\": \"string\",\n    \"generationCount\": 1347\n  }\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "430170df-18e5-4b8c-9255-c12b535874d4",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "services"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "8c9512bc-09ac-4219-8d8a-ce0bb553a811",
+      "name": "Dataiku Get service details",
+      "request": {
+        "name": "Dataiku Get service details",
+        "description": {
+          "content": "Retrieve the details and configuration of a deployed service.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "services",
+            ":serviceId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "serviceId",
+              "description": "(Required) Unique service identifier"
+            },
+            {
+              "description": "Hostname of the Dataiku API Node",
+              "type": "any",
+              "value": "{{apinode-host}}",
+              "key": "apinode-host"
+            },
+            {
+              "description": "Admin API port",
+              "type": "any",
+              "value": "{{port}}",
+              "key": "port"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "a766cbb5-90df-4378-97b0-310e2c691519",
+          "name": "Service details",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "services",
+                ":serviceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceId",
+                  "description": "(Required) Unique service identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"serviceId\": \"string\",\n  \"enabled\": false,\n  \"activeGeneration\": \"string\",\n  \"endpoints\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"CUSTOM_R_PREDICTION\",\n      \"modelRef\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"PYTHON_FUNCTION\",\n      \"modelRef\": \"string\"\n    }\n  ],\n  \"generationCount\": 6098\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "db49c99d-752a-4220-b775-02e9b8249cb8",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "services",
+                ":serviceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceId",
+                  "description": "(Required) Unique service identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "bbd0c927-89f9-438f-9c41-3bbbdceaef8f",
+          "name": "Service not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "services",
+                ":serviceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceId",
+                  "description": "(Required) Unique service identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "c031557f-243d-4635-a33b-a6c6df19196e",
+      "name": "Dataiku Delete a service",
+      "request": {
+        "name": "Dataiku Delete a service",
+        "description": {
+          "content": "Remove a deployed service and all its generations from the API node.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "services",
+            ":serviceId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "serviceId",
+              "description": "(Required) Unique service identifier"
+            },
+            {
+              "description": "Hostname of the Dataiku API Node",
+              "type": "any",
+              "value": "{{apinode-host}}",
+              "key": "apinode-host"
+            },
+            {
+              "description": "Admin API port",
+              "type": "any",
+              "value": "{{port}}",
+              "key": "port"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "1945e794-2171-4ec0-88f5-215bf9197e97",
+          "name": "Service deleted",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "services",
+                ":serviceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceId",
+                  "description": "(Required) Unique service identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "No Content",
+          "code": 204,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "9027a829-bd51-4ebc-9c53-12256ef7a7b4",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "services",
+                ":serviceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceId",
+                  "description": "(Required) Unique service identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "c4566143-15ed-4aae-b2e4-9349873e70f6",
+          "name": "Service not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "services",
+                ":serviceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceId",
+                  "description": "(Required) Unique service identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "9b0fa280-9732-4af5-900b-a6948db5c187",
+      "name": "Dataiku Enable a service",
+      "request": {
+        "name": "Dataiku Enable a service",
+        "description": {
+          "content": "Enable a deployed service to accept prediction requests.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "services",
+            ":serviceId",
+            "enable"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "serviceId",
+              "description": "(Required) Unique service identifier"
+            },
+            {
+              "description": "Hostname of the Dataiku API Node",
+              "type": "any",
+              "value": "{{apinode-host}}",
+              "key": "apinode-host"
+            },
+            {
+              "description": "Admin API port",
+              "type": "any",
+              "value": "{{port}}",
+              "key": "port"
+            }
+          ]
+        },
+        "method": "POST",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "50c8698e-a4e6-48b2-b800-60463c377812",
+          "name": "Service enabled",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "services",
+                ":serviceId",
+                "enable"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceId",
+                  "description": "(Required) Unique service identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "5f97ffe5-de82-4b06-b611-943ea2c73b81",
+          "name": "Service not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "services",
+                ":serviceId",
+                "enable"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceId",
+                  "description": "(Required) Unique service identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "c0240183-affe-4c05-94a6-03d32440a4f9",
+      "name": "Dataiku Disable a service",
+      "request": {
+        "name": "Dataiku Disable a service",
+        "description": {
+          "content": "Disable a service to stop accepting prediction requests.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "services",
+            ":serviceId",
+            "disable"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "serviceId",
+              "description": "(Required) Unique service identifier"
+            },
+            {
+              "description": "Hostname of the Dataiku API Node",
+              "type": "any",
+              "value": "{{apinode-host}}",
+              "key": "apinode-host"
+            },
+            {
+              "description": "Admin API port",
+              "type": "any",
+              "value": "{{port}}",
+              "key": "port"
+            }
+          ]
+        },
+        "method": "POST",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "3d718d1e-4045-46d0-8f70-410e835b52d6",
+          "name": "Service disabled",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "services",
+                ":serviceId",
+                "disable"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceId",
+                  "description": "(Required) Unique service identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "50f0f25d-cb83-45d9-89e1-c8d6d018ed41",
+          "name": "Service not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "services",
+                ":serviceId",
+                "disable"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceId",
+                  "description": "(Required) Unique service identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname of the Dataiku API Node",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "apinode.example.com",
+      "key": "apinode-host"
+    },
+    {
+      "description": {
+        "content": "Admin API port",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "12443",
+      "key": "port"
+    },
+    {
+      "type": "string",
+      "value": "https://{{apinode-host}}:{{port}}/admin/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4a7b0262-858c-48d1-ba0a-508ef7b805d0",
+    "name": "Dataiku API Node Administration API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.\n\nContact Support:\n Name: Dataiku Support\n Email: support@dataiku.com",
+      "type": "text/plain"
+    }
+  }
+}

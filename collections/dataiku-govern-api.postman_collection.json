@@ -1,0 +1,3780 @@
+{
+  "item": [
+    {
+      "id": "2c3bae45-ceeb-4568-8970-1938653fe020",
+      "name": "Artifact Sign-Offs",
+      "description": {
+        "content": "Manage sign-off workflows on artifacts",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "40119acf-dd72-4d0f-b470-91160821c5f0",
+          "name": "Dataiku List artifact sign-offs",
+          "request": {
+            "name": "Dataiku List artifact sign-offs",
+            "description": {
+              "content": "List all sign-off steps and their status for an artifact.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "artifacts",
+                ":artifactId",
+                "sign-offs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "artifactId",
+                  "description": "(Required) Governed artifact identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku Govern instance",
+                  "type": "any",
+                  "value": "{{govern-host}}",
+                  "key": "govern-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1b7b072b-3e83-43be-bb69-0810df846cd4",
+              "name": "List of sign-offs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artifacts",
+                    ":artifactId",
+                    "sign-offs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "artifactId",
+                      "description": "(Required) Governed artifact identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"stepId\": \"string\",\n    \"stepName\": \"string\",\n    \"status\": \"IN_PROGRESS\",\n    \"reviews\": [\n      {\n        \"reviewer\": \"string\",\n        \"outcome\": \"REJECTED\",\n        \"comment\": \"string\",\n        \"reviewedOn\": 1708\n      },\n      {\n        \"reviewer\": \"string\",\n        \"outcome\": \"APPROVED\",\n        \"comment\": \"string\",\n        \"reviewedOn\": 9643\n      }\n    ],\n    \"delegatedTo\": \"string\"\n  },\n  {\n    \"stepId\": \"string\",\n    \"stepName\": \"string\",\n    \"status\": \"NOT_STARTED\",\n    \"reviews\": [\n      {\n        \"reviewer\": \"string\",\n        \"outcome\": \"APPROVED\",\n        \"comment\": \"string\",\n        \"reviewedOn\": 7551\n      },\n      {\n        \"reviewer\": \"string\",\n        \"outcome\": \"REJECTED\",\n        \"comment\": \"string\",\n        \"reviewedOn\": 9808\n      }\n    ],\n    \"delegatedTo\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d59c1d4-41fd-4d57-ab21-a6467c51e649",
+              "name": "Artifact not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artifacts",
+                    ":artifactId",
+                    "sign-offs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "artifactId",
+                      "description": "(Required) Governed artifact identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "42c70320-c5bb-4c38-b279-fa9880105597",
+          "name": "Dataiku Get sign-off step details",
+          "request": {
+            "name": "Dataiku Get sign-off step details",
+            "description": {
+              "content": "Get details of a specific sign-off step for an artifact.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "artifacts",
+                ":artifactId",
+                "sign-offs",
+                ":signOffStepId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "artifactId",
+                  "description": "(Required) Governed artifact identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "signOffStepId",
+                  "description": "(Required) Sign-off step identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku Govern instance",
+                  "type": "any",
+                  "value": "{{govern-host}}",
+                  "key": "govern-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1ca2a52d-8508-40f7-9caa-1ef385979be6",
+              "name": "Sign-off step details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artifacts",
+                    ":artifactId",
+                    "sign-offs",
+                    ":signOffStepId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "artifactId",
+                      "description": "(Required) Governed artifact identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "signOffStepId",
+                      "description": "(Required) Sign-off step identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"stepId\": \"string\",\n  \"stepName\": \"string\",\n  \"status\": \"IN_PROGRESS\",\n  \"reviews\": [\n    {\n      \"reviewer\": \"string\",\n      \"outcome\": \"APPROVED\",\n      \"comment\": \"string\",\n      \"reviewedOn\": 5013\n    },\n    {\n      \"reviewer\": \"string\",\n      \"outcome\": \"APPROVED\",\n      \"comment\": \"string\",\n      \"reviewedOn\": 9173\n    }\n  ],\n  \"delegatedTo\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eea02302-d656-4736-96bf-8e6278f4f73a",
+              "name": "Sign-off step not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artifacts",
+                    ":artifactId",
+                    "sign-offs",
+                    ":signOffStepId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "artifactId",
+                      "description": "(Required) Governed artifact identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "signOffStepId",
+                      "description": "(Required) Sign-off step identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "04c17e05-ca08-4d34-88e7-43e2463b3f9e",
+          "name": "Dataiku Delegate a sign-off",
+          "request": {
+            "name": "Dataiku Delegate a sign-off",
+            "description": {
+              "content": "Delegate a sign-off step to another user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "artifacts",
+                ":artifactId",
+                "sign-offs",
+                ":signOffStepId",
+                "delegate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "artifactId",
+                  "description": "(Required) Governed artifact identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "signOffStepId",
+                  "description": "(Required) Sign-off step identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku Govern instance",
+                  "type": "any",
+                  "value": "{{govern-host}}",
+                  "key": "govern-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"delegateTo\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e0b0463a-4b34-41d6-b4a1-354497e7eb05",
+              "name": "Sign-off delegated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artifacts",
+                    ":artifactId",
+                    "sign-offs",
+                    ":signOffStepId",
+                    "delegate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "artifactId",
+                      "description": "(Required) Governed artifact identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "signOffStepId",
+                      "description": "(Required) Sign-off step identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegateTo\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d96b6003-9a0f-4152-804c-84fdf3eb3e3b",
+              "name": "Sign-off step not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artifacts",
+                    ":artifactId",
+                    "sign-offs",
+                    ":signOffStepId",
+                    "delegate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "artifactId",
+                      "description": "(Required) Governed artifact identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "signOffStepId",
+                      "description": "(Required) Sign-off step identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegateTo\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "afc10bb9-2eca-4c32-968b-39b67a979d9b",
+          "name": "Dataiku Add a sign-off review",
+          "request": {
+            "name": "Dataiku Add a sign-off review",
+            "description": {
+              "content": "Add a review (approve or reject) to a sign-off step.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "artifacts",
+                ":artifactId",
+                "sign-offs",
+                ":signOffStepId",
+                "reviews"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "artifactId",
+                  "description": "(Required) Governed artifact identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "signOffStepId",
+                  "description": "(Required) Sign-off step identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku Govern instance",
+                  "type": "any",
+                  "value": "{{govern-host}}",
+                  "key": "govern-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"outcome\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3dff18b6-a1ec-4d4e-9a85-0e25618874a6",
+              "name": "Review added",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artifacts",
+                    ":artifactId",
+                    "sign-offs",
+                    ":signOffStepId",
+                    "reviews"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "artifactId",
+                      "description": "(Required) Governed artifact identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "signOffStepId",
+                      "description": "(Required) Sign-off step identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"outcome\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"reviewer\": \"string\",\n  \"outcome\": \"REJECTED\",\n  \"comment\": \"string\",\n  \"reviewedOn\": 2169\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0248b86-f812-4bc3-ba5c-c78b69b80eae",
+              "name": "Invalid review",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artifacts",
+                    ":artifactId",
+                    "sign-offs",
+                    ":signOffStepId",
+                    "reviews"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "artifactId",
+                      "description": "(Required) Governed artifact identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "signOffStepId",
+                      "description": "(Required) Sign-off step identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"outcome\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "41a0bd16-03c4-4a87-af96-a545eccdb3b4",
+              "name": "Sign-off step not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artifacts",
+                    ":artifactId",
+                    "sign-offs",
+                    ":signOffStepId",
+                    "reviews"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "artifactId",
+                      "description": "(Required) Governed artifact identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "signOffStepId",
+                      "description": "(Required) Sign-off step identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"outcome\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "7cb7c48d-d2eb-4506-b757-50d3544824fc",
+      "name": "Artifacts",
+      "description": {
+        "content": "Manage governed artifacts (models, projects, etc.)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "31daa76a-f5a2-4f2a-bb43-6db9dd3202de",
+          "name": "Dataiku List artifacts",
+          "request": {
+            "name": "Dataiku List artifacts",
+            "description": {
+              "content": "List governed artifacts, optionally filtered by blueprint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "artifacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "blueprintId",
+                  "value": "<string>",
+                  "description": "Filter by blueprint ID"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname of the Dataiku Govern instance",
+                  "type": "any",
+                  "value": "{{govern-host}}",
+                  "key": "govern-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4b47f10d-36de-4bc5-adb5-124924b08ccb",
+              "name": "List of artifacts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artifacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "blueprintId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"blueprintId\": \"string\",\n    \"status\": \"string\",\n    \"createdOn\": 149,\n    \"createdBy\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"blueprintId\": \"string\",\n    \"status\": \"string\",\n    \"createdOn\": 3556,\n    \"createdBy\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e741b62-3e13-4faa-ae2d-29d66d802301",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artifacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "blueprintId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2218585a-7e1a-4ae0-b2d5-8cc098dbea59",
+          "name": "Dataiku Create an artifact",
+          "request": {
+            "name": "Dataiku Create an artifact",
+            "description": {
+              "content": "Create a new governed artifact under a blueprint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "artifacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname of the Dataiku Govern instance",
+                  "type": "any",
+                  "value": "{{govern-host}}",
+                  "key": "govern-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"blueprintId\": \"<string>\",\n  \"blueprintVersionId\": \"<string>\",\n  \"customFields\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "61b41752-eb28-48e8-9904-d15ac3ba4f61",
+              "name": "Artifact created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artifacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"blueprintId\": \"<string>\",\n  \"blueprintVersionId\": \"<string>\",\n  \"customFields\": {\n    \"key_0\": 984\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"blueprintId\": \"string\",\n  \"blueprintVersionId\": \"string\",\n  \"status\": \"string\",\n  \"customFields\": {\n    \"key_0\": 6580.144045193393,\n    \"key_1\": 9732.452552567482,\n    \"key_2\": 6284\n  },\n  \"createdOn\": 7361,\n  \"createdBy\": \"string\",\n  \"lastModifiedOn\": 323,\n  \"lastModifiedBy\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9264a989-498b-4573-838c-d8d795ee6ab4",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artifacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"blueprintId\": \"<string>\",\n  \"blueprintVersionId\": \"<string>\",\n  \"customFields\": {\n    \"key_0\": 984\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46cecac3-5d0a-4e56-aeac-b2325a056d7a",
+          "name": "Dataiku Get artifact details",
+          "request": {
+            "name": "Dataiku Get artifact details",
+            "description": {
+              "content": "Retrieve the details of a governed artifact.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "artifacts",
+                ":artifactId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "artifactId",
+                  "description": "(Required) Governed artifact identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku Govern instance",
+                  "type": "any",
+                  "value": "{{govern-host}}",
+                  "key": "govern-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "147612bd-02a2-4a93-aafe-6cc5f434ca4d",
+              "name": "Artifact details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artifacts",
+                    ":artifactId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "artifactId",
+                      "description": "(Required) Governed artifact identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"blueprintId\": \"string\",\n  \"blueprintVersionId\": \"string\",\n  \"status\": \"string\",\n  \"customFields\": {\n    \"key_0\": 6580.144045193393,\n    \"key_1\": 9732.452552567482,\n    \"key_2\": 6284\n  },\n  \"createdOn\": 7361,\n  \"createdBy\": \"string\",\n  \"lastModifiedOn\": 323,\n  \"lastModifiedBy\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dae7826b-262b-4fb6-90f3-72bc7560239f",
+              "name": "Artifact not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artifacts",
+                    ":artifactId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "artifactId",
+                      "description": "(Required) Governed artifact identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fad09b3f-c5a3-4e3b-8b0d-fe276b1b7ecc",
+          "name": "Dataiku Update an artifact",
+          "request": {
+            "name": "Dataiku Update an artifact",
+            "description": {
+              "content": "Update the details of a governed artifact.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "artifacts",
+                ":artifactId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "artifactId",
+                  "description": "(Required) Governed artifact identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku Govern instance",
+                  "type": "any",
+                  "value": "{{govern-host}}",
+                  "key": "govern-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"blueprintId\": \"<string>\",\n  \"blueprintVersionId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"customFields\": {\n    \"key_0\": 4220.74050521621,\n    \"key_1\": \"string\"\n  },\n  \"createdOn\": \"<long>\",\n  \"createdBy\": \"<string>\",\n  \"lastModifiedOn\": \"<long>\",\n  \"lastModifiedBy\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eb2168da-330a-4b32-ba54-665f82b9789a",
+              "name": "Artifact updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artifacts",
+                    ":artifactId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "artifactId",
+                      "description": "(Required) Governed artifact identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"blueprintId\": \"<string>\",\n  \"blueprintVersionId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"customFields\": {\n    \"key_0\": 5443.449953020676,\n    \"key_1\": 9798\n  },\n  \"createdOn\": \"<long>\",\n  \"createdBy\": \"<string>\",\n  \"lastModifiedOn\": \"<long>\",\n  \"lastModifiedBy\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5b2ee2c8-deb4-426a-9455-bc97b60eda9a",
+              "name": "Artifact not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artifacts",
+                    ":artifactId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "artifactId",
+                      "description": "(Required) Governed artifact identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"blueprintId\": \"<string>\",\n  \"blueprintVersionId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"customFields\": {\n    \"key_0\": 5443.449953020676,\n    \"key_1\": 9798\n  },\n  \"createdOn\": \"<long>\",\n  \"createdBy\": \"<string>\",\n  \"lastModifiedOn\": \"<long>\",\n  \"lastModifiedBy\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b485e5ff-08e8-4e55-b66c-f0c5c7cc0a47",
+          "name": "Dataiku Delete an artifact",
+          "request": {
+            "name": "Dataiku Delete an artifact",
+            "description": {
+              "content": "Delete a governed artifact.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "artifacts",
+                ":artifactId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "artifactId",
+                  "description": "(Required) Governed artifact identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku Govern instance",
+                  "type": "any",
+                  "value": "{{govern-host}}",
+                  "key": "govern-host"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3951fa62-5336-41ef-bf2a-914d52a91818",
+              "name": "Artifact deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artifacts",
+                    ":artifactId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "artifactId",
+                      "description": "(Required) Governed artifact identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "acb209eb-9607-4647-99c5-6ba889355b2f",
+              "name": "Artifact not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artifacts",
+                    ":artifactId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "artifactId",
+                      "description": "(Required) Governed artifact identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "45bf9a4c-95c2-41eb-9383-63ddd12a7dd0",
+      "name": "Blueprint Versions",
+      "description": {
+        "content": "Manage blueprint version definitions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2e04fafb-4f20-4883-b052-7ddce38d7c59",
+          "name": "Dataiku List blueprint versions",
+          "request": {
+            "name": "Dataiku List blueprint versions",
+            "description": {
+              "content": "List all versions of a governance blueprint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blueprints",
+                ":blueprintId",
+                "versions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "blueprintId",
+                  "description": "(Required) Unique blueprint identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku Govern instance",
+                  "type": "any",
+                  "value": "{{govern-host}}",
+                  "key": "govern-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d911ca34-beff-4a94-a2e6-9144b4e945b8",
+              "name": "List of blueprint versions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprintId",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blueprintId",
+                      "description": "(Required) Unique blueprint identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"versionNumber\": 8037,\n    \"status\": \"PUBLISHED\",\n    \"createdOn\": 9377\n  },\n  {\n    \"id\": \"string\",\n    \"versionNumber\": 7584,\n    \"status\": \"DRAFT\",\n    \"createdOn\": 5155\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c53f2d67-4a23-471d-b07d-bf8e8e6dd10a",
+              "name": "Blueprint not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprintId",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blueprintId",
+                      "description": "(Required) Unique blueprint identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "230e8212-3a44-4e94-b9c8-b8101b77f8e5",
+          "name": "Dataiku Create a blueprint version",
+          "request": {
+            "name": "Dataiku Create a blueprint version",
+            "description": {
+              "content": "Create a new version of a governance blueprint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blueprints",
+                ":blueprintId",
+                "versions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "blueprintId",
+                  "description": "(Required) Unique blueprint identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku Govern instance",
+                  "type": "any",
+                  "value": "{{govern-host}}",
+                  "key": "govern-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"originVersionId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7f6bad06-0ad7-43d5-96e8-ed478ac109aa",
+              "name": "Blueprint version created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprintId",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blueprintId",
+                      "description": "(Required) Unique blueprint identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"originVersionId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"blueprintId\": \"string\",\n  \"versionNumber\": 281,\n  \"status\": \"PUBLISHED\",\n  \"fieldSettings\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": \"LONG_TEXT\",\n      \"required\": true,\n      \"options\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": \"MULTISELECT\",\n      \"required\": true,\n      \"options\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"signOffConfiguration\": {\n    \"steps\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"requiredReviewers\": 5389,\n        \"assigneeType\": \"USER\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"requiredReviewers\": 8769,\n        \"assigneeType\": \"GROUP\"\n      }\n    ]\n  },\n  \"createdOn\": 7377\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2067963-cb88-4740-b887-10dd37760945",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprintId",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blueprintId",
+                      "description": "(Required) Unique blueprint identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"originVersionId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c62bc708-8e47-4e2d-b84e-e5ae8a3ea099",
+          "name": "Dataiku Get blueprint version details",
+          "request": {
+            "name": "Dataiku Get blueprint version details",
+            "description": {
+              "content": "Get the full definition of a blueprint version.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blueprints",
+                ":blueprintId",
+                "versions",
+                ":versionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "blueprintId",
+                  "description": "(Required) Unique blueprint identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "versionId",
+                  "description": "(Required) Blueprint version identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku Govern instance",
+                  "type": "any",
+                  "value": "{{govern-host}}",
+                  "key": "govern-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c81be075-fdf7-4e5e-9845-83ccb1e0b97a",
+              "name": "Blueprint version details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprintId",
+                    "versions",
+                    ":versionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blueprintId",
+                      "description": "(Required) Unique blueprint identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "versionId",
+                      "description": "(Required) Blueprint version identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"blueprintId\": \"string\",\n  \"versionNumber\": 281,\n  \"status\": \"PUBLISHED\",\n  \"fieldSettings\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": \"LONG_TEXT\",\n      \"required\": true,\n      \"options\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": \"MULTISELECT\",\n      \"required\": true,\n      \"options\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"signOffConfiguration\": {\n    \"steps\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"requiredReviewers\": 5389,\n        \"assigneeType\": \"USER\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"requiredReviewers\": 8769,\n        \"assigneeType\": \"GROUP\"\n      }\n    ]\n  },\n  \"createdOn\": 7377\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4723539c-2c88-4fea-8f5c-54ce458e89ea",
+              "name": "Blueprint version not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprintId",
+                    "versions",
+                    ":versionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blueprintId",
+                      "description": "(Required) Unique blueprint identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "versionId",
+                      "description": "(Required) Blueprint version identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f0959407-48aa-4681-8dbf-3fdd4cf07797",
+      "name": "Blueprints",
+      "description": {
+        "content": "Manage governance blueprints that define artifact types",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "734e97a3-72e3-4291-aaaa-94dd2ebeebfe",
+          "name": "Dataiku List blueprints",
+          "request": {
+            "name": "Dataiku List blueprints",
+            "description": {
+              "content": "Retrieve a list of all governance blueprints. Blueprints define the structure and lifecycle of governed artifacts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blueprints"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname of the Dataiku Govern instance",
+                  "type": "any",
+                  "value": "{{govern-host}}",
+                  "key": "govern-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "01e59051-6cbe-4d91-a71a-b8320953fe55",
+              "name": "List of blueprints",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"artifactCount\": 8388,\n    \"icon\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"artifactCount\": 3115,\n    \"icon\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b1a968e2-89be-4156-91f5-8ef4211c71b2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0ebe37ed-c8ad-474b-9d04-ca50e5b1ffb1",
+          "name": "Dataiku Create a blueprint",
+          "request": {
+            "name": "Dataiku Create a blueprint",
+            "description": {
+              "content": "Create a new governance blueprint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blueprints"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname of the Dataiku Govern instance",
+                  "type": "any",
+                  "value": "{{govern-host}}",
+                  "key": "govern-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8d7c13ed-7c4b-48e6-a1e0-9ef3974a80b4",
+              "name": "Blueprint created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"icon\": \"string\",\n  \"artifactCount\": 1196,\n  \"fieldSettings\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": \"TEXT\",\n      \"required\": true,\n      \"options\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": \"SELECT\",\n      \"required\": true,\n      \"options\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"signOffConfiguration\": {\n    \"steps\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"requiredReviewers\": 1397,\n        \"assigneeType\": \"USER\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"requiredReviewers\": 8165,\n        \"assigneeType\": \"USER\"\n      }\n    ]\n  },\n  \"workflowConfiguration\": {\n    \"statuses\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"color\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"color\": \"string\"\n      }\n    ],\n    \"transitions\": [\n      {\n        \"fromStatus\": \"string\",\n        \"toStatus\": \"string\"\n      },\n      {\n        \"fromStatus\": \"string\",\n        \"toStatus\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b2f747f-5267-41ab-817e-4ba73070be8f",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce77a967-b307-4389-868f-aa1ca25f9f0e",
+          "name": "Dataiku Get blueprint details",
+          "request": {
+            "name": "Dataiku Get blueprint details",
+            "description": {
+              "content": "Retrieve the full definition of a governance blueprint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blueprints",
+                ":blueprintId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "blueprintId",
+                  "description": "(Required) Unique blueprint identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku Govern instance",
+                  "type": "any",
+                  "value": "{{govern-host}}",
+                  "key": "govern-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "79f3556e-d92a-4e4b-8943-193ee7367a0c",
+              "name": "Blueprint details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprintId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blueprintId",
+                      "description": "(Required) Unique blueprint identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"icon\": \"string\",\n  \"artifactCount\": 1196,\n  \"fieldSettings\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": \"TEXT\",\n      \"required\": true,\n      \"options\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": \"SELECT\",\n      \"required\": true,\n      \"options\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"signOffConfiguration\": {\n    \"steps\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"requiredReviewers\": 1397,\n        \"assigneeType\": \"USER\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"requiredReviewers\": 8165,\n        \"assigneeType\": \"USER\"\n      }\n    ]\n  },\n  \"workflowConfiguration\": {\n    \"statuses\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"color\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"color\": \"string\"\n      }\n    ],\n    \"transitions\": [\n      {\n        \"fromStatus\": \"string\",\n        \"toStatus\": \"string\"\n      },\n      {\n        \"fromStatus\": \"string\",\n        \"toStatus\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c794bc12-6b6e-42d9-aa08-663864254a0f",
+              "name": "Blueprint not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprintId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blueprintId",
+                      "description": "(Required) Unique blueprint identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b20cd41c-e6c8-4fb0-930e-925f978b7f8e",
+          "name": "Dataiku Update a blueprint",
+          "request": {
+            "name": "Dataiku Update a blueprint",
+            "description": {
+              "content": "Update the definition of a governance blueprint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blueprints",
+                ":blueprintId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "blueprintId",
+                  "description": "(Required) Unique blueprint identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku Govern instance",
+                  "type": "any",
+                  "value": "{{govern-host}}",
+                  "key": "govern-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\",\n  \"artifactCount\": \"<integer>\",\n  \"fieldSettings\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"options\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"options\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"signOffConfiguration\": {\n    \"steps\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"requiredReviewers\": \"<integer>\",\n        \"assigneeType\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"requiredReviewers\": \"<integer>\",\n        \"assigneeType\": \"<string>\"\n      }\n    ]\n  },\n  \"workflowConfiguration\": {\n    \"statuses\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"color\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"color\": \"<string>\"\n      }\n    ],\n    \"transitions\": [\n      {\n        \"fromStatus\": \"<string>\",\n        \"toStatus\": \"<string>\"\n      },\n      {\n        \"fromStatus\": \"<string>\",\n        \"toStatus\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1c8ddc65-1232-4d51-9018-cbebc183c86e",
+              "name": "Blueprint updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprintId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blueprintId",
+                      "description": "(Required) Unique blueprint identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\",\n  \"artifactCount\": \"<integer>\",\n  \"fieldSettings\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": \"BOOLEAN\",\n      \"required\": false,\n      \"options\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": \"MULTISELECT\",\n      \"required\": false,\n      \"options\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"signOffConfiguration\": {\n    \"steps\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"requiredReviewers\": 7014,\n        \"assigneeType\": \"USER\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"requiredReviewers\": 8911,\n        \"assigneeType\": \"USER\"\n      }\n    ]\n  },\n  \"workflowConfiguration\": {\n    \"statuses\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"color\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"color\": \"string\"\n      }\n    ],\n    \"transitions\": [\n      {\n        \"fromStatus\": \"string\",\n        \"toStatus\": \"string\"\n      },\n      {\n        \"fromStatus\": \"string\",\n        \"toStatus\": \"string\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fdd1ad8e-f166-4718-99dc-50948666d74f",
+              "name": "Blueprint not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprintId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blueprintId",
+                      "description": "(Required) Unique blueprint identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\",\n  \"artifactCount\": \"<integer>\",\n  \"fieldSettings\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": \"BOOLEAN\",\n      \"required\": false,\n      \"options\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": \"MULTISELECT\",\n      \"required\": false,\n      \"options\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"signOffConfiguration\": {\n    \"steps\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"requiredReviewers\": 7014,\n        \"assigneeType\": \"USER\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"requiredReviewers\": 8911,\n        \"assigneeType\": \"USER\"\n      }\n    ]\n  },\n  \"workflowConfiguration\": {\n    \"statuses\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"color\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"color\": \"string\"\n      }\n    ],\n    \"transitions\": [\n      {\n        \"fromStatus\": \"string\",\n        \"toStatus\": \"string\"\n      },\n      {\n        \"fromStatus\": \"string\",\n        \"toStatus\": \"string\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "79ad7c5e-b6ee-4196-85a7-0178846f361c",
+          "name": "Dataiku Delete a blueprint",
+          "request": {
+            "name": "Dataiku Delete a blueprint",
+            "description": {
+              "content": "Delete a governance blueprint and its versions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blueprints",
+                ":blueprintId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "blueprintId",
+                  "description": "(Required) Unique blueprint identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku Govern instance",
+                  "type": "any",
+                  "value": "{{govern-host}}",
+                  "key": "govern-host"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e7f0a8dc-db39-4df9-afef-7780c0878f98",
+              "name": "Blueprint deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprintId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blueprintId",
+                      "description": "(Required) Unique blueprint identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0c45a349-21a4-4f9f-86df-f936a52c6fbf",
+              "name": "Blueprint not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprintId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blueprintId",
+                      "description": "(Required) Unique blueprint identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "511f2ac1-8237-4131-91c7-bf047c1caf27",
+      "name": "Custom Fields",
+      "description": {
+        "content": "Manage custom fields on artifacts",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f086ff5c-28a2-46d6-81b7-4ea9758b0d54",
+          "name": "Dataiku Get artifact custom fields",
+          "request": {
+            "name": "Dataiku Get artifact custom fields",
+            "description": {
+              "content": "Retrieve all custom field values for an artifact.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "artifacts",
+                ":artifactId",
+                "custom-fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "artifactId",
+                  "description": "(Required) Governed artifact identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku Govern instance",
+                  "type": "any",
+                  "value": "{{govern-host}}",
+                  "key": "govern-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ec6c749d-f479-4c6f-ab0d-0368c0aac7b0",
+              "name": "Custom field values",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artifacts",
+                    ":artifactId",
+                    "custom-fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "artifactId",
+                      "description": "(Required) Governed artifact identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": \"string\",\n  \"key_1\": 2518,\n  \"key_2\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ddc6b217-ddb9-41e0-8e76-f0134ef62751",
+              "name": "Artifact not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artifacts",
+                    ":artifactId",
+                    "custom-fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "artifactId",
+                      "description": "(Required) Governed artifact identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a47b88a-b2f0-47e3-8b21-bdd7967fa1c2",
+          "name": "Dataiku Set artifact custom fields",
+          "request": {
+            "name": "Dataiku Set artifact custom fields",
+            "description": {
+              "content": "Update custom field values for an artifact.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "artifacts",
+                ":artifactId",
+                "custom-fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "artifactId",
+                  "description": "(Required) Governed artifact identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku Govern instance",
+                  "type": "any",
+                  "value": "{{govern-host}}",
+                  "key": "govern-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": 1983.9033121372552,\n  \"key_1\": 9999,\n  \"key_2\": \"string\",\n  \"key_3\": 1700\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "223535e0-21ba-478b-bbdc-e39e7db10492",
+              "name": "Custom fields updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artifacts",
+                    ":artifactId",
+                    "custom-fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "artifactId",
+                      "description": "(Required) Governed artifact identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": \"string\",\n  \"key_1\": 2518,\n  \"key_2\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "02a50675-db0d-4c13-b50c-14716eeda129",
+              "name": "Artifact not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artifacts",
+                    ":artifactId",
+                    "custom-fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "artifactId",
+                      "description": "(Required) Governed artifact identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": \"string\",\n  \"key_1\": 2518,\n  \"key_2\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "e3c93358-4f58-42fe-bf66-920e1f1f723e",
+      "name": "Roles",
+      "description": {
+        "content": "Manage governance roles and assignments",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "89be6fe6-7f24-4ce0-addf-c20c0c51d32d",
+          "name": "Dataiku List roles",
+          "request": {
+            "name": "Dataiku List roles",
+            "description": {
+              "content": "List all governance roles.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "roles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname of the Dataiku Govern instance",
+                  "type": "any",
+                  "value": "{{govern-host}}",
+                  "key": "govern-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "63ca47c0-ced0-416a-9da7-d6f59916a17a",
+              "name": "List of roles",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "roles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"permissions\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"permissions\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e188f5f-809c-44ae-8490-a3caf6f33435",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "roles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "eed46954-c202-4fb1-9aff-ddb15f5a3fc8",
+      "name": "Users",
+      "description": {
+        "content": "Manage Govern users",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e738f9ee-02a9-436b-bb11-379324836887",
+          "name": "Dataiku List Govern users",
+          "request": {
+            "name": "Dataiku List Govern users",
+            "description": {
+              "content": "List all users in the Govern instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname of the Dataiku Govern instance",
+                  "type": "any",
+                  "value": "{{govern-host}}",
+                  "key": "govern-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0de55f0a-146f-4d26-9509-8e0bf6ae97c1",
+              "name": "List of users",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"login\": \"string\",\n    \"displayName\": \"string\",\n    \"email\": \"Z3jpg@B.xpjz\",\n    \"roles\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"login\": \"string\",\n    \"displayName\": \"string\",\n    \"email\": \"r0o1@jTidVtg.hhya\",\n    \"roles\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07a0da41-2f66-4a42-b392-071e69cd28f5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Dataiku Govern instance",
+                      "type": "any",
+                      "value": "{{govern-host}}",
+                      "key": "govern-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname of the Dataiku Govern instance",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "govern.example.com",
+      "key": "govern-host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{govern-host}}/public/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6ecb057e-a604-435a-b05f-a9dfcec51ce3",
+    "name": "Dataiku Govern API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public REST API for interacting with Dataiku Govern to manage AI governance workflows, including blueprints, blueprint versions, artifacts, custom fields, sign-offs, reviews, roles, and compliance workflows for responsible AI management.\n\nContact Support:\n Name: Dataiku Support\n Email: support@dataiku.com",
+      "type": "text/plain"
+    }
+  }
+}

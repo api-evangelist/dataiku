@@ -1,0 +1,371 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dataiku API Node Administration API",
+    "version": "13.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Default",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List deployed services",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/services"
+          },
+          "docs": "List all services currently deployed on this API node."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get service details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/services/:serviceId",
+            "params": [
+              {
+                "name": "serviceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique service identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve the details and configuration of a deployed service."
+        },
+        {
+          "info": {
+            "name": "Dataiku Delete a service",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{apinode-host}:{port}/admin/api/services/:serviceId",
+            "params": [
+              {
+                "name": "serviceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique service identifier"
+              }
+            ]
+          },
+          "docs": "Remove a deployed service and all its generations from the API node."
+        },
+        {
+          "info": {
+            "name": "Dataiku Enable a service",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apinode-host}:{port}/admin/api/services/:serviceId/enable",
+            "params": [
+              {
+                "name": "serviceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique service identifier"
+              }
+            ]
+          },
+          "docs": "Enable a deployed service to accept prediction requests."
+        },
+        {
+          "info": {
+            "name": "Dataiku Disable a service",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apinode-host}:{port}/admin/api/services/:serviceId/disable",
+            "params": [
+              {
+                "name": "serviceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique service identifier"
+              }
+            ]
+          },
+          "docs": "Disable a service to stop accepting prediction requests."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Generations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List generations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/services/:serviceId/generations",
+            "params": [
+              {
+                "name": "serviceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique service identifier"
+              }
+            ]
+          },
+          "docs": "List all generations (deployed versions) of a service."
+        },
+        {
+          "info": {
+            "name": "Dataiku Import a generation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apinode-host}:{port}/admin/api/services/:serviceId/generations",
+            "params": [
+              {
+                "name": "serviceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique service identifier"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Import a new generation (bundle) for a service from a ZIP archive."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get generation details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/services/:serviceId/generations/:generationId",
+            "params": [
+              {
+                "name": "serviceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique service identifier"
+              },
+              {
+                "name": "generationId",
+                "value": "",
+                "type": "path",
+                "description": "Generation (version) identifier"
+              }
+            ]
+          },
+          "docs": "Get the details of a specific generation."
+        },
+        {
+          "info": {
+            "name": "Dataiku Delete a generation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{apinode-host}:{port}/admin/api/services/:serviceId/generations/:generationId",
+            "params": [
+              {
+                "name": "serviceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique service identifier"
+              },
+              {
+                "name": "generationId",
+                "value": "",
+                "type": "path",
+                "description": "Generation (version) identifier"
+              }
+            ]
+          },
+          "docs": "Delete a specific generation from a service."
+        },
+        {
+          "info": {
+            "name": "Dataiku Preload a generation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apinode-host}:{port}/admin/api/services/:serviceId/generations/:generationId/preload",
+            "params": [
+              {
+                "name": "serviceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique service identifier"
+              },
+              {
+                "name": "generationId",
+                "value": "",
+                "type": "path",
+                "description": "Generation (version) identifier"
+              }
+            ]
+          },
+          "docs": "Preload a generation into memory to reduce cold-start latency."
+        },
+        {
+          "info": {
+            "name": "Dataiku Switch to a generation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apinode-host}:{port}/admin/api/services/:serviceId/generations/:generationId/switch",
+            "params": [
+              {
+                "name": "serviceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique service identifier"
+              },
+              {
+                "name": "generationId",
+                "value": "",
+                "type": "path",
+                "description": "Generation (version) identifier"
+              }
+            ]
+          },
+          "docs": "Set a generation as the active generation for the service."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List authentication keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/auth/keys"
+          },
+          "docs": "List all API authentication keys configured for accessing services."
+        },
+        {
+          "info": {
+            "name": "Dataiku Create an authentication key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apinode-host}:{port}/admin/api/auth/keys",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new authentication key for accessing API node services."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get authentication key details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/auth/keys/:keyId",
+            "params": [
+              {
+                "name": "keyId",
+                "value": "",
+                "type": "path",
+                "description": "Authentication key identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific authentication key."
+        },
+        {
+          "info": {
+            "name": "Dataiku Delete an authentication key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{apinode-host}:{port}/admin/api/auth/keys/:keyId",
+            "params": [
+              {
+                "name": "keyId",
+                "value": "",
+                "type": "path",
+                "description": "Authentication key identifier"
+              }
+            ]
+          },
+          "docs": "Delete an authentication key."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Metrics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku Get API node metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/metrics"
+          },
+          "docs": "Retrieve metrics about the API node including request counts, latencies, and error rates."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get API node health",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/health"
+          },
+          "docs": "Check the health status of the API node."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,3131 @@
+{
+  "info": {
+    "_postman_id": "f46e03d8-9784-4d79-b64e-ae424ff3c709",
+    "name": "Dataiku Govern API",
+    "description": "Public REST API for interacting with Dataiku Govern to manage AI governance workflows, including blueprints, blueprint versions, artifacts, custom fields, sign-offs, reviews, roles, and compliance workflows for responsible AI management.\n\nContact Support:\n Name: Dataiku Support\n Email: support@dataiku.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:07:25.000Z",
+    "updatedAt": "2026-06-05T15:07:25.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f46e03d8-9784-4d79-b64e-ae424ff3c709"
+  },
+  "item": [
+    {
+      "name": "blueprints",
+      "item": [
+        {
+          "name": "{blueprintId}",
+          "item": [
+            {
+              "name": "versions",
+              "item": [
+                {
+                  "name": "{versionId}",
+                  "item": [
+                    {
+                      "name": "Dataiku Get blueprint version details",
+                      "id": "7d021158-ce66-4693-9534-19ec1f8c0518",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/blueprints/:blueprintId/versions/:versionId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "blueprints",
+                            ":blueprintId",
+                            "versions",
+                            ":versionId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ea55ab05-aadc-486d-af0f-a864c84557ee",
+                              "key": "blueprintId",
+                              "value": "<string>",
+                              "description": "(Required) Unique blueprint identifier"
+                            },
+                            {
+                              "id": "16d62af4-d00b-4bf8-88c1-cc5d2b980415",
+                              "key": "versionId",
+                              "value": "<string>",
+                              "description": "(Required) Blueprint version identifier"
+                            }
+                          ]
+                        },
+                        "description": "Get the full definition of a blueprint version."
+                      },
+                      "response": [
+                        {
+                          "id": "2f496611-4ab6-46cd-8768-ae6f432192eb",
+                          "name": "Blueprint version details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/blueprints/:blueprintId/versions/:versionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "blueprints",
+                                ":blueprintId",
+                                "versions",
+                                ":versionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "blueprintId"
+                                },
+                                {
+                                  "key": "versionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"blueprintId\": \"<string>\",\n  \"versionNumber\": \"<integer>\",\n  \"status\": \"ARCHIVED\",\n  \"fieldSettings\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"LONG_TEXT\",\n      \"required\": \"<boolean>\",\n      \"options\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"BOOLEAN\",\n      \"required\": \"<boolean>\",\n      \"options\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"signOffConfiguration\": {\n    \"steps\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"requiredReviewers\": \"<integer>\",\n        \"assigneeType\": \"ROLE\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"requiredReviewers\": \"<integer>\",\n        \"assigneeType\": \"GROUP\"\n      }\n    ]\n  },\n  \"createdOn\": \"<long>\"\n}",
+                          "createdAt": "2026-06-05T15:07:25.000Z",
+                          "updatedAt": "2026-06-05T15:07:25.000Z",
+                          "uid": "35240-2f496611-4ab6-46cd-8768-ae6f432192eb"
+                        },
+                        {
+                          "id": "714f4caa-5566-4556-a6ab-6871e7489bc5",
+                          "name": "Blueprint version not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/blueprints/:blueprintId/versions/:versionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "blueprints",
+                                ":blueprintId",
+                                "versions",
+                                ":versionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "blueprintId"
+                                },
+                                {
+                                  "key": "versionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:07:25.000Z",
+                          "updatedAt": "2026-06-05T15:07:25.000Z",
+                          "uid": "35240-714f4caa-5566-4556-a6ab-6871e7489bc5"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:07:25.000Z",
+                      "updatedAt": "2026-06-05T15:07:25.000Z",
+                      "uid": "35240-7d021158-ce66-4693-9534-19ec1f8c0518"
+                    }
+                  ],
+                  "id": "b7bf130f-088e-421d-93c3-c08903337e0e",
+                  "createdAt": "2026-06-05T15:07:25.000Z",
+                  "updatedAt": "2026-06-05T15:07:25.000Z",
+                  "uid": "35240-b7bf130f-088e-421d-93c3-c08903337e0e"
+                },
+                {
+                  "name": "Dataiku List blueprint versions",
+                  "id": "9a8a25bf-6645-499d-b518-c2b6758ab9e0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/blueprints/:blueprintId/versions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "blueprints",
+                        ":blueprintId",
+                        "versions"
+                      ],
+                      "variable": [
+                        {
+                          "id": "70b9c884-b820-4ce8-a2fe-a4b850b7b0fe",
+                          "key": "blueprintId",
+                          "value": "<string>",
+                          "description": "(Required) Unique blueprint identifier"
+                        }
+                      ]
+                    },
+                    "description": "List all versions of a governance blueprint."
+                  },
+                  "response": [
+                    {
+                      "id": "c52cf87b-1f47-445c-b026-37ba1f6f5624",
+                      "name": "List of blueprint versions",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/blueprints/:blueprintId/versions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "blueprints",
+                            ":blueprintId",
+                            "versions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "blueprintId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<string>\",\n    \"versionNumber\": \"<integer>\",\n    \"status\": \"DRAFT\",\n    \"createdOn\": \"<long>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"versionNumber\": \"<integer>\",\n    \"status\": \"DRAFT\",\n    \"createdOn\": \"<long>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:07:25.000Z",
+                      "updatedAt": "2026-06-05T15:07:25.000Z",
+                      "uid": "35240-c52cf87b-1f47-445c-b026-37ba1f6f5624"
+                    },
+                    {
+                      "id": "e161d655-145e-4245-ae3f-6aaa8e898ac5",
+                      "name": "Blueprint not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/blueprints/:blueprintId/versions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "blueprints",
+                            ":blueprintId",
+                            "versions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "blueprintId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:07:25.000Z",
+                      "updatedAt": "2026-06-05T15:07:25.000Z",
+                      "uid": "35240-e161d655-145e-4245-ae3f-6aaa8e898ac5"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:07:25.000Z",
+                  "updatedAt": "2026-06-05T15:07:25.000Z",
+                  "uid": "35240-9a8a25bf-6645-499d-b518-c2b6758ab9e0"
+                },
+                {
+                  "name": "Dataiku Create a blueprint version",
+                  "id": "9300261b-9a76-4556-af1e-05bbdb1a3cfd",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"originVersionId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/blueprints/:blueprintId/versions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "blueprints",
+                        ":blueprintId",
+                        "versions"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ce38f0ff-8294-4c19-b28d-a24d968fba07",
+                          "key": "blueprintId",
+                          "value": "<string>",
+                          "description": "(Required) Unique blueprint identifier"
+                        }
+                      ]
+                    },
+                    "description": "Create a new version of a governance blueprint."
+                  },
+                  "response": [
+                    {
+                      "id": "fa982aa6-42bb-44a7-b776-254e00d0a7b1",
+                      "name": "Blueprint version created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"originVersionId\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/blueprints/:blueprintId/versions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "blueprints",
+                            ":blueprintId",
+                            "versions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "blueprintId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"blueprintId\": \"<string>\",\n  \"versionNumber\": \"<integer>\",\n  \"status\": \"ARCHIVED\",\n  \"fieldSettings\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"LONG_TEXT\",\n      \"required\": \"<boolean>\",\n      \"options\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"BOOLEAN\",\n      \"required\": \"<boolean>\",\n      \"options\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"signOffConfiguration\": {\n    \"steps\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"requiredReviewers\": \"<integer>\",\n        \"assigneeType\": \"ROLE\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"requiredReviewers\": \"<integer>\",\n        \"assigneeType\": \"GROUP\"\n      }\n    ]\n  },\n  \"createdOn\": \"<long>\"\n}",
+                      "createdAt": "2026-06-05T15:07:25.000Z",
+                      "updatedAt": "2026-06-05T15:07:25.000Z",
+                      "uid": "35240-fa982aa6-42bb-44a7-b776-254e00d0a7b1"
+                    },
+                    {
+                      "id": "ac03259b-e7db-4d19-afd4-94f8829dd7ce",
+                      "name": "Invalid request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"originVersionId\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/blueprints/:blueprintId/versions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "blueprints",
+                            ":blueprintId",
+                            "versions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "blueprintId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:07:25.000Z",
+                      "updatedAt": "2026-06-05T15:07:25.000Z",
+                      "uid": "35240-ac03259b-e7db-4d19-afd4-94f8829dd7ce"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:07:25.000Z",
+                  "updatedAt": "2026-06-05T15:07:25.000Z",
+                  "uid": "35240-9300261b-9a76-4556-af1e-05bbdb1a3cfd"
+                }
+              ],
+              "id": "e5a6424f-e3c6-458a-b1a9-faed210f64e3",
+              "createdAt": "2026-06-05T15:07:25.000Z",
+              "updatedAt": "2026-06-05T15:07:25.000Z",
+              "uid": "35240-e5a6424f-e3c6-458a-b1a9-faed210f64e3"
+            },
+            {
+              "name": "Dataiku Get blueprint details",
+              "id": "702b31ec-2da0-4c73-972b-295d2d01b5a0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/blueprints/:blueprintId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "blueprints",
+                    ":blueprintId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "c60f1960-8644-4895-a860-3f10f71b688c",
+                      "key": "blueprintId",
+                      "value": "<string>",
+                      "description": "(Required) Unique blueprint identifier"
+                    }
+                  ]
+                },
+                "description": "Retrieve the full definition of a governance blueprint."
+              },
+              "response": [
+                {
+                  "id": "a1ec89c1-cd54-4b02-86cd-3da9b8d7fa97",
+                  "name": "Blueprint details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/blueprints/:blueprintId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "blueprints",
+                        ":blueprintId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "blueprintId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\",\n  \"artifactCount\": \"<integer>\",\n  \"fieldSettings\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MULTISELECT\",\n      \"required\": \"<boolean>\",\n      \"options\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MULTISELECT\",\n      \"required\": \"<boolean>\",\n      \"options\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"signOffConfiguration\": {\n    \"steps\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"requiredReviewers\": \"<integer>\",\n        \"assigneeType\": \"GROUP\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"requiredReviewers\": \"<integer>\",\n        \"assigneeType\": \"ROLE\"\n      }\n    ]\n  },\n  \"workflowConfiguration\": {\n    \"statuses\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"color\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"color\": \"<string>\"\n      }\n    ],\n    \"transitions\": [\n      {\n        \"fromStatus\": \"<string>\",\n        \"toStatus\": \"<string>\"\n      },\n      {\n        \"fromStatus\": \"<string>\",\n        \"toStatus\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-06-05T15:07:25.000Z",
+                  "updatedAt": "2026-06-05T15:07:25.000Z",
+                  "uid": "35240-a1ec89c1-cd54-4b02-86cd-3da9b8d7fa97"
+                },
+                {
+                  "id": "f029ce4b-888d-4527-bd37-a63978b0685c",
+                  "name": "Blueprint not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/blueprints/:blueprintId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "blueprints",
+                        ":blueprintId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "blueprintId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:07:25.000Z",
+                  "updatedAt": "2026-06-05T15:07:25.000Z",
+                  "uid": "35240-f029ce4b-888d-4527-bd37-a63978b0685c"
+                }
+              ],
+              "createdAt": "2026-06-05T15:07:25.000Z",
+              "updatedAt": "2026-06-05T15:07:25.000Z",
+              "uid": "35240-702b31ec-2da0-4c73-972b-295d2d01b5a0"
+            },
+            {
+              "name": "Dataiku Update a blueprint",
+              "id": "1bde80c4-a850-432e-ad12-99da1b911f52",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\",\n  \"artifactCount\": \"<integer>\",\n  \"fieldSettings\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MULTISELECT\",\n      \"required\": \"<boolean>\",\n      \"options\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MULTISELECT\",\n      \"required\": \"<boolean>\",\n      \"options\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"signOffConfiguration\": {\n    \"steps\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"requiredReviewers\": \"<integer>\",\n        \"assigneeType\": \"GROUP\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"requiredReviewers\": \"<integer>\",\n        \"assigneeType\": \"ROLE\"\n      }\n    ]\n  },\n  \"workflowConfiguration\": {\n    \"statuses\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"color\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"color\": \"<string>\"\n      }\n    ],\n    \"transitions\": [\n      {\n        \"fromStatus\": \"<string>\",\n        \"toStatus\": \"<string>\"\n      },\n      {\n        \"fromStatus\": \"<string>\",\n        \"toStatus\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/blueprints/:blueprintId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "blueprints",
+                    ":blueprintId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "3fd16345-22c8-438a-a77e-2e02ca6f02aa",
+                      "key": "blueprintId",
+                      "value": "<string>",
+                      "description": "(Required) Unique blueprint identifier"
+                    }
+                  ]
+                },
+                "description": "Update the definition of a governance blueprint."
+              },
+              "response": [
+                {
+                  "id": "8f8fd960-41ea-4417-8f53-c2fe71f7a4d9",
+                  "name": "Blueprint updated",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\",\n  \"artifactCount\": \"<integer>\",\n  \"fieldSettings\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MULTISELECT\",\n      \"required\": \"<boolean>\",\n      \"options\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MULTISELECT\",\n      \"required\": \"<boolean>\",\n      \"options\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"signOffConfiguration\": {\n    \"steps\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"requiredReviewers\": \"<integer>\",\n        \"assigneeType\": \"GROUP\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"requiredReviewers\": \"<integer>\",\n        \"assigneeType\": \"ROLE\"\n      }\n    ]\n  },\n  \"workflowConfiguration\": {\n    \"statuses\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"color\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"color\": \"<string>\"\n      }\n    ],\n    \"transitions\": [\n      {\n        \"fromStatus\": \"<string>\",\n        \"toStatus\": \"<string>\"\n      },\n      {\n        \"fromStatus\": \"<string>\",\n        \"toStatus\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/blueprints/:blueprintId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "blueprints",
+                        ":blueprintId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "blueprintId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:07:25.000Z",
+                  "updatedAt": "2026-06-05T15:07:25.000Z",
+                  "uid": "35240-8f8fd960-41ea-4417-8f53-c2fe71f7a4d9"
+                },
+                {
+                  "id": "c943d462-0629-4703-93ab-6d5e733e601d",
+                  "name": "Blueprint not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\",\n  \"artifactCount\": \"<integer>\",\n  \"fieldSettings\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MULTISELECT\",\n      \"required\": \"<boolean>\",\n      \"options\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MULTISELECT\",\n      \"required\": \"<boolean>\",\n      \"options\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"signOffConfiguration\": {\n    \"steps\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"requiredReviewers\": \"<integer>\",\n        \"assigneeType\": \"GROUP\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"requiredReviewers\": \"<integer>\",\n        \"assigneeType\": \"ROLE\"\n      }\n    ]\n  },\n  \"workflowConfiguration\": {\n    \"statuses\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"color\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"color\": \"<string>\"\n      }\n    ],\n    \"transitions\": [\n      {\n        \"fromStatus\": \"<string>\",\n        \"toStatus\": \"<string>\"\n      },\n      {\n        \"fromStatus\": \"<string>\",\n        \"toStatus\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/blueprints/:blueprintId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "blueprints",
+                        ":blueprintId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "blueprintId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:07:25.000Z",
+                  "updatedAt": "2026-06-05T15:07:25.000Z",
+                  "uid": "35240-c943d462-0629-4703-93ab-6d5e733e601d"
+                }
+              ],
+              "createdAt": "2026-06-05T15:07:25.000Z",
+              "updatedAt": "2026-06-05T15:07:25.000Z",
+              "uid": "35240-1bde80c4-a850-432e-ad12-99da1b911f52"
+            },
+            {
+              "name": "Dataiku Delete a blueprint",
+              "id": "39cec350-4dbd-4fc9-8ba6-a344b730e26f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/blueprints/:blueprintId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "blueprints",
+                    ":blueprintId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "4b44e1ba-5593-4e08-8b4e-a61e1cd47804",
+                      "key": "blueprintId",
+                      "value": "<string>",
+                      "description": "(Required) Unique blueprint identifier"
+                    }
+                  ]
+                },
+                "description": "Delete a governance blueprint and its versions."
+              },
+              "response": [
+                {
+                  "id": "8e4aa6b9-d35c-409f-848e-eff6b3f6e317",
+                  "name": "Blueprint deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/blueprints/:blueprintId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "blueprints",
+                        ":blueprintId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "blueprintId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:07:25.000Z",
+                  "updatedAt": "2026-06-05T15:07:25.000Z",
+                  "uid": "35240-8e4aa6b9-d35c-409f-848e-eff6b3f6e317"
+                },
+                {
+                  "id": "da59e03b-cf98-476c-b669-435664a68a90",
+                  "name": "Blueprint not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/blueprints/:blueprintId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "blueprints",
+                        ":blueprintId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "blueprintId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:07:25.000Z",
+                  "updatedAt": "2026-06-05T15:07:25.000Z",
+                  "uid": "35240-da59e03b-cf98-476c-b669-435664a68a90"
+                }
+              ],
+              "createdAt": "2026-06-05T15:07:25.000Z",
+              "updatedAt": "2026-06-05T15:07:25.000Z",
+              "uid": "35240-39cec350-4dbd-4fc9-8ba6-a344b730e26f"
+            }
+          ],
+          "id": "cc6c7f51-8b9a-4884-a6f2-3e6306cbd68b",
+          "createdAt": "2026-06-05T15:07:25.000Z",
+          "updatedAt": "2026-06-05T15:07:25.000Z",
+          "uid": "35240-cc6c7f51-8b9a-4884-a6f2-3e6306cbd68b"
+        },
+        {
+          "name": "Dataiku List blueprints",
+          "id": "353045a3-8fa6-4314-968b-b86acd7fba8c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/blueprints",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "blueprints"
+              ]
+            },
+            "description": "Retrieve a list of all governance blueprints. Blueprints define the structure and lifecycle of governed artifacts."
+          },
+          "response": [
+            {
+              "id": "074e6c68-c29b-4c44-9888-df473d601cf7",
+              "name": "List of blueprints",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/blueprints",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "blueprints"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"artifactCount\": \"<integer>\",\n    \"icon\": \"<string>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"artifactCount\": \"<integer>\",\n    \"icon\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:07:25.000Z",
+              "updatedAt": "2026-06-05T15:07:25.000Z",
+              "uid": "35240-074e6c68-c29b-4c44-9888-df473d601cf7"
+            },
+            {
+              "id": "e0a7de53-aff0-475c-820a-c202d1e25a73",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/blueprints",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "blueprints"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:07:25.000Z",
+              "updatedAt": "2026-06-05T15:07:25.000Z",
+              "uid": "35240-e0a7de53-aff0-475c-820a-c202d1e25a73"
+            }
+          ],
+          "createdAt": "2026-06-05T15:07:25.000Z",
+          "updatedAt": "2026-06-05T15:07:25.000Z",
+          "uid": "35240-353045a3-8fa6-4314-968b-b86acd7fba8c"
+        },
+        {
+          "name": "Dataiku Create a blueprint",
+          "id": "1492b16a-ba02-4ae4-b383-2a801ed7ba4c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/blueprints",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "blueprints"
+              ]
+            },
+            "description": "Create a new governance blueprint."
+          },
+          "response": [
+            {
+              "id": "50283377-605f-4ef3-abd7-66528749b84d",
+              "name": "Blueprint created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/blueprints",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "blueprints"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\",\n  \"artifactCount\": \"<integer>\",\n  \"fieldSettings\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MULTISELECT\",\n      \"required\": \"<boolean>\",\n      \"options\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MULTISELECT\",\n      \"required\": \"<boolean>\",\n      \"options\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"signOffConfiguration\": {\n    \"steps\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"requiredReviewers\": \"<integer>\",\n        \"assigneeType\": \"GROUP\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"requiredReviewers\": \"<integer>\",\n        \"assigneeType\": \"ROLE\"\n      }\n    ]\n  },\n  \"workflowConfiguration\": {\n    \"statuses\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"color\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"color\": \"<string>\"\n      }\n    ],\n    \"transitions\": [\n      {\n        \"fromStatus\": \"<string>\",\n        \"toStatus\": \"<string>\"\n      },\n      {\n        \"fromStatus\": \"<string>\",\n        \"toStatus\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "createdAt": "2026-06-05T15:07:25.000Z",
+              "updatedAt": "2026-06-05T15:07:25.000Z",
+              "uid": "35240-50283377-605f-4ef3-abd7-66528749b84d"
+            },
+            {
+              "id": "6c0e05a8-108d-4d4b-816a-b05459e986b7",
+              "name": "Invalid request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/blueprints",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "blueprints"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:07:25.000Z",
+              "updatedAt": "2026-06-05T15:07:25.000Z",
+              "uid": "35240-6c0e05a8-108d-4d4b-816a-b05459e986b7"
+            }
+          ],
+          "createdAt": "2026-06-05T15:07:25.000Z",
+          "updatedAt": "2026-06-05T15:07:25.000Z",
+          "uid": "35240-1492b16a-ba02-4ae4-b383-2a801ed7ba4c"
+        }
+      ],
+      "id": "886aa97b-ad89-4eec-ada5-fc6ac1336b3b",
+      "createdAt": "2026-06-05T15:07:25.000Z",
+      "updatedAt": "2026-06-05T15:07:25.000Z",
+      "uid": "35240-886aa97b-ad89-4eec-ada5-fc6ac1336b3b"
+    },
+    {
+      "name": "artifacts",
+      "item": [
+        {
+          "name": "{artifactId}",
+          "item": [
+            {
+              "name": "custom-fields",
+              "item": [
+                {
+                  "name": "Dataiku Get artifact custom fields",
+                  "id": "6134bacb-cfe3-4a39-9575-3ba31e10d863",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/artifacts/:artifactId/custom-fields",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "artifacts",
+                        ":artifactId",
+                        "custom-fields"
+                      ],
+                      "variable": [
+                        {
+                          "id": "39102627-d734-4dab-8695-45aa26f1f46a",
+                          "key": "artifactId",
+                          "value": "<string>",
+                          "description": "(Required) Governed artifact identifier"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve all custom field values for an artifact."
+                  },
+                  "response": [
+                    {
+                      "id": "7175ea35-dc39-4519-bcba-8265920ff21a",
+                      "name": "Custom field values",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/artifacts/:artifactId/custom-fields",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "artifacts",
+                            ":artifactId",
+                            "custom-fields"
+                          ],
+                          "variable": [
+                            {
+                              "key": "artifactId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"enim_a\": \"sunt non\",\n  \"ullamco_4\": 8995848.262088254,\n  \"anim_2b7\": false\n}",
+                      "createdAt": "2026-06-05T15:07:25.000Z",
+                      "updatedAt": "2026-06-05T15:07:25.000Z",
+                      "uid": "35240-7175ea35-dc39-4519-bcba-8265920ff21a"
+                    },
+                    {
+                      "id": "b4bbf93a-01f7-4024-ae4a-eec5363281d3",
+                      "name": "Artifact not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/artifacts/:artifactId/custom-fields",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "artifacts",
+                            ":artifactId",
+                            "custom-fields"
+                          ],
+                          "variable": [
+                            {
+                              "key": "artifactId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:07:25.000Z",
+                      "updatedAt": "2026-06-05T15:07:25.000Z",
+                      "uid": "35240-b4bbf93a-01f7-4024-ae4a-eec5363281d3"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:07:25.000Z",
+                  "updatedAt": "2026-06-05T15:07:25.000Z",
+                  "uid": "35240-6134bacb-cfe3-4a39-9575-3ba31e10d863"
+                },
+                {
+                  "name": "Dataiku Set artifact custom fields",
+                  "id": "3ed7e2cf-520b-44dc-8f9a-131168778b13",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"enim_a\": \"sunt non\",\n  \"ullamco_4\": 8995848.262088254,\n  \"anim_2b7\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/artifacts/:artifactId/custom-fields",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "artifacts",
+                        ":artifactId",
+                        "custom-fields"
+                      ],
+                      "variable": [
+                        {
+                          "id": "98c4ff46-7378-4a04-9e66-150a2e3933d0",
+                          "key": "artifactId",
+                          "value": "<string>",
+                          "description": "(Required) Governed artifact identifier"
+                        }
+                      ]
+                    },
+                    "description": "Update custom field values for an artifact."
+                  },
+                  "response": [
+                    {
+                      "id": "0578912e-2508-4589-9b3d-84d1b58d8d04",
+                      "name": "Custom fields updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"enim_a\": \"sunt non\",\n  \"ullamco_4\": 8995848.262088254,\n  \"anim_2b7\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/artifacts/:artifactId/custom-fields",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "artifacts",
+                            ":artifactId",
+                            "custom-fields"
+                          ],
+                          "variable": [
+                            {
+                              "key": "artifactId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:07:25.000Z",
+                      "updatedAt": "2026-06-05T15:07:25.000Z",
+                      "uid": "35240-0578912e-2508-4589-9b3d-84d1b58d8d04"
+                    },
+                    {
+                      "id": "72e5b949-7b70-4e15-8798-8fc3b01ab4a2",
+                      "name": "Artifact not found",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"enim_a\": \"sunt non\",\n  \"ullamco_4\": 8995848.262088254,\n  \"anim_2b7\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/artifacts/:artifactId/custom-fields",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "artifacts",
+                            ":artifactId",
+                            "custom-fields"
+                          ],
+                          "variable": [
+                            {
+                              "key": "artifactId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:07:25.000Z",
+                      "updatedAt": "2026-06-05T15:07:25.000Z",
+                      "uid": "35240-72e5b949-7b70-4e15-8798-8fc3b01ab4a2"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:07:25.000Z",
+                  "updatedAt": "2026-06-05T15:07:25.000Z",
+                  "uid": "35240-3ed7e2cf-520b-44dc-8f9a-131168778b13"
+                }
+              ],
+              "id": "f0bd2404-552e-4ff4-ac66-3915eb00f3c7",
+              "createdAt": "2026-06-05T15:07:25.000Z",
+              "updatedAt": "2026-06-05T15:07:25.000Z",
+              "uid": "35240-f0bd2404-552e-4ff4-ac66-3915eb00f3c7"
+            },
+            {
+              "name": "sign-offs",
+              "item": [
+                {
+                  "name": "{signOffStepId}",
+                  "item": [
+                    {
+                      "name": "delegate",
+                      "item": [
+                        {
+                          "name": "Dataiku Delegate a sign-off",
+                          "id": "7c775a13-7959-42a2-9a59-9cb93657e8ed",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"delegateTo\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/artifacts/:artifactId/sign-offs/:signOffStepId/delegate",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "artifacts",
+                                ":artifactId",
+                                "sign-offs",
+                                ":signOffStepId",
+                                "delegate"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "61faba98-0a06-40cf-ac9b-3255d4141d13",
+                                  "key": "artifactId",
+                                  "value": "<string>",
+                                  "description": "(Required) Governed artifact identifier"
+                                },
+                                {
+                                  "id": "26a77483-3abe-4837-8c6d-ed76dfb81926",
+                                  "key": "signOffStepId",
+                                  "value": "<string>",
+                                  "description": "(Required) Sign-off step identifier"
+                                }
+                              ]
+                            },
+                            "description": "Delegate a sign-off step to another user."
+                          },
+                          "response": [
+                            {
+                              "id": "8133dadf-e0a0-4be0-9b78-3c3d6d8fb0da",
+                              "name": "Sign-off delegated",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"delegateTo\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/artifacts/:artifactId/sign-offs/:signOffStepId/delegate",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "artifacts",
+                                    ":artifactId",
+                                    "sign-offs",
+                                    ":signOffStepId",
+                                    "delegate"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "artifactId"
+                                    },
+                                    {
+                                      "key": "signOffStepId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:07:25.000Z",
+                              "updatedAt": "2026-06-05T15:07:25.000Z",
+                              "uid": "35240-8133dadf-e0a0-4be0-9b78-3c3d6d8fb0da"
+                            },
+                            {
+                              "id": "cfae60a5-966c-4963-adbd-42a842fad738",
+                              "name": "Sign-off step not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"delegateTo\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/artifacts/:artifactId/sign-offs/:signOffStepId/delegate",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "artifacts",
+                                    ":artifactId",
+                                    "sign-offs",
+                                    ":signOffStepId",
+                                    "delegate"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "artifactId"
+                                    },
+                                    {
+                                      "key": "signOffStepId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:07:25.000Z",
+                              "updatedAt": "2026-06-05T15:07:25.000Z",
+                              "uid": "35240-cfae60a5-966c-4963-adbd-42a842fad738"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:07:25.000Z",
+                          "updatedAt": "2026-06-05T15:07:25.000Z",
+                          "uid": "35240-7c775a13-7959-42a2-9a59-9cb93657e8ed"
+                        }
+                      ],
+                      "id": "1df62219-bec6-4aed-bec8-317e35fee9ca",
+                      "createdAt": "2026-06-05T15:07:25.000Z",
+                      "updatedAt": "2026-06-05T15:07:25.000Z",
+                      "uid": "35240-1df62219-bec6-4aed-bec8-317e35fee9ca"
+                    },
+                    {
+                      "name": "reviews",
+                      "item": [
+                        {
+                          "name": "Dataiku Add a sign-off review",
+                          "id": "9c6f7da4-35fd-4f60-b2ea-b524f86cdb1b",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"outcome\": \"APPROVED\",\n  \"comment\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/artifacts/:artifactId/sign-offs/:signOffStepId/reviews",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "artifacts",
+                                ":artifactId",
+                                "sign-offs",
+                                ":signOffStepId",
+                                "reviews"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "4b882f91-70ee-407b-98f1-f3021f310545",
+                                  "key": "artifactId",
+                                  "value": "<string>",
+                                  "description": "(Required) Governed artifact identifier"
+                                },
+                                {
+                                  "id": "79dd7d22-4e81-40be-9626-d34d39550a50",
+                                  "key": "signOffStepId",
+                                  "value": "<string>",
+                                  "description": "(Required) Sign-off step identifier"
+                                }
+                              ]
+                            },
+                            "description": "Add a review (approve or reject) to a sign-off step."
+                          },
+                          "response": [
+                            {
+                              "id": "338a6e21-01aa-48f3-b958-1d2a41af560e",
+                              "name": "Review added",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"outcome\": \"APPROVED\",\n  \"comment\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/artifacts/:artifactId/sign-offs/:signOffStepId/reviews",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "artifacts",
+                                    ":artifactId",
+                                    "sign-offs",
+                                    ":signOffStepId",
+                                    "reviews"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "artifactId"
+                                    },
+                                    {
+                                      "key": "signOffStepId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"reviewer\": \"<string>\",\n  \"outcome\": \"APPROVED\",\n  \"comment\": \"<string>\",\n  \"reviewedOn\": \"<long>\"\n}",
+                              "createdAt": "2026-06-05T15:07:25.000Z",
+                              "updatedAt": "2026-06-05T15:07:25.000Z",
+                              "uid": "35240-338a6e21-01aa-48f3-b958-1d2a41af560e"
+                            },
+                            {
+                              "id": "e6885df3-8c34-4e44-b5c7-30e9c76280a8",
+                              "name": "Invalid review",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"outcome\": \"APPROVED\",\n  \"comment\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/artifacts/:artifactId/sign-offs/:signOffStepId/reviews",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "artifacts",
+                                    ":artifactId",
+                                    "sign-offs",
+                                    ":signOffStepId",
+                                    "reviews"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "artifactId"
+                                    },
+                                    {
+                                      "key": "signOffStepId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:07:25.000Z",
+                              "updatedAt": "2026-06-05T15:07:25.000Z",
+                              "uid": "35240-e6885df3-8c34-4e44-b5c7-30e9c76280a8"
+                            },
+                            {
+                              "id": "95dbe114-7bd1-4d3e-85ec-7d08019f9280",
+                              "name": "Sign-off step not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"outcome\": \"APPROVED\",\n  \"comment\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/artifacts/:artifactId/sign-offs/:signOffStepId/reviews",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "artifacts",
+                                    ":artifactId",
+                                    "sign-offs",
+                                    ":signOffStepId",
+                                    "reviews"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "artifactId"
+                                    },
+                                    {
+                                      "key": "signOffStepId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:07:25.000Z",
+                              "updatedAt": "2026-06-05T15:07:25.000Z",
+                              "uid": "35240-95dbe114-7bd1-4d3e-85ec-7d08019f9280"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:07:25.000Z",
+                          "updatedAt": "2026-06-05T15:07:25.000Z",
+                          "uid": "35240-9c6f7da4-35fd-4f60-b2ea-b524f86cdb1b"
+                        }
+                      ],
+                      "id": "100d5b03-48d4-4e3b-a42a-d4477d6bbba5",
+                      "createdAt": "2026-06-05T15:07:25.000Z",
+                      "updatedAt": "2026-06-05T15:07:25.000Z",
+                      "uid": "35240-100d5b03-48d4-4e3b-a42a-d4477d6bbba5"
+                    },
+                    {
+                      "name": "Dataiku Get sign-off step details",
+                      "id": "0b84b072-b58b-4d8b-83ee-428c410f9d53",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/artifacts/:artifactId/sign-offs/:signOffStepId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "artifacts",
+                            ":artifactId",
+                            "sign-offs",
+                            ":signOffStepId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "23732030-bb1e-47d9-9ecc-369f84561061",
+                              "key": "artifactId",
+                              "value": "<string>",
+                              "description": "(Required) Governed artifact identifier"
+                            },
+                            {
+                              "id": "48b91a32-09c1-4978-aebb-488344f3db26",
+                              "key": "signOffStepId",
+                              "value": "<string>",
+                              "description": "(Required) Sign-off step identifier"
+                            }
+                          ]
+                        },
+                        "description": "Get details of a specific sign-off step for an artifact."
+                      },
+                      "response": [
+                        {
+                          "id": "798f5c80-b5fe-4610-86ce-cc7da36ed051",
+                          "name": "Sign-off step details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/artifacts/:artifactId/sign-offs/:signOffStepId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "artifacts",
+                                ":artifactId",
+                                "sign-offs",
+                                ":signOffStepId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "artifactId"
+                                },
+                                {
+                                  "key": "signOffStepId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"stepId\": \"<string>\",\n  \"stepName\": \"<string>\",\n  \"status\": \"APPROVED\",\n  \"reviews\": [\n    {\n      \"reviewer\": \"<string>\",\n      \"outcome\": \"APPROVED\",\n      \"comment\": \"<string>\",\n      \"reviewedOn\": \"<long>\"\n    },\n    {\n      \"reviewer\": \"<string>\",\n      \"outcome\": \"REJECTED\",\n      \"comment\": \"<string>\",\n      \"reviewedOn\": \"<long>\"\n    }\n  ],\n  \"delegatedTo\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:07:25.000Z",
+                          "updatedAt": "2026-06-05T15:07:25.000Z",
+                          "uid": "35240-798f5c80-b5fe-4610-86ce-cc7da36ed051"
+                        },
+                        {
+                          "id": "33888579-4ca1-4f07-9419-1e5c21bada91",
+                          "name": "Sign-off step not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/artifacts/:artifactId/sign-offs/:signOffStepId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "artifacts",
+                                ":artifactId",
+                                "sign-offs",
+                                ":signOffStepId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "artifactId"
+                                },
+                                {
+                                  "key": "signOffStepId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:07:25.000Z",
+                          "updatedAt": "2026-06-05T15:07:25.000Z",
+                          "uid": "35240-33888579-4ca1-4f07-9419-1e5c21bada91"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:07:25.000Z",
+                      "updatedAt": "2026-06-05T15:07:25.000Z",
+                      "uid": "35240-0b84b072-b58b-4d8b-83ee-428c410f9d53"
+                    }
+                  ],
+                  "id": "2a990615-d82a-43d2-8953-027a6acc8d75",
+                  "createdAt": "2026-06-05T15:07:25.000Z",
+                  "updatedAt": "2026-06-05T15:07:25.000Z",
+                  "uid": "35240-2a990615-d82a-43d2-8953-027a6acc8d75"
+                },
+                {
+                  "name": "Dataiku List artifact sign-offs",
+                  "id": "f5a16b6d-f993-4753-82d9-807a503bad71",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/artifacts/:artifactId/sign-offs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "artifacts",
+                        ":artifactId",
+                        "sign-offs"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e6668fd8-6279-4b14-bad3-1d506110714b",
+                          "key": "artifactId",
+                          "value": "<string>",
+                          "description": "(Required) Governed artifact identifier"
+                        }
+                      ]
+                    },
+                    "description": "List all sign-off steps and their status for an artifact."
+                  },
+                  "response": [
+                    {
+                      "id": "f5dbf93e-6e4d-496b-8098-1b45dbea935c",
+                      "name": "List of sign-offs",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/artifacts/:artifactId/sign-offs",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "artifacts",
+                            ":artifactId",
+                            "sign-offs"
+                          ],
+                          "variable": [
+                            {
+                              "key": "artifactId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"stepId\": \"<string>\",\n    \"stepName\": \"<string>\",\n    \"status\": \"REJECTED\",\n    \"reviews\": [\n      {\n        \"reviewer\": \"<string>\",\n        \"outcome\": \"REJECTED\",\n        \"comment\": \"<string>\",\n        \"reviewedOn\": \"<long>\"\n      },\n      {\n        \"reviewer\": \"<string>\",\n        \"outcome\": \"APPROVED\",\n        \"comment\": \"<string>\",\n        \"reviewedOn\": \"<long>\"\n      }\n    ],\n    \"delegatedTo\": \"<string>\"\n  },\n  {\n    \"stepId\": \"<string>\",\n    \"stepName\": \"<string>\",\n    \"status\": \"IN_PROGRESS\",\n    \"reviews\": [\n      {\n        \"reviewer\": \"<string>\",\n        \"outcome\": \"REJECTED\",\n        \"comment\": \"<string>\",\n        \"reviewedOn\": \"<long>\"\n      },\n      {\n        \"reviewer\": \"<string>\",\n        \"outcome\": \"REJECTED\",\n        \"comment\": \"<string>\",\n        \"reviewedOn\": \"<long>\"\n      }\n    ],\n    \"delegatedTo\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:07:25.000Z",
+                      "updatedAt": "2026-06-05T15:07:25.000Z",
+                      "uid": "35240-f5dbf93e-6e4d-496b-8098-1b45dbea935c"
+                    },
+                    {
+                      "id": "544cac7c-18d1-430a-a354-6cb2972bbb29",
+                      "name": "Artifact not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/artifacts/:artifactId/sign-offs",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "artifacts",
+                            ":artifactId",
+                            "sign-offs"
+                          ],
+                          "variable": [
+                            {
+                              "key": "artifactId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:07:25.000Z",
+                      "updatedAt": "2026-06-05T15:07:25.000Z",
+                      "uid": "35240-544cac7c-18d1-430a-a354-6cb2972bbb29"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:07:25.000Z",
+                  "updatedAt": "2026-06-05T15:07:25.000Z",
+                  "uid": "35240-f5a16b6d-f993-4753-82d9-807a503bad71"
+                }
+              ],
+              "id": "35d0b243-dda8-4a95-8633-6b5580306a8a",
+              "createdAt": "2026-06-05T15:07:25.000Z",
+              "updatedAt": "2026-06-05T15:07:25.000Z",
+              "uid": "35240-35d0b243-dda8-4a95-8633-6b5580306a8a"
+            },
+            {
+              "name": "Dataiku Get artifact details",
+              "id": "6a054c5e-b2e3-4072-a0a9-084978e33977",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/artifacts/:artifactId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "artifacts",
+                    ":artifactId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "bbc20469-4889-487c-a35a-bfa2f5813157",
+                      "key": "artifactId",
+                      "value": "<string>",
+                      "description": "(Required) Governed artifact identifier"
+                    }
+                  ]
+                },
+                "description": "Retrieve the details of a governed artifact."
+              },
+              "response": [
+                {
+                  "id": "92dd8fa0-4aaf-4dd7-bdc8-7d95654fa28f",
+                  "name": "Artifact details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/artifacts/:artifactId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "artifacts",
+                        ":artifactId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "artifactId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"blueprintId\": \"<string>\",\n  \"blueprintVersionId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"customFields\": {\n    \"labore_a6\": -75461357\n  },\n  \"createdOn\": \"<long>\",\n  \"createdBy\": \"<string>\",\n  \"lastModifiedOn\": \"<long>\",\n  \"lastModifiedBy\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:07:25.000Z",
+                  "updatedAt": "2026-06-05T15:07:25.000Z",
+                  "uid": "35240-92dd8fa0-4aaf-4dd7-bdc8-7d95654fa28f"
+                },
+                {
+                  "id": "ba6b3b9b-7c86-45d9-b16d-2f5ae04daefa",
+                  "name": "Artifact not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/artifacts/:artifactId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "artifacts",
+                        ":artifactId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "artifactId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:07:25.000Z",
+                  "updatedAt": "2026-06-05T15:07:25.000Z",
+                  "uid": "35240-ba6b3b9b-7c86-45d9-b16d-2f5ae04daefa"
+                }
+              ],
+              "createdAt": "2026-06-05T15:07:25.000Z",
+              "updatedAt": "2026-06-05T15:07:25.000Z",
+              "uid": "35240-6a054c5e-b2e3-4072-a0a9-084978e33977"
+            },
+            {
+              "name": "Dataiku Update an artifact",
+              "id": "1af5bab9-7e41-47fa-8e6a-119d6fb9debc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"blueprintId\": \"<string>\",\n  \"blueprintVersionId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"customFields\": {\n    \"labore_a6\": -75461357\n  },\n  \"createdOn\": \"<long>\",\n  \"createdBy\": \"<string>\",\n  \"lastModifiedOn\": \"<long>\",\n  \"lastModifiedBy\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/artifacts/:artifactId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "artifacts",
+                    ":artifactId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "15832ed2-bdb5-489b-93c7-01e84dd76e22",
+                      "key": "artifactId",
+                      "value": "<string>",
+                      "description": "(Required) Governed artifact identifier"
+                    }
+                  ]
+                },
+                "description": "Update the details of a governed artifact."
+              },
+              "response": [
+                {
+                  "id": "3cdb13e3-cbc4-46c8-ace5-a69669edc814",
+                  "name": "Artifact updated",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"blueprintId\": \"<string>\",\n  \"blueprintVersionId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"customFields\": {\n    \"labore_a6\": -75461357\n  },\n  \"createdOn\": \"<long>\",\n  \"createdBy\": \"<string>\",\n  \"lastModifiedOn\": \"<long>\",\n  \"lastModifiedBy\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/artifacts/:artifactId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "artifacts",
+                        ":artifactId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "artifactId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:07:25.000Z",
+                  "updatedAt": "2026-06-05T15:07:25.000Z",
+                  "uid": "35240-3cdb13e3-cbc4-46c8-ace5-a69669edc814"
+                },
+                {
+                  "id": "547bb0d5-66ff-4616-9961-f2a8d1755ebe",
+                  "name": "Artifact not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"blueprintId\": \"<string>\",\n  \"blueprintVersionId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"customFields\": {\n    \"labore_a6\": -75461357\n  },\n  \"createdOn\": \"<long>\",\n  \"createdBy\": \"<string>\",\n  \"lastModifiedOn\": \"<long>\",\n  \"lastModifiedBy\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/artifacts/:artifactId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "artifacts",
+                        ":artifactId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "artifactId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:07:25.000Z",
+                  "updatedAt": "2026-06-05T15:07:25.000Z",
+                  "uid": "35240-547bb0d5-66ff-4616-9961-f2a8d1755ebe"
+                }
+              ],
+              "createdAt": "2026-06-05T15:07:25.000Z",
+              "updatedAt": "2026-06-05T15:07:25.000Z",
+              "uid": "35240-1af5bab9-7e41-47fa-8e6a-119d6fb9debc"
+            },
+            {
+              "name": "Dataiku Delete an artifact",
+              "id": "2c82adf5-a4a9-47f4-a19e-ff3e16add67a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/artifacts/:artifactId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "artifacts",
+                    ":artifactId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "f77b14be-f87c-40e0-ac9a-8a418db1ac03",
+                      "key": "artifactId",
+                      "value": "<string>",
+                      "description": "(Required) Governed artifact identifier"
+                    }
+                  ]
+                },
+                "description": "Delete a governed artifact."
+              },
+              "response": [
+                {
+                  "id": "85cf5de7-b95e-4c35-bb0d-1ca329afc32e",
+                  "name": "Artifact deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/artifacts/:artifactId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "artifacts",
+                        ":artifactId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "artifactId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:07:25.000Z",
+                  "updatedAt": "2026-06-05T15:07:25.000Z",
+                  "uid": "35240-85cf5de7-b95e-4c35-bb0d-1ca329afc32e"
+                },
+                {
+                  "id": "6b1481e4-f986-4bcb-a8b2-a2eda3e88022",
+                  "name": "Artifact not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/artifacts/:artifactId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "artifacts",
+                        ":artifactId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "artifactId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:07:25.000Z",
+                  "updatedAt": "2026-06-05T15:07:25.000Z",
+                  "uid": "35240-6b1481e4-f986-4bcb-a8b2-a2eda3e88022"
+                }
+              ],
+              "createdAt": "2026-06-05T15:07:25.000Z",
+              "updatedAt": "2026-06-05T15:07:25.000Z",
+              "uid": "35240-2c82adf5-a4a9-47f4-a19e-ff3e16add67a"
+            }
+          ],
+          "id": "9812ab9d-4a60-438d-9424-33781b1296e0",
+          "createdAt": "2026-06-05T15:07:25.000Z",
+          "updatedAt": "2026-06-05T15:07:25.000Z",
+          "uid": "35240-9812ab9d-4a60-438d-9424-33781b1296e0"
+        },
+        {
+          "name": "Dataiku List artifacts",
+          "id": "73b79e10-2a19-487c-b9ef-2909022b2837",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/artifacts?blueprintId=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "artifacts"
+              ],
+              "query": [
+                {
+                  "description": "Filter by blueprint ID",
+                  "key": "blueprintId",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "List governed artifacts, optionally filtered by blueprint."
+          },
+          "response": [
+            {
+              "id": "b22fca33-8331-42e7-a382-3be8b048caab",
+              "name": "List of artifacts",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/artifacts?blueprintId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "artifacts"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by blueprint ID",
+                      "key": "blueprintId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"blueprintId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"createdOn\": \"<long>\",\n    \"createdBy\": \"<string>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"blueprintId\": \"<string>\",\n    \"status\": \"<string>\",\n    \"createdOn\": \"<long>\",\n    \"createdBy\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:07:25.000Z",
+              "updatedAt": "2026-06-05T15:07:25.000Z",
+              "uid": "35240-b22fca33-8331-42e7-a382-3be8b048caab"
+            },
+            {
+              "id": "b3e001f4-a878-4235-b8a0-9315f3e1a95e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/artifacts?blueprintId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "artifacts"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by blueprint ID",
+                      "key": "blueprintId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:07:25.000Z",
+              "updatedAt": "2026-06-05T15:07:25.000Z",
+              "uid": "35240-b3e001f4-a878-4235-b8a0-9315f3e1a95e"
+            }
+          ],
+          "createdAt": "2026-06-05T15:07:25.000Z",
+          "updatedAt": "2026-06-05T15:07:25.000Z",
+          "uid": "35240-73b79e10-2a19-487c-b9ef-2909022b2837"
+        },
+        {
+          "name": "Dataiku Create an artifact",
+          "id": "f2802bab-34dd-4e38-98ec-ea9cdc0d1709",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"blueprintId\": \"<string>\",\n  \"blueprintVersionId\": \"<string>\",\n  \"customFields\": {\n    \"non_1\": \"sunt qui laboris\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/artifacts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "artifacts"
+              ]
+            },
+            "description": "Create a new governed artifact under a blueprint."
+          },
+          "response": [
+            {
+              "id": "bff32cbc-c968-4e93-9169-169c21ca8bdb",
+              "name": "Artifact created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"blueprintId\": \"<string>\",\n  \"blueprintVersionId\": \"<string>\",\n  \"customFields\": {\n    \"non_1\": \"sunt qui laboris\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/artifacts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "artifacts"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"blueprintId\": \"<string>\",\n  \"blueprintVersionId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"customFields\": {\n    \"labore_a6\": -75461357\n  },\n  \"createdOn\": \"<long>\",\n  \"createdBy\": \"<string>\",\n  \"lastModifiedOn\": \"<long>\",\n  \"lastModifiedBy\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:07:25.000Z",
+              "updatedAt": "2026-06-05T15:07:25.000Z",
+              "uid": "35240-bff32cbc-c968-4e93-9169-169c21ca8bdb"
+            },
+            {
+              "id": "798701b5-8998-4c04-9115-35b1a81b81d2",
+              "name": "Invalid request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"blueprintId\": \"<string>\",\n  \"blueprintVersionId\": \"<string>\",\n  \"customFields\": {\n    \"non_1\": \"sunt qui laboris\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/artifacts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "artifacts"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:07:25.000Z",
+              "updatedAt": "2026-06-05T15:07:25.000Z",
+              "uid": "35240-798701b5-8998-4c04-9115-35b1a81b81d2"
+            }
+          ],
+          "createdAt": "2026-06-05T15:07:25.000Z",
+          "updatedAt": "2026-06-05T15:07:25.000Z",
+          "uid": "35240-f2802bab-34dd-4e38-98ec-ea9cdc0d1709"
+        }
+      ],
+      "id": "e50f78ac-e387-4ca1-b519-3e80102e4541",
+      "createdAt": "2026-06-05T15:07:25.000Z",
+      "updatedAt": "2026-06-05T15:07:25.000Z",
+      "uid": "35240-e50f78ac-e387-4ca1-b519-3e80102e4541"
+    },
+    {
+      "name": "roles",
+      "item": [
+        {
+          "name": "Dataiku List roles",
+          "id": "21469032-982a-4079-ac08-3b7c899da3db",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/roles",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "roles"
+              ]
+            },
+            "description": "List all governance roles."
+          },
+          "response": [
+            {
+              "id": "7efdf283-ce02-448d-bfa8-c8e174d87644",
+              "name": "List of roles",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/roles",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "roles"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"permissions\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"permissions\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+              "createdAt": "2026-06-05T15:07:25.000Z",
+              "updatedAt": "2026-06-05T15:07:25.000Z",
+              "uid": "35240-7efdf283-ce02-448d-bfa8-c8e174d87644"
+            },
+            {
+              "id": "c826a9f5-3ab4-43dc-a3f1-d9565b4ead2e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/roles",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "roles"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:07:25.000Z",
+              "updatedAt": "2026-06-05T15:07:25.000Z",
+              "uid": "35240-c826a9f5-3ab4-43dc-a3f1-d9565b4ead2e"
+            }
+          ],
+          "createdAt": "2026-06-05T15:07:25.000Z",
+          "updatedAt": "2026-06-05T15:07:25.000Z",
+          "uid": "35240-21469032-982a-4079-ac08-3b7c899da3db"
+        }
+      ],
+      "id": "d426dda9-0edf-45fd-83df-d1d077554c89",
+      "createdAt": "2026-06-05T15:07:25.000Z",
+      "updatedAt": "2026-06-05T15:07:25.000Z",
+      "uid": "35240-d426dda9-0edf-45fd-83df-d1d077554c89"
+    },
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "Dataiku List Govern users",
+          "id": "f033a547-7ca8-4035-b1b5-898e170a6f63",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ]
+            },
+            "description": "List all users in the Govern instance."
+          },
+          "response": [
+            {
+              "id": "c1cc27f6-49fb-4eed-ab28-0076068f95a6",
+              "name": "List of users",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"login\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"roles\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"login\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"roles\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+              "createdAt": "2026-06-05T15:07:25.000Z",
+              "updatedAt": "2026-06-05T15:07:25.000Z",
+              "uid": "35240-c1cc27f6-49fb-4eed-ab28-0076068f95a6"
+            },
+            {
+              "id": "c71baf88-9258-4159-8d11-493ca6a3b54a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:07:25.000Z",
+              "updatedAt": "2026-06-05T15:07:25.000Z",
+              "uid": "35240-c71baf88-9258-4159-8d11-493ca6a3b54a"
+            }
+          ],
+          "createdAt": "2026-06-05T15:07:25.000Z",
+          "updatedAt": "2026-06-05T15:07:25.000Z",
+          "uid": "35240-f033a547-7ca8-4035-b1b5-898e170a6f63"
+        }
+      ],
+      "id": "78ceac7a-1308-46bc-a2fb-7a1bd6237bca",
+      "createdAt": "2026-06-05T15:07:25.000Z",
+      "updatedAt": "2026-06-05T15:07:25.000Z",
+      "uid": "35240-78ceac7a-1308-46bc-a2fb-7a1bd6237bca"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "govern-host",
+      "value": "govern.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{govern-host}}/public/api"
+    }
+  ]
+}

@@ -1,0 +1,2407 @@
+{
+  "info": {
+    "_postman_id": "1e1ad718-711c-4e22-b0db-5d81e65323d5",
+    "name": "Dataiku API Node Administration API",
+    "description": "REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.\n\nContact Support:\n Name: Dataiku Support\n Email: support@dataiku.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:07:23.000Z",
+    "updatedAt": "2026-06-05T15:07:24.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1e1ad718-711c-4e22-b0db-5d81e65323d5"
+  },
+  "item": [
+    {
+      "name": "services",
+      "item": [
+        {
+          "name": "{serviceId}",
+          "item": [
+            {
+              "name": "enable",
+              "item": [
+                {
+                  "name": "Dataiku Enable a service",
+                  "id": "97b636ee-65b4-440d-8019-1d840a5f8d28",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/services/:serviceId/enable",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "services",
+                        ":serviceId",
+                        "enable"
+                      ],
+                      "variable": [
+                        {
+                          "id": "57d5b0e5-0f1a-4aea-9642-6488563bded1",
+                          "key": "serviceId",
+                          "value": "<string>",
+                          "description": "(Required) Unique service identifier"
+                        }
+                      ]
+                    },
+                    "description": "Enable a deployed service to accept prediction requests."
+                  },
+                  "response": [
+                    {
+                      "id": "aacb0ffd-d19d-4f2b-bc79-47afafcaef08",
+                      "name": "Service enabled",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/services/:serviceId/enable",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "services",
+                            ":serviceId",
+                            "enable"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serviceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:07:24.000Z",
+                      "updatedAt": "2026-06-05T15:07:24.000Z",
+                      "uid": "35240-aacb0ffd-d19d-4f2b-bc79-47afafcaef08"
+                    },
+                    {
+                      "id": "428bca93-6585-479a-9745-fbd81707374e",
+                      "name": "Service not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/services/:serviceId/enable",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "services",
+                            ":serviceId",
+                            "enable"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serviceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:07:24.000Z",
+                      "updatedAt": "2026-06-05T15:07:24.000Z",
+                      "uid": "35240-428bca93-6585-479a-9745-fbd81707374e"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:07:24.000Z",
+                  "updatedAt": "2026-06-05T15:07:24.000Z",
+                  "uid": "35240-97b636ee-65b4-440d-8019-1d840a5f8d28"
+                }
+              ],
+              "id": "bb0d4260-cf63-4dce-bf92-64348618ad3d",
+              "createdAt": "2026-06-05T15:07:24.000Z",
+              "updatedAt": "2026-06-05T15:07:24.000Z",
+              "uid": "35240-bb0d4260-cf63-4dce-bf92-64348618ad3d"
+            },
+            {
+              "name": "disable",
+              "item": [
+                {
+                  "name": "Dataiku Disable a service",
+                  "id": "e851ba1d-29f6-442c-baf5-634cbf73ea90",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/services/:serviceId/disable",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "services",
+                        ":serviceId",
+                        "disable"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5aa5df4e-c88f-4068-9c15-0c243ed72e16",
+                          "key": "serviceId",
+                          "value": "<string>",
+                          "description": "(Required) Unique service identifier"
+                        }
+                      ]
+                    },
+                    "description": "Disable a service to stop accepting prediction requests."
+                  },
+                  "response": [
+                    {
+                      "id": "6228294c-25a0-41bf-bf60-43e55bb8e03d",
+                      "name": "Service disabled",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/services/:serviceId/disable",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "services",
+                            ":serviceId",
+                            "disable"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serviceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:07:24.000Z",
+                      "updatedAt": "2026-06-05T15:07:24.000Z",
+                      "uid": "35240-6228294c-25a0-41bf-bf60-43e55bb8e03d"
+                    },
+                    {
+                      "id": "ef494c8d-b9c1-4089-b3f8-a98c75de3795",
+                      "name": "Service not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/services/:serviceId/disable",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "services",
+                            ":serviceId",
+                            "disable"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serviceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:07:24.000Z",
+                      "updatedAt": "2026-06-05T15:07:24.000Z",
+                      "uid": "35240-ef494c8d-b9c1-4089-b3f8-a98c75de3795"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:07:24.000Z",
+                  "updatedAt": "2026-06-05T15:07:24.000Z",
+                  "uid": "35240-e851ba1d-29f6-442c-baf5-634cbf73ea90"
+                }
+              ],
+              "id": "6479393a-a407-44c7-8567-0498c4d7c987",
+              "createdAt": "2026-06-05T15:07:24.000Z",
+              "updatedAt": "2026-06-05T15:07:24.000Z",
+              "uid": "35240-6479393a-a407-44c7-8567-0498c4d7c987"
+            },
+            {
+              "name": "generations",
+              "item": [
+                {
+                  "name": "{generationId}",
+                  "item": [
+                    {
+                      "name": "preload",
+                      "item": [
+                        {
+                          "name": "Dataiku Preload a generation",
+                          "id": "670bec9b-eb18-4868-b9eb-767bb666b3fb",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/services/:serviceId/generations/:generationId/preload",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "services",
+                                ":serviceId",
+                                "generations",
+                                ":generationId",
+                                "preload"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "87700b9a-4b66-4c60-a2b3-ad90746c02ab",
+                                  "key": "serviceId",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique service identifier"
+                                },
+                                {
+                                  "id": "47f6e936-689a-4707-8672-b2662b6689e1",
+                                  "key": "generationId",
+                                  "value": "<string>",
+                                  "description": "(Required) Generation (version) identifier"
+                                }
+                              ]
+                            },
+                            "description": "Preload a generation into memory to reduce cold-start latency."
+                          },
+                          "response": [
+                            {
+                              "id": "8fe9e589-9722-4d81-9415-327074343cf4",
+                              "name": "Generation preloaded",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/services/:serviceId/generations/:generationId/preload",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "services",
+                                    ":serviceId",
+                                    "generations",
+                                    ":generationId",
+                                    "preload"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceId"
+                                    },
+                                    {
+                                      "key": "generationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:07:24.000Z",
+                              "updatedAt": "2026-06-05T15:07:24.000Z",
+                              "uid": "35240-8fe9e589-9722-4d81-9415-327074343cf4"
+                            },
+                            {
+                              "id": "f64f2356-2595-4e06-a803-b753cda8eeea",
+                              "name": "Generation not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/services/:serviceId/generations/:generationId/preload",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "services",
+                                    ":serviceId",
+                                    "generations",
+                                    ":generationId",
+                                    "preload"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceId"
+                                    },
+                                    {
+                                      "key": "generationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:07:24.000Z",
+                              "updatedAt": "2026-06-05T15:07:24.000Z",
+                              "uid": "35240-f64f2356-2595-4e06-a803-b753cda8eeea"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:07:24.000Z",
+                          "updatedAt": "2026-06-05T15:07:24.000Z",
+                          "uid": "35240-670bec9b-eb18-4868-b9eb-767bb666b3fb"
+                        }
+                      ],
+                      "id": "c1581783-9468-48d3-b346-1952f37359f2",
+                      "createdAt": "2026-06-05T15:07:24.000Z",
+                      "updatedAt": "2026-06-05T15:07:24.000Z",
+                      "uid": "35240-c1581783-9468-48d3-b346-1952f37359f2"
+                    },
+                    {
+                      "name": "switch",
+                      "item": [
+                        {
+                          "name": "Dataiku Switch to a generation",
+                          "id": "af135f5e-1196-4882-8ee6-8b585e8b963b",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/services/:serviceId/generations/:generationId/switch",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "services",
+                                ":serviceId",
+                                "generations",
+                                ":generationId",
+                                "switch"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "d184daed-c068-4b6c-9e1a-f46af9cab9d8",
+                                  "key": "serviceId",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique service identifier"
+                                },
+                                {
+                                  "id": "c3366ae2-58b5-4499-8401-be7e574841b0",
+                                  "key": "generationId",
+                                  "value": "<string>",
+                                  "description": "(Required) Generation (version) identifier"
+                                }
+                              ]
+                            },
+                            "description": "Set a generation as the active generation for the service."
+                          },
+                          "response": [
+                            {
+                              "id": "7b938f53-11ec-4b0f-bcf7-5a8f9988051b",
+                              "name": "Generation switched",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/services/:serviceId/generations/:generationId/switch",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "services",
+                                    ":serviceId",
+                                    "generations",
+                                    ":generationId",
+                                    "switch"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceId"
+                                    },
+                                    {
+                                      "key": "generationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:07:24.000Z",
+                              "updatedAt": "2026-06-05T15:07:24.000Z",
+                              "uid": "35240-7b938f53-11ec-4b0f-bcf7-5a8f9988051b"
+                            },
+                            {
+                              "id": "8c9189be-ae35-4475-b66e-4553552b4ddb",
+                              "name": "Generation not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/services/:serviceId/generations/:generationId/switch",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "services",
+                                    ":serviceId",
+                                    "generations",
+                                    ":generationId",
+                                    "switch"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serviceId"
+                                    },
+                                    {
+                                      "key": "generationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:07:24.000Z",
+                              "updatedAt": "2026-06-05T15:07:24.000Z",
+                              "uid": "35240-8c9189be-ae35-4475-b66e-4553552b4ddb"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:07:24.000Z",
+                          "updatedAt": "2026-06-05T15:07:24.000Z",
+                          "uid": "35240-af135f5e-1196-4882-8ee6-8b585e8b963b"
+                        }
+                      ],
+                      "id": "7a869e8d-1a79-4d90-b8fc-089d27b3950e",
+                      "createdAt": "2026-06-05T15:07:24.000Z",
+                      "updatedAt": "2026-06-05T15:07:24.000Z",
+                      "uid": "35240-7a869e8d-1a79-4d90-b8fc-089d27b3950e"
+                    },
+                    {
+                      "name": "Dataiku Get generation details",
+                      "id": "3b7c47fa-512f-4d23-a915-69ba621f5b73",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/services/:serviceId/generations/:generationId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "services",
+                            ":serviceId",
+                            "generations",
+                            ":generationId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ecec2aec-db1a-477f-b686-a5cbc312c338",
+                              "key": "serviceId",
+                              "value": "<string>",
+                              "description": "(Required) Unique service identifier"
+                            },
+                            {
+                              "id": "4d4188df-3a20-4858-b428-9a295a063a3b",
+                              "key": "generationId",
+                              "value": "<string>",
+                              "description": "(Required) Generation (version) identifier"
+                            }
+                          ]
+                        },
+                        "description": "Get the details of a specific generation."
+                      },
+                      "response": [
+                        {
+                          "id": "5bdd908c-9a8a-42cb-aa26-81f1d01a6779",
+                          "name": "Generation details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/services/:serviceId/generations/:generationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "services",
+                                ":serviceId",
+                                "generations",
+                                ":generationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "serviceId"
+                                },
+                                {
+                                  "key": "generationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"generationId\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"createdOn\": \"<long>\",\n  \"endpoints\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"STD_PREDICTION\",\n      \"modelRef\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"CUSTOM_PREDICTION\",\n      \"modelRef\": \"<string>\"\n    }\n  ],\n  \"preloaded\": \"<boolean>\"\n}",
+                          "createdAt": "2026-06-05T15:07:24.000Z",
+                          "updatedAt": "2026-06-05T15:07:24.000Z",
+                          "uid": "35240-5bdd908c-9a8a-42cb-aa26-81f1d01a6779"
+                        },
+                        {
+                          "id": "b77e93e2-58ea-4439-9fb4-de0f3365c7a9",
+                          "name": "Generation not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/services/:serviceId/generations/:generationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "services",
+                                ":serviceId",
+                                "generations",
+                                ":generationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "serviceId"
+                                },
+                                {
+                                  "key": "generationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:07:24.000Z",
+                          "updatedAt": "2026-06-05T15:07:24.000Z",
+                          "uid": "35240-b77e93e2-58ea-4439-9fb4-de0f3365c7a9"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:07:24.000Z",
+                      "updatedAt": "2026-06-05T15:07:24.000Z",
+                      "uid": "35240-3b7c47fa-512f-4d23-a915-69ba621f5b73"
+                    },
+                    {
+                      "name": "Dataiku Delete a generation",
+                      "id": "e0f3a30a-2df5-4525-92f6-3c915632789f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/services/:serviceId/generations/:generationId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "services",
+                            ":serviceId",
+                            "generations",
+                            ":generationId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "9e19be45-09a0-485f-b3e8-42feb78861bc",
+                              "key": "serviceId",
+                              "value": "<string>",
+                              "description": "(Required) Unique service identifier"
+                            },
+                            {
+                              "id": "c52f6926-34f1-489e-af94-a6f08b823e8e",
+                              "key": "generationId",
+                              "value": "<string>",
+                              "description": "(Required) Generation (version) identifier"
+                            }
+                          ]
+                        },
+                        "description": "Delete a specific generation from a service."
+                      },
+                      "response": [
+                        {
+                          "id": "de5facad-1f59-43a7-acf8-069b536b3cac",
+                          "name": "Generation deleted",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/services/:serviceId/generations/:generationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "services",
+                                ":serviceId",
+                                "generations",
+                                ":generationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "serviceId"
+                                },
+                                {
+                                  "key": "generationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:07:24.000Z",
+                          "updatedAt": "2026-06-05T15:07:24.000Z",
+                          "uid": "35240-de5facad-1f59-43a7-acf8-069b536b3cac"
+                        },
+                        {
+                          "id": "17d13431-45ab-4fe6-b313-05333a77ea79",
+                          "name": "Generation not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/services/:serviceId/generations/:generationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "services",
+                                ":serviceId",
+                                "generations",
+                                ":generationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "serviceId"
+                                },
+                                {
+                                  "key": "generationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:07:24.000Z",
+                          "updatedAt": "2026-06-05T15:07:24.000Z",
+                          "uid": "35240-17d13431-45ab-4fe6-b313-05333a77ea79"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:07:24.000Z",
+                      "updatedAt": "2026-06-05T15:07:24.000Z",
+                      "uid": "35240-e0f3a30a-2df5-4525-92f6-3c915632789f"
+                    }
+                  ],
+                  "id": "d2b7b130-750c-467e-8441-2f13a2b0a87f",
+                  "createdAt": "2026-06-05T15:07:24.000Z",
+                  "updatedAt": "2026-06-05T15:07:24.000Z",
+                  "uid": "35240-d2b7b130-750c-467e-8441-2f13a2b0a87f"
+                },
+                {
+                  "name": "Dataiku List generations",
+                  "id": "cc701fcc-9147-41ea-a3da-7a7019784006",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/services/:serviceId/generations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "services",
+                        ":serviceId",
+                        "generations"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a4960cc8-63df-4450-87d8-0bef8fe6c653",
+                          "key": "serviceId",
+                          "value": "<string>",
+                          "description": "(Required) Unique service identifier"
+                        }
+                      ]
+                    },
+                    "description": "List all generations (deployed versions) of a service."
+                  },
+                  "response": [
+                    {
+                      "id": "4683059b-3368-4b2b-bdac-4fe8c3f706bd",
+                      "name": "List of generations",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/services/:serviceId/generations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "services",
+                            ":serviceId",
+                            "generations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serviceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"generationId\": \"<string>\",\n    \"active\": \"<boolean>\",\n    \"createdOn\": \"<long>\"\n  },\n  {\n    \"generationId\": \"<string>\",\n    \"active\": \"<boolean>\",\n    \"createdOn\": \"<long>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:07:24.000Z",
+                      "updatedAt": "2026-06-05T15:07:24.000Z",
+                      "uid": "35240-4683059b-3368-4b2b-bdac-4fe8c3f706bd"
+                    },
+                    {
+                      "id": "35dcecc2-f22b-4f6a-8d08-f254a1c1a769",
+                      "name": "Service not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/services/:serviceId/generations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "services",
+                            ":serviceId",
+                            "generations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serviceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:07:24.000Z",
+                      "updatedAt": "2026-06-05T15:07:24.000Z",
+                      "uid": "35240-35dcecc2-f22b-4f6a-8d08-f254a1c1a769"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:07:24.000Z",
+                  "updatedAt": "2026-06-05T15:07:24.000Z",
+                  "uid": "35240-cc701fcc-9147-41ea-a3da-7a7019784006"
+                },
+                {
+                  "name": "Dataiku Import a generation",
+                  "id": "282c77eb-755e-49e1-8e8b-2908e6fe74a1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "ZIP archive containing the generation bundle",
+                          "key": "file",
+                          "type": "file",
+                          "value": null
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/services/:serviceId/generations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "services",
+                        ":serviceId",
+                        "generations"
+                      ],
+                      "variable": [
+                        {
+                          "id": "dde118f9-5983-43de-865a-4452730bf514",
+                          "key": "serviceId",
+                          "value": "<string>",
+                          "description": "(Required) Unique service identifier"
+                        }
+                      ]
+                    },
+                    "description": "Import a new generation (bundle) for a service from a ZIP archive."
+                  },
+                  "response": [
+                    {
+                      "id": "e284f417-5048-4641-a8cd-8548de1d4585",
+                      "name": "Generation imported",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "ZIP archive containing the generation bundle",
+                              "key": "file",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/services/:serviceId/generations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "services",
+                            ":serviceId",
+                            "generations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serviceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"generationId\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"createdOn\": \"<long>\"\n}",
+                      "createdAt": "2026-06-05T15:07:24.000Z",
+                      "updatedAt": "2026-06-05T15:07:24.000Z",
+                      "uid": "35240-e284f417-5048-4641-a8cd-8548de1d4585"
+                    },
+                    {
+                      "id": "b69c91d8-85d8-489f-b43e-068801c8bd15",
+                      "name": "Invalid bundle",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "ZIP archive containing the generation bundle",
+                              "key": "file",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/services/:serviceId/generations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "services",
+                            ":serviceId",
+                            "generations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serviceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:07:24.000Z",
+                      "updatedAt": "2026-06-05T15:07:24.000Z",
+                      "uid": "35240-b69c91d8-85d8-489f-b43e-068801c8bd15"
+                    },
+                    {
+                      "id": "e1dfa0d1-8d89-4e4d-943b-cb58e62e9efe",
+                      "name": "Service not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "ZIP archive containing the generation bundle",
+                              "key": "file",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/services/:serviceId/generations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "services",
+                            ":serviceId",
+                            "generations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serviceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:07:24.000Z",
+                      "updatedAt": "2026-06-05T15:07:24.000Z",
+                      "uid": "35240-e1dfa0d1-8d89-4e4d-943b-cb58e62e9efe"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:07:24.000Z",
+                  "updatedAt": "2026-06-05T15:07:24.000Z",
+                  "uid": "35240-282c77eb-755e-49e1-8e8b-2908e6fe74a1"
+                }
+              ],
+              "id": "cbd157dc-2dd8-484e-8806-dc727195b078",
+              "createdAt": "2026-06-05T15:07:24.000Z",
+              "updatedAt": "2026-06-05T15:07:24.000Z",
+              "uid": "35240-cbd157dc-2dd8-484e-8806-dc727195b078"
+            },
+            {
+              "name": "Dataiku Get service details",
+              "id": "570c8d23-8ce8-417d-bda3-d9d14901552e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/services/:serviceId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "services",
+                    ":serviceId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "0981fc52-59ea-4eee-844e-52f6f15ab92d",
+                      "key": "serviceId",
+                      "value": "<string>",
+                      "description": "(Required) Unique service identifier"
+                    }
+                  ]
+                },
+                "description": "Retrieve the details and configuration of a deployed service."
+              },
+              "response": [
+                {
+                  "id": "70702d87-ba0f-4600-949a-1b2592705860",
+                  "name": "Service details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/services/:serviceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "services",
+                        ":serviceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "serviceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"serviceId\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"activeGeneration\": \"<string>\",\n  \"endpoints\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"CUSTOM_PREDICTION\",\n      \"modelRef\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"PYTHON_FUNCTION\",\n      \"modelRef\": \"<string>\"\n    }\n  ],\n  \"generationCount\": \"<integer>\"\n}",
+                  "createdAt": "2026-06-05T15:07:24.000Z",
+                  "updatedAt": "2026-06-05T15:07:24.000Z",
+                  "uid": "35240-70702d87-ba0f-4600-949a-1b2592705860"
+                },
+                {
+                  "id": "31b1d575-f1a5-40af-9a5f-983279624055",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/services/:serviceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "services",
+                        ":serviceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "serviceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:07:24.000Z",
+                  "updatedAt": "2026-06-05T15:07:24.000Z",
+                  "uid": "35240-31b1d575-f1a5-40af-9a5f-983279624055"
+                },
+                {
+                  "id": "11853d69-0158-4b27-afba-aa2511cc4d61",
+                  "name": "Service not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/services/:serviceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "services",
+                        ":serviceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "serviceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:07:24.000Z",
+                  "updatedAt": "2026-06-05T15:07:24.000Z",
+                  "uid": "35240-11853d69-0158-4b27-afba-aa2511cc4d61"
+                }
+              ],
+              "createdAt": "2026-06-05T15:07:24.000Z",
+              "updatedAt": "2026-06-05T15:07:24.000Z",
+              "uid": "35240-570c8d23-8ce8-417d-bda3-d9d14901552e"
+            },
+            {
+              "name": "Dataiku Delete a service",
+              "id": "013f1523-496c-4b90-aba7-a45d120da15b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/services/:serviceId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "services",
+                    ":serviceId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "b4d3c4c1-31bb-4997-8eb6-095653fd83cf",
+                      "key": "serviceId",
+                      "value": "<string>",
+                      "description": "(Required) Unique service identifier"
+                    }
+                  ]
+                },
+                "description": "Remove a deployed service and all its generations from the API node."
+              },
+              "response": [
+                {
+                  "id": "4a064d26-c8fc-4fe6-b8a2-280b629be61f",
+                  "name": "Service deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/services/:serviceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "services",
+                        ":serviceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "serviceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:07:24.000Z",
+                  "updatedAt": "2026-06-05T15:07:24.000Z",
+                  "uid": "35240-4a064d26-c8fc-4fe6-b8a2-280b629be61f"
+                },
+                {
+                  "id": "d161e081-61ef-4d6f-8a4a-91a937c7a3a6",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/services/:serviceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "services",
+                        ":serviceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "serviceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:07:24.000Z",
+                  "updatedAt": "2026-06-05T15:07:24.000Z",
+                  "uid": "35240-d161e081-61ef-4d6f-8a4a-91a937c7a3a6"
+                },
+                {
+                  "id": "e0808901-aaf4-4893-ae13-860b3dfee748",
+                  "name": "Service not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/services/:serviceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "services",
+                        ":serviceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "serviceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:07:24.000Z",
+                  "updatedAt": "2026-06-05T15:07:24.000Z",
+                  "uid": "35240-e0808901-aaf4-4893-ae13-860b3dfee748"
+                }
+              ],
+              "createdAt": "2026-06-05T15:07:24.000Z",
+              "updatedAt": "2026-06-05T15:07:24.000Z",
+              "uid": "35240-013f1523-496c-4b90-aba7-a45d120da15b"
+            }
+          ],
+          "id": "3edff70c-3696-4af9-ab79-dfce189ea3ac",
+          "createdAt": "2026-06-05T15:07:24.000Z",
+          "updatedAt": "2026-06-05T15:07:24.000Z",
+          "uid": "35240-3edff70c-3696-4af9-ab79-dfce189ea3ac"
+        },
+        {
+          "name": "Dataiku List deployed services",
+          "id": "5db9b6d2-5fbb-4cbf-9d94-91d032f60392",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/services",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "services"
+              ]
+            },
+            "description": "List all services currently deployed on this API node."
+          },
+          "response": [
+            {
+              "id": "9f01b78f-3cd7-4d71-9390-9dfb89c739b0",
+              "name": "List of deployed services",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/services",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "services"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"serviceId\": \"<string>\",\n    \"enabled\": \"<boolean>\",\n    \"activeGeneration\": \"<string>\",\n    \"generationCount\": \"<integer>\"\n  },\n  {\n    \"serviceId\": \"<string>\",\n    \"enabled\": \"<boolean>\",\n    \"activeGeneration\": \"<string>\",\n    \"generationCount\": \"<integer>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:07:24.000Z",
+              "updatedAt": "2026-06-05T15:07:24.000Z",
+              "uid": "35240-9f01b78f-3cd7-4d71-9390-9dfb89c739b0"
+            },
+            {
+              "id": "e1011122-40dc-4a27-ba1d-147f8dac5503",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/services",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "services"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:07:24.000Z",
+              "updatedAt": "2026-06-05T15:07:24.000Z",
+              "uid": "35240-e1011122-40dc-4a27-ba1d-147f8dac5503"
+            }
+          ],
+          "createdAt": "2026-06-05T15:07:24.000Z",
+          "updatedAt": "2026-06-05T15:07:24.000Z",
+          "uid": "35240-5db9b6d2-5fbb-4cbf-9d94-91d032f60392"
+        }
+      ],
+      "id": "799a6d96-81ce-40c8-990c-6ecea518c7d6",
+      "createdAt": "2026-06-05T15:07:24.000Z",
+      "updatedAt": "2026-06-05T15:07:24.000Z",
+      "uid": "35240-799a6d96-81ce-40c8-990c-6ecea518c7d6"
+    },
+    {
+      "name": "auth",
+      "item": [
+        {
+          "name": "keys",
+          "item": [
+            {
+              "name": "{keyId}",
+              "item": [
+                {
+                  "name": "Dataiku Get authentication key details",
+                  "id": "897bd143-c6a6-4e64-8696-011b2e9f474b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/auth/keys/:keyId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "keys",
+                        ":keyId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "bc2ea4b5-5f94-4141-a160-a4fe5c6cdb56",
+                          "key": "keyId",
+                          "value": "<string>",
+                          "description": "(Required) Authentication key identifier"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve details of a specific authentication key."
+                  },
+                  "response": [
+                    {
+                      "id": "770db409-a933-426b-b843-5728ec492da4",
+                      "name": "Authentication key details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/auth/keys/:keyId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "auth",
+                            "keys",
+                            ":keyId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "keyId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"key\": \"<string>\",\n  \"label\": \"<string>\",\n  \"createdOn\": \"<long>\",\n  \"allowedServices\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-06-05T15:07:24.000Z",
+                      "updatedAt": "2026-06-05T15:07:24.000Z",
+                      "uid": "35240-770db409-a933-426b-b843-5728ec492da4"
+                    },
+                    {
+                      "id": "3c2bc34d-6b55-43c3-a491-5435b1f2e94d",
+                      "name": "Key not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/auth/keys/:keyId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "auth",
+                            "keys",
+                            ":keyId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "keyId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:07:24.000Z",
+                      "updatedAt": "2026-06-05T15:07:24.000Z",
+                      "uid": "35240-3c2bc34d-6b55-43c3-a491-5435b1f2e94d"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:07:24.000Z",
+                  "updatedAt": "2026-06-05T15:07:24.000Z",
+                  "uid": "35240-897bd143-c6a6-4e64-8696-011b2e9f474b"
+                },
+                {
+                  "name": "Dataiku Delete an authentication key",
+                  "id": "528664bb-04c0-42fa-b546-c6f99c40b84e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/auth/keys/:keyId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "keys",
+                        ":keyId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e91dd4b4-60f7-48e8-8aee-83fce06196ce",
+                          "key": "keyId",
+                          "value": "<string>",
+                          "description": "(Required) Authentication key identifier"
+                        }
+                      ]
+                    },
+                    "description": "Delete an authentication key."
+                  },
+                  "response": [
+                    {
+                      "id": "7367d3b9-eccd-4f9c-a91c-ac3202954024",
+                      "name": "Key deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/auth/keys/:keyId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "auth",
+                            "keys",
+                            ":keyId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "keyId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:07:24.000Z",
+                      "updatedAt": "2026-06-05T15:07:24.000Z",
+                      "uid": "35240-7367d3b9-eccd-4f9c-a91c-ac3202954024"
+                    },
+                    {
+                      "id": "b4356ee0-24cb-4fde-b0ee-12b487df2f17",
+                      "name": "Key not found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/auth/keys/:keyId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "auth",
+                            "keys",
+                            ":keyId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "keyId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:07:24.000Z",
+                      "updatedAt": "2026-06-05T15:07:24.000Z",
+                      "uid": "35240-b4356ee0-24cb-4fde-b0ee-12b487df2f17"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:07:24.000Z",
+                  "updatedAt": "2026-06-05T15:07:24.000Z",
+                  "uid": "35240-528664bb-04c0-42fa-b546-c6f99c40b84e"
+                }
+              ],
+              "id": "e1fa02ff-7bc9-4f77-8998-6ed1f8dd2a44",
+              "createdAt": "2026-06-05T15:07:24.000Z",
+              "updatedAt": "2026-06-05T15:07:24.000Z",
+              "uid": "35240-e1fa02ff-7bc9-4f77-8998-6ed1f8dd2a44"
+            },
+            {
+              "name": "Dataiku List authentication keys",
+              "id": "c169d5b9-94ee-4703-9843-39399ff02207",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/auth/keys",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "keys"
+                  ]
+                },
+                "description": "List all API authentication keys configured for accessing services."
+              },
+              "response": [
+                {
+                  "id": "b65b1fa8-1160-4a82-a2b5-1c0bcc6edbcd",
+                  "name": "List of authentication keys",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/auth/keys",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "keys"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<string>\",\n    \"key\": \"<string>\",\n    \"label\": \"<string>\",\n    \"createdOn\": \"<long>\",\n    \"allowedServices\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"id\": \"<string>\",\n    \"key\": \"<string>\",\n    \"label\": \"<string>\",\n    \"createdOn\": \"<long>\",\n    \"allowedServices\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                  "createdAt": "2026-06-05T15:07:24.000Z",
+                  "updatedAt": "2026-06-05T15:07:24.000Z",
+                  "uid": "35240-b65b1fa8-1160-4a82-a2b5-1c0bcc6edbcd"
+                },
+                {
+                  "id": "95eb279d-51e8-4c16-af32-efb39aa1e236",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/auth/keys",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "keys"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:07:24.000Z",
+                  "updatedAt": "2026-06-05T15:07:24.000Z",
+                  "uid": "35240-95eb279d-51e8-4c16-af32-efb39aa1e236"
+                }
+              ],
+              "createdAt": "2026-06-05T15:07:24.000Z",
+              "updatedAt": "2026-06-05T15:07:24.000Z",
+              "uid": "35240-c169d5b9-94ee-4703-9843-39399ff02207"
+            },
+            {
+              "name": "Dataiku Create an authentication key",
+              "id": "e8dba172-8edc-40b5-99f1-4418e005bcf4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"<string>\",\n  \"allowedServices\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/auth/keys",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "keys"
+                  ]
+                },
+                "description": "Create a new authentication key for accessing API node services."
+              },
+              "response": [
+                {
+                  "id": "4d60449c-c248-4167-9d1c-df6d297ef52d",
+                  "name": "Authentication key created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"label\": \"<string>\",\n  \"allowedServices\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/auth/keys",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "keys"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"key\": \"<string>\",\n  \"label\": \"<string>\",\n  \"createdOn\": \"<long>\",\n  \"allowedServices\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-06-05T15:07:24.000Z",
+                  "updatedAt": "2026-06-05T15:07:24.000Z",
+                  "uid": "35240-4d60449c-c248-4167-9d1c-df6d297ef52d"
+                },
+                {
+                  "id": "445ddf5f-c1c1-42b8-9b8e-aa6c1487b2ea",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"label\": \"<string>\",\n  \"allowedServices\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/auth/keys",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "keys"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:07:24.000Z",
+                  "updatedAt": "2026-06-05T15:07:24.000Z",
+                  "uid": "35240-445ddf5f-c1c1-42b8-9b8e-aa6c1487b2ea"
+                }
+              ],
+              "createdAt": "2026-06-05T15:07:24.000Z",
+              "updatedAt": "2026-06-05T15:07:24.000Z",
+              "uid": "35240-e8dba172-8edc-40b5-99f1-4418e005bcf4"
+            }
+          ],
+          "id": "f9225ca1-976a-4250-953d-031de3956cd4",
+          "createdAt": "2026-06-05T15:07:24.000Z",
+          "updatedAt": "2026-06-05T15:07:24.000Z",
+          "uid": "35240-f9225ca1-976a-4250-953d-031de3956cd4"
+        }
+      ],
+      "id": "b4e7b6b5-72ca-48c3-b9ef-c4b4e3410ea3",
+      "createdAt": "2026-06-05T15:07:24.000Z",
+      "updatedAt": "2026-06-05T15:07:24.000Z",
+      "uid": "35240-b4e7b6b5-72ca-48c3-b9ef-c4b4e3410ea3"
+    },
+    {
+      "name": "metrics",
+      "item": [
+        {
+          "name": "Dataiku Get API node metrics",
+          "id": "97974173-607b-411a-a257-1ac3ef93a6aa",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/metrics",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "metrics"
+              ]
+            },
+            "description": "Retrieve metrics about the API node including request counts, latencies, and error rates."
+          },
+          "response": [
+            {
+              "id": "9e170b6e-e15f-45c8-b2e5-0e802018f52b",
+              "name": "API node metrics",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/metrics",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "metrics"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"totalRequests\": \"<long>\",\n  \"activeRequests\": \"<integer>\",\n  \"averageLatencyMs\": \"<double>\",\n  \"errorCount\": \"<long>\",\n  \"serviceMetrics\": {\n    \"deseruntc0d\": {\n      \"requestCount\": \"<long>\",\n      \"averageLatencyMs\": \"<double>\",\n      \"errorCount\": \"<long>\"\n    }\n  }\n}",
+              "createdAt": "2026-06-05T15:07:24.000Z",
+              "updatedAt": "2026-06-05T15:07:24.000Z",
+              "uid": "35240-9e170b6e-e15f-45c8-b2e5-0e802018f52b"
+            },
+            {
+              "id": "d63264ec-5ffa-4a6a-b920-f0fd893f5629",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/metrics",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "metrics"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:07:24.000Z",
+              "updatedAt": "2026-06-05T15:07:24.000Z",
+              "uid": "35240-d63264ec-5ffa-4a6a-b920-f0fd893f5629"
+            }
+          ],
+          "createdAt": "2026-06-05T15:07:24.000Z",
+          "updatedAt": "2026-06-05T15:07:24.000Z",
+          "uid": "35240-97974173-607b-411a-a257-1ac3ef93a6aa"
+        }
+      ],
+      "id": "9acc8d96-3150-42c1-95ea-9c1ce6f71db0",
+      "createdAt": "2026-06-05T15:07:24.000Z",
+      "updatedAt": "2026-06-05T15:07:24.000Z",
+      "uid": "35240-9acc8d96-3150-42c1-95ea-9c1ce6f71db0"
+    },
+    {
+      "name": "health",
+      "item": [
+        {
+          "name": "Dataiku Get API node health",
+          "id": "16151e26-4a09-45fe-9f6d-4281bf755e56",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "health"
+              ]
+            },
+            "description": "Check the health status of the API node."
+          },
+          "response": [
+            {
+              "id": "035da14d-e0dd-49c7-af22-a655c18989a9",
+              "name": "API node is healthy",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/health",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "health"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"UNHEALTHY\",\n  \"details\": {}\n}",
+              "createdAt": "2026-06-05T15:07:24.000Z",
+              "updatedAt": "2026-06-05T15:07:24.000Z",
+              "uid": "35240-035da14d-e0dd-49c7-af22-a655c18989a9"
+            }
+          ],
+          "createdAt": "2026-06-05T15:07:24.000Z",
+          "updatedAt": "2026-06-05T15:07:24.000Z",
+          "uid": "35240-16151e26-4a09-45fe-9f6d-4281bf755e56"
+        }
+      ],
+      "id": "b428a651-2374-4cfe-a48d-26888b98b8a2",
+      "createdAt": "2026-06-05T15:07:24.000Z",
+      "updatedAt": "2026-06-05T15:07:24.000Z",
+      "uid": "35240-b428a651-2374-4cfe-a48d-26888b98b8a2"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "apinode-host",
+      "value": "apinode.example.com"
+    },
+    {
+      "key": "port",
+      "value": "12443"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{apinode-host}}:{{port}}/admin/api"
+    }
+  ]
+}

@@ -1,0 +1,1160 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dataiku DSS Public API",
+    "version": "13.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/projects"
+          },
+          "docs": "Retrieve a list of all projects the API key has access to."
+        },
+        {
+          "info": {
+            "name": "Dataiku Create a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{dss-host}/public/api/projects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new DSS project."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get project details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/projects/:projectKey",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve metadata and settings for a specific project."
+        },
+        {
+          "info": {
+            "name": "Dataiku Delete a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{dss-host}/public/api/projects/:projectKey",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              }
+            ]
+          },
+          "docs": "Delete a project and all its contents."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get project metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/projects/:projectKey/metadata",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve metadata (labels, description, tags, etc.) for a project."
+        },
+        {
+          "info": {
+            "name": "Dataiku Set project metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{dss-host}/public/api/projects/:projectKey/metadata",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update metadata for a project."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Datasets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List datasets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/projects/:projectKey/datasets",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              }
+            ]
+          },
+          "docs": "List all datasets in a project."
+        },
+        {
+          "info": {
+            "name": "Dataiku Create a dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{dss-host}/public/api/projects/:projectKey/datasets",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new dataset in the project."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get dataset details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/projects/:projectKey/datasets/:datasetName",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              },
+              {
+                "name": "datasetName",
+                "value": "",
+                "type": "path",
+                "description": "Dataset name within the project"
+              }
+            ]
+          },
+          "docs": "Get the definition and schema of a dataset."
+        },
+        {
+          "info": {
+            "name": "Dataiku Update a dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{dss-host}/public/api/projects/:projectKey/datasets/:datasetName",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              },
+              {
+                "name": "datasetName",
+                "value": "",
+                "type": "path",
+                "description": "Dataset name within the project"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the definition of a dataset."
+        },
+        {
+          "info": {
+            "name": "Dataiku Delete a dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{dss-host}/public/api/projects/:projectKey/datasets/:datasetName",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              },
+              {
+                "name": "datasetName",
+                "value": "",
+                "type": "path",
+                "description": "Dataset name within the project"
+              }
+            ]
+          },
+          "docs": "Delete a dataset from the project."
+        },
+        {
+          "info": {
+            "name": "Dataiku Read dataset data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/projects/:projectKey/datasets/:datasetName/data",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              },
+              {
+                "name": "datasetName",
+                "value": "",
+                "type": "path",
+                "description": "Dataset name within the project"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of rows to return"
+              },
+              {
+                "name": "partitions",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of partition identifiers to read from"
+              }
+            ]
+          },
+          "docs": "Read rows from a dataset. Returns data in JSON format with columns and rows."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get dataset schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/projects/:projectKey/datasets/:datasetName/schema",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              },
+              {
+                "name": "datasetName",
+                "value": "",
+                "type": "path",
+                "description": "Dataset name within the project"
+              }
+            ]
+          },
+          "docs": "Get the schema (column names and types) of a dataset."
+        },
+        {
+          "info": {
+            "name": "Dataiku Set dataset schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{dss-host}/public/api/projects/:projectKey/datasets/:datasetName/schema",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              },
+              {
+                "name": "datasetName",
+                "value": "",
+                "type": "path",
+                "description": "Dataset name within the project"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the schema of a dataset."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Recipes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List recipes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/projects/:projectKey/recipes",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              }
+            ]
+          },
+          "docs": "List all recipes in a project."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get recipe details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/projects/:projectKey/recipes/:recipeName",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              },
+              {
+                "name": "recipeName",
+                "value": "",
+                "type": "path",
+                "description": "Recipe name within the project"
+              }
+            ]
+          },
+          "docs": "Get the full definition of a recipe."
+        },
+        {
+          "info": {
+            "name": "Dataiku Delete a recipe",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{dss-host}/public/api/projects/:projectKey/recipes/:recipeName",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              },
+              {
+                "name": "recipeName",
+                "value": "",
+                "type": "path",
+                "description": "Recipe name within the project"
+              }
+            ]
+          },
+          "docs": "Delete a recipe from the project."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/projects/:projectKey/jobs",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              }
+            ]
+          },
+          "docs": "List jobs in a project."
+        },
+        {
+          "info": {
+            "name": "Dataiku Start a new job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{dss-host}/public/api/projects/:projectKey/jobs",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start a new build job in the project."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get job status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/projects/:projectKey/jobs/:jobId",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              },
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "Unique job identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve the status and details of a specific job."
+        },
+        {
+          "info": {
+            "name": "Dataiku Abort a job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{dss-host}/public/api/projects/:projectKey/jobs/:jobId",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              },
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "Unique job identifier"
+              }
+            ]
+          },
+          "docs": "Abort a running job."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Scenarios",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List scenarios",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/projects/:projectKey/scenarios",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              }
+            ]
+          },
+          "docs": "List all scenarios in a project."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get scenario details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/projects/:projectKey/scenarios/:scenarioId",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              },
+              {
+                "name": "scenarioId",
+                "value": "",
+                "type": "path",
+                "description": "Scenario identifier"
+              }
+            ]
+          },
+          "docs": "Get the full definition of a scenario."
+        },
+        {
+          "info": {
+            "name": "Dataiku Run a scenario",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{dss-host}/public/api/projects/:projectKey/scenarios/:scenarioId/run",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              },
+              {
+                "name": "scenarioId",
+                "value": "",
+                "type": "path",
+                "description": "Scenario identifier"
+              }
+            ]
+          },
+          "docs": "Trigger execution of a scenario."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get scenario run status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/projects/:projectKey/scenarios/:scenarioId/light",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              },
+              {
+                "name": "scenarioId",
+                "value": "",
+                "type": "path",
+                "description": "Scenario identifier"
+              }
+            ]
+          },
+          "docs": "Get lightweight status of the last runs of a scenario."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Managed Folders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List managed folders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/projects/:projectKey/managedfolders",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              }
+            ]
+          },
+          "docs": "List all managed folders in a project."
+        },
+        {
+          "info": {
+            "name": "Dataiku List managed folder contents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/projects/:projectKey/managedfolders/:folderId/contents",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              },
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "path",
+                "description": "Managed folder identifier"
+              }
+            ]
+          },
+          "docs": "List the files in a managed folder."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Saved Models",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List saved models",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/projects/:projectKey/savedmodels",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              }
+            ]
+          },
+          "docs": "List all saved models in a project."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get saved model details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/projects/:projectKey/savedmodels/:savedModelId",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              },
+              {
+                "name": "savedModelId",
+                "value": "",
+                "type": "path",
+                "description": "Saved model identifier"
+              }
+            ]
+          },
+          "docs": "Get details of a saved model including its active version."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Model Evaluation Stores",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List model evaluation stores",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/projects/:projectKey/modelevaluationstores",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              }
+            ]
+          },
+          "docs": "List all model evaluation stores in a project."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Bundles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List bundles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/projects/:projectKey/bundles",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              }
+            ]
+          },
+          "docs": "List all exported bundles of a project."
+        },
+        {
+          "info": {
+            "name": "Dataiku Create a bundle",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{dss-host}/public/api/projects/:projectKey/bundles",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new export bundle for the project."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SQL Queries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku Execute a SQL query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{dss-host}/public/api/sql/queries",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a SQL query on a DSS connection and retrieve the results."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Connections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/admin/connections"
+          },
+          "docs": "List all data connections configured on the DSS instance."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get connection details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/admin/connections/:connectionName",
+            "params": [
+              {
+                "name": "connectionName",
+                "value": "",
+                "type": "path",
+                "description": "Connection name"
+              }
+            ]
+          },
+          "docs": "Get the full definition of a connection."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Code Envs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List code environments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/admin/code-envs"
+          },
+          "docs": "List all code environments on the DSS instance."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get code environment details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/admin/code-envs/:envLang/:envName",
+            "params": [
+              {
+                "name": "envLang",
+                "value": "",
+                "type": "path",
+                "description": "Code environment language (PYTHON or R)"
+              },
+              {
+                "name": "envName",
+                "value": "",
+                "type": "path",
+                "description": "Code environment name"
+              }
+            ]
+          },
+          "docs": "Get the definition of a code environment."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/admin/users"
+          },
+          "docs": "List all users on the DSS instance."
+        },
+        {
+          "info": {
+            "name": "Dataiku Create a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{dss-host}/public/api/admin/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new user on the DSS instance."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get user details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/admin/users/:login",
+            "params": [
+              {
+                "name": "login",
+                "value": "",
+                "type": "path",
+                "description": "User login name"
+              }
+            ]
+          },
+          "docs": "Get the details of a specific user."
+        },
+        {
+          "info": {
+            "name": "Dataiku Update a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{dss-host}/public/api/admin/users/:login",
+            "params": [
+              {
+                "name": "login",
+                "value": "",
+                "type": "path",
+                "description": "User login name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the details of a user."
+        },
+        {
+          "info": {
+            "name": "Dataiku Delete a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{dss-host}/public/api/admin/users/:login",
+            "params": [
+              {
+                "name": "login",
+                "value": "",
+                "type": "path",
+                "description": "User login name"
+              }
+            ]
+          },
+          "docs": "Delete a user from the DSS instance."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/admin/groups"
+          },
+          "docs": "List all groups on the DSS instance."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get group details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/admin/groups/:groupName",
+            "params": [
+              {
+                "name": "groupName",
+                "value": "",
+                "type": "path",
+                "description": "Group name"
+              }
+            ]
+          },
+          "docs": "Get the details of a specific group."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Global API Keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List global API keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/admin/globalAPIKeys"
+          },
+          "docs": "List all global API keys on the DSS instance."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "General Settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku Get general settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/admin/general-settings"
+          },
+          "docs": "Get the general settings of the DSS instance."
+        },
+        {
+          "info": {
+            "name": "Dataiku Update general settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{dss-host}/public/api/admin/general-settings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the general settings of the DSS instance."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Meanings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List meanings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/meanings"
+          },
+          "docs": "List all user-defined meanings on the DSS instance."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Plugins",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List plugins",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/plugins"
+          },
+          "docs": "List all installed plugins on the DSS instance."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get plugin details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{dss-host}/public/api/plugins/:pluginId",
+            "params": [
+              {
+                "name": "pluginId",
+                "value": "",
+                "type": "path",
+                "description": "Plugin identifier"
+              }
+            ]
+          },
+          "docs": "Get the details of an installed plugin."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

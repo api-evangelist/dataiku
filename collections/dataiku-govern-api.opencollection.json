@@ -1,0 +1,489 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dataiku Govern API",
+    "version": "13.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Blueprints",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List blueprints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{govern-host}/public/api/blueprints"
+          },
+          "docs": "Retrieve a list of all governance blueprints. Blueprints define the structure and lifecycle of governed artifacts."
+        },
+        {
+          "info": {
+            "name": "Dataiku Create a blueprint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{govern-host}/public/api/blueprints",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new governance blueprint."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get blueprint details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{govern-host}/public/api/blueprints/:blueprintId",
+            "params": [
+              {
+                "name": "blueprintId",
+                "value": "",
+                "type": "path",
+                "description": "Unique blueprint identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve the full definition of a governance blueprint."
+        },
+        {
+          "info": {
+            "name": "Dataiku Update a blueprint",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{govern-host}/public/api/blueprints/:blueprintId",
+            "params": [
+              {
+                "name": "blueprintId",
+                "value": "",
+                "type": "path",
+                "description": "Unique blueprint identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the definition of a governance blueprint."
+        },
+        {
+          "info": {
+            "name": "Dataiku Delete a blueprint",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{govern-host}/public/api/blueprints/:blueprintId",
+            "params": [
+              {
+                "name": "blueprintId",
+                "value": "",
+                "type": "path",
+                "description": "Unique blueprint identifier"
+              }
+            ]
+          },
+          "docs": "Delete a governance blueprint and its versions."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Blueprint Versions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List blueprint versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{govern-host}/public/api/blueprints/:blueprintId/versions",
+            "params": [
+              {
+                "name": "blueprintId",
+                "value": "",
+                "type": "path",
+                "description": "Unique blueprint identifier"
+              }
+            ]
+          },
+          "docs": "List all versions of a governance blueprint."
+        },
+        {
+          "info": {
+            "name": "Dataiku Create a blueprint version",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{govern-host}/public/api/blueprints/:blueprintId/versions",
+            "params": [
+              {
+                "name": "blueprintId",
+                "value": "",
+                "type": "path",
+                "description": "Unique blueprint identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new version of a governance blueprint."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get blueprint version details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{govern-host}/public/api/blueprints/:blueprintId/versions/:versionId",
+            "params": [
+              {
+                "name": "blueprintId",
+                "value": "",
+                "type": "path",
+                "description": "Unique blueprint identifier"
+              },
+              {
+                "name": "versionId",
+                "value": "",
+                "type": "path",
+                "description": "Blueprint version identifier"
+              }
+            ]
+          },
+          "docs": "Get the full definition of a blueprint version."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Artifacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List artifacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{govern-host}/public/api/artifacts",
+            "params": [
+              {
+                "name": "blueprintId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by blueprint ID"
+              }
+            ]
+          },
+          "docs": "List governed artifacts, optionally filtered by blueprint."
+        },
+        {
+          "info": {
+            "name": "Dataiku Create an artifact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{govern-host}/public/api/artifacts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new governed artifact under a blueprint."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get artifact details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{govern-host}/public/api/artifacts/:artifactId",
+            "params": [
+              {
+                "name": "artifactId",
+                "value": "",
+                "type": "path",
+                "description": "Governed artifact identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve the details of a governed artifact."
+        },
+        {
+          "info": {
+            "name": "Dataiku Update an artifact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{govern-host}/public/api/artifacts/:artifactId",
+            "params": [
+              {
+                "name": "artifactId",
+                "value": "",
+                "type": "path",
+                "description": "Governed artifact identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the details of a governed artifact."
+        },
+        {
+          "info": {
+            "name": "Dataiku Delete an artifact",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{govern-host}/public/api/artifacts/:artifactId",
+            "params": [
+              {
+                "name": "artifactId",
+                "value": "",
+                "type": "path",
+                "description": "Governed artifact identifier"
+              }
+            ]
+          },
+          "docs": "Delete a governed artifact."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Custom Fields",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku Get artifact custom fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{govern-host}/public/api/artifacts/:artifactId/custom-fields",
+            "params": [
+              {
+                "name": "artifactId",
+                "value": "",
+                "type": "path",
+                "description": "Governed artifact identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve all custom field values for an artifact."
+        },
+        {
+          "info": {
+            "name": "Dataiku Set artifact custom fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{govern-host}/public/api/artifacts/:artifactId/custom-fields",
+            "params": [
+              {
+                "name": "artifactId",
+                "value": "",
+                "type": "path",
+                "description": "Governed artifact identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update custom field values for an artifact."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Artifact Sign-Offs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List artifact sign-offs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{govern-host}/public/api/artifacts/:artifactId/sign-offs",
+            "params": [
+              {
+                "name": "artifactId",
+                "value": "",
+                "type": "path",
+                "description": "Governed artifact identifier"
+              }
+            ]
+          },
+          "docs": "List all sign-off steps and their status for an artifact."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get sign-off step details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{govern-host}/public/api/artifacts/:artifactId/sign-offs/:signOffStepId",
+            "params": [
+              {
+                "name": "artifactId",
+                "value": "",
+                "type": "path",
+                "description": "Governed artifact identifier"
+              },
+              {
+                "name": "signOffStepId",
+                "value": "",
+                "type": "path",
+                "description": "Sign-off step identifier"
+              }
+            ]
+          },
+          "docs": "Get details of a specific sign-off step for an artifact."
+        },
+        {
+          "info": {
+            "name": "Dataiku Delegate a sign-off",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{govern-host}/public/api/artifacts/:artifactId/sign-offs/:signOffStepId/delegate",
+            "params": [
+              {
+                "name": "artifactId",
+                "value": "",
+                "type": "path",
+                "description": "Governed artifact identifier"
+              },
+              {
+                "name": "signOffStepId",
+                "value": "",
+                "type": "path",
+                "description": "Sign-off step identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delegate a sign-off step to another user."
+        },
+        {
+          "info": {
+            "name": "Dataiku Add a sign-off review",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{govern-host}/public/api/artifacts/:artifactId/sign-offs/:signOffStepId/reviews",
+            "params": [
+              {
+                "name": "artifactId",
+                "value": "",
+                "type": "path",
+                "description": "Governed artifact identifier"
+              },
+              {
+                "name": "signOffStepId",
+                "value": "",
+                "type": "path",
+                "description": "Sign-off step identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a review (approve or reject) to a sign-off step."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Roles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{govern-host}/public/api/roles"
+          },
+          "docs": "List all governance roles."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List Govern users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{govern-host}/public/api/users"
+          },
+          "docs": "List all users in the Govern instance."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -2,17 +2,17 @@
   "repo": "dataiku",
   "feeds": [
     {
-      "source": "https://blog.dataiku.com/atom.xml",
-      "feed_url": "https://blog.dataiku.com/atom.xml",
+      "source": "https://www.dataiku.com/stories/blog",
+      "feed_url": "https://www.dataiku.com/stories/blog/rss.xml",
       "title": "",
-      "saved": 0,
-      "method": "feed"
+      "saved": 4,
+      "method": "discovered"
     },
     {
       "source": "https://www.dataiku.com/product/pricing/",
       "error": "HTTPError"
     }
   ],
-  "post_count": 28,
-  "fetched": "2026-06-01T23:35:02Z"
+  "post_count": 34,
+  "fetched": "2026-06-14T20:42:17Z"
 }
