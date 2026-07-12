@@ -1,0 +1,19 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/dataiku-api-node-admin-openapi.yml, openapi/dataiku-govern-api-openapi.yml,
+  openapi/dataiku-public-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: apiKeyAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: Admin API key passed as Bearer token
+  sources:
+  - openapi/dataiku-api-node-admin-openapi.yml
+  - openapi/dataiku-govern-api-openapi.yml
+  - openapi/dataiku-public-api-openapi.yml
