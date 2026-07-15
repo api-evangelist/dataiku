@@ -214,6 +214,8 @@ maintainers:
     email: kin@apievangelist.com
     url: https://www.dataiku.com
 common:
+  - type: AgenticAccess
+    url: agentic-access/dataiku-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/dataiku-vulnerability-disclosure.yml
   - type: DomainSecurity
