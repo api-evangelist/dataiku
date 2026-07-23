@@ -1,0 +1,108 @@
+openapi: 3.1.0
+info:
+  title: Dataiku API Node Administration Artifact Sign-Offs Connections API
+  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  version: '13.0'
+  contact:
+    name: Dataiku Support
+    url: https://www.dataiku.com/support
+    email: support@dataiku.com
+  termsOfService: https://www.dataiku.com/terms/
+servers:
+- url: https://{apinode-host}:{port}/admin/api
+  description: Dataiku API Node Instance
+  variables:
+    apinode-host:
+      default: apinode.example.com
+      description: Hostname of the Dataiku API Node
+    port:
+      default: '12443'
+      description: Admin API port
+security:
+- apiKeyAuth: []
+tags:
+- name: Connections
+  description: Manage data connections
+paths:
+  /admin/connections:
+    get:
+      operationId: listConnections
+      summary: Dataiku List connections
+      description: List all data connections configured on the DSS instance.
+      tags:
+      - Connections
+      responses:
+        '200':
+          description: List of connections
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConnectionSummary'
+        '401':
+          description: Unauthorized
+  /admin/connections/{connectionName}:
+    get:
+      operationId: getConnection
+      summary: Dataiku Get connection details
+      description: Get the full definition of a connection.
+      tags:
+      - Connections
+      parameters:
+      - $ref: '#/components/parameters/connectionName'
+      responses:
+        '200':
+          description: Connection details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connection'
+        '404':
+          description: Connection not found
+components:
+  schemas:
+    Connection:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Connection name
+        type:
+          type: string
+          description: Connection type
+        params:
+          type: object
+          description: Connection-specific parameters
+        allowWrite:
+          type: boolean
+          description: Whether write operations are allowed
+        allowManagedDatasets:
+          type: boolean
+          description: Whether managed datasets are allowed
+    ConnectionSummary:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Connection name
+        type:
+          type: string
+          description: Connection type (e.g., PostgreSQL, S3, HDFS)
+  parameters:
+    connectionName:
+      name: connectionName
+      in: path
+      required: true
+      description: Connection name
+      schema:
+        type: string
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Admin API key passed as Bearer token
+externalDocs:
+  description: Dataiku API Node Administration Documentation
+  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html

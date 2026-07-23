@@ -1,0 +1,114 @@
+openapi: 3.1.0
+info:
+  title: Dataiku API Node Administration Artifact Sign-Offs Metrics API
+  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  version: '13.0'
+  contact:
+    name: Dataiku Support
+    url: https://www.dataiku.com/support
+    email: support@dataiku.com
+  termsOfService: https://www.dataiku.com/terms/
+servers:
+- url: https://{apinode-host}:{port}/admin/api
+  description: Dataiku API Node Instance
+  variables:
+    apinode-host:
+      default: apinode.example.com
+      description: Hostname of the Dataiku API Node
+    port:
+      default: '12443'
+      description: Admin API port
+security:
+- apiKeyAuth: []
+tags:
+- name: Metrics
+  description: Retrieve metrics and health information
+paths:
+  /metrics:
+    get:
+      operationId: getMetrics
+      summary: Dataiku Get API node metrics
+      description: Retrieve metrics about the API node including request counts, latencies, and error rates.
+      tags:
+      - Metrics
+      responses:
+        '200':
+          description: API node metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Metrics'
+        '401':
+          description: Unauthorized
+  /health:
+    get:
+      operationId: getHealth
+      summary: Dataiku Get API node health
+      description: Check the health status of the API node.
+      tags:
+      - Metrics
+      responses:
+        '200':
+          description: API node is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthStatus'
+      security: []
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - HEALTHY
+          - DEGRADED
+          - UNHEALTHY
+          description: Overall health status
+        details:
+          type: object
+          description: Additional health check details
+    Metrics:
+      type: object
+      properties:
+        totalRequests:
+          type: integer
+          format: int64
+          description: Total number of requests processed
+        activeRequests:
+          type: integer
+          description: Number of currently active requests
+        averageLatencyMs:
+          type: number
+          format: double
+          description: Average request latency in milliseconds
+        errorCount:
+          type: integer
+          format: int64
+          description: Total number of error responses
+        serviceMetrics:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              requestCount:
+                type: integer
+                format: int64
+              averageLatencyMs:
+                type: number
+                format: double
+              errorCount:
+                type: integer
+                format: int64
+          description: Per-service metrics keyed by service ID
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Admin API key passed as Bearer token
+externalDocs:
+  description: Dataiku API Node Administration Documentation
+  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html

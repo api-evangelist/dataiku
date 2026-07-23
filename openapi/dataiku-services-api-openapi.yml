@@ -1,0 +1,181 @@
+openapi: 3.1.0
+info:
+  title: Dataiku API Node Administration Artifact Sign-Offs Services API
+  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  version: '13.0'
+  contact:
+    name: Dataiku Support
+    url: https://www.dataiku.com/support
+    email: support@dataiku.com
+  termsOfService: https://www.dataiku.com/terms/
+servers:
+- url: https://{apinode-host}:{port}/admin/api
+  description: Dataiku API Node Instance
+  variables:
+    apinode-host:
+      default: apinode.example.com
+      description: Hostname of the Dataiku API Node
+    port:
+      default: '12443'
+      description: Admin API port
+security:
+- apiKeyAuth: []
+tags:
+- name: Services
+paths:
+  /services:
+    get:
+      operationId: listServices
+      summary: Dataiku List deployed services
+      description: List all services currently deployed on this API node.
+      tags:
+      - Services
+      responses:
+        '200':
+          description: List of deployed services
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiceSummary'
+        '401':
+          description: Unauthorized
+  /services/{serviceId}:
+    get:
+      operationId: getService
+      summary: Dataiku Get service details
+      description: Retrieve the details and configuration of a deployed service.
+      tags:
+      - Services
+      parameters:
+      - $ref: '#/components/parameters/serviceId'
+      responses:
+        '200':
+          description: Service details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Service not found
+    delete:
+      operationId: deleteService
+      summary: Dataiku Delete a service
+      description: Remove a deployed service and all its generations from the API node.
+      tags:
+      - Services
+      parameters:
+      - $ref: '#/components/parameters/serviceId'
+      responses:
+        '204':
+          description: Service deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Service not found
+  /services/{serviceId}/enable:
+    post:
+      operationId: enableService
+      summary: Dataiku Enable a service
+      description: Enable a deployed service to accept prediction requests.
+      tags:
+      - Services
+      parameters:
+      - $ref: '#/components/parameters/serviceId'
+      responses:
+        '200':
+          description: Service enabled
+        '404':
+          description: Service not found
+  /services/{serviceId}/disable:
+    post:
+      operationId: disableService
+      summary: Dataiku Disable a service
+      description: Disable a service to stop accepting prediction requests.
+      tags:
+      - Services
+      parameters:
+      - $ref: '#/components/parameters/serviceId'
+      responses:
+        '200':
+          description: Service disabled
+        '404':
+          description: Service not found
+components:
+  schemas:
+    ServiceSummary:
+      type: object
+      properties:
+        serviceId:
+          type: string
+          description: Unique service identifier
+        enabled:
+          type: boolean
+          description: Whether the service is enabled
+        activeGeneration:
+          type: string
+          description: Currently active generation identifier
+        generationCount:
+          type: integer
+          description: Number of available generations
+    Endpoint:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Endpoint identifier
+        type:
+          type: string
+          enum:
+          - STD_PREDICTION
+          - CUSTOM_PREDICTION
+          - R_PREDICTION
+          - CUSTOM_R_PREDICTION
+          - SQL_QUERY
+          - DATASET_LOOKUP
+          - R_FUNCTION
+          - PYTHON_FUNCTION
+          description: Endpoint type
+        modelRef:
+          type: string
+          description: Reference to the model used by this endpoint
+    Service:
+      type: object
+      properties:
+        serviceId:
+          type: string
+          description: Unique service identifier
+        enabled:
+          type: boolean
+          description: Whether the service is enabled
+        activeGeneration:
+          type: string
+          description: Currently active generation identifier
+        endpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Endpoint'
+          description: List of endpoints provided by this service
+        generationCount:
+          type: integer
+          description: Number of available generations
+  parameters:
+    serviceId:
+      name: serviceId
+      in: path
+      required: true
+      description: Unique service identifier
+      schema:
+        type: string
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Admin API key passed as Bearer token
+externalDocs:
+  description: Dataiku API Node Administration Documentation
+  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html

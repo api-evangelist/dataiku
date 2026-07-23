@@ -1,0 +1,224 @@
+openapi: 3.1.0
+info:
+  title: Dataiku API Node Administration Artifact Sign-Offs Jobs API
+  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  version: '13.0'
+  contact:
+    name: Dataiku Support
+    url: https://www.dataiku.com/support
+    email: support@dataiku.com
+  termsOfService: https://www.dataiku.com/terms/
+servers:
+- url: https://{apinode-host}:{port}/admin/api
+  description: Dataiku API Node Instance
+  variables:
+    apinode-host:
+      default: apinode.example.com
+      description: Hostname of the Dataiku API Node
+    port:
+      default: '12443'
+      description: Admin API port
+security:
+- apiKeyAuth: []
+tags:
+- name: Jobs
+  description: Run and monitor build jobs
+paths:
+  /projects/{projectKey}/jobs:
+    get:
+      operationId: listJobs
+      summary: Dataiku List jobs
+      description: List jobs in a project.
+      tags:
+      - Jobs
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      responses:
+        '200':
+          description: List of jobs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobSummary'
+        '404':
+          description: Project not found
+    post:
+      operationId: startJob
+      summary: Dataiku Start a new job
+      description: Start a new build job in the project.
+      tags:
+      - Jobs
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartJobRequest'
+      responses:
+        '200':
+          description: Job started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+        '400':
+          description: Invalid request
+  /projects/{projectKey}/jobs/{jobId}:
+    get:
+      operationId: getJob
+      summary: Dataiku Get job status
+      description: Retrieve the status and details of a specific job.
+      tags:
+      - Jobs
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/jobId'
+      responses:
+        '200':
+          description: Job details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+        '404':
+          description: Job not found
+    delete:
+      operationId: abortJob
+      summary: Dataiku Abort a job
+      description: Abort a running job.
+      tags:
+      - Jobs
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/jobId'
+      responses:
+        '204':
+          description: Job aborted
+        '404':
+          description: Job not found
+components:
+  schemas:
+    Job:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique job identifier
+        projectKey:
+          type: string
+          description: Project key
+        state:
+          type: string
+          enum:
+          - NOT_STARTED
+          - RUNNING
+          - DONE
+          - FAILED
+          - ABORTED
+          description: Current state of the job
+        initiator:
+          type: string
+          description: User who started the job
+        startTime:
+          type: integer
+          format: int64
+          description: Job start time as epoch milliseconds
+        endTime:
+          type: integer
+          format: int64
+          description: Job end time as epoch milliseconds
+        activities:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobActivity'
+          description: List of activities in the job
+    JobSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique job identifier
+        projectKey:
+          type: string
+          description: Project key
+        state:
+          type: string
+          enum:
+          - NOT_STARTED
+          - RUNNING
+          - DONE
+          - FAILED
+          - ABORTED
+          description: Current state of the job
+        initiator:
+          type: string
+          description: User who started the job
+        startTime:
+          type: integer
+          format: int64
+          description: Job start time as epoch milliseconds
+    JobActivity:
+      type: object
+      properties:
+        recipeProjectKey:
+          type: string
+        recipeName:
+          type: string
+        state:
+          type: string
+          enum:
+          - NOT_STARTED
+          - RUNNING
+          - DONE
+          - FAILED
+          - ABORTED
+          description: Activity state
+    StartJobRequest:
+      type: object
+      required:
+      - outputs
+      properties:
+        outputs:
+          type: array
+          items:
+            type: object
+            properties:
+              projectKey:
+                type: string
+              id:
+                type: string
+              type:
+                type: string
+                enum:
+                - DATASET
+                - MANAGED_FOLDER
+                - SAVED_MODEL
+          description: List of outputs to build
+  parameters:
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      description: Unique project key identifier
+      schema:
+        type: string
+    jobId:
+      name: jobId
+      in: path
+      required: true
+      description: Unique job identifier
+      schema:
+        type: string
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Admin API key passed as Bearer token
+externalDocs:
+  description: Dataiku API Node Administration Documentation
+  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html

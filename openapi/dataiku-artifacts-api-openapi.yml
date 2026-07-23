@@ -1,0 +1,217 @@
+openapi: 3.1.0
+info:
+  title: Dataiku API Node Administration Artifact Sign-Offs Artifacts API
+  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  version: '13.0'
+  contact:
+    name: Dataiku Support
+    url: https://www.dataiku.com/support
+    email: support@dataiku.com
+  termsOfService: https://www.dataiku.com/terms/
+servers:
+- url: https://{apinode-host}:{port}/admin/api
+  description: Dataiku API Node Instance
+  variables:
+    apinode-host:
+      default: apinode.example.com
+      description: Hostname of the Dataiku API Node
+    port:
+      default: '12443'
+      description: Admin API port
+security:
+- apiKeyAuth: []
+tags:
+- name: Artifacts
+  description: Manage governed artifacts (models, projects, etc.)
+paths:
+  /artifacts:
+    get:
+      operationId: listArtifacts
+      summary: Dataiku List artifacts
+      description: List governed artifacts, optionally filtered by blueprint.
+      tags:
+      - Artifacts
+      parameters:
+      - name: blueprintId
+        in: query
+        description: Filter by blueprint ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of artifacts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ArtifactSummary'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createArtifact
+      summary: Dataiku Create an artifact
+      description: Create a new governed artifact under a blueprint.
+      tags:
+      - Artifacts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateArtifactRequest'
+      responses:
+        '200':
+          description: Artifact created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Artifact'
+        '400':
+          description: Invalid request
+  /artifacts/{artifactId}:
+    get:
+      operationId: getArtifact
+      summary: Dataiku Get artifact details
+      description: Retrieve the details of a governed artifact.
+      tags:
+      - Artifacts
+      parameters:
+      - $ref: '#/components/parameters/artifactId'
+      responses:
+        '200':
+          description: Artifact details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Artifact'
+        '404':
+          description: Artifact not found
+    put:
+      operationId: updateArtifact
+      summary: Dataiku Update an artifact
+      description: Update the details of a governed artifact.
+      tags:
+      - Artifacts
+      parameters:
+      - $ref: '#/components/parameters/artifactId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Artifact'
+      responses:
+        '200':
+          description: Artifact updated
+        '404':
+          description: Artifact not found
+    delete:
+      operationId: deleteArtifact
+      summary: Dataiku Delete an artifact
+      description: Delete a governed artifact.
+      tags:
+      - Artifacts
+      parameters:
+      - $ref: '#/components/parameters/artifactId'
+      responses:
+        '204':
+          description: Artifact deleted
+        '404':
+          description: Artifact not found
+components:
+  schemas:
+    Artifact:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Artifact identifier
+        name:
+          type: string
+          description: Artifact display name
+        blueprintId:
+          type: string
+          description: Blueprint ID
+        blueprintVersionId:
+          type: string
+          description: Blueprint version ID
+        status:
+          type: string
+          description: Current workflow status
+        customFields:
+          type: object
+          additionalProperties: true
+          description: Custom field values
+        createdOn:
+          type: integer
+          format: int64
+          description: Creation timestamp
+        createdBy:
+          type: string
+          description: User who created the artifact
+        lastModifiedOn:
+          type: integer
+          format: int64
+          description: Last modification timestamp
+        lastModifiedBy:
+          type: string
+          description: User who last modified the artifact
+    ArtifactSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Artifact identifier
+        name:
+          type: string
+          description: Artifact display name
+        blueprintId:
+          type: string
+          description: Blueprint this artifact belongs to
+        status:
+          type: string
+          description: Current workflow status
+        createdOn:
+          type: integer
+          format: int64
+          description: Creation timestamp
+        createdBy:
+          type: string
+          description: User who created the artifact
+    CreateArtifactRequest:
+      type: object
+      required:
+      - name
+      - blueprintId
+      properties:
+        name:
+          type: string
+          description: Artifact display name
+        blueprintId:
+          type: string
+          description: Blueprint to associate with
+        blueprintVersionId:
+          type: string
+          description: Specific blueprint version to use
+        customFields:
+          type: object
+          additionalProperties: true
+          description: Initial custom field values
+  parameters:
+    artifactId:
+      name: artifactId
+      in: path
+      required: true
+      description: Governed artifact identifier
+      schema:
+        type: string
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Admin API key passed as Bearer token
+externalDocs:
+  description: Dataiku API Node Administration Documentation
+  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html

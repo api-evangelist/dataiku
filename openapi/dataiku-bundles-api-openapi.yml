@@ -1,0 +1,108 @@
+openapi: 3.1.0
+info:
+  title: Dataiku API Node Administration Artifact Sign-Offs Bundles API
+  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  version: '13.0'
+  contact:
+    name: Dataiku Support
+    url: https://www.dataiku.com/support
+    email: support@dataiku.com
+  termsOfService: https://www.dataiku.com/terms/
+servers:
+- url: https://{apinode-host}:{port}/admin/api
+  description: Dataiku API Node Instance
+  variables:
+    apinode-host:
+      default: apinode.example.com
+      description: Hostname of the Dataiku API Node
+    port:
+      default: '12443'
+      description: Admin API port
+security:
+- apiKeyAuth: []
+tags:
+- name: Bundles
+  description: Import and export project bundles
+paths:
+  /projects/{projectKey}/bundles:
+    get:
+      operationId: listBundles
+      summary: Dataiku List bundles
+      description: List all exported bundles of a project.
+      tags:
+      - Bundles
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      responses:
+        '200':
+          description: List of bundles
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BundleSummary'
+        '404':
+          description: Project not found
+    post:
+      operationId: createBundle
+      summary: Dataiku Create a bundle
+      description: Create a new export bundle for the project.
+      tags:
+      - Bundles
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBundleRequest'
+      responses:
+        '200':
+          description: Bundle created
+        '400':
+          description: Invalid request
+components:
+  parameters:
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      description: Unique project key identifier
+      schema:
+        type: string
+  schemas:
+    BundleSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Bundle identifier
+        projectKey:
+          type: string
+          description: Project key
+        createdOn:
+          type: integer
+          format: int64
+          description: Creation timestamp
+        createdBy:
+          type: string
+          description: User who created the bundle
+    CreateBundleRequest:
+      type: object
+      required:
+      - bundleId
+      properties:
+        bundleId:
+          type: string
+          description: Identifier for the new bundle
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Admin API key passed as Bearer token
+externalDocs:
+  description: Dataiku API Node Administration Documentation
+  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html

@@ -1,0 +1,96 @@
+openapi: 3.1.0
+info:
+  title: Dataiku API Node Administration Artifact Sign-Offs Groups API
+  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  version: '13.0'
+  contact:
+    name: Dataiku Support
+    url: https://www.dataiku.com/support
+    email: support@dataiku.com
+  termsOfService: https://www.dataiku.com/terms/
+servers:
+- url: https://{apinode-host}:{port}/admin/api
+  description: Dataiku API Node Instance
+  variables:
+    apinode-host:
+      default: apinode.example.com
+      description: Hostname of the Dataiku API Node
+    port:
+      default: '12443'
+      description: Admin API port
+security:
+- apiKeyAuth: []
+tags:
+- name: Groups
+  description: Manage DSS groups
+paths:
+  /admin/groups:
+    get:
+      operationId: listGroups
+      summary: Dataiku List groups
+      description: List all groups on the DSS instance.
+      tags:
+      - Groups
+      responses:
+        '200':
+          description: List of groups
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Group'
+        '401':
+          description: Unauthorized
+  /admin/groups/{groupName}:
+    get:
+      operationId: getGroup
+      summary: Dataiku Get group details
+      description: Get the details of a specific group.
+      tags:
+      - Groups
+      parameters:
+      - $ref: '#/components/parameters/groupName'
+      responses:
+        '200':
+          description: Group details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '404':
+          description: Group not found
+components:
+  schemas:
+    Group:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Group name
+        description:
+          type: string
+          description: Group description
+        admin:
+          type: boolean
+          description: Whether this is an admin group
+        sourceType:
+          type: string
+          description: Group source type (LOCAL, LDAP)
+  parameters:
+    groupName:
+      name: groupName
+      in: path
+      required: true
+      description: Group name
+      schema:
+        type: string
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Admin API key passed as Bearer token
+externalDocs:
+  description: Dataiku API Node Administration Documentation
+  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html

@@ -1,0 +1,126 @@
+openapi: 3.1.0
+info:
+  title: Dataiku API Node Administration Artifact Sign-Offs Managed Folders API
+  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  version: '13.0'
+  contact:
+    name: Dataiku Support
+    url: https://www.dataiku.com/support
+    email: support@dataiku.com
+  termsOfService: https://www.dataiku.com/terms/
+servers:
+- url: https://{apinode-host}:{port}/admin/api
+  description: Dataiku API Node Instance
+  variables:
+    apinode-host:
+      default: apinode.example.com
+      description: Hostname of the Dataiku API Node
+    port:
+      default: '12443'
+      description: Admin API port
+security:
+- apiKeyAuth: []
+tags:
+- name: Managed Folders
+  description: Manage folders for unstructured data
+paths:
+  /projects/{projectKey}/managedfolders:
+    get:
+      operationId: listManagedFolders
+      summary: Dataiku List managed folders
+      description: List all managed folders in a project.
+      tags:
+      - Managed Folders
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      responses:
+        '200':
+          description: List of managed folders
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ManagedFolder'
+        '404':
+          description: Project not found
+  /projects/{projectKey}/managedfolders/{folderId}/contents:
+    get:
+      operationId: listManagedFolderContents
+      summary: Dataiku List managed folder contents
+      description: List the files in a managed folder.
+      tags:
+      - Managed Folders
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/folderId'
+      responses:
+        '200':
+          description: Folder contents
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedFolderContents'
+        '404':
+          description: Managed folder not found
+components:
+  parameters:
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      description: Unique project key identifier
+      schema:
+        type: string
+    folderId:
+      name: folderId
+      in: path
+      required: true
+      description: Managed folder identifier
+      schema:
+        type: string
+  schemas:
+    ManagedFolderContents:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              path:
+                type: string
+                description: File path within the folder
+              size:
+                type: integer
+                format: int64
+                description: File size in bytes
+              lastModified:
+                type: integer
+                format: int64
+                description: Last modified timestamp
+          description: List of items in the folder
+    ManagedFolder:
+      type: object
+      properties:
+        projectKey:
+          type: string
+          description: Project key
+        id:
+          type: string
+          description: Managed folder identifier
+        name:
+          type: string
+          description: Managed folder name
+        type:
+          type: string
+          description: Storage type
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Admin API key passed as Bearer token
+externalDocs:
+  description: Dataiku API Node Administration Documentation
+  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html

@@ -1,0 +1,233 @@
+openapi: 3.1.0
+info:
+  title: Dataiku API Node Administration Artifact Sign-Offs Blueprint Versions API
+  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  version: '13.0'
+  contact:
+    name: Dataiku Support
+    url: https://www.dataiku.com/support
+    email: support@dataiku.com
+  termsOfService: https://www.dataiku.com/terms/
+servers:
+- url: https://{apinode-host}:{port}/admin/api
+  description: Dataiku API Node Instance
+  variables:
+    apinode-host:
+      default: apinode.example.com
+      description: Hostname of the Dataiku API Node
+    port:
+      default: '12443'
+      description: Admin API port
+security:
+- apiKeyAuth: []
+tags:
+- name: Blueprint Versions
+  description: Manage blueprint version definitions
+paths:
+  /blueprints/{blueprintId}/versions:
+    get:
+      operationId: listBlueprintVersions
+      summary: Dataiku List blueprint versions
+      description: List all versions of a governance blueprint.
+      tags:
+      - Blueprint Versions
+      parameters:
+      - $ref: '#/components/parameters/blueprintId'
+      responses:
+        '200':
+          description: List of blueprint versions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BlueprintVersionSummary'
+        '404':
+          description: Blueprint not found
+    post:
+      operationId: createBlueprintVersion
+      summary: Dataiku Create a blueprint version
+      description: Create a new version of a governance blueprint.
+      tags:
+      - Blueprint Versions
+      parameters:
+      - $ref: '#/components/parameters/blueprintId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBlueprintVersionRequest'
+      responses:
+        '200':
+          description: Blueprint version created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlueprintVersion'
+        '400':
+          description: Invalid request
+  /blueprints/{blueprintId}/versions/{versionId}:
+    get:
+      operationId: getBlueprintVersion
+      summary: Dataiku Get blueprint version details
+      description: Get the full definition of a blueprint version.
+      tags:
+      - Blueprint Versions
+      parameters:
+      - $ref: '#/components/parameters/blueprintId'
+      - $ref: '#/components/parameters/versionId'
+      responses:
+        '200':
+          description: Blueprint version details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlueprintVersion'
+        '404':
+          description: Blueprint version not found
+components:
+  schemas:
+    BlueprintVersion:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Version identifier
+        blueprintId:
+          type: string
+          description: Parent blueprint ID
+        versionNumber:
+          type: integer
+          description: Version number
+        status:
+          type: string
+          enum:
+          - DRAFT
+          - PUBLISHED
+          - ARCHIVED
+          description: Version status
+        fieldSettings:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldSetting'
+          description: Custom field definitions
+        signOffConfiguration:
+          $ref: '#/components/schemas/SignOffConfiguration'
+        createdOn:
+          type: integer
+          format: int64
+          description: Creation timestamp
+    SignOffStep:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Step identifier
+        name:
+          type: string
+          description: Step display name
+        description:
+          type: string
+          description: Step description
+        requiredReviewers:
+          type: integer
+          description: Number of required reviewers
+        assigneeType:
+          type: string
+          enum:
+          - ROLE
+          - USER
+          - GROUP
+          description: How reviewers are assigned
+    CreateBlueprintVersionRequest:
+      type: object
+      properties:
+        originVersionId:
+          type: string
+          description: Origin version to copy from
+    SignOffConfiguration:
+      type: object
+      properties:
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/SignOffStep'
+          description: Ordered list of sign-off steps
+    FieldSetting:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Field identifier
+        name:
+          type: string
+          description: Field display name
+        description:
+          type: string
+          description: Field description
+        type:
+          type: string
+          enum:
+          - TEXT
+          - LONG_TEXT
+          - NUMBER
+          - BOOLEAN
+          - DATE
+          - SELECT
+          - MULTISELECT
+          - USER
+          - USERS
+          description: Field type
+        required:
+          type: boolean
+          description: Whether the field is required
+        options:
+          type: array
+          items:
+            type: string
+          description: Available options for SELECT and MULTISELECT types
+    BlueprintVersionSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Version identifier
+        versionNumber:
+          type: integer
+          description: Version number
+        status:
+          type: string
+          enum:
+          - DRAFT
+          - PUBLISHED
+          - ARCHIVED
+          description: Version status
+        createdOn:
+          type: integer
+          format: int64
+          description: Creation timestamp
+  parameters:
+    versionId:
+      name: versionId
+      in: path
+      required: true
+      description: Blueprint version identifier
+      schema:
+        type: string
+    blueprintId:
+      name: blueprintId
+      in: path
+      required: true
+      description: Unique blueprint identifier
+      schema:
+        type: string
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Admin API key passed as Bearer token
+externalDocs:
+  description: Dataiku API Node Administration Documentation
+  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html

@@ -1,0 +1,157 @@
+openapi: 3.1.0
+info:
+  title: Dataiku API Node Administration Artifact Sign-Offs Recipes API
+  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  version: '13.0'
+  contact:
+    name: Dataiku Support
+    url: https://www.dataiku.com/support
+    email: support@dataiku.com
+  termsOfService: https://www.dataiku.com/terms/
+servers:
+- url: https://{apinode-host}:{port}/admin/api
+  description: Dataiku API Node Instance
+  variables:
+    apinode-host:
+      default: apinode.example.com
+      description: Hostname of the Dataiku API Node
+    port:
+      default: '12443'
+      description: Admin API port
+security:
+- apiKeyAuth: []
+tags:
+- name: Recipes
+  description: Manage recipes and data transformations
+paths:
+  /projects/{projectKey}/recipes:
+    get:
+      operationId: listRecipes
+      summary: Dataiku List recipes
+      description: List all recipes in a project.
+      tags:
+      - Recipes
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      responses:
+        '200':
+          description: List of recipes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RecipeSummary'
+        '404':
+          description: Project not found
+  /projects/{projectKey}/recipes/{recipeName}:
+    get:
+      operationId: getRecipe
+      summary: Dataiku Get recipe details
+      description: Get the full definition of a recipe.
+      tags:
+      - Recipes
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/recipeName'
+      responses:
+        '200':
+          description: Recipe details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipe'
+        '404':
+          description: Recipe not found
+    delete:
+      operationId: deleteRecipe
+      summary: Dataiku Delete a recipe
+      description: Delete a recipe from the project.
+      tags:
+      - Recipes
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/recipeName'
+      responses:
+        '204':
+          description: Recipe deleted
+        '404':
+          description: Recipe not found
+components:
+  parameters:
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      description: Unique project key identifier
+      schema:
+        type: string
+    recipeName:
+      name: recipeName
+      in: path
+      required: true
+      description: Recipe name within the project
+      schema:
+        type: string
+  schemas:
+    Tag:
+      type: object
+      properties:
+        versionNumber:
+          type: integer
+          description: Version number
+        lastModifiedBy:
+          type: object
+          properties:
+            login:
+              type: string
+        lastModifiedOn:
+          type: string
+          format: date-time
+          description: Timestamp of last modification
+    RecipeSummary:
+      type: object
+      properties:
+        projectKey:
+          type: string
+          description: Project key
+        name:
+          type: string
+          description: Recipe name
+        type:
+          type: string
+          description: Recipe type (e.g., prepare, python, sql, join, sync)
+    Recipe:
+      type: object
+      properties:
+        projectKey:
+          type: string
+          description: Project key
+        name:
+          type: string
+          description: Recipe name
+        type:
+          type: string
+          description: Recipe type
+        inputs:
+          type: object
+          description: Input datasets and roles
+        outputs:
+          type: object
+          description: Output datasets and roles
+        params:
+          type: object
+          description: Recipe-specific parameters
+        creationTag:
+          $ref: '#/components/schemas/Tag'
+        versionTag:
+          $ref: '#/components/schemas/Tag'
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Admin API key passed as Bearer token
+externalDocs:
+  description: Dataiku API Node Administration Documentation
+  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html

@@ -1,0 +1,209 @@
+openapi: 3.1.0
+info:
+  title: Dataiku API Node Administration Artifact Sign-Offs API
+  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  version: '13.0'
+  contact:
+    name: Dataiku Support
+    url: https://www.dataiku.com/support
+    email: support@dataiku.com
+  termsOfService: https://www.dataiku.com/terms/
+servers:
+- url: https://{apinode-host}:{port}/admin/api
+  description: Dataiku API Node Instance
+  variables:
+    apinode-host:
+      default: apinode.example.com
+      description: Hostname of the Dataiku API Node
+    port:
+      default: '12443'
+      description: Admin API port
+security:
+- apiKeyAuth: []
+tags:
+- name: Artifact Sign-Offs
+  description: Manage sign-off workflows on artifacts
+paths:
+  /artifacts/{artifactId}/sign-offs:
+    get:
+      operationId: listArtifactSignOffs
+      summary: Dataiku List artifact sign-offs
+      description: List all sign-off steps and their status for an artifact.
+      tags:
+      - Artifact Sign-Offs
+      parameters:
+      - $ref: '#/components/parameters/artifactId'
+      responses:
+        '200':
+          description: List of sign-offs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SignOff'
+        '404':
+          description: Artifact not found
+  /artifacts/{artifactId}/sign-offs/{signOffStepId}:
+    get:
+      operationId: getArtifactSignOff
+      summary: Dataiku Get sign-off step details
+      description: Get details of a specific sign-off step for an artifact.
+      tags:
+      - Artifact Sign-Offs
+      parameters:
+      - $ref: '#/components/parameters/artifactId'
+      - $ref: '#/components/parameters/signOffStepId'
+      responses:
+        '200':
+          description: Sign-off step details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignOff'
+        '404':
+          description: Sign-off step not found
+  /artifacts/{artifactId}/sign-offs/{signOffStepId}/delegate:
+    post:
+      operationId: delegateSignOff
+      summary: Dataiku Delegate a sign-off
+      description: Delegate a sign-off step to another user.
+      tags:
+      - Artifact Sign-Offs
+      parameters:
+      - $ref: '#/components/parameters/artifactId'
+      - $ref: '#/components/parameters/signOffStepId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DelegateSignOffRequest'
+      responses:
+        '200':
+          description: Sign-off delegated
+        '404':
+          description: Sign-off step not found
+  /artifacts/{artifactId}/sign-offs/{signOffStepId}/reviews:
+    post:
+      operationId: addSignOffReview
+      summary: Dataiku Add a sign-off review
+      description: Add a review (approve or reject) to a sign-off step.
+      tags:
+      - Artifact Sign-Offs
+      parameters:
+      - $ref: '#/components/parameters/artifactId'
+      - $ref: '#/components/parameters/signOffStepId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignOffReviewRequest'
+      responses:
+        '200':
+          description: Review added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignOffReview'
+        '400':
+          description: Invalid review
+        '404':
+          description: Sign-off step not found
+components:
+  schemas:
+    SignOff:
+      type: object
+      properties:
+        stepId:
+          type: string
+          description: Sign-off step identifier
+        stepName:
+          type: string
+          description: Step display name
+        status:
+          type: string
+          enum:
+          - NOT_STARTED
+          - IN_PROGRESS
+          - APPROVED
+          - REJECTED
+          - DELEGATED
+          description: Current sign-off status
+        reviews:
+          type: array
+          items:
+            $ref: '#/components/schemas/SignOffReview'
+          description: Reviews submitted for this step
+        delegatedTo:
+          type: string
+          description: User the step was delegated to
+    SignOffReviewRequest:
+      type: object
+      required:
+      - outcome
+      properties:
+        outcome:
+          type: string
+          enum:
+          - APPROVED
+          - REJECTED
+          description: Review outcome
+        comment:
+          type: string
+          description: Review comment
+    DelegateSignOffRequest:
+      type: object
+      required:
+      - delegateTo
+      properties:
+        delegateTo:
+          type: string
+          description: Login of the user to delegate to
+        comment:
+          type: string
+          description: Delegation comment
+    SignOffReview:
+      type: object
+      properties:
+        reviewer:
+          type: string
+          description: Login of the reviewer
+        outcome:
+          type: string
+          enum:
+          - APPROVED
+          - REJECTED
+          description: Review outcome
+        comment:
+          type: string
+          description: Review comment
+        reviewedOn:
+          type: integer
+          format: int64
+          description: Review timestamp
+  parameters:
+    signOffStepId:
+      name: signOffStepId
+      in: path
+      required: true
+      description: Sign-off step identifier
+      schema:
+        type: string
+    artifactId:
+      name: artifactId
+      in: path
+      required: true
+      description: Governed artifact identifier
+      schema:
+        type: string
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Admin API key passed as Bearer token
+externalDocs:
+  description: Dataiku API Node Administration Documentation
+  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html

@@ -1,0 +1,223 @@
+openapi: 3.1.0
+info:
+  title: Dataiku API Node Administration Artifact Sign-Offs Users API
+  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  version: '13.0'
+  contact:
+    name: Dataiku Support
+    url: https://www.dataiku.com/support
+    email: support@dataiku.com
+  termsOfService: https://www.dataiku.com/terms/
+servers:
+- url: https://{apinode-host}:{port}/admin/api
+  description: Dataiku API Node Instance
+  variables:
+    apinode-host:
+      default: apinode.example.com
+      description: Hostname of the Dataiku API Node
+    port:
+      default: '12443'
+      description: Admin API port
+security:
+- apiKeyAuth: []
+tags:
+- name: Users
+  description: Manage Govern users
+paths:
+  /users:
+    get:
+      operationId: listGovernUsers
+      summary: Dataiku List Govern users
+      description: List all users in the Govern instance.
+      tags:
+      - Users
+      responses:
+        '200':
+          description: List of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GovernUser'
+        '401':
+          description: Unauthorized
+  /admin/users:
+    get:
+      operationId: listUsers
+      summary: Dataiku List users
+      description: List all users on the DSS instance.
+      tags:
+      - Users
+      responses:
+        '200':
+          description: List of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createUser
+      summary: Dataiku Create a user
+      description: Create a new user on the DSS instance.
+      tags:
+      - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+      responses:
+        '200':
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid request
+        '409':
+          description: User already exists
+  /admin/users/{login}:
+    get:
+      operationId: getUser
+      summary: Dataiku Get user details
+      description: Get the details of a specific user.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/login'
+      responses:
+        '200':
+          description: User details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+    put:
+      operationId: updateUser
+      summary: Dataiku Update a user
+      description: Update the details of a user.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/login'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: User updated
+        '404':
+          description: User not found
+    delete:
+      operationId: deleteUser
+      summary: Dataiku Delete a user
+      description: Delete a user from the DSS instance.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/login'
+      responses:
+        '204':
+          description: User deleted
+        '404':
+          description: User not found
+components:
+  schemas:
+    CreateUserRequest:
+      type: object
+      required:
+      - login
+      - password
+      properties:
+        login:
+          type: string
+          description: User login name
+        password:
+          type: string
+          description: Initial password
+        displayName:
+          type: string
+          description: Display name
+        email:
+          type: string
+          format: email
+          description: Email address
+        groups:
+          type: array
+          items:
+            type: string
+          description: Groups to assign
+        userProfile:
+          type: string
+          description: User profile
+    User:
+      type: object
+      properties:
+        login:
+          type: string
+          description: User login name
+        displayName:
+          type: string
+          description: Display name
+        email:
+          type: string
+          format: email
+          description: Email address
+        groups:
+          type: array
+          items:
+            type: string
+          description: Groups the user belongs to
+        userProfile:
+          type: string
+          description: User profile (e.g., READER, DATA_ANALYST, DATA_ENGINEER, ADMIN)
+        enabled:
+          type: boolean
+          description: Whether the account is enabled
+    GovernUser:
+      type: object
+      properties:
+        login:
+          type: string
+          description: User login
+        displayName:
+          type: string
+          description: Display name
+        email:
+          type: string
+          format: email
+          description: Email address
+        roles:
+          type: array
+          items:
+            type: string
+          description: Assigned role IDs
+  parameters:
+    login:
+      name: login
+      in: path
+      required: true
+      description: User login name
+      schema:
+        type: string
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Admin API key passed as Bearer token
+externalDocs:
+  description: Dataiku API Node Administration Documentation
+  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html

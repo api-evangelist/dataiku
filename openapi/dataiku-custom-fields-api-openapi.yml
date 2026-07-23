@@ -1,0 +1,83 @@
+openapi: 3.1.0
+info:
+  title: Dataiku API Node Administration Artifact Sign-Offs Custom Fields API
+  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  version: '13.0'
+  contact:
+    name: Dataiku Support
+    url: https://www.dataiku.com/support
+    email: support@dataiku.com
+  termsOfService: https://www.dataiku.com/terms/
+servers:
+- url: https://{apinode-host}:{port}/admin/api
+  description: Dataiku API Node Instance
+  variables:
+    apinode-host:
+      default: apinode.example.com
+      description: Hostname of the Dataiku API Node
+    port:
+      default: '12443'
+      description: Admin API port
+security:
+- apiKeyAuth: []
+tags:
+- name: Custom Fields
+  description: Manage custom fields on artifacts
+paths:
+  /artifacts/{artifactId}/custom-fields:
+    get:
+      operationId: getArtifactCustomFields
+      summary: Dataiku Get artifact custom fields
+      description: Retrieve all custom field values for an artifact.
+      tags:
+      - Custom Fields
+      parameters:
+      - $ref: '#/components/parameters/artifactId'
+      responses:
+        '200':
+          description: Custom field values
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '404':
+          description: Artifact not found
+    put:
+      operationId: setArtifactCustomFields
+      summary: Dataiku Set artifact custom fields
+      description: Update custom field values for an artifact.
+      tags:
+      - Custom Fields
+      parameters:
+      - $ref: '#/components/parameters/artifactId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Custom fields updated
+        '404':
+          description: Artifact not found
+components:
+  parameters:
+    artifactId:
+      name: artifactId
+      in: path
+      required: true
+      description: Governed artifact identifier
+      schema:
+        type: string
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Admin API key passed as Bearer token
+externalDocs:
+  description: Dataiku API Node Administration Documentation
+  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html

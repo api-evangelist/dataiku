@@ -1,0 +1,72 @@
+openapi: 3.1.0
+info:
+  title: Dataiku API Node Administration Artifact Sign-Offs Roles API
+  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  version: '13.0'
+  contact:
+    name: Dataiku Support
+    url: https://www.dataiku.com/support
+    email: support@dataiku.com
+  termsOfService: https://www.dataiku.com/terms/
+servers:
+- url: https://{apinode-host}:{port}/admin/api
+  description: Dataiku API Node Instance
+  variables:
+    apinode-host:
+      default: apinode.example.com
+      description: Hostname of the Dataiku API Node
+    port:
+      default: '12443'
+      description: Admin API port
+security:
+- apiKeyAuth: []
+tags:
+- name: Roles
+  description: Manage governance roles and assignments
+paths:
+  /roles:
+    get:
+      operationId: listRoles
+      summary: Dataiku List roles
+      description: List all governance roles.
+      tags:
+      - Roles
+      responses:
+        '200':
+          description: List of roles
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Role'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    Role:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Role identifier
+        name:
+          type: string
+          description: Role display name
+        description:
+          type: string
+          description: Role description
+        permissions:
+          type: array
+          items:
+            type: string
+          description: Permissions granted by this role
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Admin API key passed as Bearer token
+externalDocs:
+  description: Dataiku API Node Administration Documentation
+  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html

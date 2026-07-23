@@ -1,0 +1,147 @@
+openapi: 3.1.0
+info:
+  title: Dataiku API Node Administration Artifact Sign-Offs Authentication API
+  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  version: '13.0'
+  contact:
+    name: Dataiku Support
+    url: https://www.dataiku.com/support
+    email: support@dataiku.com
+  termsOfService: https://www.dataiku.com/terms/
+servers:
+- url: https://{apinode-host}:{port}/admin/api
+  description: Dataiku API Node Instance
+  variables:
+    apinode-host:
+      default: apinode.example.com
+      description: Hostname of the Dataiku API Node
+    port:
+      default: '12443'
+      description: Admin API port
+security:
+- apiKeyAuth: []
+tags:
+- name: Authentication
+  description: Manage API keys for service access
+paths:
+  /auth/keys:
+    get:
+      operationId: listAuthKeys
+      summary: Dataiku List authentication keys
+      description: List all API authentication keys configured for accessing services.
+      tags:
+      - Authentication
+      responses:
+        '200':
+          description: List of authentication keys
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AuthKey'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createAuthKey
+      summary: Dataiku Create an authentication key
+      description: Create a new authentication key for accessing API node services.
+      tags:
+      - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAuthKeyRequest'
+      responses:
+        '200':
+          description: Authentication key created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthKey'
+        '400':
+          description: Invalid request
+  /auth/keys/{keyId}:
+    get:
+      operationId: getAuthKey
+      summary: Dataiku Get authentication key details
+      description: Retrieve details of a specific authentication key.
+      tags:
+      - Authentication
+      parameters:
+      - $ref: '#/components/parameters/keyId'
+      responses:
+        '200':
+          description: Authentication key details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthKey'
+        '404':
+          description: Key not found
+    delete:
+      operationId: deleteAuthKey
+      summary: Dataiku Delete an authentication key
+      description: Delete an authentication key.
+      tags:
+      - Authentication
+      parameters:
+      - $ref: '#/components/parameters/keyId'
+      responses:
+        '204':
+          description: Key deleted
+        '404':
+          description: Key not found
+components:
+  parameters:
+    keyId:
+      name: keyId
+      in: path
+      required: true
+      description: Authentication key identifier
+      schema:
+        type: string
+  schemas:
+    CreateAuthKeyRequest:
+      type: object
+      properties:
+        label:
+          type: string
+          description: Descriptive label for the key
+        allowedServices:
+          type: array
+          items:
+            type: string
+          description: List of services this key can access
+    AuthKey:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Key identifier
+        key:
+          type: string
+          description: The API key value
+        label:
+          type: string
+          description: Descriptive label
+        createdOn:
+          type: integer
+          format: int64
+          description: Creation timestamp
+        allowedServices:
+          type: array
+          items:
+            type: string
+          description: List of services this key can access (empty means all)
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Admin API key passed as Bearer token
+externalDocs:
+  description: Dataiku API Node Administration Documentation
+  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html

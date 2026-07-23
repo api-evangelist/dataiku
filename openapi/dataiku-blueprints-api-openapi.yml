@@ -1,0 +1,290 @@
+openapi: 3.1.0
+info:
+  title: Dataiku API Node Administration Artifact Sign-Offs Blueprints API
+  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  version: '13.0'
+  contact:
+    name: Dataiku Support
+    url: https://www.dataiku.com/support
+    email: support@dataiku.com
+  termsOfService: https://www.dataiku.com/terms/
+servers:
+- url: https://{apinode-host}:{port}/admin/api
+  description: Dataiku API Node Instance
+  variables:
+    apinode-host:
+      default: apinode.example.com
+      description: Hostname of the Dataiku API Node
+    port:
+      default: '12443'
+      description: Admin API port
+security:
+- apiKeyAuth: []
+tags:
+- name: Blueprints
+  description: Manage governance blueprints that define artifact types
+paths:
+  /blueprints:
+    get:
+      operationId: listBlueprints
+      summary: Dataiku List blueprints
+      description: Retrieve a list of all governance blueprints. Blueprints define the structure and lifecycle of governed artifacts.
+      tags:
+      - Blueprints
+      responses:
+        '200':
+          description: List of blueprints
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BlueprintSummary'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createBlueprint
+      summary: Dataiku Create a blueprint
+      description: Create a new governance blueprint.
+      tags:
+      - Blueprints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBlueprintRequest'
+      responses:
+        '200':
+          description: Blueprint created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blueprint'
+        '400':
+          description: Invalid request
+  /blueprints/{blueprintId}:
+    get:
+      operationId: getBlueprint
+      summary: Dataiku Get blueprint details
+      description: Retrieve the full definition of a governance blueprint.
+      tags:
+      - Blueprints
+      parameters:
+      - $ref: '#/components/parameters/blueprintId'
+      responses:
+        '200':
+          description: Blueprint details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blueprint'
+        '404':
+          description: Blueprint not found
+    put:
+      operationId: updateBlueprint
+      summary: Dataiku Update a blueprint
+      description: Update the definition of a governance blueprint.
+      tags:
+      - Blueprints
+      parameters:
+      - $ref: '#/components/parameters/blueprintId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Blueprint'
+      responses:
+        '200':
+          description: Blueprint updated
+        '404':
+          description: Blueprint not found
+    delete:
+      operationId: deleteBlueprint
+      summary: Dataiku Delete a blueprint
+      description: Delete a governance blueprint and its versions.
+      tags:
+      - Blueprints
+      parameters:
+      - $ref: '#/components/parameters/blueprintId'
+      responses:
+        '204':
+          description: Blueprint deleted
+        '404':
+          description: Blueprint not found
+components:
+  schemas:
+    WorkflowConfiguration:
+      type: object
+      properties:
+        statuses:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowStatus'
+          description: Available statuses
+        transitions:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowTransition'
+          description: Allowed status transitions
+    CreateBlueprintRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Blueprint display name
+        description:
+          type: string
+          description: Blueprint description
+        icon:
+          type: string
+          description: Icon identifier
+    SignOffStep:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Step identifier
+        name:
+          type: string
+          description: Step display name
+        description:
+          type: string
+          description: Step description
+        requiredReviewers:
+          type: integer
+          description: Number of required reviewers
+        assigneeType:
+          type: string
+          enum:
+          - ROLE
+          - USER
+          - GROUP
+          description: How reviewers are assigned
+    Blueprint:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique blueprint identifier
+        name:
+          type: string
+          description: Blueprint display name
+        description:
+          type: string
+          description: Blueprint description
+        icon:
+          type: string
+          description: Icon identifier
+        artifactCount:
+          type: integer
+          description: Number of artifacts
+        fieldSettings:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldSetting'
+          description: Custom field definitions for this blueprint
+        signOffConfiguration:
+          $ref: '#/components/schemas/SignOffConfiguration'
+        workflowConfiguration:
+          $ref: '#/components/schemas/WorkflowConfiguration'
+    BlueprintSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique blueprint identifier
+        name:
+          type: string
+          description: Blueprint display name
+        description:
+          type: string
+          description: Blueprint description
+        artifactCount:
+          type: integer
+          description: Number of artifacts using this blueprint
+        icon:
+          type: string
+          description: Icon identifier
+    WorkflowTransition:
+      type: object
+      properties:
+        fromStatus:
+          type: string
+          description: Source status ID
+        toStatus:
+          type: string
+          description: Target status ID
+    SignOffConfiguration:
+      type: object
+      properties:
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/SignOffStep'
+          description: Ordered list of sign-off steps
+    FieldSetting:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Field identifier
+        name:
+          type: string
+          description: Field display name
+        description:
+          type: string
+          description: Field description
+        type:
+          type: string
+          enum:
+          - TEXT
+          - LONG_TEXT
+          - NUMBER
+          - BOOLEAN
+          - DATE
+          - SELECT
+          - MULTISELECT
+          - USER
+          - USERS
+          description: Field type
+        required:
+          type: boolean
+          description: Whether the field is required
+        options:
+          type: array
+          items:
+            type: string
+          description: Available options for SELECT and MULTISELECT types
+    WorkflowStatus:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Status identifier
+        name:
+          type: string
+          description: Status display name
+        color:
+          type: string
+          description: Status color code
+  parameters:
+    blueprintId:
+      name: blueprintId
+      in: path
+      required: true
+      description: Unique blueprint identifier
+      schema:
+        type: string
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Admin API key passed as Bearer token
+externalDocs:
+  description: Dataiku API Node Administration Documentation
+  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html

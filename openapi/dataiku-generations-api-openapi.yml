@@ -1,0 +1,220 @@
+openapi: 3.1.0
+info:
+  title: Dataiku API Node Administration Artifact Sign-Offs Generations API
+  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  version: '13.0'
+  contact:
+    name: Dataiku Support
+    url: https://www.dataiku.com/support
+    email: support@dataiku.com
+  termsOfService: https://www.dataiku.com/terms/
+servers:
+- url: https://{apinode-host}:{port}/admin/api
+  description: Dataiku API Node Instance
+  variables:
+    apinode-host:
+      default: apinode.example.com
+      description: Hostname of the Dataiku API Node
+    port:
+      default: '12443'
+      description: Admin API port
+security:
+- apiKeyAuth: []
+tags:
+- name: Generations
+  description: Manage service generations (versions)
+paths:
+  /services/{serviceId}/generations:
+    get:
+      operationId: listGenerations
+      summary: Dataiku List generations
+      description: List all generations (deployed versions) of a service.
+      tags:
+      - Generations
+      parameters:
+      - $ref: '#/components/parameters/serviceId'
+      responses:
+        '200':
+          description: List of generations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GenerationSummary'
+        '404':
+          description: Service not found
+    post:
+      operationId: importGeneration
+      summary: Dataiku Import a generation
+      description: Import a new generation (bundle) for a service from a ZIP archive.
+      tags:
+      - Generations
+      parameters:
+      - $ref: '#/components/parameters/serviceId'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: ZIP archive containing the generation bundle
+      responses:
+        '200':
+          description: Generation imported
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerationSummary'
+        '400':
+          description: Invalid bundle
+        '404':
+          description: Service not found
+  /services/{serviceId}/generations/{generationId}:
+    get:
+      operationId: getGeneration
+      summary: Dataiku Get generation details
+      description: Get the details of a specific generation.
+      tags:
+      - Generations
+      parameters:
+      - $ref: '#/components/parameters/serviceId'
+      - $ref: '#/components/parameters/generationId'
+      responses:
+        '200':
+          description: Generation details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Generation'
+        '404':
+          description: Generation not found
+    delete:
+      operationId: deleteGeneration
+      summary: Dataiku Delete a generation
+      description: Delete a specific generation from a service.
+      tags:
+      - Generations
+      parameters:
+      - $ref: '#/components/parameters/serviceId'
+      - $ref: '#/components/parameters/generationId'
+      responses:
+        '204':
+          description: Generation deleted
+        '404':
+          description: Generation not found
+  /services/{serviceId}/generations/{generationId}/preload:
+    post:
+      operationId: preloadGeneration
+      summary: Dataiku Preload a generation
+      description: Preload a generation into memory to reduce cold-start latency.
+      tags:
+      - Generations
+      parameters:
+      - $ref: '#/components/parameters/serviceId'
+      - $ref: '#/components/parameters/generationId'
+      responses:
+        '200':
+          description: Generation preloaded
+        '404':
+          description: Generation not found
+  /services/{serviceId}/generations/{generationId}/switch:
+    post:
+      operationId: switchGeneration
+      summary: Dataiku Switch to a generation
+      description: Set a generation as the active generation for the service.
+      tags:
+      - Generations
+      parameters:
+      - $ref: '#/components/parameters/serviceId'
+      - $ref: '#/components/parameters/generationId'
+      responses:
+        '200':
+          description: Generation switched
+        '404':
+          description: Generation not found
+components:
+  parameters:
+    serviceId:
+      name: serviceId
+      in: path
+      required: true
+      description: Unique service identifier
+      schema:
+        type: string
+    generationId:
+      name: generationId
+      in: path
+      required: true
+      description: Generation (version) identifier
+      schema:
+        type: string
+  schemas:
+    GenerationSummary:
+      type: object
+      properties:
+        generationId:
+          type: string
+          description: Generation identifier
+        active:
+          type: boolean
+          description: Whether this is the active generation
+        createdOn:
+          type: integer
+          format: int64
+          description: Creation timestamp
+    Generation:
+      type: object
+      properties:
+        generationId:
+          type: string
+          description: Generation identifier
+        active:
+          type: boolean
+          description: Whether this is the active generation
+        createdOn:
+          type: integer
+          format: int64
+          description: Creation timestamp
+        endpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Endpoint'
+          description: Endpoints in this generation
+        preloaded:
+          type: boolean
+          description: Whether this generation is preloaded in memory
+    Endpoint:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Endpoint identifier
+        type:
+          type: string
+          enum:
+          - STD_PREDICTION
+          - CUSTOM_PREDICTION
+          - R_PREDICTION
+          - CUSTOM_R_PREDICTION
+          - SQL_QUERY
+          - DATASET_LOOKUP
+          - R_FUNCTION
+          - PYTHON_FUNCTION
+          description: Endpoint type
+        modelRef:
+          type: string
+          description: Reference to the model used by this endpoint
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Admin API key passed as Bearer token
+externalDocs:
+  description: Dataiku API Node Administration Documentation
+  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html

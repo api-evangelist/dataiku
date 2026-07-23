@@ -1,0 +1,96 @@
+openapi: 3.1.0
+info:
+  title: Dataiku API Node Administration Artifact Sign-Offs SQL Queries API
+  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  version: '13.0'
+  contact:
+    name: Dataiku Support
+    url: https://www.dataiku.com/support
+    email: support@dataiku.com
+  termsOfService: https://www.dataiku.com/terms/
+servers:
+- url: https://{apinode-host}:{port}/admin/api
+  description: Dataiku API Node Instance
+  variables:
+    apinode-host:
+      default: apinode.example.com
+      description: Hostname of the Dataiku API Node
+    port:
+      default: '12443'
+      description: Admin API port
+security:
+- apiKeyAuth: []
+tags:
+- name: SQL Queries
+  description: Execute SQL queries on connections
+paths:
+  /sql/queries:
+    post:
+      operationId: executeSqlQuery
+      summary: Dataiku Execute a SQL query
+      description: Execute a SQL query on a DSS connection and retrieve the results.
+      tags:
+      - SQL Queries
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SqlQueryRequest'
+      responses:
+        '200':
+          description: Query results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SqlQueryResult'
+        '400':
+          description: Invalid query
+components:
+  schemas:
+    SqlQueryResult:
+      type: object
+      properties:
+        columns:
+          type: array
+          items:
+            type: string
+          description: Column names
+        rows:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+          description: Result rows
+    SqlQueryRequest:
+      type: object
+      required:
+      - connection
+      - query
+      properties:
+        connection:
+          type: string
+          description: Name of the DSS connection to query
+        query:
+          type: string
+          description: SQL query to execute
+        preQueries:
+          type: array
+          items:
+            type: string
+          description: SQL statements to execute before the main query
+        postQueries:
+          type: array
+          items:
+            type: string
+          description: SQL statements to execute after the main query
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Admin API key passed as Bearer token
+externalDocs:
+  description: Dataiku API Node Administration Documentation
+  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html

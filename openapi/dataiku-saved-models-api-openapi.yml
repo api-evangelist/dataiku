@@ -1,0 +1,140 @@
+openapi: 3.1.0
+info:
+  title: Dataiku API Node Administration Artifact Sign-Offs Saved Models API
+  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  version: '13.0'
+  contact:
+    name: Dataiku Support
+    url: https://www.dataiku.com/support
+    email: support@dataiku.com
+  termsOfService: https://www.dataiku.com/terms/
+servers:
+- url: https://{apinode-host}:{port}/admin/api
+  description: Dataiku API Node Instance
+  variables:
+    apinode-host:
+      default: apinode.example.com
+      description: Hostname of the Dataiku API Node
+    port:
+      default: '12443'
+      description: Admin API port
+security:
+- apiKeyAuth: []
+tags:
+- name: Saved Models
+  description: Manage trained machine learning models
+paths:
+  /projects/{projectKey}/savedmodels:
+    get:
+      operationId: listSavedModels
+      summary: Dataiku List saved models
+      description: List all saved models in a project.
+      tags:
+      - Saved Models
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      responses:
+        '200':
+          description: List of saved models
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SavedModelSummary'
+        '404':
+          description: Project not found
+  /projects/{projectKey}/savedmodels/{savedModelId}:
+    get:
+      operationId: getSavedModel
+      summary: Dataiku Get saved model details
+      description: Get details of a saved model including its active version.
+      tags:
+      - Saved Models
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/savedModelId'
+      responses:
+        '200':
+          description: Saved model details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavedModel'
+        '404':
+          description: Saved model not found
+components:
+  parameters:
+    savedModelId:
+      name: savedModelId
+      in: path
+      required: true
+      description: Saved model identifier
+      schema:
+        type: string
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      description: Unique project key identifier
+      schema:
+        type: string
+  schemas:
+    SavedModel:
+      type: object
+      properties:
+        projectKey:
+          type: string
+          description: Project key
+        id:
+          type: string
+          description: Saved model identifier
+        name:
+          type: string
+          description: Saved model name
+        type:
+          type: string
+          description: Model type
+        activeVersion:
+          type: string
+          description: Identifier of the active model version
+        versions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModelVersion'
+    SavedModelSummary:
+      type: object
+      properties:
+        projectKey:
+          type: string
+          description: Project key
+        id:
+          type: string
+          description: Saved model identifier
+        name:
+          type: string
+          description: Saved model name
+        type:
+          type: string
+          description: Model type (PREDICTION or CLUSTERING)
+    ModelVersion:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Version identifier
+        active:
+          type: boolean
+          description: Whether this is the active version
+        snippet:
+          type: object
+          description: Summary metrics for the model version
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Admin API key passed as Bearer token
+externalDocs:
+  description: Dataiku API Node Administration Documentation
+  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html

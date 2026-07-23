@@ -1,0 +1,119 @@
+openapi: 3.1.0
+info:
+  title: Dataiku API Node Administration Artifact Sign-Offs Plugins API
+  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  version: '13.0'
+  contact:
+    name: Dataiku Support
+    url: https://www.dataiku.com/support
+    email: support@dataiku.com
+  termsOfService: https://www.dataiku.com/terms/
+servers:
+- url: https://{apinode-host}:{port}/admin/api
+  description: Dataiku API Node Instance
+  variables:
+    apinode-host:
+      default: apinode.example.com
+      description: Hostname of the Dataiku API Node
+    port:
+      default: '12443'
+      description: Admin API port
+security:
+- apiKeyAuth: []
+tags:
+- name: Plugins
+  description: Manage DSS plugins
+paths:
+  /plugins:
+    get:
+      operationId: listPlugins
+      summary: Dataiku List plugins
+      description: List all installed plugins on the DSS instance.
+      tags:
+      - Plugins
+      responses:
+        '200':
+          description: List of plugins
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PluginSummary'
+        '401':
+          description: Unauthorized
+  /plugins/{pluginId}:
+    get:
+      operationId: getPlugin
+      summary: Dataiku Get plugin details
+      description: Get the details of an installed plugin.
+      tags:
+      - Plugins
+      parameters:
+      - $ref: '#/components/parameters/pluginId'
+      responses:
+        '200':
+          description: Plugin details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+        '404':
+          description: Plugin not found
+components:
+  parameters:
+    pluginId:
+      name: pluginId
+      in: path
+      required: true
+      description: Plugin identifier
+      schema:
+        type: string
+  schemas:
+    Plugin:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Plugin identifier
+        version:
+          type: string
+          description: Plugin version
+        label:
+          type: string
+          description: Display label
+        description:
+          type: string
+          description: Plugin description
+        author:
+          type: string
+          description: Plugin author
+        installedOn:
+          type: integer
+          format: int64
+          description: Installation timestamp
+    PluginSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Plugin identifier
+        version:
+          type: string
+          description: Plugin version
+        label:
+          type: string
+          description: Display label
+        installedOn:
+          type: integer
+          format: int64
+          description: Installation timestamp
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Admin API key passed as Bearer token
+externalDocs:
+  description: Dataiku API Node Administration Documentation
+  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html

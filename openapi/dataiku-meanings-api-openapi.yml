@@ -1,0 +1,75 @@
+openapi: 3.1.0
+info:
+  title: Dataiku API Node Administration Artifact Sign-Offs Meanings API
+  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  version: '13.0'
+  contact:
+    name: Dataiku Support
+    url: https://www.dataiku.com/support
+    email: support@dataiku.com
+  termsOfService: https://www.dataiku.com/terms/
+servers:
+- url: https://{apinode-host}:{port}/admin/api
+  description: Dataiku API Node Instance
+  variables:
+    apinode-host:
+      default: apinode.example.com
+      description: Hostname of the Dataiku API Node
+    port:
+      default: '12443'
+      description: Admin API port
+security:
+- apiKeyAuth: []
+tags:
+- name: Meanings
+  description: Manage user-defined meanings
+paths:
+  /meanings:
+    get:
+      operationId: listMeanings
+      summary: Dataiku List meanings
+      description: List all user-defined meanings on the DSS instance.
+      tags:
+      - Meanings
+      responses:
+        '200':
+          description: List of meanings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Meaning'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    Meaning:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Meaning identifier
+        label:
+          type: string
+          description: Display label
+        description:
+          type: string
+          description: Meaning description
+        type:
+          type: string
+          enum:
+          - DECLARATIVE
+          - VALUES_LIST
+          - VALUES_MAPPING
+          - PATTERN
+          description: Meaning type
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Admin API key passed as Bearer token
+externalDocs:
+  description: Dataiku API Node Administration Documentation
+  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html

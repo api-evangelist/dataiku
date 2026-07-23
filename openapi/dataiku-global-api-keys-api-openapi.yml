@@ -1,0 +1,77 @@
+openapi: 3.1.0
+info:
+  title: Dataiku API Node Administration Artifact Sign-Offs Global API Keys API
+  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  version: '13.0'
+  contact:
+    name: Dataiku Support
+    url: https://www.dataiku.com/support
+    email: support@dataiku.com
+  termsOfService: https://www.dataiku.com/terms/
+servers:
+- url: https://{apinode-host}:{port}/admin/api
+  description: Dataiku API Node Instance
+  variables:
+    apinode-host:
+      default: apinode.example.com
+      description: Hostname of the Dataiku API Node
+    port:
+      default: '12443'
+      description: Admin API port
+security:
+- apiKeyAuth: []
+tags:
+- name: Global API Keys
+  description: Manage global API keys
+paths:
+  /admin/globalAPIKeys:
+    get:
+      operationId: listGlobalAPIKeys
+      summary: Dataiku List global API keys
+      description: List all global API keys on the DSS instance.
+      tags:
+      - Global API Keys
+      responses:
+        '200':
+          description: List of API keys
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GlobalAPIKey'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    GlobalAPIKey:
+      type: object
+      properties:
+        id:
+          type: string
+          description: API key identifier
+        key:
+          type: string
+          description: The API key value
+        label:
+          type: string
+          description: Label for the API key
+        createdOn:
+          type: integer
+          format: int64
+          description: Creation timestamp
+        createdBy:
+          type: string
+          description: User who created the key
+        globalPermissions:
+          type: object
+          description: Global permissions granted
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Admin API key passed as Bearer token
+externalDocs:
+  description: Dataiku API Node Administration Documentation
+  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html

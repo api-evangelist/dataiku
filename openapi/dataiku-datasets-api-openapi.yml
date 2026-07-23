@@ -1,0 +1,329 @@
+openapi: 3.1.0
+info:
+  title: Dataiku API Node Administration Artifact Sign-Offs Datasets API
+  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  version: '13.0'
+  contact:
+    name: Dataiku Support
+    url: https://www.dataiku.com/support
+    email: support@dataiku.com
+  termsOfService: https://www.dataiku.com/terms/
+servers:
+- url: https://{apinode-host}:{port}/admin/api
+  description: Dataiku API Node Instance
+  variables:
+    apinode-host:
+      default: apinode.example.com
+      description: Hostname of the Dataiku API Node
+    port:
+      default: '12443'
+      description: Admin API port
+security:
+- apiKeyAuth: []
+tags:
+- name: Datasets
+  description: Manage datasets within projects
+paths:
+  /projects/{projectKey}/datasets:
+    get:
+      operationId: listDatasets
+      summary: Dataiku List datasets
+      description: List all datasets in a project.
+      tags:
+      - Datasets
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      responses:
+        '200':
+          description: List of datasets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dataset'
+        '404':
+          description: Project not found
+    post:
+      operationId: createDataset
+      summary: Dataiku Create a dataset
+      description: Create a new dataset in the project.
+      tags:
+      - Datasets
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDatasetRequest'
+      responses:
+        '200':
+          description: Dataset created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dataset'
+        '400':
+          description: Invalid request
+        '409':
+          description: Dataset name already exists
+  /projects/{projectKey}/datasets/{datasetName}:
+    get:
+      operationId: getDataset
+      summary: Dataiku Get dataset details
+      description: Get the definition and schema of a dataset.
+      tags:
+      - Datasets
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/datasetName'
+      responses:
+        '200':
+          description: Dataset details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dataset'
+        '404':
+          description: Dataset not found
+    put:
+      operationId: updateDataset
+      summary: Dataiku Update a dataset
+      description: Update the definition of a dataset.
+      tags:
+      - Datasets
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/datasetName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dataset'
+      responses:
+        '200':
+          description: Dataset updated
+        '404':
+          description: Dataset not found
+    delete:
+      operationId: deleteDataset
+      summary: Dataiku Delete a dataset
+      description: Delete a dataset from the project.
+      tags:
+      - Datasets
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/datasetName'
+      responses:
+        '204':
+          description: Dataset deleted
+        '404':
+          description: Dataset not found
+  /projects/{projectKey}/datasets/{datasetName}/data:
+    get:
+      operationId: getDatasetData
+      summary: Dataiku Read dataset data
+      description: Read rows from a dataset. Returns data in JSON format with columns and rows.
+      tags:
+      - Datasets
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/datasetName'
+      - name: limit
+        in: query
+        description: Maximum number of rows to return
+        schema:
+          type: integer
+          default: 20000
+      - name: partitions
+        in: query
+        description: Comma-separated list of partition identifiers to read from
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Dataset data rows
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetData'
+        '404':
+          description: Dataset not found
+  /projects/{projectKey}/datasets/{datasetName}/schema:
+    get:
+      operationId: getDatasetSchema
+      summary: Dataiku Get dataset schema
+      description: Get the schema (column names and types) of a dataset.
+      tags:
+      - Datasets
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/datasetName'
+      responses:
+        '200':
+          description: Dataset schema
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetSchema'
+        '404':
+          description: Dataset not found
+    put:
+      operationId: setDatasetSchema
+      summary: Dataiku Set dataset schema
+      description: Update the schema of a dataset.
+      tags:
+      - Datasets
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/datasetName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DatasetSchema'
+      responses:
+        '200':
+          description: Schema updated
+        '404':
+          description: Dataset not found
+components:
+  schemas:
+    CreateDatasetRequest:
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+          description: Dataset name
+        type:
+          type: string
+          description: Dataset type
+        params:
+          type: object
+          description: Type-specific parameters
+        formatType:
+          type: string
+          description: Data format type
+        formatParams:
+          type: object
+          description: Format-specific parameters
+    Tag:
+      type: object
+      properties:
+        versionNumber:
+          type: integer
+          description: Version number
+        lastModifiedBy:
+          type: object
+          properties:
+            login:
+              type: string
+        lastModifiedOn:
+          type: string
+          format: date-time
+          description: Timestamp of last modification
+    DatasetSchema:
+      type: object
+      properties:
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/SchemaColumn'
+          description: List of columns in the dataset
+        userModified:
+          type: boolean
+          description: Whether the schema was manually modified
+    SchemaColumn:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Column name
+        type:
+          type: string
+          description: Column data type (e.g., string, bigint, double, boolean, date)
+        meaning:
+          type: string
+          description: Semantic meaning assigned to the column
+        maxLength:
+          type: integer
+          description: Maximum length for string columns
+    Dataset:
+      type: object
+      properties:
+        projectKey:
+          type: string
+          description: Project key the dataset belongs to
+        name:
+          type: string
+          description: Dataset name
+        type:
+          type: string
+          description: Dataset type (e.g., Filesystem, PostgreSQL, S3, HDFS)
+        managed:
+          type: boolean
+          description: Whether the dataset is managed by DSS
+        schema:
+          $ref: '#/components/schemas/DatasetSchema'
+        formatType:
+          type: string
+          description: Data format type (e.g., csv, parquet, json)
+        params:
+          type: object
+          description: Type-specific parameters
+        flowOptions:
+          type: object
+          description: Flow options for the dataset
+        creationTag:
+          $ref: '#/components/schemas/Tag'
+        versionTag:
+          $ref: '#/components/schemas/Tag'
+    DatasetData:
+      type: object
+      properties:
+        columns:
+          type: array
+          items:
+            type: string
+          description: Column names
+        rows:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+          description: Data rows
+        totalCount:
+          type: integer
+          description: Total number of rows in the dataset
+  parameters:
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      description: Unique project key identifier
+      schema:
+        type: string
+    datasetName:
+      name: datasetName
+      in: path
+      required: true
+      description: Dataset name within the project
+      schema:
+        type: string
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Admin API key passed as Bearer token
+externalDocs:
+  description: Dataiku API Node Administration Documentation
+  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html

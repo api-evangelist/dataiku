@@ -1,0 +1,85 @@
+openapi: 3.1.0
+info:
+  title: Dataiku API Node Administration Artifact Sign-Offs General Settings API
+  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  version: '13.0'
+  contact:
+    name: Dataiku Support
+    url: https://www.dataiku.com/support
+    email: support@dataiku.com
+  termsOfService: https://www.dataiku.com/terms/
+servers:
+- url: https://{apinode-host}:{port}/admin/api
+  description: Dataiku API Node Instance
+  variables:
+    apinode-host:
+      default: apinode.example.com
+      description: Hostname of the Dataiku API Node
+    port:
+      default: '12443'
+      description: Admin API port
+security:
+- apiKeyAuth: []
+tags:
+- name: General Settings
+  description: Manage instance-level settings
+paths:
+  /admin/general-settings:
+    get:
+      operationId: getGeneralSettings
+      summary: Dataiku Get general settings
+      description: Get the general settings of the DSS instance.
+      tags:
+      - General Settings
+      responses:
+        '200':
+          description: General settings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralSettings'
+        '401':
+          description: Unauthorized
+    put:
+      operationId: setGeneralSettings
+      summary: Dataiku Update general settings
+      description: Update the general settings of the DSS instance.
+      tags:
+      - General Settings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GeneralSettings'
+      responses:
+        '200':
+          description: Settings updated
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    GeneralSettings:
+      type: object
+      properties:
+        permissions:
+          type: object
+          description: Global permission settings
+        ldapSettings:
+          type: object
+          description: LDAP configuration
+        ssoSettings:
+          type: object
+          description: SSO configuration
+        theme:
+          type: object
+          description: UI theme settings
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Admin API key passed as Bearer token
+externalDocs:
+  description: Dataiku API Node Administration Documentation
+  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html

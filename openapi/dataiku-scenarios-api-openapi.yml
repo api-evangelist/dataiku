@@ -1,0 +1,200 @@
+openapi: 3.1.0
+info:
+  title: Dataiku API Node Administration Artifact Sign-Offs Scenarios API
+  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  version: '13.0'
+  contact:
+    name: Dataiku Support
+    url: https://www.dataiku.com/support
+    email: support@dataiku.com
+  termsOfService: https://www.dataiku.com/terms/
+servers:
+- url: https://{apinode-host}:{port}/admin/api
+  description: Dataiku API Node Instance
+  variables:
+    apinode-host:
+      default: apinode.example.com
+      description: Hostname of the Dataiku API Node
+    port:
+      default: '12443'
+      description: Admin API port
+security:
+- apiKeyAuth: []
+tags:
+- name: Scenarios
+  description: Manage and trigger automation scenarios
+paths:
+  /projects/{projectKey}/scenarios:
+    get:
+      operationId: listScenarios
+      summary: Dataiku List scenarios
+      description: List all scenarios in a project.
+      tags:
+      - Scenarios
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      responses:
+        '200':
+          description: List of scenarios
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ScenarioSummary'
+        '404':
+          description: Project not found
+  /projects/{projectKey}/scenarios/{scenarioId}:
+    get:
+      operationId: getScenario
+      summary: Dataiku Get scenario details
+      description: Get the full definition of a scenario.
+      tags:
+      - Scenarios
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/scenarioId'
+      responses:
+        '200':
+          description: Scenario details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scenario'
+        '404':
+          description: Scenario not found
+  /projects/{projectKey}/scenarios/{scenarioId}/run:
+    post:
+      operationId: runScenario
+      summary: Dataiku Run a scenario
+      description: Trigger execution of a scenario.
+      tags:
+      - Scenarios
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/scenarioId'
+      responses:
+        '200':
+          description: Scenario run started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScenarioRun'
+        '404':
+          description: Scenario not found
+  /projects/{projectKey}/scenarios/{scenarioId}/light:
+    get:
+      operationId: getScenarioRunStatus
+      summary: Dataiku Get scenario run status
+      description: Get lightweight status of the last runs of a scenario.
+      tags:
+      - Scenarios
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/scenarioId'
+      responses:
+        '200':
+          description: Scenario run status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScenarioLight'
+        '404':
+          description: Scenario not found
+components:
+  schemas:
+    ScenarioLight:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Scenario identifier
+        running:
+          type: boolean
+          description: Whether the scenario is currently running
+        lastRun:
+          type: object
+          description: Information about the last run
+    ScenarioRun:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Run identifier
+        scenarioId:
+          type: string
+          description: Scenario identifier
+        trigger:
+          type: object
+          description: Trigger information
+        result:
+          type: object
+          description: Run result
+    Scenario:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Scenario identifier
+        projectKey:
+          type: string
+          description: Project key
+        name:
+          type: string
+          description: Scenario name
+        active:
+          type: boolean
+          description: Whether the scenario is active
+        type:
+          type: string
+          description: Scenario type
+        params:
+          type: object
+          description: Scenario parameters
+        triggers:
+          type: array
+          items:
+            type: object
+          description: Scenario triggers
+    ScenarioSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Scenario identifier
+        projectKey:
+          type: string
+          description: Project key
+        name:
+          type: string
+          description: Scenario name
+        active:
+          type: boolean
+          description: Whether the scenario is active
+        type:
+          type: string
+          description: Scenario type (step_based or custom_python)
+  parameters:
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      description: Unique project key identifier
+      schema:
+        type: string
+    scenarioId:
+      name: scenarioId
+      in: path
+      required: true
+      description: Scenario identifier
+      schema:
+        type: string
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Admin API key passed as Bearer token
+externalDocs:
+  description: Dataiku API Node Administration Documentation
+  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html

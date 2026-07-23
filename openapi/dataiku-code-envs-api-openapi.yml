@@ -1,0 +1,125 @@
+openapi: 3.1.0
+info:
+  title: Dataiku API Node Administration Artifact Sign-Offs Code Envs API
+  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  version: '13.0'
+  contact:
+    name: Dataiku Support
+    url: https://www.dataiku.com/support
+    email: support@dataiku.com
+  termsOfService: https://www.dataiku.com/terms/
+servers:
+- url: https://{apinode-host}:{port}/admin/api
+  description: Dataiku API Node Instance
+  variables:
+    apinode-host:
+      default: apinode.example.com
+      description: Hostname of the Dataiku API Node
+    port:
+      default: '12443'
+      description: Admin API port
+security:
+- apiKeyAuth: []
+tags:
+- name: Code Envs
+  description: Manage code environments for Python and R
+paths:
+  /admin/code-envs:
+    get:
+      operationId: listCodeEnvs
+      summary: Dataiku List code environments
+      description: List all code environments on the DSS instance.
+      tags:
+      - Code Envs
+      responses:
+        '200':
+          description: List of code environments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CodeEnvSummary'
+        '401':
+          description: Unauthorized
+  /admin/code-envs/{envLang}/{envName}:
+    get:
+      operationId: getCodeEnv
+      summary: Dataiku Get code environment details
+      description: Get the definition of a code environment.
+      tags:
+      - Code Envs
+      parameters:
+      - $ref: '#/components/parameters/envLang'
+      - $ref: '#/components/parameters/envName'
+      responses:
+        '200':
+          description: Code environment details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CodeEnv'
+        '404':
+          description: Code environment not found
+components:
+  schemas:
+    CodeEnv:
+      type: object
+      properties:
+        envName:
+          type: string
+          description: Code environment name
+        envLang:
+          type: string
+          enum:
+          - PYTHON
+          - R
+          description: Programming language
+        deploymentMode:
+          type: string
+          description: Deployment mode
+        specPackageList:
+          type: string
+          description: Pip or CRAN package specification
+        pythonInterpreter:
+          type: string
+          description: Python interpreter path (Python envs only)
+    CodeEnvSummary:
+      type: object
+      properties:
+        envName:
+          type: string
+          description: Code environment name
+        envLang:
+          type: string
+          enum:
+          - PYTHON
+          - R
+          description: Programming language
+  parameters:
+    envName:
+      name: envName
+      in: path
+      required: true
+      description: Code environment name
+      schema:
+        type: string
+    envLang:
+      name: envLang
+      in: path
+      required: true
+      description: Code environment language (PYTHON or R)
+      schema:
+        type: string
+        enum:
+        - PYTHON
+        - R
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Admin API key passed as Bearer token
+externalDocs:
+  description: Dataiku API Node Administration Documentation
+  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html
