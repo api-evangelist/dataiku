@@ -2,14 +2,10 @@
   "repo": "dataiku",
   "feeds": [
     {
-      "source": "https://www.dataiku.com/stories/blog/rss.xml",
-      "error": "HTTPError"
-    },
-    {
       "source": "https://www.dataiku.com/product/pricing/",
       "error": "HTTPError"
     }
   ],
   "post_count": 43,
-  "fetched": "2026-07-11T11:50:51Z"
+  "fetched": "2026-08-01T15:49:00Z"
 }
