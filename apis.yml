@@ -1052,8 +1052,6 @@ common:
     url: json-schema/dataiku-dataset-schema.json
   - type: Vocabulary
     url: vocabulary/dataiku-vocabulary.yml
-  - type: Capabilities
-    url: capabilities/dataiku-capabilities.yml
   - type: Rules
     url: rules/dataiku-rules.yml
   - type: Integrations
