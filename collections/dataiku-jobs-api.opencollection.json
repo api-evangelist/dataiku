@@ -1,0 +1,118 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dataiku API Node Administration Artifact Sign-Offs Jobs API",
+    "version": "13.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/projects/:projectKey/jobs",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              }
+            ]
+          },
+          "docs": "List jobs in a project."
+        },
+        {
+          "info": {
+            "name": "Dataiku Start a new job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apinode-host}:{port}/admin/api/projects/:projectKey/jobs",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start a new build job in the project."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get job status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/projects/:projectKey/jobs/:jobId",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              },
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "Unique job identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve the status and details of a specific job."
+        },
+        {
+          "info": {
+            "name": "Dataiku Abort a job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{apinode-host}:{port}/admin/api/projects/:projectKey/jobs/:jobId",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              },
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "Unique job identifier"
+              }
+            ]
+          },
+          "docs": "Abort a running job."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

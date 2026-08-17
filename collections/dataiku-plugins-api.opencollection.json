@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dataiku API Node Administration Artifact Sign-Offs Plugins API",
+    "version": "13.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Plugins",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List plugins",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/plugins"
+          },
+          "docs": "List all installed plugins on the DSS instance."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get plugin details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/plugins/:pluginId",
+            "params": [
+              {
+                "name": "pluginId",
+                "value": "",
+                "type": "path",
+                "description": "Plugin identifier"
+              }
+            ]
+          },
+          "docs": "Get the details of an installed plugin."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,669 @@
+{
+  "item": [
+    {
+      "id": "ee3c4534-02f4-40ad-9d48-fda8aa971507",
+      "name": "Blueprint Versions",
+      "description": {
+        "content": "Manage blueprint version definitions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "29b6d63b-c64c-4f9a-b242-faba5510c788",
+          "name": "Dataiku List blueprint versions",
+          "request": {
+            "name": "Dataiku List blueprint versions",
+            "description": {
+              "content": "List all versions of a governance blueprint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blueprints",
+                ":blueprintId",
+                "versions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "blueprintId",
+                  "description": "(Required) Unique blueprint identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3daa3948-21be-4f22-96d5-d54db96bc968",
+              "name": "List of blueprint versions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprintId",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blueprintId",
+                      "description": "(Required) Unique blueprint identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"versionNumber\": 9034,\n    \"status\": \"PUBLISHED\",\n    \"createdOn\": 4675\n  },\n  {\n    \"id\": \"string\",\n    \"versionNumber\": 8332,\n    \"status\": \"ARCHIVED\",\n    \"createdOn\": 7366\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87343aaf-4eb3-4a20-924c-9bc96d97db58",
+              "name": "Blueprint not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprintId",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blueprintId",
+                      "description": "(Required) Unique blueprint identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4ad5e399-b6c3-48c1-9937-4f946c08714b",
+          "name": "Dataiku Create a blueprint version",
+          "request": {
+            "name": "Dataiku Create a blueprint version",
+            "description": {
+              "content": "Create a new version of a governance blueprint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blueprints",
+                ":blueprintId",
+                "versions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "blueprintId",
+                  "description": "(Required) Unique blueprint identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"originVersionId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4234227d-aace-4d40-8bf2-befd644349c2",
+              "name": "Blueprint version created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprintId",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blueprintId",
+                      "description": "(Required) Unique blueprint identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"originVersionId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"blueprintId\": \"string\",\n  \"versionNumber\": 8633,\n  \"status\": \"PUBLISHED\",\n  \"fieldSettings\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": \"USER\",\n      \"required\": true,\n      \"options\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": \"SELECT\",\n      \"required\": true,\n      \"options\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"signOffConfiguration\": {\n    \"steps\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"requiredReviewers\": 2834,\n        \"assigneeType\": \"GROUP\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"requiredReviewers\": 8858,\n        \"assigneeType\": \"GROUP\"\n      }\n    ]\n  },\n  \"createdOn\": 5144\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d5b22db-3144-4dc8-93c2-0dd078445ef7",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprintId",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blueprintId",
+                      "description": "(Required) Unique blueprint identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"originVersionId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "632c8a07-97a0-4347-8a20-c08f53d9af90",
+          "name": "Dataiku Get blueprint version details",
+          "request": {
+            "name": "Dataiku Get blueprint version details",
+            "description": {
+              "content": "Get the full definition of a blueprint version.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blueprints",
+                ":blueprintId",
+                "versions",
+                ":versionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "blueprintId",
+                  "description": "(Required) Unique blueprint identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "versionId",
+                  "description": "(Required) Blueprint version identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bf61ad8f-78b1-4705-a18d-54044fc85dcf",
+              "name": "Blueprint version details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprintId",
+                    "versions",
+                    ":versionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blueprintId",
+                      "description": "(Required) Unique blueprint identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "versionId",
+                      "description": "(Required) Blueprint version identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"blueprintId\": \"string\",\n  \"versionNumber\": 8633,\n  \"status\": \"PUBLISHED\",\n  \"fieldSettings\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": \"USER\",\n      \"required\": true,\n      \"options\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": \"SELECT\",\n      \"required\": true,\n      \"options\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"signOffConfiguration\": {\n    \"steps\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"requiredReviewers\": 2834,\n        \"assigneeType\": \"GROUP\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"requiredReviewers\": 8858,\n        \"assigneeType\": \"GROUP\"\n      }\n    ]\n  },\n  \"createdOn\": 5144\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8c825ee-f172-4b8a-83c2-edc9585b7698",
+              "name": "Blueprint version not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blueprints",
+                    ":blueprintId",
+                    "versions",
+                    ":versionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blueprintId",
+                      "description": "(Required) Unique blueprint identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "versionId",
+                      "description": "(Required) Blueprint version identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname of the Dataiku API Node",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "apinode.example.com",
+      "key": "apinode-host"
+    },
+    {
+      "description": {
+        "content": "Admin API port",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "12443",
+      "key": "port"
+    },
+    {
+      "type": "string",
+      "value": "https://{{apinode-host}}:{{port}}/admin/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0aff6923-0a3c-438f-b7ab-f52815cc2ecc",
+    "name": "Dataiku API Node Administration Artifact Sign-Offs Blueprint Versions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.\n\nContact Support:\n Name: Dataiku Support\n Email: support@dataiku.com",
+      "type": "text/plain"
+    }
+  }
+}

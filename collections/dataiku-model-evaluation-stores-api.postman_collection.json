@@ -1,0 +1,250 @@
+{
+  "item": [
+    {
+      "id": "1612b9b2-1403-4865-b01b-bd0b5df41754",
+      "name": "Model Evaluation Stores",
+      "description": {
+        "content": "Manage model evaluation stores",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e710325d-12bc-4a7e-bad2-d1dbb16382ec",
+          "name": "Dataiku List model evaluation stores",
+          "request": {
+            "name": "Dataiku List model evaluation stores",
+            "description": {
+              "content": "List all model evaluation stores in a project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects",
+                ":projectKey",
+                "modelevaluationstores"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) Unique project key identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d079dfb3-3899-4111-a20e-4cbc492bc5c9",
+              "name": "List of model evaluation stores",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectKey",
+                    "modelevaluationstores"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) Unique project key identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"projectKey\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\"\n  },\n  {\n    \"projectKey\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38ae3225-7e6d-499a-acfa-723a41bd933e",
+              "name": "Project not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectKey",
+                    "modelevaluationstores"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) Unique project key identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname of the Dataiku API Node",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "apinode.example.com",
+      "key": "apinode-host"
+    },
+    {
+      "description": {
+        "content": "Admin API port",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "12443",
+      "key": "port"
+    },
+    {
+      "type": "string",
+      "value": "https://{{apinode-host}}:{{port}}/admin/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8b466f12-e9e7-437b-8505-75b9fb2857d5",
+    "name": "Dataiku API Node Administration Artifact Sign-Offs Model Evaluation Stores API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.\n\nContact Support:\n Name: Dataiku Support\n Email: support@dataiku.com",
+      "type": "text/plain"
+    }
+  }
+}

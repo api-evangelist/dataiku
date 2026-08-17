@@ -1,0 +1,95 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dataiku API Node Administration Artifact Sign-Offs Recipes API",
+    "version": "13.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Recipes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List recipes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/projects/:projectKey/recipes",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              }
+            ]
+          },
+          "docs": "List all recipes in a project."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get recipe details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/projects/:projectKey/recipes/:recipeName",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              },
+              {
+                "name": "recipeName",
+                "value": "",
+                "type": "path",
+                "description": "Recipe name within the project"
+              }
+            ]
+          },
+          "docs": "Get the full definition of a recipe."
+        },
+        {
+          "info": {
+            "name": "Dataiku Delete a recipe",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{apinode-host}:{port}/admin/api/projects/:projectKey/recipes/:recipeName",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              },
+              {
+                "name": "recipeName",
+                "value": "",
+                "type": "path",
+                "description": "Recipe name within the project"
+              }
+            ]
+          },
+          "docs": "Delete a recipe from the project."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

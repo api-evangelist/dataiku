@@ -1,0 +1,406 @@
+{
+  "item": [
+    {
+      "id": "40bfa759-61f8-4ab8-a9ec-b48635ebd9ba",
+      "name": "General Settings",
+      "description": {
+        "content": "Manage instance-level settings",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "599e0997-8219-45a8-928f-9457a5acaacf",
+          "name": "Dataiku Get general settings",
+          "request": {
+            "name": "Dataiku Get general settings",
+            "description": {
+              "content": "Get the general settings of the DSS instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "general-settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "977836f4-7826-4b7b-9477-99a12487830e",
+              "name": "General settings",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "general-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"permissions\": {},\n  \"ldapSettings\": {},\n  \"ssoSettings\": {},\n  \"theme\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47b2ede8-4bd2-49f3-86c5-e05805b89ecc",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "general-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "508f2d01-007d-4ecb-97d1-8f8b7ac63f27",
+          "name": "Dataiku Update general settings",
+          "request": {
+            "name": "Dataiku Update general settings",
+            "description": {
+              "content": "Update the general settings of the DSS instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "general-settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"permissions\": \"<object>\",\n  \"ldapSettings\": \"<object>\",\n  \"ssoSettings\": \"<object>\",\n  \"theme\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b2e6f180-f306-4633-a392-89c890e08a95",
+              "name": "Settings updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "general-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"permissions\": \"<object>\",\n  \"ldapSettings\": \"<object>\",\n  \"ssoSettings\": \"<object>\",\n  \"theme\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "94a6c138-b4da-4daa-89eb-070c93eb84e3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "general-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"permissions\": \"<object>\",\n  \"ldapSettings\": \"<object>\",\n  \"ssoSettings\": \"<object>\",\n  \"theme\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname of the Dataiku API Node",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "apinode.example.com",
+      "key": "apinode-host"
+    },
+    {
+      "description": {
+        "content": "Admin API port",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "12443",
+      "key": "port"
+    },
+    {
+      "type": "string",
+      "value": "https://{{apinode-host}}:{{port}}/admin/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "633296f3-fece-41ca-a242-e06e80ade9cf",
+    "name": "Dataiku API Node Administration Artifact Sign-Offs General Settings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.\n\nContact Support:\n Name: Dataiku Support\n Email: support@dataiku.com",
+      "type": "text/plain"
+    }
+  }
+}

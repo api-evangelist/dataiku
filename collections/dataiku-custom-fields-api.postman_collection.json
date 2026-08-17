@@ -1,0 +1,454 @@
+{
+  "item": [
+    {
+      "id": "406c3990-624e-475f-b1d3-ee2eb7ac6a82",
+      "name": "Custom Fields",
+      "description": {
+        "content": "Manage custom fields on artifacts",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3af5dbdc-b741-4b25-a680-bafb911c52fc",
+          "name": "Dataiku Get artifact custom fields",
+          "request": {
+            "name": "Dataiku Get artifact custom fields",
+            "description": {
+              "content": "Retrieve all custom field values for an artifact.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "artifacts",
+                ":artifactId",
+                "custom-fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "artifactId",
+                  "description": "(Required) Governed artifact identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "58829d53-43a8-4db7-8904-4fc9183152d8",
+              "name": "Custom field values",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artifacts",
+                    ":artifactId",
+                    "custom-fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "artifactId",
+                      "description": "(Required) Governed artifact identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 7159\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ffbd8d0d-7bb4-4d2d-9801-9c7377ff7e5a",
+              "name": "Artifact not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artifacts",
+                    ":artifactId",
+                    "custom-fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "artifactId",
+                      "description": "(Required) Governed artifact identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "daf074dd-39e9-4113-bd83-c84f7b1fe8dd",
+          "name": "Dataiku Set artifact custom fields",
+          "request": {
+            "name": "Dataiku Set artifact custom fields",
+            "description": {
+              "content": "Update custom field values for an artifact.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "artifacts",
+                ":artifactId",
+                "custom-fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "artifactId",
+                  "description": "(Required) Governed artifact identifier"
+                },
+                {
+                  "description": "Hostname of the Dataiku API Node",
+                  "type": "any",
+                  "value": "{{apinode-host}}",
+                  "key": "apinode-host"
+                },
+                {
+                  "description": "Admin API port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": 5496,\n  \"key_1\": 243,\n  \"key_2\": false,\n  \"key_3\": 2451,\n  \"key_4\": 4201.642301963666\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "69088cf7-5c23-4381-b68d-17a01721c985",
+              "name": "Custom fields updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artifacts",
+                    ":artifactId",
+                    "custom-fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "artifactId",
+                      "description": "(Required) Governed artifact identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 7159\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "76501066-8cf5-400f-9ffe-6f0c83a0bc81",
+              "name": "Artifact not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "artifacts",
+                    ":artifactId",
+                    "custom-fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "artifactId",
+                      "description": "(Required) Governed artifact identifier"
+                    },
+                    {
+                      "description": "Hostname of the Dataiku API Node",
+                      "type": "any",
+                      "value": "{{apinode-host}}",
+                      "key": "apinode-host"
+                    },
+                    {
+                      "description": "Admin API port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 7159\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname of the Dataiku API Node",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "apinode.example.com",
+      "key": "apinode-host"
+    },
+    {
+      "description": {
+        "content": "Admin API port",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "12443",
+      "key": "port"
+    },
+    {
+      "type": "string",
+      "value": "https://{{apinode-host}}:{{port}}/admin/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3bc7887b-77ad-453b-9ccc-b95d92000d5a",
+    "name": "Dataiku API Node Administration Artifact Sign-Offs Custom Fields API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.\n\nContact Support:\n Name: Dataiku Support\n Email: support@dataiku.com",
+      "type": "text/plain"
+    }
+  }
+}

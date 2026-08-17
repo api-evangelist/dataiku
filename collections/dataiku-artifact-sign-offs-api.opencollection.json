@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dataiku API Node Administration Artifact Sign-Offs API",
+    "version": "13.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Artifact Sign-Offs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List artifact sign-offs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/artifacts/:artifactId/sign-offs",
+            "params": [
+              {
+                "name": "artifactId",
+                "value": "",
+                "type": "path",
+                "description": "Governed artifact identifier"
+              }
+            ]
+          },
+          "docs": "List all sign-off steps and their status for an artifact."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get sign-off step details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/artifacts/:artifactId/sign-offs/:signOffStepId",
+            "params": [
+              {
+                "name": "artifactId",
+                "value": "",
+                "type": "path",
+                "description": "Governed artifact identifier"
+              },
+              {
+                "name": "signOffStepId",
+                "value": "",
+                "type": "path",
+                "description": "Sign-off step identifier"
+              }
+            ]
+          },
+          "docs": "Get details of a specific sign-off step for an artifact."
+        },
+        {
+          "info": {
+            "name": "Dataiku Delegate a sign-off",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apinode-host}:{port}/admin/api/artifacts/:artifactId/sign-offs/:signOffStepId/delegate",
+            "params": [
+              {
+                "name": "artifactId",
+                "value": "",
+                "type": "path",
+                "description": "Governed artifact identifier"
+              },
+              {
+                "name": "signOffStepId",
+                "value": "",
+                "type": "path",
+                "description": "Sign-off step identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delegate a sign-off step to another user."
+        },
+        {
+          "info": {
+            "name": "Dataiku Add a sign-off review",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apinode-host}:{port}/admin/api/artifacts/:artifactId/sign-offs/:signOffStepId/reviews",
+            "params": [
+              {
+                "name": "artifactId",
+                "value": "",
+                "type": "path",
+                "description": "Governed artifact identifier"
+              },
+              {
+                "name": "signOffStepId",
+                "value": "",
+                "type": "path",
+                "description": "Sign-off step identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a review (approve or reject) to a sign-off step."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

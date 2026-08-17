@@ -1,0 +1,90 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dataiku API Node Administration Artifact Sign-Offs Authentication API",
+    "version": "13.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List authentication keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/auth/keys"
+          },
+          "docs": "List all API authentication keys configured for accessing services."
+        },
+        {
+          "info": {
+            "name": "Dataiku Create an authentication key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apinode-host}:{port}/admin/api/auth/keys",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new authentication key for accessing API node services."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get authentication key details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/auth/keys/:keyId",
+            "params": [
+              {
+                "name": "keyId",
+                "value": "",
+                "type": "path",
+                "description": "Authentication key identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific authentication key."
+        },
+        {
+          "info": {
+            "name": "Dataiku Delete an authentication key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{apinode-host}:{port}/admin/api/auth/keys/:keyId",
+            "params": [
+              {
+                "name": "keyId",
+                "value": "",
+                "type": "path",
+                "description": "Authentication key identifier"
+              }
+            ]
+          },
+          "docs": "Delete an authentication key."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

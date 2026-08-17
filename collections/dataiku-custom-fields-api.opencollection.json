@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dataiku API Node Administration Artifact Sign-Offs Custom Fields API",
+    "version": "13.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Custom Fields",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku Get artifact custom fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/artifacts/:artifactId/custom-fields",
+            "params": [
+              {
+                "name": "artifactId",
+                "value": "",
+                "type": "path",
+                "description": "Governed artifact identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve all custom field values for an artifact."
+        },
+        {
+          "info": {
+            "name": "Dataiku Set artifact custom fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{apinode-host}:{port}/admin/api/artifacts/:artifactId/custom-fields",
+            "params": [
+              {
+                "name": "artifactId",
+                "value": "",
+                "type": "path",
+                "description": "Governed artifact identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update custom field values for an artifact."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,174 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dataiku API Node Administration Artifact Sign-Offs Generations API",
+    "version": "13.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Generations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List generations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/services/:serviceId/generations",
+            "params": [
+              {
+                "name": "serviceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique service identifier"
+              }
+            ]
+          },
+          "docs": "List all generations (deployed versions) of a service."
+        },
+        {
+          "info": {
+            "name": "Dataiku Import a generation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apinode-host}:{port}/admin/api/services/:serviceId/generations",
+            "params": [
+              {
+                "name": "serviceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique service identifier"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Import a new generation (bundle) for a service from a ZIP archive."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get generation details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/services/:serviceId/generations/:generationId",
+            "params": [
+              {
+                "name": "serviceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique service identifier"
+              },
+              {
+                "name": "generationId",
+                "value": "",
+                "type": "path",
+                "description": "Generation (version) identifier"
+              }
+            ]
+          },
+          "docs": "Get the details of a specific generation."
+        },
+        {
+          "info": {
+            "name": "Dataiku Delete a generation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{apinode-host}:{port}/admin/api/services/:serviceId/generations/:generationId",
+            "params": [
+              {
+                "name": "serviceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique service identifier"
+              },
+              {
+                "name": "generationId",
+                "value": "",
+                "type": "path",
+                "description": "Generation (version) identifier"
+              }
+            ]
+          },
+          "docs": "Delete a specific generation from a service."
+        },
+        {
+          "info": {
+            "name": "Dataiku Preload a generation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apinode-host}:{port}/admin/api/services/:serviceId/generations/:generationId/preload",
+            "params": [
+              {
+                "name": "serviceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique service identifier"
+              },
+              {
+                "name": "generationId",
+                "value": "",
+                "type": "path",
+                "description": "Generation (version) identifier"
+              }
+            ]
+          },
+          "docs": "Preload a generation into memory to reduce cold-start latency."
+        },
+        {
+          "info": {
+            "name": "Dataiku Switch to a generation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apinode-host}:{port}/admin/api/services/:serviceId/generations/:generationId/switch",
+            "params": [
+              {
+                "name": "serviceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique service identifier"
+              },
+              {
+                "name": "generationId",
+                "value": "",
+                "type": "path",
+                "description": "Generation (version) identifier"
+              }
+            ]
+          },
+          "docs": "Set a generation as the active generation for the service."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

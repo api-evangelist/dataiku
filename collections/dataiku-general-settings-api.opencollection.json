@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dataiku API Node Administration Artifact Sign-Offs General Settings API",
+    "version": "13.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "General Settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku Get general settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/admin/general-settings"
+          },
+          "docs": "Get the general settings of the DSS instance."
+        },
+        {
+          "info": {
+            "name": "Dataiku Update general settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{apinode-host}:{port}/admin/api/admin/general-settings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the general settings of the DSS instance."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

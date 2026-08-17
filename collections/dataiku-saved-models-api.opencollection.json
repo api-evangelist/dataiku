@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dataiku API Node Administration Artifact Sign-Offs Saved Models API",
+    "version": "13.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Saved Models",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List saved models",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/projects/:projectKey/savedmodels",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              }
+            ]
+          },
+          "docs": "List all saved models in a project."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get saved model details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/projects/:projectKey/savedmodels/:savedModelId",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              },
+              {
+                "name": "savedModelId",
+                "value": "",
+                "type": "path",
+                "description": "Saved model identifier"
+              }
+            ]
+          },
+          "docs": "Get details of a saved model including its active version."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dataiku API Node Administration Artifact Sign-Offs Connections API",
+    "version": "13.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Connections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/admin/connections"
+          },
+          "docs": "List all data connections configured on the DSS instance."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get connection details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/admin/connections/:connectionName",
+            "params": [
+              {
+                "name": "connectionName",
+                "value": "",
+                "type": "path",
+                "description": "Connection name"
+              }
+            ]
+          },
+          "docs": "Get the full definition of a connection."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

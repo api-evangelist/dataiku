@@ -1,0 +1,238 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dataiku API Node Administration Artifact Sign-Offs Datasets API",
+    "version": "13.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Datasets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List datasets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/projects/:projectKey/datasets",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              }
+            ]
+          },
+          "docs": "List all datasets in a project."
+        },
+        {
+          "info": {
+            "name": "Dataiku Create a dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apinode-host}:{port}/admin/api/projects/:projectKey/datasets",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new dataset in the project."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get dataset details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/projects/:projectKey/datasets/:datasetName",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              },
+              {
+                "name": "datasetName",
+                "value": "",
+                "type": "path",
+                "description": "Dataset name within the project"
+              }
+            ]
+          },
+          "docs": "Get the definition and schema of a dataset."
+        },
+        {
+          "info": {
+            "name": "Dataiku Update a dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{apinode-host}:{port}/admin/api/projects/:projectKey/datasets/:datasetName",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              },
+              {
+                "name": "datasetName",
+                "value": "",
+                "type": "path",
+                "description": "Dataset name within the project"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the definition of a dataset."
+        },
+        {
+          "info": {
+            "name": "Dataiku Delete a dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{apinode-host}:{port}/admin/api/projects/:projectKey/datasets/:datasetName",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              },
+              {
+                "name": "datasetName",
+                "value": "",
+                "type": "path",
+                "description": "Dataset name within the project"
+              }
+            ]
+          },
+          "docs": "Delete a dataset from the project."
+        },
+        {
+          "info": {
+            "name": "Dataiku Read dataset data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/projects/:projectKey/datasets/:datasetName/data",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              },
+              {
+                "name": "datasetName",
+                "value": "",
+                "type": "path",
+                "description": "Dataset name within the project"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of rows to return"
+              },
+              {
+                "name": "partitions",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of partition identifiers to read from"
+              }
+            ]
+          },
+          "docs": "Read rows from a dataset. Returns data in JSON format with columns and rows."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get dataset schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/projects/:projectKey/datasets/:datasetName/schema",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              },
+              {
+                "name": "datasetName",
+                "value": "",
+                "type": "path",
+                "description": "Dataset name within the project"
+              }
+            ]
+          },
+          "docs": "Get the schema (column names and types) of a dataset."
+        },
+        {
+          "info": {
+            "name": "Dataiku Set dataset schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{apinode-host}:{port}/admin/api/projects/:projectKey/datasets/:datasetName/schema",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique project key identifier"
+              },
+              {
+                "name": "datasetName",
+                "value": "",
+                "type": "path",
+                "description": "Dataset name within the project"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the schema of a dataset."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

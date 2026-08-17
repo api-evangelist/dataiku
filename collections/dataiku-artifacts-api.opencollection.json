@@ -1,0 +1,121 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dataiku API Node Administration Artifact Sign-Offs Artifacts API",
+    "version": "13.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Artifacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dataiku List artifacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/artifacts",
+            "params": [
+              {
+                "name": "blueprintId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by blueprint ID"
+              }
+            ]
+          },
+          "docs": "List governed artifacts, optionally filtered by blueprint."
+        },
+        {
+          "info": {
+            "name": "Dataiku Create an artifact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{apinode-host}:{port}/admin/api/artifacts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new governed artifact under a blueprint."
+        },
+        {
+          "info": {
+            "name": "Dataiku Get artifact details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{apinode-host}:{port}/admin/api/artifacts/:artifactId",
+            "params": [
+              {
+                "name": "artifactId",
+                "value": "",
+                "type": "path",
+                "description": "Governed artifact identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve the details of a governed artifact."
+        },
+        {
+          "info": {
+            "name": "Dataiku Update an artifact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{apinode-host}:{port}/admin/api/artifacts/:artifactId",
+            "params": [
+              {
+                "name": "artifactId",
+                "value": "",
+                "type": "path",
+                "description": "Governed artifact identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the details of a governed artifact."
+        },
+        {
+          "info": {
+            "name": "Dataiku Delete an artifact",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{apinode-host}:{port}/admin/api/artifacts/:artifactId",
+            "params": [
+              {
+                "name": "artifactId",
+                "value": "",
+                "type": "path",
+                "description": "Governed artifact identifier"
+              }
+            ]
+          },
+          "docs": "Delete a governed artifact."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
