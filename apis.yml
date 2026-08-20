@@ -23,6 +23,12 @@ tags:
   - Artificial Intelligence
   - Data Platform
   - Data Science
+  - Machine-Learning
+tags_raw:
+  - Analytics
+  - Artificial Intelligence
+  - Data Platform
+  - Data Science
   - Machine Learning
 created: '2024-01-01'
 modified: '2026-05-19'
@@ -39,6 +45,10 @@ apis:
   humanURL: https://www.dataiku.com
   baseURL: https://pypi.org/project/dataiku-api-client/
   tags:
+  - Client Library
+  - Python
+  - SDK
+  tags_raw:
   - Client Library
   - Python
   - Sdk
@@ -83,6 +93,10 @@ apis:
   tags:
   - Client Library
   - R Language
+  - SDK
+  tags_raw:
+  - Client Library
+  - R Language
   - Sdk
   properties:
   - type: Documentation
@@ -99,6 +113,10 @@ apis:
   image: https://www.dataiku.com/static/img/logo.png
   humanURL: https://doc.dataiku.com/dss/latest/api/js/index.html
   tags:
+  - JavaScript
+  - Visualization
+  - Web App
+  tags_raw:
   - Javascript
   - Visualization
   - Webapps
@@ -516,6 +534,8 @@ apis:
   humanURL: https://www.dataiku.com
   baseURL: https://dss.example.com/public/api
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
@@ -544,6 +564,8 @@ apis:
   humanURL: https://www.dataiku.com
   baseURL: https://dss.example.com/public/api
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
@@ -712,6 +734,8 @@ apis:
   humanURL: https://www.dataiku.com
   baseURL: https://dss.example.com/public/api
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
@@ -908,6 +932,8 @@ apis:
   humanURL: https://www.dataiku.com
   baseURL: https://dss.example.com/public/api
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
