@@ -10,8 +10,11 @@ info:
     executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: dssGovernApi
-  url: ../openapi/dataiku-govern-api-openapi.yml
+- name: artifactsApi
+  url: ../openapi/dataiku-artifacts-api-openapi.yml
+  type: openapi
+- name: customFieldsApi
+  url: ../openapi/dataiku-custom-fields-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: create-govern-artifact

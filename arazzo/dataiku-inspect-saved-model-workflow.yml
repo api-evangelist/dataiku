@@ -10,8 +10,8 @@ info:
     the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: dssPublicApi
-  url: ../openapi/dataiku-public-api-openapi.yml
+- name: savedModelsApi
+  url: ../openapi/dataiku-saved-models-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: inspect-saved-model

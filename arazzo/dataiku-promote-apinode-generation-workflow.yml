@@ -10,8 +10,11 @@ info:
     can be executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: dssApiNodeAdminApi
-  url: ../openapi/dataiku-api-node-admin-openapi.yml
+- name: generationsApi
+  url: ../openapi/dataiku-generations-api-openapi.yml
+  type: openapi
+- name: servicesApi
+  url: ../openapi/dataiku-services-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: promote-apinode-generation

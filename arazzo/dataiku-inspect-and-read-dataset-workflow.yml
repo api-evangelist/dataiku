@@ -10,8 +10,8 @@ info:
     without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: dssPublicApi
-  url: ../openapi/dataiku-public-api-openapi.yml
+- name: datasetsApi
+  url: ../openapi/dataiku-datasets-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: inspect-and-read-dataset

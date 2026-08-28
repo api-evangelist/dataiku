@@ -11,8 +11,11 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: dssPublicApi
-  url: ../openapi/dataiku-public-api-openapi.yml
+- name: connectionsApi
+  url: ../openapi/dataiku-connections-api-openapi.yml
+  type: openapi
+- name: sqlQueriesApi
+  url: ../openapi/dataiku-sql-queries-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: run-sql-query

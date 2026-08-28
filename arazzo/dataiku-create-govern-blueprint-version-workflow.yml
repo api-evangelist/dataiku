@@ -10,8 +10,11 @@ info:
     underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: dssGovernApi
-  url: ../openapi/dataiku-govern-api-openapi.yml
+- name: blueprintVersionsApi
+  url: ../openapi/dataiku-blueprint-versions-api-openapi.yml
+  type: openapi
+- name: blueprintsApi
+  url: ../openapi/dataiku-blueprints-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: create-govern-blueprint-version
