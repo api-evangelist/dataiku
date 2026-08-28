@@ -3,6 +3,18 @@ name: Dataiku
 description: >-
   Dataiku is an advanced data science and machine learning platform that enables teams to build and deploy AI
   applications at scale.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: open
