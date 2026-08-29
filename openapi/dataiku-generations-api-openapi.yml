@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Dataiku API Node Administration Artifact Sign-Offs Generations API
+  title: Dataiku API Node Administration Generations API
   description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
   version: '13.0'
   contact:
@@ -138,22 +138,28 @@ paths:
         '404':
           description: Generation not found
 components:
-  parameters:
-    serviceId:
-      name: serviceId
-      in: path
-      required: true
-      description: Unique service identifier
-      schema:
-        type: string
-    generationId:
-      name: generationId
-      in: path
-      required: true
-      description: Generation (version) identifier
-      schema:
-        type: string
   schemas:
+    Endpoint:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Endpoint identifier
+        type:
+          type: string
+          enum:
+          - STD_PREDICTION
+          - CUSTOM_PREDICTION
+          - R_PREDICTION
+          - CUSTOM_R_PREDICTION
+          - SQL_QUERY
+          - DATASET_LOOKUP
+          - R_FUNCTION
+          - PYTHON_FUNCTION
+          description: Endpoint type
+        modelRef:
+          type: string
+          description: Reference to the model used by this endpoint
     GenerationSummary:
       type: object
       properties:
@@ -188,27 +194,21 @@ components:
         preloaded:
           type: boolean
           description: Whether this generation is preloaded in memory
-    Endpoint:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Endpoint identifier
-        type:
-          type: string
-          enum:
-          - STD_PREDICTION
-          - CUSTOM_PREDICTION
-          - R_PREDICTION
-          - CUSTOM_R_PREDICTION
-          - SQL_QUERY
-          - DATASET_LOOKUP
-          - R_FUNCTION
-          - PYTHON_FUNCTION
-          description: Endpoint type
-        modelRef:
-          type: string
-          description: Reference to the model used by this endpoint
+  parameters:
+    generationId:
+      name: generationId
+      in: path
+      required: true
+      description: Generation (version) identifier
+      schema:
+        type: string
+    serviceId:
+      name: serviceId
+      in: path
+      required: true
+      description: Unique service identifier
+      schema:
+        type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

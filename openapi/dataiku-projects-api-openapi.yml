@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Dataiku API Node Administration Artifact Sign-Offs Projects API
-  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  title: Dataiku DSS Public Projects API
+  description: REST API for managing Dataiku DSS instances, projects, datasets, recipes, jobs, scenarios, models, and other platform resources programmatically. Provides full control over DSS operations including data preparation, machine learning model management, and workflow automation.
   version: '13.0'
   contact:
     name: Dataiku Support
@@ -9,15 +9,12 @@ info:
     email: support@dataiku.com
   termsOfService: https://www.dataiku.com/terms/
 servers:
-- url: https://{apinode-host}:{port}/admin/api
-  description: Dataiku API Node Instance
+- url: https://{dss-host}/public/api
+  description: Dataiku DSS Instance
   variables:
-    apinode-host:
-      default: apinode.example.com
-      description: Hostname of the Dataiku API Node
-    port:
-      default: '12443'
-      description: Admin API port
+    dss-host:
+      default: dss.example.com
+      description: Hostname of the Dataiku DSS instance
 security:
 - apiKeyAuth: []
 tags:
@@ -141,6 +138,37 @@ paths:
           description: Project not found
 components:
   schemas:
+    ProjectSummary:
+      type: object
+      properties:
+        projectKey:
+          type: string
+          description: Unique project key
+        name:
+          type: string
+          description: Display name of the project
+        owner:
+          type: string
+          description: Login of the project owner
+        projectStatus:
+          type: string
+          description: Current status of the project
+    CreateProjectRequest:
+      type: object
+      required:
+      - projectKey
+      - name
+      properties:
+        projectKey:
+          type: string
+          description: Unique project key (uppercase letters and numbers)
+          pattern: ^[A-Z][A-Z0-9_]*$
+        name:
+          type: string
+          description: Display name for the project
+        owner:
+          type: string
+          description: Login of the project owner
     ProjectMetadata:
       type: object
       properties:
@@ -161,21 +189,6 @@ components:
         checklists:
           type: object
           description: Checklists for the project
-    Tag:
-      type: object
-      properties:
-        versionNumber:
-          type: integer
-          description: Version number
-        lastModifiedBy:
-          type: object
-          properties:
-            login:
-              type: string
-        lastModifiedOn:
-          type: string
-          format: date-time
-          description: Timestamp of last modification
     Project:
       type: object
       properties:
@@ -198,37 +211,21 @@ components:
         description:
           type: string
           description: Short description of the project
-    CreateProjectRequest:
-      type: object
-      required:
-      - projectKey
-      - name
-      properties:
-        projectKey:
-          type: string
-          description: Unique project key (uppercase letters and numbers)
-          pattern: ^[A-Z][A-Z0-9_]*$
-        name:
-          type: string
-          description: Display name for the project
-        owner:
-          type: string
-          description: Login of the project owner
-    ProjectSummary:
+    Tag:
       type: object
       properties:
-        projectKey:
+        versionNumber:
+          type: integer
+          description: Version number
+        lastModifiedBy:
+          type: object
+          properties:
+            login:
+              type: string
+        lastModifiedOn:
           type: string
-          description: Unique project key
-        name:
-          type: string
-          description: Display name of the project
-        owner:
-          type: string
-          description: Login of the project owner
-        projectStatus:
-          type: string
-          description: Current status of the project
+          format: date-time
+          description: Timestamp of last modification
   parameters:
     projectKey:
       name: projectKey
@@ -242,7 +239,7 @@ components:
       type: apiKey
       in: header
       name: Authorization
-      description: Admin API key passed as Bearer token
+      description: API key authentication. Pass the API key as a Bearer token in the Authorization header.
 externalDocs:
-  description: Dataiku API Node Administration Documentation
-  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html
+  description: Dataiku DSS Public API Documentation
+  url: https://doc.dataiku.com/dss/latest/publicapi/rest/index.html

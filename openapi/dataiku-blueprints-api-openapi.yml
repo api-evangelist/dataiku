@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Dataiku API Node Administration Artifact Sign-Offs Blueprints API
-  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  title: Dataiku Govern Blueprints API
+  description: Public REST API for interacting with Dataiku Govern to manage AI governance workflows, including blueprints, blueprint versions, artifacts, custom fields, sign-offs, reviews, roles, and compliance workflows for responsible AI management.
   version: '13.0'
   contact:
     name: Dataiku Support
@@ -9,15 +9,12 @@ info:
     email: support@dataiku.com
   termsOfService: https://www.dataiku.com/terms/
 servers:
-- url: https://{apinode-host}:{port}/admin/api
-  description: Dataiku API Node Instance
+- url: https://{govern-host}/public/api
+  description: Dataiku Govern Instance
   variables:
-    apinode-host:
-      default: apinode.example.com
-      description: Hostname of the Dataiku API Node
-    port:
-      default: '12443'
-      description: Admin API port
+    govern-host:
+      default: govern.example.com
+      description: Hostname of the Dataiku Govern instance
 security:
 - apiKeyAuth: []
 tags:
@@ -128,20 +125,6 @@ components:
           items:
             $ref: '#/components/schemas/WorkflowTransition'
           description: Allowed status transitions
-    CreateBlueprintRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Blueprint display name
-        description:
-          type: string
-          description: Blueprint description
-        icon:
-          type: string
-          description: Icon identifier
     SignOffStep:
       type: object
       properties:
@@ -164,6 +147,24 @@ components:
           - USER
           - GROUP
           description: How reviewers are assigned
+    BlueprintSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique blueprint identifier
+        name:
+          type: string
+          description: Blueprint display name
+        description:
+          type: string
+          description: Blueprint description
+        artifactCount:
+          type: integer
+          description: Number of artifacts using this blueprint
+        icon:
+          type: string
+          description: Icon identifier
     Blueprint:
       type: object
       properties:
@@ -191,41 +192,6 @@ components:
           $ref: '#/components/schemas/SignOffConfiguration'
         workflowConfiguration:
           $ref: '#/components/schemas/WorkflowConfiguration'
-    BlueprintSummary:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique blueprint identifier
-        name:
-          type: string
-          description: Blueprint display name
-        description:
-          type: string
-          description: Blueprint description
-        artifactCount:
-          type: integer
-          description: Number of artifacts using this blueprint
-        icon:
-          type: string
-          description: Icon identifier
-    WorkflowTransition:
-      type: object
-      properties:
-        fromStatus:
-          type: string
-          description: Source status ID
-        toStatus:
-          type: string
-          description: Target status ID
-    SignOffConfiguration:
-      type: object
-      properties:
-        steps:
-          type: array
-          items:
-            $ref: '#/components/schemas/SignOffStep'
-          description: Ordered list of sign-off steps
     FieldSetting:
       type: object
       properties:
@@ -259,6 +225,20 @@ components:
           items:
             type: string
           description: Available options for SELECT and MULTISELECT types
+    CreateBlueprintRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Blueprint display name
+        description:
+          type: string
+          description: Blueprint description
+        icon:
+          type: string
+          description: Icon identifier
     WorkflowStatus:
       type: object
       properties:
@@ -271,6 +251,23 @@ components:
         color:
           type: string
           description: Status color code
+    WorkflowTransition:
+      type: object
+      properties:
+        fromStatus:
+          type: string
+          description: Source status ID
+        toStatus:
+          type: string
+          description: Target status ID
+    SignOffConfiguration:
+      type: object
+      properties:
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/SignOffStep'
+          description: Ordered list of sign-off steps
   parameters:
     blueprintId:
       name: blueprintId
@@ -284,7 +281,7 @@ components:
       type: apiKey
       in: header
       name: Authorization
-      description: Admin API key passed as Bearer token
+      description: API key passed as Bearer token
 externalDocs:
-  description: Dataiku API Node Administration Documentation
-  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html
+  description: Dataiku Govern API Documentation
+  url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html

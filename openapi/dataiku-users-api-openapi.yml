@@ -1,23 +1,26 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Dataiku API Node Administration Artifact Sign-Offs Users API
-  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  title: Dataiku Users API
   version: '13.0'
   contact:
     name: Dataiku Support
     url: https://www.dataiku.com/support
     email: support@dataiku.com
   termsOfService: https://www.dataiku.com/terms/
+  description: 'Operations tagged Users across 2 of this provider''s published API definitions: dataiku-govern-api-openapi.yml, dataiku-public-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://{apinode-host}:{port}/admin/api
-  description: Dataiku API Node Instance
+- url: https://{govern-host}/public/api
+  description: Dataiku Govern Instance
   variables:
-    apinode-host:
-      default: apinode.example.com
-      description: Hostname of the Dataiku API Node
-    port:
-      default: '12443'
-      description: Admin API port
+    govern-host:
+      default: govern.example.com
+      description: Hostname of the Dataiku Govern instance
+- url: https://{dss-host}/public/api
+  description: Dataiku DSS Instance
+  variables:
+    dss-host:
+      default: dss.example.com
+      description: Hostname of the Dataiku DSS instance
 security:
 - apiKeyAuth: []
 tags:
@@ -42,6 +45,13 @@ paths:
                   $ref: '#/components/schemas/GovernUser'
         '401':
           description: Unauthorized
+    servers:
+    - url: https://{govern-host}/public/api
+      description: Dataiku Govern Instance
+      variables:
+        govern-host:
+          default: govern.example.com
+          description: Hostname of the Dataiku Govern instance
   /admin/users:
     get:
       operationId: listUsers
@@ -83,6 +93,13 @@ paths:
           description: Invalid request
         '409':
           description: User already exists
+    servers:
+    - url: https://{dss-host}/public/api
+      description: Dataiku DSS Instance
+      variables:
+        dss-host:
+          default: dss.example.com
+          description: Hostname of the Dataiku DSS instance
   /admin/users/{login}:
     get:
       operationId: getUser
@@ -133,8 +150,33 @@ paths:
           description: User deleted
         '404':
           description: User not found
+    servers:
+    - url: https://{dss-host}/public/api
+      description: Dataiku DSS Instance
+      variables:
+        dss-host:
+          default: dss.example.com
+          description: Hostname of the Dataiku DSS instance
 components:
   schemas:
+    GovernUser:
+      type: object
+      properties:
+        login:
+          type: string
+          description: User login
+        displayName:
+          type: string
+          description: Display name
+        email:
+          type: string
+          format: email
+          description: Email address
+        roles:
+          type: array
+          items:
+            type: string
+          description: Assigned role IDs
     CreateUserRequest:
       type: object
       required:
@@ -186,24 +228,6 @@ components:
         enabled:
           type: boolean
           description: Whether the account is enabled
-    GovernUser:
-      type: object
-      properties:
-        login:
-          type: string
-          description: User login
-        displayName:
-          type: string
-          description: Display name
-        email:
-          type: string
-          format: email
-          description: Email address
-        roles:
-          type: array
-          items:
-            type: string
-          description: Assigned role IDs
   parameters:
     login:
       name: login
@@ -217,7 +241,7 @@ components:
       type: apiKey
       in: header
       name: Authorization
-      description: Admin API key passed as Bearer token
-externalDocs:
-  description: Dataiku API Node Administration Documentation
-  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html
+      description: API key passed as Bearer token
+x-refined-from:
+- dataiku-govern-api-openapi.yml
+- dataiku-public-api-openapi.yml

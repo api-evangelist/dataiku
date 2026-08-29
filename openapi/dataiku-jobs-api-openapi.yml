@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Dataiku API Node Administration Artifact Sign-Offs Jobs API
-  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  title: Dataiku DSS Public Jobs API
+  description: REST API for managing Dataiku DSS instances, projects, datasets, recipes, jobs, scenarios, models, and other platform resources programmatically. Provides full control over DSS operations including data preparation, machine learning model management, and workflow automation.
   version: '13.0'
   contact:
     name: Dataiku Support
@@ -9,15 +9,12 @@ info:
     email: support@dataiku.com
   termsOfService: https://www.dataiku.com/terms/
 servers:
-- url: https://{apinode-host}:{port}/admin/api
-  description: Dataiku API Node Instance
+- url: https://{dss-host}/public/api
+  description: Dataiku DSS Instance
   variables:
-    apinode-host:
-      default: apinode.example.com
-      description: Hostname of the Dataiku API Node
-    port:
-      default: '12443'
-      description: Admin API port
+    dss-host:
+      default: dss.example.com
+      description: Hostname of the Dataiku DSS instance
 security:
 - apiKeyAuth: []
 tags:
@@ -102,6 +99,52 @@ paths:
           description: Job not found
 components:
   schemas:
+    JobSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique job identifier
+        projectKey:
+          type: string
+          description: Project key
+        state:
+          type: string
+          enum:
+          - NOT_STARTED
+          - RUNNING
+          - DONE
+          - FAILED
+          - ABORTED
+          description: Current state of the job
+        initiator:
+          type: string
+          description: User who started the job
+        startTime:
+          type: integer
+          format: int64
+          description: Job start time as epoch milliseconds
+    StartJobRequest:
+      type: object
+      required:
+      - outputs
+      properties:
+        outputs:
+          type: array
+          items:
+            type: object
+            properties:
+              projectKey:
+                type: string
+              id:
+                type: string
+              type:
+                type: string
+                enum:
+                - DATASET
+                - MANAGED_FOLDER
+                - SAVED_MODEL
+          description: List of outputs to build
     Job:
       type: object
       properties:
@@ -136,31 +179,6 @@ components:
           items:
             $ref: '#/components/schemas/JobActivity'
           description: List of activities in the job
-    JobSummary:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique job identifier
-        projectKey:
-          type: string
-          description: Project key
-        state:
-          type: string
-          enum:
-          - NOT_STARTED
-          - RUNNING
-          - DONE
-          - FAILED
-          - ABORTED
-          description: Current state of the job
-        initiator:
-          type: string
-          description: User who started the job
-        startTime:
-          type: integer
-          format: int64
-          description: Job start time as epoch milliseconds
     JobActivity:
       type: object
       properties:
@@ -177,27 +195,6 @@ components:
           - FAILED
           - ABORTED
           description: Activity state
-    StartJobRequest:
-      type: object
-      required:
-      - outputs
-      properties:
-        outputs:
-          type: array
-          items:
-            type: object
-            properties:
-              projectKey:
-                type: string
-              id:
-                type: string
-              type:
-                type: string
-                enum:
-                - DATASET
-                - MANAGED_FOLDER
-                - SAVED_MODEL
-          description: List of outputs to build
   parameters:
     projectKey:
       name: projectKey
@@ -218,7 +215,7 @@ components:
       type: apiKey
       in: header
       name: Authorization
-      description: Admin API key passed as Bearer token
+      description: API key authentication. Pass the API key as a Bearer token in the Authorization header.
 externalDocs:
-  description: Dataiku API Node Administration Documentation
-  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html
+  description: Dataiku DSS Public API Documentation
+  url: https://doc.dataiku.com/dss/latest/publicapi/rest/index.html

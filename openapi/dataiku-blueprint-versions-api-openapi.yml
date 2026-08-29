@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Dataiku API Node Administration Artifact Sign-Offs Blueprint Versions API
-  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  title: Dataiku Govern Blueprint Versions API
+  description: Public REST API for interacting with Dataiku Govern to manage AI governance workflows, including blueprints, blueprint versions, artifacts, custom fields, sign-offs, reviews, roles, and compliance workflows for responsible AI management.
   version: '13.0'
   contact:
     name: Dataiku Support
@@ -9,15 +9,12 @@ info:
     email: support@dataiku.com
   termsOfService: https://www.dataiku.com/terms/
 servers:
-- url: https://{apinode-host}:{port}/admin/api
-  description: Dataiku API Node Instance
+- url: https://{govern-host}/public/api
+  description: Dataiku Govern Instance
   variables:
-    apinode-host:
-      default: apinode.example.com
-      description: Hostname of the Dataiku API Node
-    port:
-      default: '12443'
-      description: Admin API port
+    govern-host:
+      default: govern.example.com
+      description: Hostname of the Dataiku Govern instance
 security:
 - apiKeyAuth: []
 tags:
@@ -88,36 +85,12 @@ paths:
           description: Blueprint version not found
 components:
   schemas:
-    BlueprintVersion:
+    CreateBlueprintVersionRequest:
       type: object
       properties:
-        id:
+        originVersionId:
           type: string
-          description: Version identifier
-        blueprintId:
-          type: string
-          description: Parent blueprint ID
-        versionNumber:
-          type: integer
-          description: Version number
-        status:
-          type: string
-          enum:
-          - DRAFT
-          - PUBLISHED
-          - ARCHIVED
-          description: Version status
-        fieldSettings:
-          type: array
-          items:
-            $ref: '#/components/schemas/FieldSetting'
-          description: Custom field definitions
-        signOffConfiguration:
-          $ref: '#/components/schemas/SignOffConfiguration'
-        createdOn:
-          type: integer
-          format: int64
-          description: Creation timestamp
+          description: Origin version to copy from
     SignOffStep:
       type: object
       properties:
@@ -140,20 +113,6 @@ components:
           - USER
           - GROUP
           description: How reviewers are assigned
-    CreateBlueprintVersionRequest:
-      type: object
-      properties:
-        originVersionId:
-          type: string
-          description: Origin version to copy from
-    SignOffConfiguration:
-      type: object
-      properties:
-        steps:
-          type: array
-          items:
-            $ref: '#/components/schemas/SignOffStep'
-          description: Ordered list of sign-off steps
     FieldSetting:
       type: object
       properties:
@@ -187,6 +146,36 @@ components:
           items:
             type: string
           description: Available options for SELECT and MULTISELECT types
+    BlueprintVersion:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Version identifier
+        blueprintId:
+          type: string
+          description: Parent blueprint ID
+        versionNumber:
+          type: integer
+          description: Version number
+        status:
+          type: string
+          enum:
+          - DRAFT
+          - PUBLISHED
+          - ARCHIVED
+          description: Version status
+        fieldSettings:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldSetting'
+          description: Custom field definitions
+        signOffConfiguration:
+          $ref: '#/components/schemas/SignOffConfiguration'
+        createdOn:
+          type: integer
+          format: int64
+          description: Creation timestamp
     BlueprintVersionSummary:
       type: object
       properties:
@@ -207,14 +196,15 @@ components:
           type: integer
           format: int64
           description: Creation timestamp
+    SignOffConfiguration:
+      type: object
+      properties:
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/SignOffStep'
+          description: Ordered list of sign-off steps
   parameters:
-    versionId:
-      name: versionId
-      in: path
-      required: true
-      description: Blueprint version identifier
-      schema:
-        type: string
     blueprintId:
       name: blueprintId
       in: path
@@ -222,12 +212,19 @@ components:
       description: Unique blueprint identifier
       schema:
         type: string
+    versionId:
+      name: versionId
+      in: path
+      required: true
+      description: Blueprint version identifier
+      schema:
+        type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey
       in: header
       name: Authorization
-      description: Admin API key passed as Bearer token
+      description: API key passed as Bearer token
 externalDocs:
-  description: Dataiku API Node Administration Documentation
-  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html
+  description: Dataiku Govern API Documentation
+  url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html

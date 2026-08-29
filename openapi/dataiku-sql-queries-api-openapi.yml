@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Dataiku API Node Administration Artifact Sign-Offs SQL Queries API
-  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  title: Dataiku DSS Public SQL Queries API
+  description: REST API for managing Dataiku DSS instances, projects, datasets, recipes, jobs, scenarios, models, and other platform resources programmatically. Provides full control over DSS operations including data preparation, machine learning model management, and workflow automation.
   version: '13.0'
   contact:
     name: Dataiku Support
@@ -9,15 +9,12 @@ info:
     email: support@dataiku.com
   termsOfService: https://www.dataiku.com/terms/
 servers:
-- url: https://{apinode-host}:{port}/admin/api
-  description: Dataiku API Node Instance
+- url: https://{dss-host}/public/api
+  description: Dataiku DSS Instance
   variables:
-    apinode-host:
-      default: apinode.example.com
-      description: Hostname of the Dataiku API Node
-    port:
-      default: '12443'
-      description: Admin API port
+    dss-host:
+      default: dss.example.com
+      description: Hostname of the Dataiku DSS instance
 security:
 - apiKeyAuth: []
 tags:
@@ -90,7 +87,7 @@ components:
       type: apiKey
       in: header
       name: Authorization
-      description: Admin API key passed as Bearer token
+      description: API key authentication. Pass the API key as a Bearer token in the Authorization header.
 externalDocs:
-  description: Dataiku API Node Administration Documentation
-  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html
+  description: Dataiku DSS Public API Documentation
+  url: https://doc.dataiku.com/dss/latest/publicapi/rest/index.html

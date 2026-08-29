@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Dataiku API Node Administration Artifact Sign-Offs Services API
+  title: Dataiku API Node Administration Services API
   description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
   version: '13.0'
   contact:
@@ -106,6 +106,26 @@ paths:
           description: Service not found
 components:
   schemas:
+    Service:
+      type: object
+      properties:
+        serviceId:
+          type: string
+          description: Unique service identifier
+        enabled:
+          type: boolean
+          description: Whether the service is enabled
+        activeGeneration:
+          type: string
+          description: Currently active generation identifier
+        endpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Endpoint'
+          description: List of endpoints provided by this service
+        generationCount:
+          type: integer
+          description: Number of available generations
     ServiceSummary:
       type: object
       properties:
@@ -142,26 +162,6 @@ components:
         modelRef:
           type: string
           description: Reference to the model used by this endpoint
-    Service:
-      type: object
-      properties:
-        serviceId:
-          type: string
-          description: Unique service identifier
-        enabled:
-          type: boolean
-          description: Whether the service is enabled
-        activeGeneration:
-          type: string
-          description: Currently active generation identifier
-        endpoints:
-          type: array
-          items:
-            $ref: '#/components/schemas/Endpoint'
-          description: List of endpoints provided by this service
-        generationCount:
-          type: integer
-          description: Number of available generations
   parameters:
     serviceId:
       name: serviceId

@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Dataiku API Node Administration Artifact Sign-Offs Artifacts API
-  description: REST API for administering Dataiku API Nodes, managing deployed services, service generations, prediction endpoints, and authentication keys for real-time API serving of machine learning models and data lookups.
+  title: Dataiku Govern Artifacts API
+  description: Public REST API for interacting with Dataiku Govern to manage AI governance workflows, including blueprints, blueprint versions, artifacts, custom fields, sign-offs, reviews, roles, and compliance workflows for responsible AI management.
   version: '13.0'
   contact:
     name: Dataiku Support
@@ -9,15 +9,12 @@ info:
     email: support@dataiku.com
   termsOfService: https://www.dataiku.com/terms/
 servers:
-- url: https://{apinode-host}:{port}/admin/api
-  description: Dataiku API Node Instance
+- url: https://{govern-host}/public/api
+  description: Dataiku Govern Instance
   variables:
-    apinode-host:
-      default: apinode.example.com
-      description: Hostname of the Dataiku API Node
-    port:
-      default: '12443'
-      description: Admin API port
+    govern-host:
+      default: govern.example.com
+      description: Hostname of the Dataiku Govern instance
 security:
 - apiKeyAuth: []
 tags:
@@ -121,6 +118,25 @@ paths:
           description: Artifact not found
 components:
   schemas:
+    CreateArtifactRequest:
+      type: object
+      required:
+      - name
+      - blueprintId
+      properties:
+        name:
+          type: string
+          description: Artifact display name
+        blueprintId:
+          type: string
+          description: Blueprint to associate with
+        blueprintVersionId:
+          type: string
+          description: Specific blueprint version to use
+        customFields:
+          type: object
+          additionalProperties: true
+          description: Initial custom field values
     Artifact:
       type: object
       properties:
@@ -179,25 +195,6 @@ components:
         createdBy:
           type: string
           description: User who created the artifact
-    CreateArtifactRequest:
-      type: object
-      required:
-      - name
-      - blueprintId
-      properties:
-        name:
-          type: string
-          description: Artifact display name
-        blueprintId:
-          type: string
-          description: Blueprint to associate with
-        blueprintVersionId:
-          type: string
-          description: Specific blueprint version to use
-        customFields:
-          type: object
-          additionalProperties: true
-          description: Initial custom field values
   parameters:
     artifactId:
       name: artifactId
@@ -211,7 +208,7 @@ components:
       type: apiKey
       in: header
       name: Authorization
-      description: Admin API key passed as Bearer token
+      description: API key passed as Bearer token
 externalDocs:
-  description: Dataiku API Node Administration Documentation
-  url: https://doc.dataiku.com/dss/latest/apinode/api/admin-api.html
+  description: Dataiku Govern API Documentation
+  url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html
