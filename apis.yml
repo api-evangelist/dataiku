@@ -59,7 +59,7 @@ apis:
   tags:
   - Client Library
   - Python
-  - SDK
+  - Sdk
   tags_raw:
   - Client Library
   - Python
@@ -105,7 +105,7 @@ apis:
   tags:
   - Client Library
   - R Language
-  - SDK
+  - Sdk
   tags_raw:
   - Client Library
   - R Language
@@ -125,9 +125,9 @@ apis:
   image: https://www.dataiku.com/static/img/logo.png
   humanURL: https://doc.dataiku.com/dss/latest/api/js/index.html
   tags:
-  - JavaScript
+  - Javascript
   - Visualization
-  - Web App
+  - Webapps
   tags_raw:
   - Javascript
   - Visualization
