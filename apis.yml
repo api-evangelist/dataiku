@@ -978,6 +978,8 @@ maintainers:
     email: kin@apievangelist.com
     url: https://www.dataiku.com
 common:
+  - type: Website
+    url: https://www.dataiku.com/
   - type: CapabilityMap
     url: capabilities/dataiku-capability-edges.yml
     name: Dataiku Business Capability Map
