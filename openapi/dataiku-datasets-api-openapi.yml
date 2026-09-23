@@ -189,21 +189,6 @@ paths:
         '404':
           description: Dataset not found
 components:
-  parameters:
-    datasetName:
-      name: datasetName
-      in: path
-      required: true
-      description: Dataset name within the project
-      schema:
-        type: string
-    projectKey:
-      name: projectKey
-      in: path
-      required: true
-      description: Unique project key identifier
-      schema:
-        type: string
   schemas:
     CreateDatasetRequest:
       type: object
@@ -226,6 +211,65 @@ components:
         formatParams:
           type: object
           description: Format-specific parameters
+    DatasetSchema:
+      type: object
+      properties:
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/SchemaColumn'
+          description: List of columns in the dataset
+        userModified:
+          type: boolean
+          description: Whether the schema was manually modified
+    Tag:
+      type: object
+      properties:
+        versionNumber:
+          type: integer
+          description: Version number
+        lastModifiedBy:
+          type: object
+          properties:
+            login:
+              type: string
+        lastModifiedOn:
+          type: string
+          format: date-time
+          description: Timestamp of last modification
+    SchemaColumn:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Column name
+        type:
+          type: string
+          description: Column data type (e.g., string, bigint, double, boolean, date)
+        meaning:
+          type: string
+          description: Semantic meaning assigned to the column
+        maxLength:
+          type: integer
+          description: Maximum length for string columns
+    DatasetData:
+      type: object
+      properties:
+        columns:
+          type: array
+          items:
+            type: string
+          description: Column names
+        rows:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+          description: Data rows
+        totalCount:
+          type: integer
+          description: Total number of rows in the dataset
     Dataset:
       type: object
       properties:
@@ -256,65 +300,21 @@ components:
           $ref: '#/components/schemas/Tag'
         versionTag:
           $ref: '#/components/schemas/Tag'
-    DatasetSchema:
-      type: object
-      properties:
-        columns:
-          type: array
-          items:
-            $ref: '#/components/schemas/SchemaColumn'
-          description: List of columns in the dataset
-        userModified:
-          type: boolean
-          description: Whether the schema was manually modified
-    Tag:
-      type: object
-      properties:
-        versionNumber:
-          type: integer
-          description: Version number
-        lastModifiedBy:
-          type: object
-          properties:
-            login:
-              type: string
-        lastModifiedOn:
-          type: string
-          format: date-time
-          description: Timestamp of last modification
-    DatasetData:
-      type: object
-      properties:
-        columns:
-          type: array
-          items:
-            type: string
-          description: Column names
-        rows:
-          type: array
-          items:
-            type: array
-            items:
-              type: string
-          description: Data rows
-        totalCount:
-          type: integer
-          description: Total number of rows in the dataset
-    SchemaColumn:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Column name
-        type:
-          type: string
-          description: Column data type (e.g., string, bigint, double, boolean, date)
-        meaning:
-          type: string
-          description: Semantic meaning assigned to the column
-        maxLength:
-          type: integer
-          description: Maximum length for string columns
+  parameters:
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      description: Unique project key identifier
+      schema:
+        type: string
+    datasetName:
+      name: datasetName
+      in: path
+      required: true
+      description: Dataset name within the project
+      schema:
+        type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

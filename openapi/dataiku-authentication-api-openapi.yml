@@ -95,7 +95,26 @@ paths:
         '404':
           description: Key not found
 components:
+  parameters:
+    keyId:
+      name: keyId
+      in: path
+      required: true
+      description: Authentication key identifier
+      schema:
+        type: string
   schemas:
+    CreateAuthKeyRequest:
+      type: object
+      properties:
+        label:
+          type: string
+          description: Descriptive label for the key
+        allowedServices:
+          type: array
+          items:
+            type: string
+          description: List of services this key can access
     AuthKey:
       type: object
       properties:
@@ -117,25 +136,6 @@ components:
           items:
             type: string
           description: List of services this key can access (empty means all)
-    CreateAuthKeyRequest:
-      type: object
-      properties:
-        label:
-          type: string
-          description: Descriptive label for the key
-        allowedServices:
-          type: array
-          items:
-            type: string
-          description: List of services this key can access
-  parameters:
-    keyId:
-      name: keyId
-      in: path
-      required: true
-      description: Authentication key identifier
-      schema:
-        type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

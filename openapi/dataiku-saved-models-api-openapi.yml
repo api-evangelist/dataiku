@@ -61,21 +61,6 @@ paths:
         '404':
           description: Saved model not found
 components:
-  parameters:
-    savedModelId:
-      name: savedModelId
-      in: path
-      required: true
-      description: Saved model identifier
-      schema:
-        type: string
-    projectKey:
-      name: projectKey
-      in: path
-      required: true
-      description: Unique project key identifier
-      schema:
-        type: string
   schemas:
     ModelVersion:
       type: object
@@ -126,6 +111,21 @@ components:
         type:
           type: string
           description: Model type (PREDICTION or CLUSTERING)
+  parameters:
+    savedModelId:
+      name: savedModelId
+      in: path
+      required: true
+      description: Saved model identifier
+      schema:
+        type: string
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      description: Unique project key identifier
+      schema:
+        type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

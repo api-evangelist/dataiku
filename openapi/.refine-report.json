@@ -49,7 +49,8 @@
     "dataiku-api-node-admin-openapi.yml: declared missing tag: Services",
     "dataiku-govern-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "dataiku-public-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "tag 'Users' spans 2 source specs (dataiku-govern-api-openapi.yml, dataiku-public-api-openapi.yml): per-path servers applied"
+    "tag 'Users' spans 2 source specs (dataiku-govern-api-openapi.yml, dataiku-public-api-openapi.yml): per-path servers applied",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "dataiku-artifact-sign-offs-api-openapi.yml: previously refined output, superseded by openapi/_original/",

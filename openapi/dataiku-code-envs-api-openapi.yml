@@ -59,7 +59,37 @@ paths:
         '404':
           description: Code environment not found
 components:
+  parameters:
+    envName:
+      name: envName
+      in: path
+      required: true
+      description: Code environment name
+      schema:
+        type: string
+    envLang:
+      name: envLang
+      in: path
+      required: true
+      description: Code environment language (PYTHON or R)
+      schema:
+        type: string
+        enum:
+        - PYTHON
+        - R
   schemas:
+    CodeEnvSummary:
+      type: object
+      properties:
+        envName:
+          type: string
+          description: Code environment name
+        envLang:
+          type: string
+          enum:
+          - PYTHON
+          - R
+          description: Programming language
     CodeEnv:
       type: object
       properties:
@@ -81,36 +111,6 @@ components:
         pythonInterpreter:
           type: string
           description: Python interpreter path (Python envs only)
-    CodeEnvSummary:
-      type: object
-      properties:
-        envName:
-          type: string
-          description: Code environment name
-        envLang:
-          type: string
-          enum:
-          - PYTHON
-          - R
-          description: Programming language
-  parameters:
-    envName:
-      name: envName
-      in: path
-      required: true
-      description: Code environment name
-      schema:
-        type: string
-    envLang:
-      name: envLang
-      in: path
-      required: true
-      description: Code environment language (PYTHON or R)
-      schema:
-        type: string
-        enum:
-        - PYTHON
-        - R
   securitySchemes:
     apiKeyAuth:
       type: apiKey

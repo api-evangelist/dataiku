@@ -106,6 +106,27 @@ paths:
           description: Service not found
 components:
   schemas:
+    Endpoint:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Endpoint identifier
+        type:
+          type: string
+          enum:
+          - STD_PREDICTION
+          - CUSTOM_PREDICTION
+          - R_PREDICTION
+          - CUSTOM_R_PREDICTION
+          - SQL_QUERY
+          - DATASET_LOOKUP
+          - R_FUNCTION
+          - PYTHON_FUNCTION
+          description: Endpoint type
+        modelRef:
+          type: string
+          description: Reference to the model used by this endpoint
     Service:
       type: object
       properties:
@@ -141,27 +162,6 @@ components:
         generationCount:
           type: integer
           description: Number of available generations
-    Endpoint:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Endpoint identifier
-        type:
-          type: string
-          enum:
-          - STD_PREDICTION
-          - CUSTOM_PREDICTION
-          - R_PREDICTION
-          - CUSTOM_R_PREDICTION
-          - SQL_QUERY
-          - DATASET_LOOKUP
-          - R_FUNCTION
-          - PYTHON_FUNCTION
-          description: Endpoint type
-        modelRef:
-          type: string
-          description: Reference to the model used by this endpoint
   parameters:
     serviceId:
       name: serviceId

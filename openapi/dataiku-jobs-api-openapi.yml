@@ -124,27 +124,22 @@ components:
           type: integer
           format: int64
           description: Job start time as epoch milliseconds
-    StartJobRequest:
+    JobActivity:
       type: object
-      required:
-      - outputs
       properties:
-        outputs:
-          type: array
-          items:
-            type: object
-            properties:
-              projectKey:
-                type: string
-              id:
-                type: string
-              type:
-                type: string
-                enum:
-                - DATASET
-                - MANAGED_FOLDER
-                - SAVED_MODEL
-          description: List of outputs to build
+        recipeProjectKey:
+          type: string
+        recipeName:
+          type: string
+        state:
+          type: string
+          enum:
+          - NOT_STARTED
+          - RUNNING
+          - DONE
+          - FAILED
+          - ABORTED
+          description: Activity state
     Job:
       type: object
       properties:
@@ -179,22 +174,27 @@ components:
           items:
             $ref: '#/components/schemas/JobActivity'
           description: List of activities in the job
-    JobActivity:
+    StartJobRequest:
       type: object
+      required:
+      - outputs
       properties:
-        recipeProjectKey:
-          type: string
-        recipeName:
-          type: string
-        state:
-          type: string
-          enum:
-          - NOT_STARTED
-          - RUNNING
-          - DONE
-          - FAILED
-          - ABORTED
-          description: Activity state
+        outputs:
+          type: array
+          items:
+            type: object
+            properties:
+              projectKey:
+                type: string
+              id:
+                type: string
+              type:
+                type: string
+                enum:
+                - DATASET
+                - MANAGED_FOLDER
+                - SAVED_MODEL
+          description: List of outputs to build
   parameters:
     projectKey:
       name: projectKey

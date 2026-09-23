@@ -99,7 +99,40 @@ paths:
         '404':
           description: Scenario not found
 components:
+  parameters:
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      description: Unique project key identifier
+      schema:
+        type: string
+    scenarioId:
+      name: scenarioId
+      in: path
+      required: true
+      description: Scenario identifier
+      schema:
+        type: string
   schemas:
+    ScenarioSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Scenario identifier
+        projectKey:
+          type: string
+          description: Project key
+        name:
+          type: string
+          description: Scenario name
+        active:
+          type: boolean
+          description: Whether the scenario is active
+        type:
+          type: string
+          description: Scenario type (step_based or custom_python)
     Scenario:
       type: object
       properties:
@@ -153,39 +186,6 @@ components:
         lastRun:
           type: object
           description: Information about the last run
-    ScenarioSummary:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Scenario identifier
-        projectKey:
-          type: string
-          description: Project key
-        name:
-          type: string
-          description: Scenario name
-        active:
-          type: boolean
-          description: Whether the scenario is active
-        type:
-          type: string
-          description: Scenario type (step_based or custom_python)
-  parameters:
-    scenarioId:
-      name: scenarioId
-      in: path
-      required: true
-      description: Scenario identifier
-      schema:
-        type: string
-    projectKey:
-      name: projectKey
-      in: path
-      required: true
-      description: Unique project key identifier
-      schema:
-        type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

@@ -137,58 +137,15 @@ paths:
         '404':
           description: Project not found
 components:
+  parameters:
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      description: Unique project key identifier
+      schema:
+        type: string
   schemas:
-    ProjectSummary:
-      type: object
-      properties:
-        projectKey:
-          type: string
-          description: Unique project key
-        name:
-          type: string
-          description: Display name of the project
-        owner:
-          type: string
-          description: Login of the project owner
-        projectStatus:
-          type: string
-          description: Current status of the project
-    CreateProjectRequest:
-      type: object
-      required:
-      - projectKey
-      - name
-      properties:
-        projectKey:
-          type: string
-          description: Unique project key (uppercase letters and numbers)
-          pattern: ^[A-Z][A-Z0-9_]*$
-        name:
-          type: string
-          description: Display name for the project
-        owner:
-          type: string
-          description: Login of the project owner
-    ProjectMetadata:
-      type: object
-      properties:
-        label:
-          type: string
-          description: Display label for the project
-        description:
-          type: string
-          description: Project description
-        shortDesc:
-          type: string
-          description: Short description
-        tags:
-          type: array
-          items:
-            type: string
-          description: Tags associated with the project
-        checklists:
-          type: object
-          description: Checklists for the project
     Project:
       type: object
       properties:
@@ -226,14 +183,57 @@ components:
           type: string
           format: date-time
           description: Timestamp of last modification
-  parameters:
-    projectKey:
-      name: projectKey
-      in: path
-      required: true
-      description: Unique project key identifier
-      schema:
-        type: string
+    ProjectSummary:
+      type: object
+      properties:
+        projectKey:
+          type: string
+          description: Unique project key
+        name:
+          type: string
+          description: Display name of the project
+        owner:
+          type: string
+          description: Login of the project owner
+        projectStatus:
+          type: string
+          description: Current status of the project
+    ProjectMetadata:
+      type: object
+      properties:
+        label:
+          type: string
+          description: Display label for the project
+        description:
+          type: string
+          description: Project description
+        shortDesc:
+          type: string
+          description: Short description
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags associated with the project
+        checklists:
+          type: object
+          description: Checklists for the project
+    CreateProjectRequest:
+      type: object
+      required:
+      - projectKey
+      - name
+      properties:
+        projectKey:
+          type: string
+          description: Unique project key (uppercase letters and numbers)
+          pattern: ^[A-Z][A-Z0-9_]*$
+        name:
+          type: string
+          description: Display name for the project
+        owner:
+          type: string
+          description: Login of the project owner
   securitySchemes:
     apiKeyAuth:
       type: apiKey

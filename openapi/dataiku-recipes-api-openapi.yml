@@ -75,49 +75,7 @@ paths:
         '404':
           description: Recipe not found
 components:
-  parameters:
-    recipeName:
-      name: recipeName
-      in: path
-      required: true
-      description: Recipe name within the project
-      schema:
-        type: string
-    projectKey:
-      name: projectKey
-      in: path
-      required: true
-      description: Unique project key identifier
-      schema:
-        type: string
   schemas:
-    RecipeSummary:
-      type: object
-      properties:
-        projectKey:
-          type: string
-          description: Project key
-        name:
-          type: string
-          description: Recipe name
-        type:
-          type: string
-          description: Recipe type (e.g., prepare, python, sql, join, sync)
-    Tag:
-      type: object
-      properties:
-        versionNumber:
-          type: integer
-          description: Version number
-        lastModifiedBy:
-          type: object
-          properties:
-            login:
-              type: string
-        lastModifiedOn:
-          type: string
-          format: date-time
-          description: Timestamp of last modification
     Recipe:
       type: object
       properties:
@@ -143,6 +101,48 @@ components:
           $ref: '#/components/schemas/Tag'
         versionTag:
           $ref: '#/components/schemas/Tag'
+    Tag:
+      type: object
+      properties:
+        versionNumber:
+          type: integer
+          description: Version number
+        lastModifiedBy:
+          type: object
+          properties:
+            login:
+              type: string
+        lastModifiedOn:
+          type: string
+          format: date-time
+          description: Timestamp of last modification
+    RecipeSummary:
+      type: object
+      properties:
+        projectKey:
+          type: string
+          description: Project key
+        name:
+          type: string
+          description: Recipe name
+        type:
+          type: string
+          description: Recipe type (e.g., prepare, python, sql, join, sync)
+  parameters:
+    recipeName:
+      name: recipeName
+      in: path
+      required: true
+      description: Recipe name within the project
+      schema:
+        type: string
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      description: Unique project key identifier
+      schema:
+        type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

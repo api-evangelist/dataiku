@@ -58,7 +58,24 @@ paths:
         '404':
           description: Connection not found
 components:
+  parameters:
+    connectionName:
+      name: connectionName
+      in: path
+      required: true
+      description: Connection name
+      schema:
+        type: string
   schemas:
+    ConnectionSummary:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Connection name
+        type:
+          type: string
+          description: Connection type (e.g., PostgreSQL, S3, HDFS)
     Connection:
       type: object
       properties:
@@ -77,23 +94,6 @@ components:
         allowManagedDatasets:
           type: boolean
           description: Whether managed datasets are allowed
-    ConnectionSummary:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Connection name
-        type:
-          type: string
-          description: Connection type (e.g., PostgreSQL, S3, HDFS)
-  parameters:
-    connectionName:
-      name: connectionName
-      in: path
-      required: true
-      description: Connection name
-      schema:
-        type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

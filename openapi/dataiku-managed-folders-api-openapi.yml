@@ -61,7 +61,37 @@ paths:
         '404':
           description: Managed folder not found
 components:
+  parameters:
+    folderId:
+      name: folderId
+      in: path
+      required: true
+      description: Managed folder identifier
+      schema:
+        type: string
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      description: Unique project key identifier
+      schema:
+        type: string
   schemas:
+    ManagedFolder:
+      type: object
+      properties:
+        projectKey:
+          type: string
+          description: Project key
+        id:
+          type: string
+          description: Managed folder identifier
+        name:
+          type: string
+          description: Managed folder name
+        type:
+          type: string
+          description: Storage type
     ManagedFolderContents:
       type: object
       properties:
@@ -82,36 +112,6 @@ components:
                 format: int64
                 description: Last modified timestamp
           description: List of items in the folder
-    ManagedFolder:
-      type: object
-      properties:
-        projectKey:
-          type: string
-          description: Project key
-        id:
-          type: string
-          description: Managed folder identifier
-        name:
-          type: string
-          description: Managed folder name
-        type:
-          type: string
-          description: Storage type
-  parameters:
-    projectKey:
-      name: projectKey
-      in: path
-      required: true
-      description: Unique project key identifier
-      schema:
-        type: string
-    folderId:
-      name: folderId
-      in: path
-      required: true
-      description: Managed folder identifier
-      schema:
-        type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

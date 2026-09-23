@@ -58,6 +58,14 @@ paths:
         '404':
           description: Group not found
 components:
+  parameters:
+    groupName:
+      name: groupName
+      in: path
+      required: true
+      description: Group name
+      schema:
+        type: string
   schemas:
     Group:
       type: object
@@ -74,14 +82,6 @@ components:
         sourceType:
           type: string
           description: Group source type (LOCAL, LDAP)
-  parameters:
-    groupName:
-      name: groupName
-      in: path
-      required: true
-      description: Group name
-      schema:
-        type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

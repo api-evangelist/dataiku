@@ -1,0 +1,36 @@
+# Front Door AI Index — dataiku — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: dataiku
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.dataiku.com
+  final_host: www.dataiku.com
+  ownership: own
+  owner: dataiku
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 67
+  host_score: 67
+  density: 76.75
+  words: 873
+  tiers:
+    agentic: 7
+    core: 60
+    model: 0
+  ambiguous: 4
+  top_terms:
+    AI: 43
+    ML: 5
+    LLMs: 4
+    machine learning: 4
+    agent: 3
+    agentic: 3
+    gen ai: 2
+    generative ai: 2
+    AI agent: 1
+    RAG: 1
+    chatbot: 1
+    intelligence: 1
