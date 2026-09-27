@@ -85,12 +85,21 @@ paths:
           description: Blueprint version not found
 components:
   schemas:
-    BlueprintVersionSummary:
+    CreateBlueprintVersionRequest:
+      type: object
+      properties:
+        originVersionId:
+          type: string
+          description: Origin version to copy from
+    BlueprintVersion:
       type: object
       properties:
         id:
           type: string
           description: Version identifier
+        blueprintId:
+          type: string
+          description: Parent blueprint ID
         versionNumber:
           type: integer
           description: Version number
@@ -101,6 +110,13 @@ components:
           - PUBLISHED
           - ARCHIVED
           description: Version status
+        fieldSettings:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldSetting'
+          description: Custom field definitions
+        signOffConfiguration:
+          $ref: '#/components/schemas/SignOffConfiguration'
         createdOn:
           type: integer
           format: int64
@@ -138,21 +154,12 @@ components:
           items:
             type: string
           description: Available options for SELECT and MULTISELECT types
-    CreateBlueprintVersionRequest:
-      type: object
-      properties:
-        originVersionId:
-          type: string
-          description: Origin version to copy from
-    BlueprintVersion:
+    BlueprintVersionSummary:
       type: object
       properties:
         id:
           type: string
           description: Version identifier
-        blueprintId:
-          type: string
-          description: Parent blueprint ID
         versionNumber:
           type: integer
           description: Version number
@@ -163,13 +170,6 @@ components:
           - PUBLISHED
           - ARCHIVED
           description: Version status
-        fieldSettings:
-          type: array
-          items:
-            $ref: '#/components/schemas/FieldSetting'
-          description: Custom field definitions
-        signOffConfiguration:
-          $ref: '#/components/schemas/SignOffConfiguration'
         createdOn:
           type: integer
           format: int64

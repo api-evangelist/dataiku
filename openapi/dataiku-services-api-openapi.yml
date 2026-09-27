@@ -106,6 +106,21 @@ paths:
           description: Service not found
 components:
   schemas:
+    ServiceSummary:
+      type: object
+      properties:
+        serviceId:
+          type: string
+          description: Unique service identifier
+        enabled:
+          type: boolean
+          description: Whether the service is enabled
+        activeGeneration:
+          type: string
+          description: Currently active generation identifier
+        generationCount:
+          type: integer
+          description: Number of available generations
     Endpoint:
       type: object
       properties:
@@ -144,21 +159,6 @@ components:
           items:
             $ref: '#/components/schemas/Endpoint'
           description: List of endpoints provided by this service
-        generationCount:
-          type: integer
-          description: Number of available generations
-    ServiceSummary:
-      type: object
-      properties:
-        serviceId:
-          type: string
-          description: Unique service identifier
-        enabled:
-          type: boolean
-          description: Whether the service is enabled
-        activeGeneration:
-          type: string
-          description: Currently active generation identifier
         generationCount:
           type: integer
           description: Number of available generations

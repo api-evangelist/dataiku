@@ -99,47 +99,6 @@ paths:
           description: Job not found
 components:
   schemas:
-    JobSummary:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique job identifier
-        projectKey:
-          type: string
-          description: Project key
-        state:
-          type: string
-          enum:
-          - NOT_STARTED
-          - RUNNING
-          - DONE
-          - FAILED
-          - ABORTED
-          description: Current state of the job
-        initiator:
-          type: string
-          description: User who started the job
-        startTime:
-          type: integer
-          format: int64
-          description: Job start time as epoch milliseconds
-    JobActivity:
-      type: object
-      properties:
-        recipeProjectKey:
-          type: string
-        recipeName:
-          type: string
-        state:
-          type: string
-          enum:
-          - NOT_STARTED
-          - RUNNING
-          - DONE
-          - FAILED
-          - ABORTED
-          description: Activity state
     Job:
       type: object
       properties:
@@ -174,6 +133,22 @@ components:
           items:
             $ref: '#/components/schemas/JobActivity'
           description: List of activities in the job
+    JobActivity:
+      type: object
+      properties:
+        recipeProjectKey:
+          type: string
+        recipeName:
+          type: string
+        state:
+          type: string
+          enum:
+          - NOT_STARTED
+          - RUNNING
+          - DONE
+          - FAILED
+          - ABORTED
+          description: Activity state
     StartJobRequest:
       type: object
       required:
@@ -195,19 +170,44 @@ components:
                 - MANAGED_FOLDER
                 - SAVED_MODEL
           description: List of outputs to build
+    JobSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique job identifier
+        projectKey:
+          type: string
+          description: Project key
+        state:
+          type: string
+          enum:
+          - NOT_STARTED
+          - RUNNING
+          - DONE
+          - FAILED
+          - ABORTED
+          description: Current state of the job
+        initiator:
+          type: string
+          description: User who started the job
+        startTime:
+          type: integer
+          format: int64
+          description: Job start time as epoch milliseconds
   parameters:
-    projectKey:
-      name: projectKey
-      in: path
-      required: true
-      description: Unique project key identifier
-      schema:
-        type: string
     jobId:
       name: jobId
       in: path
       required: true
       description: Unique job identifier
+      schema:
+        type: string
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      description: Unique project key identifier
       schema:
         type: string
   securitySchemes:

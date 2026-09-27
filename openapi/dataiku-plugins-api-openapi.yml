@@ -58,23 +58,15 @@ paths:
         '404':
           description: Plugin not found
 components:
+  parameters:
+    pluginId:
+      name: pluginId
+      in: path
+      required: true
+      description: Plugin identifier
+      schema:
+        type: string
   schemas:
-    PluginSummary:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Plugin identifier
-        version:
-          type: string
-          description: Plugin version
-        label:
-          type: string
-          description: Display label
-        installedOn:
-          type: integer
-          format: int64
-          description: Installation timestamp
     Plugin:
       type: object
       properties:
@@ -97,14 +89,22 @@ components:
           type: integer
           format: int64
           description: Installation timestamp
-  parameters:
-    pluginId:
-      name: pluginId
-      in: path
-      required: true
-      description: Plugin identifier
-      schema:
-        type: string
+    PluginSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Plugin identifier
+        version:
+          type: string
+          description: Plugin version
+        label:
+          type: string
+          description: Display label
+        installedOn:
+          type: integer
+          format: int64
+          description: Installation timestamp
   securitySchemes:
     apiKeyAuth:
       type: apiKey

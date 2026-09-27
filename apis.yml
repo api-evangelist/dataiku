@@ -30,18 +30,22 @@ accessModel:
   method: derived
 image: https://www.dataiku.com/static/img/logo.png
 type: Index
+x-docs-platform: sphinx
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-09-25
 tags:
   - Analytics
   - Artificial Intelligence
   - Data Platform
   - Data Science
-  - Machine-Learning
+  - Machine Learning
 tags_raw:
   - Analytics
   - Artificial Intelligence
   - Data Platform
   - Data Science
   - Machine Learning
+  - Machine-Learning
 created: '2024-01-01'
 modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/dataiku/refs/heads/main/apis.yml

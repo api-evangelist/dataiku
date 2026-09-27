@@ -139,19 +139,6 @@ paths:
           description: Generation not found
 components:
   schemas:
-    GenerationSummary:
-      type: object
-      properties:
-        generationId:
-          type: string
-          description: Generation identifier
-        active:
-          type: boolean
-          description: Whether this is the active generation
-        createdOn:
-          type: integer
-          format: int64
-          description: Creation timestamp
     Generation:
       type: object
       properties:
@@ -173,6 +160,19 @@ components:
         preloaded:
           type: boolean
           description: Whether this generation is preloaded in memory
+    GenerationSummary:
+      type: object
+      properties:
+        generationId:
+          type: string
+          description: Generation identifier
+        active:
+          type: boolean
+          description: Whether this is the active generation
+        createdOn:
+          type: integer
+          format: int64
+          description: Creation timestamp
     Endpoint:
       type: object
       properties:

@@ -117,15 +117,43 @@ paths:
         '404':
           description: Artifact not found
 components:
-  parameters:
-    artifactId:
-      name: artifactId
-      in: path
-      required: true
-      description: Governed artifact identifier
-      schema:
-        type: string
   schemas:
+    Artifact:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Artifact identifier
+        name:
+          type: string
+          description: Artifact display name
+        blueprintId:
+          type: string
+          description: Blueprint ID
+        blueprintVersionId:
+          type: string
+          description: Blueprint version ID
+        status:
+          type: string
+          description: Current workflow status
+        customFields:
+          type: object
+          additionalProperties: true
+          description: Custom field values
+        createdOn:
+          type: integer
+          format: int64
+          description: Creation timestamp
+        createdBy:
+          type: string
+          description: User who created the artifact
+        lastModifiedOn:
+          type: integer
+          format: int64
+          description: Last modification timestamp
+        lastModifiedBy:
+          type: string
+          description: User who last modified the artifact
     ArtifactSummary:
       type: object
       properties:
@@ -167,42 +195,14 @@ components:
           type: object
           additionalProperties: true
           description: Initial custom field values
-    Artifact:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Artifact identifier
-        name:
-          type: string
-          description: Artifact display name
-        blueprintId:
-          type: string
-          description: Blueprint ID
-        blueprintVersionId:
-          type: string
-          description: Blueprint version ID
-        status:
-          type: string
-          description: Current workflow status
-        customFields:
-          type: object
-          additionalProperties: true
-          description: Custom field values
-        createdOn:
-          type: integer
-          format: int64
-          description: Creation timestamp
-        createdBy:
-          type: string
-          description: User who created the artifact
-        lastModifiedOn:
-          type: integer
-          format: int64
-          description: Last modification timestamp
-        lastModifiedBy:
-          type: string
-          description: User who last modified the artifact
+  parameters:
+    artifactId:
+      name: artifactId
+      in: path
+      required: true
+      description: Governed artifact identifier
+      schema:
+        type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

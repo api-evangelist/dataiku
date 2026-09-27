@@ -95,14 +95,6 @@ paths:
         '404':
           description: Key not found
 components:
-  parameters:
-    keyId:
-      name: keyId
-      in: path
-      required: true
-      description: Authentication key identifier
-      schema:
-        type: string
   schemas:
     CreateAuthKeyRequest:
       type: object
@@ -136,6 +128,14 @@ components:
           items:
             type: string
           description: List of services this key can access (empty means all)
+  parameters:
+    keyId:
+      name: keyId
+      in: path
+      required: true
+      description: Authentication key identifier
+      schema:
+        type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

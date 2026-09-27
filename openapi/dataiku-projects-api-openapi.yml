@@ -137,15 +137,23 @@ paths:
         '404':
           description: Project not found
 components:
-  parameters:
-    projectKey:
-      name: projectKey
-      in: path
-      required: true
-      description: Unique project key identifier
-      schema:
-        type: string
   schemas:
+    CreateProjectRequest:
+      type: object
+      required:
+      - projectKey
+      - name
+      properties:
+        projectKey:
+          type: string
+          description: Unique project key (uppercase letters and numbers)
+          pattern: ^[A-Z][A-Z0-9_]*$
+        name:
+          type: string
+          description: Display name for the project
+        owner:
+          type: string
+          description: Login of the project owner
     Project:
       type: object
       properties:
@@ -218,22 +226,14 @@ components:
         checklists:
           type: object
           description: Checklists for the project
-    CreateProjectRequest:
-      type: object
-      required:
-      - projectKey
-      - name
-      properties:
-        projectKey:
-          type: string
-          description: Unique project key (uppercase letters and numbers)
-          pattern: ^[A-Z][A-Z0-9_]*$
-        name:
-          type: string
-          description: Display name for the project
-        owner:
-          type: string
-          description: Login of the project owner
+  parameters:
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      description: Unique project key identifier
+      schema:
+        type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

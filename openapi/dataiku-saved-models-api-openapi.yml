@@ -74,6 +74,21 @@ components:
         snippet:
           type: object
           description: Summary metrics for the model version
+    SavedModelSummary:
+      type: object
+      properties:
+        projectKey:
+          type: string
+          description: Project key
+        id:
+          type: string
+          description: Saved model identifier
+        name:
+          type: string
+          description: Saved model name
+        type:
+          type: string
+          description: Model type (PREDICTION or CLUSTERING)
     SavedModel:
       type: object
       properties:
@@ -96,21 +111,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ModelVersion'
-    SavedModelSummary:
-      type: object
-      properties:
-        projectKey:
-          type: string
-          description: Project key
-        id:
-          type: string
-          description: Saved model identifier
-        name:
-          type: string
-          description: Saved model name
-        type:
-          type: string
-          description: Model type (PREDICTION or CLUSTERING)
   parameters:
     savedModelId:
       name: savedModelId
