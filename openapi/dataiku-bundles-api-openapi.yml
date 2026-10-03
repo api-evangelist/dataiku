@@ -61,15 +61,15 @@ paths:
         '400':
           description: Invalid request
 components:
+  parameters:
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      description: Unique project key identifier
+      schema:
+        type: string
   schemas:
-    CreateBundleRequest:
-      type: object
-      required:
-      - bundleId
-      properties:
-        bundleId:
-          type: string
-          description: Identifier for the new bundle
     BundleSummary:
       type: object
       properties:
@@ -86,14 +86,14 @@ components:
         createdBy:
           type: string
           description: User who created the bundle
-  parameters:
-    projectKey:
-      name: projectKey
-      in: path
-      required: true
-      description: Unique project key identifier
-      schema:
-        type: string
+    CreateBundleRequest:
+      type: object
+      required:
+      - bundleId
+      properties:
+        bundleId:
+          type: string
+          description: Identifier for the new bundle
   securitySchemes:
     apiKeyAuth:
       type: apiKey

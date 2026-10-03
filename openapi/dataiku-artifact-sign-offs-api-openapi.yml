@@ -109,6 +109,21 @@ paths:
         '404':
           description: Sign-off step not found
 components:
+  parameters:
+    artifactId:
+      name: artifactId
+      in: path
+      required: true
+      description: Governed artifact identifier
+      schema:
+        type: string
+    signOffStepId:
+      name: signOffStepId
+      in: path
+      required: true
+      description: Sign-off step identifier
+      schema:
+        type: string
   schemas:
     DelegateSignOffRequest:
       type: object
@@ -121,6 +136,20 @@ components:
         comment:
           type: string
           description: Delegation comment
+    SignOffReviewRequest:
+      type: object
+      required:
+      - outcome
+      properties:
+        outcome:
+          type: string
+          enum:
+          - APPROVED
+          - REJECTED
+          description: Review outcome
+        comment:
+          type: string
+          description: Review comment
     SignOff:
       type: object
       properties:
@@ -147,20 +176,6 @@ components:
         delegatedTo:
           type: string
           description: User the step was delegated to
-    SignOffReviewRequest:
-      type: object
-      required:
-      - outcome
-      properties:
-        outcome:
-          type: string
-          enum:
-          - APPROVED
-          - REJECTED
-          description: Review outcome
-        comment:
-          type: string
-          description: Review comment
     SignOffReview:
       type: object
       properties:
@@ -180,21 +195,6 @@ components:
           type: integer
           format: int64
           description: Review timestamp
-  parameters:
-    signOffStepId:
-      name: signOffStepId
-      in: path
-      required: true
-      description: Sign-off step identifier
-      schema:
-        type: string
-    artifactId:
-      name: artifactId
-      in: path
-      required: true
-      description: Governed artifact identifier
-      schema:
-        type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

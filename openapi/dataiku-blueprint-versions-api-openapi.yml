@@ -85,12 +85,14 @@ paths:
           description: Blueprint version not found
 components:
   schemas:
-    CreateBlueprintVersionRequest:
+    SignOffConfiguration:
       type: object
       properties:
-        originVersionId:
-          type: string
-          description: Origin version to copy from
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/SignOffStep'
+          description: Ordered list of sign-off steps
     BlueprintVersion:
       type: object
       properties:
@@ -117,6 +119,26 @@ components:
           description: Custom field definitions
         signOffConfiguration:
           $ref: '#/components/schemas/SignOffConfiguration'
+        createdOn:
+          type: integer
+          format: int64
+          description: Creation timestamp
+    BlueprintVersionSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Version identifier
+        versionNumber:
+          type: integer
+          description: Version number
+        status:
+          type: string
+          enum:
+          - DRAFT
+          - PUBLISHED
+          - ARCHIVED
+          description: Version status
         createdOn:
           type: integer
           format: int64
@@ -154,26 +176,12 @@ components:
           items:
             type: string
           description: Available options for SELECT and MULTISELECT types
-    BlueprintVersionSummary:
+    CreateBlueprintVersionRequest:
       type: object
       properties:
-        id:
+        originVersionId:
           type: string
-          description: Version identifier
-        versionNumber:
-          type: integer
-          description: Version number
-        status:
-          type: string
-          enum:
-          - DRAFT
-          - PUBLISHED
-          - ARCHIVED
-          description: Version status
-        createdOn:
-          type: integer
-          format: int64
-          description: Creation timestamp
+          description: Origin version to copy from
     SignOffStep:
       type: object
       properties:
@@ -196,14 +204,6 @@ components:
           - USER
           - GROUP
           description: How reviewers are assigned
-    SignOffConfiguration:
-      type: object
-      properties:
-        steps:
-          type: array
-          items:
-            $ref: '#/components/schemas/SignOffStep'
-          description: Ordered list of sign-off steps
   parameters:
     versionId:
       name: versionId

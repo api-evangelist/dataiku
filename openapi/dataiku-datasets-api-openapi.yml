@@ -190,42 +190,6 @@ paths:
           description: Dataset not found
 components:
   schemas:
-    Tag:
-      type: object
-      properties:
-        versionNumber:
-          type: integer
-          description: Version number
-        lastModifiedBy:
-          type: object
-          properties:
-            login:
-              type: string
-        lastModifiedOn:
-          type: string
-          format: date-time
-          description: Timestamp of last modification
-    CreateDatasetRequest:
-      type: object
-      required:
-      - name
-      - type
-      properties:
-        name:
-          type: string
-          description: Dataset name
-        type:
-          type: string
-          description: Dataset type
-        params:
-          type: object
-          description: Type-specific parameters
-        formatType:
-          type: string
-          description: Data format type
-        formatParams:
-          type: object
-          description: Format-specific parameters
     Dataset:
       type: object
       properties:
@@ -256,17 +220,6 @@ components:
           $ref: '#/components/schemas/Tag'
         versionTag:
           $ref: '#/components/schemas/Tag'
-    DatasetSchema:
-      type: object
-      properties:
-        columns:
-          type: array
-          items:
-            $ref: '#/components/schemas/SchemaColumn'
-          description: List of columns in the dataset
-        userModified:
-          type: boolean
-          description: Whether the schema was manually modified
     DatasetData:
       type: object
       properties:
@@ -285,6 +238,32 @@ components:
         totalCount:
           type: integer
           description: Total number of rows in the dataset
+    DatasetSchema:
+      type: object
+      properties:
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/SchemaColumn'
+          description: List of columns in the dataset
+        userModified:
+          type: boolean
+          description: Whether the schema was manually modified
+    Tag:
+      type: object
+      properties:
+        versionNumber:
+          type: integer
+          description: Version number
+        lastModifiedBy:
+          type: object
+          properties:
+            login:
+              type: string
+        lastModifiedOn:
+          type: string
+          format: date-time
+          description: Timestamp of last modification
     SchemaColumn:
       type: object
       properties:
@@ -300,19 +279,40 @@ components:
         maxLength:
           type: integer
           description: Maximum length for string columns
+    CreateDatasetRequest:
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+          description: Dataset name
+        type:
+          type: string
+          description: Dataset type
+        params:
+          type: object
+          description: Type-specific parameters
+        formatType:
+          type: string
+          description: Data format type
+        formatParams:
+          type: object
+          description: Format-specific parameters
   parameters:
-    datasetName:
-      name: datasetName
-      in: path
-      required: true
-      description: Dataset name within the project
-      schema:
-        type: string
     projectKey:
       name: projectKey
       in: path
       required: true
       description: Unique project key identifier
+      schema:
+        type: string
+    datasetName:
+      name: datasetName
+      in: path
+      required: true
+      description: Dataset name within the project
       schema:
         type: string
   securitySchemes:

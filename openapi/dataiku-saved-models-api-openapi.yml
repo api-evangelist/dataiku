@@ -61,7 +61,44 @@ paths:
         '404':
           description: Saved model not found
 components:
+  parameters:
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      description: Unique project key identifier
+      schema:
+        type: string
+    savedModelId:
+      name: savedModelId
+      in: path
+      required: true
+      description: Saved model identifier
+      schema:
+        type: string
   schemas:
+    SavedModel:
+      type: object
+      properties:
+        projectKey:
+          type: string
+          description: Project key
+        id:
+          type: string
+          description: Saved model identifier
+        name:
+          type: string
+          description: Saved model name
+        type:
+          type: string
+          description: Model type
+        activeVersion:
+          type: string
+          description: Identifier of the active model version
+        versions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModelVersion'
     ModelVersion:
       type: object
       properties:
@@ -89,43 +126,6 @@ components:
         type:
           type: string
           description: Model type (PREDICTION or CLUSTERING)
-    SavedModel:
-      type: object
-      properties:
-        projectKey:
-          type: string
-          description: Project key
-        id:
-          type: string
-          description: Saved model identifier
-        name:
-          type: string
-          description: Saved model name
-        type:
-          type: string
-          description: Model type
-        activeVersion:
-          type: string
-          description: Identifier of the active model version
-        versions:
-          type: array
-          items:
-            $ref: '#/components/schemas/ModelVersion'
-  parameters:
-    savedModelId:
-      name: savedModelId
-      in: path
-      required: true
-      description: Saved model identifier
-      schema:
-        type: string
-    projectKey:
-      name: projectKey
-      in: path
-      required: true
-      description: Unique project key identifier
-      schema:
-        type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

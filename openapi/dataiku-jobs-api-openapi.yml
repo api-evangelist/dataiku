@@ -149,27 +149,6 @@ components:
           - FAILED
           - ABORTED
           description: Activity state
-    StartJobRequest:
-      type: object
-      required:
-      - outputs
-      properties:
-        outputs:
-          type: array
-          items:
-            type: object
-            properties:
-              projectKey:
-                type: string
-              id:
-                type: string
-              type:
-                type: string
-                enum:
-                - DATASET
-                - MANAGED_FOLDER
-                - SAVED_MODEL
-          description: List of outputs to build
     JobSummary:
       type: object
       properties:
@@ -195,19 +174,40 @@ components:
           type: integer
           format: int64
           description: Job start time as epoch milliseconds
+    StartJobRequest:
+      type: object
+      required:
+      - outputs
+      properties:
+        outputs:
+          type: array
+          items:
+            type: object
+            properties:
+              projectKey:
+                type: string
+              id:
+                type: string
+              type:
+                type: string
+                enum:
+                - DATASET
+                - MANAGED_FOLDER
+                - SAVED_MODEL
+          description: List of outputs to build
   parameters:
-    jobId:
-      name: jobId
-      in: path
-      required: true
-      description: Unique job identifier
-      schema:
-        type: string
     projectKey:
       name: projectKey
       in: path
       required: true
       description: Unique project key identifier
+      schema:
+        type: string
+    jobId:
+      name: jobId
+      in: path
+      required: true
+      description: Unique job identifier
       schema:
         type: string
   securitySchemes:

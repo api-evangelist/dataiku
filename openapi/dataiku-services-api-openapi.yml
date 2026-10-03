@@ -105,22 +105,15 @@ paths:
         '404':
           description: Service not found
 components:
+  parameters:
+    serviceId:
+      name: serviceId
+      in: path
+      required: true
+      description: Unique service identifier
+      schema:
+        type: string
   schemas:
-    ServiceSummary:
-      type: object
-      properties:
-        serviceId:
-          type: string
-          description: Unique service identifier
-        enabled:
-          type: boolean
-          description: Whether the service is enabled
-        activeGeneration:
-          type: string
-          description: Currently active generation identifier
-        generationCount:
-          type: integer
-          description: Number of available generations
     Endpoint:
       type: object
       properties:
@@ -162,14 +155,21 @@ components:
         generationCount:
           type: integer
           description: Number of available generations
-  parameters:
-    serviceId:
-      name: serviceId
-      in: path
-      required: true
-      description: Unique service identifier
-      schema:
-        type: string
+    ServiceSummary:
+      type: object
+      properties:
+        serviceId:
+          type: string
+          description: Unique service identifier
+        enabled:
+          type: boolean
+          description: Whether the service is enabled
+        activeGeneration:
+          type: string
+          description: Currently active generation identifier
+        generationCount:
+          type: integer
+          description: Number of available generations
   securitySchemes:
     apiKeyAuth:
       type: apiKey

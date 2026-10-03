@@ -117,6 +117,14 @@ paths:
         '404':
           description: Artifact not found
 components:
+  parameters:
+    artifactId:
+      name: artifactId
+      in: path
+      required: true
+      description: Governed artifact identifier
+      schema:
+        type: string
   schemas:
     Artifact:
       type: object
@@ -154,6 +162,25 @@ components:
         lastModifiedBy:
           type: string
           description: User who last modified the artifact
+    CreateArtifactRequest:
+      type: object
+      required:
+      - name
+      - blueprintId
+      properties:
+        name:
+          type: string
+          description: Artifact display name
+        blueprintId:
+          type: string
+          description: Blueprint to associate with
+        blueprintVersionId:
+          type: string
+          description: Specific blueprint version to use
+        customFields:
+          type: object
+          additionalProperties: true
+          description: Initial custom field values
     ArtifactSummary:
       type: object
       properties:
@@ -176,33 +203,6 @@ components:
         createdBy:
           type: string
           description: User who created the artifact
-    CreateArtifactRequest:
-      type: object
-      required:
-      - name
-      - blueprintId
-      properties:
-        name:
-          type: string
-          description: Artifact display name
-        blueprintId:
-          type: string
-          description: Blueprint to associate with
-        blueprintVersionId:
-          type: string
-          description: Specific blueprint version to use
-        customFields:
-          type: object
-          additionalProperties: true
-          description: Initial custom field values
-  parameters:
-    artifactId:
-      name: artifactId
-      in: path
-      required: true
-      description: Governed artifact identifier
-      schema:
-        type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

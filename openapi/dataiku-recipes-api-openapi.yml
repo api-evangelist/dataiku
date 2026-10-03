@@ -101,6 +101,18 @@ components:
           $ref: '#/components/schemas/Tag'
         versionTag:
           $ref: '#/components/schemas/Tag'
+    RecipeSummary:
+      type: object
+      properties:
+        projectKey:
+          type: string
+          description: Project key
+        name:
+          type: string
+          description: Recipe name
+        type:
+          type: string
+          description: Recipe type (e.g., prepare, python, sql, join, sync)
     Tag:
       type: object
       properties:
@@ -116,18 +128,6 @@ components:
           type: string
           format: date-time
           description: Timestamp of last modification
-    RecipeSummary:
-      type: object
-      properties:
-        projectKey:
-          type: string
-          description: Project key
-        name:
-          type: string
-          description: Recipe name
-        type:
-          type: string
-          description: Recipe type (e.g., prepare, python, sql, join, sync)
   parameters:
     recipeName:
       name: recipeName

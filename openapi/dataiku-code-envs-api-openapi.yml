@@ -60,6 +60,13 @@ paths:
           description: Code environment not found
 components:
   parameters:
+    envName:
+      name: envName
+      in: path
+      required: true
+      description: Code environment name
+      schema:
+        type: string
     envLang:
       name: envLang
       in: path
@@ -70,13 +77,6 @@ components:
         enum:
         - PYTHON
         - R
-    envName:
-      name: envName
-      in: path
-      required: true
-      description: Code environment name
-      schema:
-        type: string
   schemas:
     CodeEnvSummary:
       type: object

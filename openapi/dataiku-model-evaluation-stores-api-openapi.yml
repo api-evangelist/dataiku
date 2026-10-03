@@ -42,6 +42,14 @@ paths:
         '404':
           description: Project not found
 components:
+  parameters:
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      description: Unique project key identifier
+      schema:
+        type: string
   schemas:
     ModelEvaluationStoreSummary:
       type: object
@@ -55,14 +63,6 @@ components:
         name:
           type: string
           description: Display name
-  parameters:
-    projectKey:
-      name: projectKey
-      in: path
-      required: true
-      description: Unique project key identifier
-      schema:
-        type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

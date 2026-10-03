@@ -139,6 +139,27 @@ paths:
           description: Generation not found
 components:
   schemas:
+    Endpoint:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Endpoint identifier
+        type:
+          type: string
+          enum:
+          - STD_PREDICTION
+          - CUSTOM_PREDICTION
+          - R_PREDICTION
+          - CUSTOM_R_PREDICTION
+          - SQL_QUERY
+          - DATASET_LOOKUP
+          - R_FUNCTION
+          - PYTHON_FUNCTION
+          description: Endpoint type
+        modelRef:
+          type: string
+          description: Reference to the model used by this endpoint
     Generation:
       type: object
       properties:
@@ -173,27 +194,6 @@ components:
           type: integer
           format: int64
           description: Creation timestamp
-    Endpoint:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Endpoint identifier
-        type:
-          type: string
-          enum:
-          - STD_PREDICTION
-          - CUSTOM_PREDICTION
-          - R_PREDICTION
-          - CUSTOM_R_PREDICTION
-          - SQL_QUERY
-          - DATASET_LOOKUP
-          - R_FUNCTION
-          - PYTHON_FUNCTION
-          description: Endpoint type
-        modelRef:
-          type: string
-          description: Reference to the model used by this endpoint
   parameters:
     generationId:
       name: generationId

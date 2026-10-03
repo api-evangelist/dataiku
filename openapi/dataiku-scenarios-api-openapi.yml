@@ -100,6 +100,18 @@ paths:
           description: Scenario not found
 components:
   schemas:
+    ScenarioLight:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Scenario identifier
+        running:
+          type: boolean
+          description: Whether the scenario is currently running
+        lastRun:
+          type: object
+          description: Information about the last run
     Scenario:
       type: object
       properties:
@@ -126,18 +138,6 @@ components:
           items:
             type: object
           description: Scenario triggers
-    ScenarioLight:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Scenario identifier
-        running:
-          type: boolean
-          description: Whether the scenario is currently running
-        lastRun:
-          type: object
-          description: Information about the last run
     ScenarioRun:
       type: object
       properties:
@@ -172,18 +172,18 @@ components:
           type: string
           description: Scenario type (step_based or custom_python)
   parameters:
-    scenarioId:
-      name: scenarioId
-      in: path
-      required: true
-      description: Scenario identifier
-      schema:
-        type: string
     projectKey:
       name: projectKey
       in: path
       required: true
       description: Unique project key identifier
+      schema:
+        type: string
+    scenarioId:
+      name: scenarioId
+      in: path
+      required: true
+      description: Scenario identifier
       schema:
         type: string
   securitySchemes:
