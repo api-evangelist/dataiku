@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dataiku/main/json-schema/dataiku-scenario-summary-schema.json",
+  "title": "ScenarioSummary",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dataiku-scenarios-api-openapi.yml#/components/schemas/ScenarioSummary",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Scenario identifier"
+    },
+    "projectKey": {
+      "type": "string",
+      "description": "Project key"
+    },
+    "name": {
+      "type": "string",
+      "description": "Scenario name"
+    },
+    "active": {
+      "type": "boolean",
+      "description": "Whether the scenario is active"
+    },
+    "type": {
+      "type": "string",
+      "description": "Scenario type (step_based or custom_python)"
+    }
+  }
+}

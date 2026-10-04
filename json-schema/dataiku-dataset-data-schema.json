@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dataiku/main/json-schema/dataiku-dataset-data-schema.json",
+  "title": "DatasetData",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dataiku-datasets-api-openapi.yml#/components/schemas/DatasetData",
+  "type": "object",
+  "properties": {
+    "columns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Column names"
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "description": "Data rows"
+    },
+    "totalCount": {
+      "type": "integer",
+      "description": "Total number of rows in the dataset"
+    }
+  }
+}

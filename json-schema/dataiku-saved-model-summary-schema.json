@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dataiku/main/json-schema/dataiku-saved-model-summary-schema.json",
+  "title": "SavedModelSummary",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dataiku-saved-models-api-openapi.yml#/components/schemas/SavedModelSummary",
+  "type": "object",
+  "properties": {
+    "projectKey": {
+      "type": "string",
+      "description": "Project key"
+    },
+    "id": {
+      "type": "string",
+      "description": "Saved model identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Saved model name"
+    },
+    "type": {
+      "type": "string",
+      "description": "Model type (PREDICTION or CLUSTERING)"
+    }
+  }
+}

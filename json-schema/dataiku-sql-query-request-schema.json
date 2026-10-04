@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dataiku/main/json-schema/dataiku-sql-query-request-schema.json",
+  "title": "SqlQueryRequest",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dataiku-sql-queries-api-openapi.yml#/components/schemas/SqlQueryRequest",
+  "type": "object",
+  "required": [
+    "connection",
+    "query"
+  ],
+  "properties": {
+    "connection": {
+      "type": "string",
+      "description": "Name of the DSS connection to query"
+    },
+    "query": {
+      "type": "string",
+      "description": "SQL query to execute"
+    },
+    "preQueries": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "SQL statements to execute before the main query"
+    },
+    "postQueries": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "SQL statements to execute after the main query"
+    }
+  }
+}

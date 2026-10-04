@@ -109,33 +109,26 @@ paths:
         '404':
           description: Sign-off step not found
 components:
-  parameters:
-    artifactId:
-      name: artifactId
-      in: path
-      required: true
-      description: Governed artifact identifier
-      schema:
-        type: string
-    signOffStepId:
-      name: signOffStepId
-      in: path
-      required: true
-      description: Sign-off step identifier
-      schema:
-        type: string
   schemas:
-    DelegateSignOffRequest:
+    SignOffReview:
       type: object
-      required:
-      - delegateTo
       properties:
-        delegateTo:
+        reviewer:
           type: string
-          description: Login of the user to delegate to
+          description: Login of the reviewer
+        outcome:
+          type: string
+          enum:
+          - APPROVED
+          - REJECTED
+          description: Review outcome
         comment:
           type: string
-          description: Delegation comment
+          description: Review comment
+        reviewedOn:
+          type: integer
+          format: int64
+          description: Review timestamp
     SignOffReviewRequest:
       type: object
       required:
@@ -150,6 +143,17 @@ components:
         comment:
           type: string
           description: Review comment
+    DelegateSignOffRequest:
+      type: object
+      required:
+      - delegateTo
+      properties:
+        delegateTo:
+          type: string
+          description: Login of the user to delegate to
+        comment:
+          type: string
+          description: Delegation comment
     SignOff:
       type: object
       properties:
@@ -176,25 +180,21 @@ components:
         delegatedTo:
           type: string
           description: User the step was delegated to
-    SignOffReview:
-      type: object
-      properties:
-        reviewer:
-          type: string
-          description: Login of the reviewer
-        outcome:
-          type: string
-          enum:
-          - APPROVED
-          - REJECTED
-          description: Review outcome
-        comment:
-          type: string
-          description: Review comment
-        reviewedOn:
-          type: integer
-          format: int64
-          description: Review timestamp
+  parameters:
+    artifactId:
+      name: artifactId
+      in: path
+      required: true
+      description: Governed artifact identifier
+      schema:
+        type: string
+    signOffStepId:
+      name: signOffStepId
+      in: path
+      required: true
+      description: Sign-off step identifier
+      schema:
+        type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

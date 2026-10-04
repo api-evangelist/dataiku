@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dataiku/main/json-schema/dataiku-managed-folder-contents-schema.json",
+  "title": "ManagedFolderContents",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dataiku-managed-folders-api-openapi.yml#/components/schemas/ManagedFolderContents",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "File path within the folder"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int64",
+            "description": "File size in bytes"
+          },
+          "lastModified": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Last modified timestamp"
+          }
+        }
+      },
+      "description": "List of items in the folder"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dataiku/main/json-schema/dataiku-project-metadata-schema.json",
+  "title": "ProjectMetadata",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dataiku-projects-api-openapi.yml#/components/schemas/ProjectMetadata",
+  "type": "object",
+  "properties": {
+    "label": {
+      "type": "string",
+      "description": "Display label for the project"
+    },
+    "description": {
+      "type": "string",
+      "description": "Project description"
+    },
+    "shortDesc": {
+      "type": "string",
+      "description": "Short description"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags associated with the project"
+    },
+    "checklists": {
+      "type": "object",
+      "description": "Checklists for the project"
+    }
+  }
+}

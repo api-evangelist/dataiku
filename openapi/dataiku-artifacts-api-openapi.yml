@@ -117,14 +117,6 @@ paths:
         '404':
           description: Artifact not found
 components:
-  parameters:
-    artifactId:
-      name: artifactId
-      in: path
-      required: true
-      description: Governed artifact identifier
-      schema:
-        type: string
   schemas:
     Artifact:
       type: object
@@ -203,6 +195,14 @@ components:
         createdBy:
           type: string
           description: User who created the artifact
+  parameters:
+    artifactId:
+      name: artifactId
+      in: path
+      required: true
+      description: Governed artifact identifier
+      schema:
+        type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

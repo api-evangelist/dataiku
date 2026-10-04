@@ -138,21 +138,6 @@ components:
           items:
             type: object
           description: Scenario triggers
-    ScenarioRun:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Run identifier
-        scenarioId:
-          type: string
-          description: Scenario identifier
-        trigger:
-          type: object
-          description: Trigger information
-        result:
-          type: object
-          description: Run result
     ScenarioSummary:
       type: object
       properties:
@@ -171,19 +156,34 @@ components:
         type:
           type: string
           description: Scenario type (step_based or custom_python)
+    ScenarioRun:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Run identifier
+        scenarioId:
+          type: string
+          description: Scenario identifier
+        trigger:
+          type: object
+          description: Trigger information
+        result:
+          type: object
+          description: Run result
   parameters:
-    projectKey:
-      name: projectKey
-      in: path
-      required: true
-      description: Unique project key identifier
-      schema:
-        type: string
     scenarioId:
       name: scenarioId
       in: path
       required: true
       description: Scenario identifier
+      schema:
+        type: string
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      description: Unique project key identifier
       schema:
         type: string
   securitySchemes:

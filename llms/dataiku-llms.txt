@@ -1,0 +1,22 @@
+# Dataiku Academy
+
+## Courses
+
+## Paths
+- [コアデザイナー](/path/ja-core-designer)
+- [アドバンスデザイナー](/path/ja-advanced-designer)
+- [Advanced Designer](/path/advanced-designer)
+- [Advanced Designer](/path/fr-advanced-designer)
+- [Agent Builder](/path/agent-builder)
+- [AI Governance Specialist](/path/governance)
+- [Core Designer](/path/fr-core-designer)
+- [Core Designer](/path/core-designer)
+- [Developer](/path/developer)
+- [Generative AI Practitioner](/path/fr-genai-practitioner)
+- [Generative AI Practitioner](/path/genai-practitioner)
+- [ML プラクティショナー](/path/ja-ml-practitioner)
+- [MLOps プラクティショナー](/path/mlops-ja)
+- [MLOps Practitioner](/path/mlops)
+- [ML Practitioner](/path/ml-practitioner)
+- [生成AIプラクティショナー](/path/ja-genai-practitioner)
+- [認定証](/path/certifications-japanese)

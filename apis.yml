@@ -1,8 +1,12 @@
 aid: dataiku
+
 name: Dataiku
-description: >-
-  Dataiku is an advanced data science and machine learning platform that enables teams to build and deploy AI
-  applications at scale.
+
+description: Dataiku provides an enterprise AI and analytics platform that empowers data teams to collaboratively prepare data, build predictive
+  models, and deploy AI-driven applications at scale. The platform integrates data engineering, machine learning, and operationalization tools,
+  offering a unified environment for data scientists, analysts, and business users to turn data into actionable insights. It supports a wide range
+  of use cases from data preparation to model monitoring, enabling organizations to accelerate AI adoption across the enterprise.
+
 deliveryModel:
   model: saas
   open_source: false
@@ -15,6 +19,7 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+
 accessModel:
   pricing: freemium
   onboarding: open
@@ -28,31 +33,202 @@ accessModel:
   - authentication
   generated: '2026-07-22'
   method: derived
+
 image: https://www.dataiku.com/static/img/logo.png
+
 type: Index
+
 x-docs-platform: sphinx
+
 x-docs-platform-confidence: medium
+
 x-docs-platform-checked: 2026-09-25
+
 tags:
-  - Analytics
-  - Artificial Intelligence
-  - Data Platform
-  - Data Science
-  - Machine Learning
+- Analytics
+- Artificial Intelligence
+- Data Platform
+- Data Science
+- Machine Learning
+
 tags_raw:
-  - Analytics
-  - Artificial Intelligence
-  - Data Platform
-  - Data Science
-  - Machine Learning
-  - Machine-Learning
+- Analytics
+- Artificial Intelligence
+- Data Platform
+- Data Science
+- Machine Learning
+- Machine-Learning
+
 created: '2024-01-01'
+
 modified: '2026-05-19'
+
 url: https://raw.githubusercontent.com/api-evangelist/dataiku/refs/heads/main/apis.yml
+
 specificationVersion: '0.23'
+
 kind: company
+
 position: Consuming
+
 access: 3rd-Party
+
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+  url: https://www.dataiku.com
+
+common:
+- type: TermsOfService
+  url: https://www.dataiku.com/legal/dataiku-cloud/terms-of-service
+- type: FinOps
+  url: finops/dataiku-finops.yml
+- type: RateLimits
+  url: rate-limits/dataiku-rate-limits.yml
+- type: Plans
+  url: plans/dataiku-plans-pricing.yml
+- type: Spectral
+  url: rules/dataiku-rules.yml
+- type: Spectral
+  url: rules/dataiku-jsonschema-spectral-rules.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DataModel
+  url: data-model/dataiku-data-model.yml
+- type: ErrorCatalog
+  url: errors/dataiku-problem-types.yml
+- type: Conformance
+  url: conformance/dataiku-conformance.yml
+- type: LLMsTxt
+  url: llms/dataiku-llms.txt
+- type: SecurityTxt
+  url: well-known/dataiku-security.txt
+- type: WellKnown
+  url: well-known/dataiku-well-known.yml
+- type: Hosts
+  url: hosts/dataiku-hosts.yml
+- type: Vendors
+  url: vendors/dataiku-vendors.yml
+- type: TrustCenter
+  url: https://www.dataiku.com/legal/trust
+- type: Newsroom
+  url: https://www.dataiku.com/company/news
+- type: Website
+  url: https://www.dataiku.com/
+  name: Dataiku Business Capability Map
+- type: AgenticAccess
+  url: agentic-access/dataiku-agentic-access.yml
+- type: VulnerabilityDisclosure
+  url: security/dataiku-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/dataiku-domain-security.yml
+- type: Authentication
+  url: authentication/dataiku-authentication.yml
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/dataiku/overview
+- type: Arazzo
+  url: arazzo/dataiku-audit-recipe-and-jobs-workflow.yml
+  name: Dataiku Audit Recipe and Project Jobs
+- type: Arazzo
+  url: arazzo/dataiku-bootstrap-project-workflow.yml
+  name: Dataiku Bootstrap Project with First Dataset
+- type: Arazzo
+  url: arazzo/dataiku-browse-managed-folder-workflow.yml
+  name: Dataiku Browse Managed Folder Contents
+- type: Arazzo
+  url: arazzo/dataiku-build-dataset-job-workflow.yml
+  name: Dataiku Build Dataset and Poll Job
+- type: Arazzo
+  url: arazzo/dataiku-create-dataset-set-schema-build-workflow.yml
+  name: Dataiku Create Dataset, Set Schema, and Build
+- type: Arazzo
+  url: arazzo/dataiku-create-govern-artifact-workflow.yml
+  name: Dataiku Create Govern Artifact with Custom Fields
+- type: Arazzo
+  url: arazzo/dataiku-create-govern-blueprint-version-workflow.yml
+  name: Dataiku Create Govern Blueprint and Version
+- type: Arazzo
+  url: arazzo/dataiku-export-project-bundle-workflow.yml
+  name: Dataiku Export Project Bundle
+- type: Arazzo
+  url: arazzo/dataiku-import-and-preload-generation-workflow.yml
+  name: Dataiku Import and Preload API Node Generation
+- type: Arazzo
+  url: arazzo/dataiku-inspect-and-read-dataset-workflow.yml
+  name: Dataiku Inspect and Read a Dataset
+- type: Arazzo
+  url: arazzo/dataiku-inspect-saved-model-workflow.yml
+  name: Dataiku Inspect Saved Model
+- type: Arazzo
+  url: arazzo/dataiku-promote-apinode-generation-workflow.yml
+  name: Dataiku Promote API Node Generation
+- type: Arazzo
+  url: arazzo/dataiku-provision-user-workflow.yml
+  name: Dataiku Provision DSS User
+- type: Arazzo
+  url: arazzo/dataiku-review-artifact-signoff-workflow.yml
+  name: Dataiku Review Artifact Sign-Off
+- type: Arazzo
+  url: arazzo/dataiku-run-scenario-and-poll-workflow.yml
+  name: Dataiku Run Scenario and Poll to Completion
+- type: Arazzo
+  url: arazzo/dataiku-run-sql-query-workflow.yml
+  name: Dataiku Resolve Connection and Run SQL Query
+- type: Arazzo
+  url: arazzo/dataiku-tag-project-metadata-workflow.yml
+  name: Dataiku Tag Project Metadata
+- type: Arazzo
+  url: arazzo/dataiku-teardown-project-workflow.yml
+  name: Dataiku Teardown Project
+- type: GettingStarted
+  url: https://www.dataiku.com/product/get-started/
+- type: Documentation
+  url: https://doc.dataiku.com/
+- type: Community
+  url: https://community.dataiku.com/
+- type: Academy
+  url: https://academy.dataiku.com/
+- type: Blog
+  url: https://blog.dataiku.com/
+- type: GitHub
+  url: https://github.com/dataiku
+- type: PrivacyPolicy
+  url: https://www.dataiku.com/privacy/
+- type: Portal
+  url: https://developer.dataiku.com/latest/
+- type: APIReference
+  url: https://developer.dataiku.com/latest/api-reference/index.html
+- type: Support
+  url: https://support.dataiku.com/
+- type: Knowledge Base
+  url: https://knowledge.dataiku.com/latest/
+- type: ChangeLog
+  url: https://doc.dataiku.com/dss/latest/release_notes/index.html
+- type: Trust Center
+  url: https://www.dataiku.com/legal/trust/
+- type: Plugins
+  url: https://www.dataiku.com/product/plugins/
+- type: Webinars
+  url: https://www.dataiku.com/stories/webinars/
+- type: Signup
+  url: https://www.dataiku.com/product/get-started/
+- type: LinkedIn
+  url: https://www.linkedin.com/company/dataiku
+- type: X
+  url: https://twitter.com/dataiku
+- type: JSONLD
+  url: json-ld/dataiku-context.jsonld
+- type: JSONSchema
+  url: json-schema/dataiku-project-schema.json
+- type: JSONSchema
+  url: json-schema/dataiku-dataset-schema.json
+- type: Vocabulary
+  url: vocabulary/dataiku-vocabulary.yml
+- type: Rules
+  url: rules/dataiku-rules.yml
+- type: Integrations
+  url: https://www.dataiku.com/partners/
+
 apis:
 - aid: dataiku:dataiku-python-api
   name: Dataiku Python API
@@ -124,8 +300,7 @@ apis:
     email: support@dataiku.com
 - aid: dataiku:dataiku-javascript-api
   name: Dataiku JavaScript API
-  description: >-
-    JavaScript API for building custom web applications that read from Dataiku datasets within DSS.
+  description: JavaScript API for building custom web applications that read from Dataiku datasets within DSS.
   image: https://www.dataiku.com/static/img/logo.png
   humanURL: https://doc.dataiku.com/dss/latest/api/js/index.html
   tags:
@@ -144,9 +319,7 @@ apis:
     email: support@dataiku.com
 - aid: dataiku:dataiku-scala-api
   name: Dataiku Scala API
-  description: >-
-    Scala API for reading and writing DSS datasets from the Spark and Scala environment within Dataiku
-    DSS.
+  description: Scala API for reading and writing DSS datasets from the Spark and Scala environment within Dataiku DSS.
   image: https://www.dataiku.com/static/img/logo.png
   humanURL: https://doc.dataiku.com/dss/latest/api/scala/index.html
   tags:
@@ -161,9 +334,7 @@ apis:
     email: support@dataiku.com
 - aid: dataiku:dataiku-plugin-api
   name: Dataiku Plugin API
-  description: >-
-    API for developing custom plugins that extend Dataiku DSS with custom datasets, recipes, processors,
-    and web applications.
+  description: API for developing custom plugins that extend Dataiku DSS with custom datasets, recipes, processors, and web applications.
   image: https://www.dataiku.com/static/img/logo.png
   humanURL: https://doc.dataiku.com/dss/latest/plugins/index.html
   tags:
@@ -208,6 +379,14 @@ apis:
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/index.html
   - type: APIReference
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html
+  - type: JSONSchema
+    url: json-schema/dataiku-sign-off-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-sign-off-review-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-sign-off-review-request-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-delegate-sign-off-request-schema.json
 - aid: dataiku:dataiku-artifacts-api
   name: Dataiku Artifacts API
   description: Manage governed artifacts (models, projects, etc.)
@@ -236,6 +415,12 @@ apis:
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/index.html
   - type: APIReference
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html
+  - type: JSONSchema
+    url: json-schema/dataiku-artifact-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-artifact-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-create-artifact-request-schema.json
 - aid: dataiku:dataiku-authentication-api
   name: Dataiku Authentication API
   description: Manage API keys for service access
@@ -264,6 +449,10 @@ apis:
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/index.html
   - type: APIReference
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html
+  - type: JSONSchema
+    url: json-schema/dataiku-auth-key-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-create-auth-key-request-schema.json
 - aid: dataiku:dataiku-blueprint-versions-api
   name: Dataiku Blueprint Versions API
   description: Manage blueprint version definitions
@@ -292,6 +481,12 @@ apis:
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/index.html
   - type: APIReference
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html
+  - type: JSONSchema
+    url: json-schema/dataiku-blueprint-version-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-blueprint-version-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-create-blueprint-version-request-schema.json
 - aid: dataiku:dataiku-blueprints-api
   name: Dataiku Blueprints API
   description: Manage governance blueprints that define artifact types
@@ -320,6 +515,12 @@ apis:
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/index.html
   - type: APIReference
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html
+  - type: JSONSchema
+    url: json-schema/dataiku-blueprint-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-blueprint-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-create-blueprint-request-schema.json
 - aid: dataiku:dataiku-bundles-api
   name: Dataiku Bundles API
   description: Import and export project bundles
@@ -348,6 +549,10 @@ apis:
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/index.html
   - type: APIReference
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html
+  - type: JSONSchema
+    url: json-schema/dataiku-bundle-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-create-bundle-request-schema.json
 - aid: dataiku:dataiku-code-envs-api
   name: Dataiku Code Envs API
   description: Manage code environments for Python and R
@@ -376,6 +581,10 @@ apis:
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/index.html
   - type: APIReference
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html
+  - type: JSONSchema
+    url: json-schema/dataiku-code-env-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-code-env-summary-schema.json
 - aid: dataiku:dataiku-connections-api
   name: Dataiku Connections API
   description: Manage data connections
@@ -404,6 +613,10 @@ apis:
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/index.html
   - type: APIReference
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html
+  - type: JSONSchema
+    url: json-schema/dataiku-connection-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-connection-summary-schema.json
 - aid: dataiku:dataiku-custom-fields-api
   name: Dataiku Custom Fields API
   description: Manage custom fields on artifacts
@@ -460,6 +673,14 @@ apis:
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/index.html
   - type: APIReference
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html
+  - type: JSONSchema
+    url: json-schema/dataiku-dataset-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-create-dataset-request-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-dataset-data-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-dataset-schema-schema.json
 - aid: dataiku:dataiku-general-settings-api
   name: Dataiku General Settings API
   description: Manage instance-level settings
@@ -488,6 +709,8 @@ apis:
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/index.html
   - type: APIReference
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html
+  - type: JSONSchema
+    url: json-schema/dataiku-general-settings-schema.json
 - aid: dataiku:dataiku-generations-api
   name: Dataiku Generations API
   description: Manage service generations (versions)
@@ -516,6 +739,10 @@ apis:
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/index.html
   - type: APIReference
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html
+  - type: JSONSchema
+    url: json-schema/dataiku-generation-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-generation-summary-schema.json
 - aid: dataiku:dataiku-global-api-keys-api
   name: Dataiku Global API Keys API
   description: Manage global API keys
@@ -544,6 +771,8 @@ apis:
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/index.html
   - type: APIReference
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html
+  - type: JSONSchema
+    url: json-schema/dataiku-global-apikey-schema.json
 - aid: dataiku:dataiku-groups-api
   name: Dataiku Groups API
   description: Manage DSS groups
@@ -574,6 +803,8 @@ apis:
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/index.html
   - type: APIReference
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html
+  - type: JSONSchema
+    url: json-schema/dataiku-group-schema.json
 - aid: dataiku:dataiku-jobs-api
   name: Dataiku Jobs API
   description: Run and monitor build jobs
@@ -604,6 +835,12 @@ apis:
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/index.html
   - type: APIReference
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html
+  - type: JSONSchema
+    url: json-schema/dataiku-job-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-job-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-start-job-request-schema.json
 - aid: dataiku:dataiku-managed-folders-api
   name: Dataiku Managed Folders API
   description: Manage folders for unstructured data
@@ -632,6 +869,10 @@ apis:
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/index.html
   - type: APIReference
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html
+  - type: JSONSchema
+    url: json-schema/dataiku-managed-folder-contents-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-managed-folder-schema.json
 - aid: dataiku:dataiku-meanings-api
   name: Dataiku Meanings API
   description: Manage user-defined meanings
@@ -660,6 +901,8 @@ apis:
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/index.html
   - type: APIReference
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html
+  - type: JSONSchema
+    url: json-schema/dataiku-meaning-schema.json
 - aid: dataiku:dataiku-metrics-api
   name: Dataiku Metrics API
   description: Retrieve metrics and health information
@@ -688,6 +931,10 @@ apis:
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/index.html
   - type: APIReference
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html
+  - type: JSONSchema
+    url: json-schema/dataiku-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-health-status-schema.json
 - aid: dataiku:dataiku-model-evaluation-stores-api
   name: Dataiku Model Evaluation Stores API
   description: Manage model evaluation stores
@@ -716,6 +963,8 @@ apis:
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/index.html
   - type: APIReference
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html
+  - type: JSONSchema
+    url: json-schema/dataiku-model-evaluation-store-summary-schema.json
 - aid: dataiku:dataiku-plugins-api
   name: Dataiku Plugins API
   description: Manage DSS plugins
@@ -744,6 +993,10 @@ apis:
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/index.html
   - type: APIReference
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html
+  - type: JSONSchema
+    url: json-schema/dataiku-plugin-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-plugin-summary-schema.json
 - aid: dataiku:dataiku-projects-api
   name: Dataiku Projects API
   description: Manage DSS projects
@@ -774,6 +1027,14 @@ apis:
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/index.html
   - type: APIReference
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html
+  - type: JSONSchema
+    url: json-schema/dataiku-project-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-project-metadata-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-create-project-request-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-project-summary-schema.json
 - aid: dataiku:dataiku-recipes-api
   name: Dataiku Recipes API
   description: Manage recipes and data transformations
@@ -802,6 +1063,10 @@ apis:
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/index.html
   - type: APIReference
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html
+  - type: JSONSchema
+    url: json-schema/dataiku-recipe-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-recipe-summary-schema.json
 - aid: dataiku:dataiku-roles-api
   name: Dataiku Roles API
   description: Manage governance roles and assignments
@@ -830,6 +1095,8 @@ apis:
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/index.html
   - type: APIReference
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html
+  - type: JSONSchema
+    url: json-schema/dataiku-role-schema.json
 - aid: dataiku:dataiku-saved-models-api
   name: Dataiku Saved Models API
   description: Manage trained machine learning models
@@ -858,6 +1125,10 @@ apis:
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/index.html
   - type: APIReference
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html
+  - type: JSONSchema
+    url: json-schema/dataiku-saved-model-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-saved-model-summary-schema.json
 - aid: dataiku:dataiku-scenarios-api
   name: Dataiku Scenarios API
   description: Manage and trigger automation scenarios
@@ -886,6 +1157,14 @@ apis:
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/index.html
   - type: APIReference
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html
+  - type: JSONSchema
+    url: json-schema/dataiku-scenario-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-scenario-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-scenario-run-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-scenario-light-schema.json
 - aid: dataiku:dataiku-services-api
   name: Dataiku Services API
   description: The Services API from Dataiku — 4 operation(s) for services.
@@ -914,6 +1193,10 @@ apis:
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/index.html
   - type: APIReference
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html
+  - type: JSONSchema
+    url: json-schema/dataiku-service-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-service-summary-schema.json
 - aid: dataiku:dataiku-sql-queries-api
   name: Dataiku SQL Queries API
   description: Execute SQL queries on connections
@@ -942,6 +1225,10 @@ apis:
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/index.html
   - type: APIReference
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html
+  - type: JSONSchema
+    url: json-schema/dataiku-sql-query-request-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-sql-query-result-schema.json
 - aid: dataiku:dataiku-users-api
   name: Dataiku Users API
   description: Manage Govern users
@@ -972,134 +1259,28 @@ apis:
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/index.html
   - type: APIReference
     url: https://doc.dataiku.com/dss/latest/governance/publicapi/rest.html
+  - type: JSONSchema
+    url: json-schema/dataiku-user-schema.json
+  - type: JSONSchema
+    url: json-schema/dataiku-create-user-request-schema.json
+
 integrations:
-  - name: AWS
-  - name: Databricks
-  - name: Deloitte
-  - name: Snowflake
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
-    url: https://www.dataiku.com
-common:
-  - type: Website
-    url: https://www.dataiku.com/
-  - type: CapabilityMap
-    url: capabilities/dataiku-capability-edges.yml
-    name: Dataiku Business Capability Map
-  - type: AgenticAccess
-    url: agentic-access/dataiku-agentic-access.yml
-  - type: VulnerabilityDisclosure
-    url: security/dataiku-vulnerability-disclosure.yml
-  - type: DomainSecurity
-    url: security/dataiku-domain-security.yml
-  - type: Authentication
-    url: authentication/dataiku-authentication.yml
-  - type: PostmanWorkspace
-    url: https://www.postman.com/kinlaneapi/dataiku/overview
-  - type: Arazzo
-    url: arazzo/dataiku-audit-recipe-and-jobs-workflow.yml
-    name: Dataiku Audit Recipe and Project Jobs
-  - type: Arazzo
-    url: arazzo/dataiku-bootstrap-project-workflow.yml
-    name: Dataiku Bootstrap Project with First Dataset
-  - type: Arazzo
-    url: arazzo/dataiku-browse-managed-folder-workflow.yml
-    name: Dataiku Browse Managed Folder Contents
-  - type: Arazzo
-    url: arazzo/dataiku-build-dataset-job-workflow.yml
-    name: Dataiku Build Dataset and Poll Job
-  - type: Arazzo
-    url: arazzo/dataiku-create-dataset-set-schema-build-workflow.yml
-    name: Dataiku Create Dataset, Set Schema, and Build
-  - type: Arazzo
-    url: arazzo/dataiku-create-govern-artifact-workflow.yml
-    name: Dataiku Create Govern Artifact with Custom Fields
-  - type: Arazzo
-    url: arazzo/dataiku-create-govern-blueprint-version-workflow.yml
-    name: Dataiku Create Govern Blueprint and Version
-  - type: Arazzo
-    url: arazzo/dataiku-export-project-bundle-workflow.yml
-    name: Dataiku Export Project Bundle
-  - type: Arazzo
-    url: arazzo/dataiku-import-and-preload-generation-workflow.yml
-    name: Dataiku Import and Preload API Node Generation
-  - type: Arazzo
-    url: arazzo/dataiku-inspect-and-read-dataset-workflow.yml
-    name: Dataiku Inspect and Read a Dataset
-  - type: Arazzo
-    url: arazzo/dataiku-inspect-saved-model-workflow.yml
-    name: Dataiku Inspect Saved Model
-  - type: Arazzo
-    url: arazzo/dataiku-promote-apinode-generation-workflow.yml
-    name: Dataiku Promote API Node Generation
-  - type: Arazzo
-    url: arazzo/dataiku-provision-user-workflow.yml
-    name: Dataiku Provision DSS User
-  - type: Arazzo
-    url: arazzo/dataiku-review-artifact-signoff-workflow.yml
-    name: Dataiku Review Artifact Sign-Off
-  - type: Arazzo
-    url: arazzo/dataiku-run-scenario-and-poll-workflow.yml
-    name: Dataiku Run Scenario and Poll to Completion
-  - type: Arazzo
-    url: arazzo/dataiku-run-sql-query-workflow.yml
-    name: Dataiku Resolve Connection and Run SQL Query
-  - type: Arazzo
-    url: arazzo/dataiku-tag-project-metadata-workflow.yml
-    name: Dataiku Tag Project Metadata
-  - type: Arazzo
-    url: arazzo/dataiku-teardown-project-workflow.yml
-    name: Dataiku Teardown Project
-  - type: GettingStarted
-    url: https://www.dataiku.com/product/get-started/
-  - type: Documentation
-    url: https://doc.dataiku.com/
-  - type: Community
-    url: https://community.dataiku.com/
-  - type: Academy
-    url: https://academy.dataiku.com/
-  - type: Pricing
-    url: https://www.dataiku.com/product/pricing/
-  - type: Blog
-    url: https://blog.dataiku.com/
-  - type: GitHub
-    url: https://github.com/dataiku
-  - type: TermsOfService
-    url: https://www.dataiku.com/terms/
-  - type: PrivacyPolicy
-    url: https://www.dataiku.com/privacy/
-  - type: Portal
-    url: https://developer.dataiku.com/latest/
-  - type: APIReference
-    url: https://developer.dataiku.com/latest/api-reference/index.html
-  - type: Support
-    url: https://support.dataiku.com/
-  - type: Knowledge Base
-    url: https://knowledge.dataiku.com/latest/
-  - type: ChangeLog
-    url: https://doc.dataiku.com/dss/latest/release_notes/index.html
-  - type: Trust Center
-    url: https://www.dataiku.com/legal/trust/
-  - type: Plugins
-    url: https://www.dataiku.com/product/plugins/
-  - type: Webinars
-    url: https://www.dataiku.com/stories/webinars/
-  - type: Signup
-    url: https://www.dataiku.com/product/get-started/
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/dataiku
-  - type: X
-    url: https://twitter.com/dataiku
-  - type: JSONLD
-    url: json-ld/dataiku-context.jsonld
-  - type: JSONSchema
-    url: json-schema/dataiku-project-schema.json
-  - type: JSONSchema
-    url: json-schema/dataiku-dataset-schema.json
-  - type: Vocabulary
-    url: vocabulary/dataiku-vocabulary.yml
-  - type: Rules
-    url: rules/dataiku-rules.yml
-  - type: Integrations
-    url: https://www.dataiku.com/partners/
+- name: AWS
+- name: Databricks
+- name: Deloitte
+- name: Snowflake
+
+x-coverage:
+  state: unreadable
+  reason: no-machine-readable-spec
+  detail: API reference pages exist but no OpenAPI/AsyncAPI/GraphQL spec could be retrieved from api.dataiku.com or documentation sites.
+  evidence:
+  - url: https://api.dataiku.com/openapi.json
+    status: 0
+  checked: '2026-10-03'
+x-enrichment:
+  date: '2026-10-03'
+  status: enriched
+  artifacts_added: 63
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

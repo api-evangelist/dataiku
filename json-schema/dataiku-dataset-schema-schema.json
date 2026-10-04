@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dataiku/main/json-schema/dataiku-dataset-schema-schema.json",
+  "title": "DatasetSchema",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dataiku-datasets-api-openapi.yml#/components/schemas/DatasetSchema",
+  "type": "object",
+  "properties": {
+    "columns": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/SchemaColumn"
+      },
+      "description": "List of columns in the dataset"
+    },
+    "userModified": {
+      "type": "boolean",
+      "description": "Whether the schema was manually modified"
+    }
+  },
+  "$defs": {
+    "SchemaColumn": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Column name"
+        },
+        "type": {
+          "type": "string",
+          "description": "Column data type (e.g., string, bigint, double, boolean, date)"
+        },
+        "meaning": {
+          "type": "string",
+          "description": "Semantic meaning assigned to the column"
+        },
+        "maxLength": {
+          "type": "integer",
+          "description": "Maximum length for string columns"
+        }
+      }
+    }
+  }
+}

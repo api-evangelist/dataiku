@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dataiku/main/json-schema/dataiku-create-user-request-schema.json",
+  "title": "CreateUserRequest",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dataiku-users-api-openapi.yml#/components/schemas/CreateUserRequest",
+  "type": "object",
+  "required": [
+    "login",
+    "password"
+  ],
+  "properties": {
+    "login": {
+      "type": "string",
+      "description": "User login name"
+    },
+    "password": {
+      "type": "string",
+      "description": "Initial password"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Display name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "groups": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Groups to assign"
+    },
+    "userProfile": {
+      "type": "string",
+      "description": "User profile"
+    }
+  }
+}

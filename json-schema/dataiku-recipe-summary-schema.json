@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dataiku/main/json-schema/dataiku-recipe-summary-schema.json",
+  "title": "RecipeSummary",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dataiku-recipes-api-openapi.yml#/components/schemas/RecipeSummary",
+  "type": "object",
+  "properties": {
+    "projectKey": {
+      "type": "string",
+      "description": "Project key"
+    },
+    "name": {
+      "type": "string",
+      "description": "Recipe name"
+    },
+    "type": {
+      "type": "string",
+      "description": "Recipe type (e.g., prepare, python, sql, join, sync)"
+    }
+  }
+}

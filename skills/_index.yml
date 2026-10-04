@@ -1,0 +1,36 @@
+generated: '2026-10-03'
+method: generated
+generator: extract-docs-artifacts.py skills (local)
+source: openapi/dataiku-datasets-api-openapi.yml
+skills:
+- file: skills/dataiku-get-dataset-schema.md
+  name: dataiku-get-dataset-schema
+  api: openapi/dataiku-datasets-api-openapi.yml
+  operations:
+  - listDatasets
+  - getDatasetSchema
+- file: skills/dataiku-create-and-get-project.md
+  name: dataiku-create-and-get-project
+  api: openapi/dataiku-projects-api-openapi.yml
+  operations:
+  - createProject
+  - getProject
+- file: skills/dataiku-run-job.md
+  name: dataiku-run-job
+  api: openapi/dataiku-jobs-api-openapi.yml
+  operations:
+  - startJob
+  - getJob
+  - listJobs
+- file: skills/dataiku-run-scenario-and-check-status.md
+  name: dataiku-run-scenario-and-check-status
+  api: openapi/dataiku-scenarios-api-openapi.yml
+  operations:
+  - runScenario
+  - getScenarioRunStatus
+- file: skills/dataiku-list-and-get-services.md
+  name: dataiku-list-and-get-services
+  api: openapi/dataiku-services-api-openapi.yml
+  operations:
+  - listServices
+  - getService

@@ -1,0 +1,7 @@
+# 👋 Welcome to our Security.txt
+# We operate a private bug bounty program. If you're interested in
+# participating, please email us to request an invitation.
+Contact: security@dataiku.com
+
+Expires: 2027-10-31T00:00:00.000Z
+Preferred-Languages: en

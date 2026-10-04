@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dataiku/main/json-schema/dataiku-create-project-request-schema.json",
+  "title": "CreateProjectRequest",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dataiku-projects-api-openapi.yml#/components/schemas/CreateProjectRequest",
+  "type": "object",
+  "required": [
+    "projectKey",
+    "name"
+  ],
+  "properties": {
+    "projectKey": {
+      "type": "string",
+      "description": "Unique project key (uppercase letters and numbers)",
+      "pattern": "^[A-Z][A-Z0-9_]*$"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name for the project"
+    },
+    "owner": {
+      "type": "string",
+      "description": "Login of the project owner"
+    }
+  }
+}

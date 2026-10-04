@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dataiku/main/json-schema/dataiku-health-status-schema.json",
+  "title": "HealthStatus",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dataiku-metrics-api-openapi.yml#/components/schemas/HealthStatus",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "HEALTHY",
+        "DEGRADED",
+        "UNHEALTHY"
+      ],
+      "description": "Overall health status"
+    },
+    "details": {
+      "type": "object",
+      "description": "Additional health check details"
+    }
+  }
+}

@@ -190,6 +190,36 @@ paths:
           description: Dataset not found
 components:
   schemas:
+    Tag:
+      type: object
+      properties:
+        versionNumber:
+          type: integer
+          description: Version number
+        lastModifiedBy:
+          type: object
+          properties:
+            login:
+              type: string
+        lastModifiedOn:
+          type: string
+          format: date-time
+          description: Timestamp of last modification
+    SchemaColumn:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Column name
+        type:
+          type: string
+          description: Column data type (e.g., string, bigint, double, boolean, date)
+        meaning:
+          type: string
+          description: Semantic meaning assigned to the column
+        maxLength:
+          type: integer
+          description: Maximum length for string columns
     Dataset:
       type: object
       properties:
@@ -249,36 +279,6 @@ components:
         userModified:
           type: boolean
           description: Whether the schema was manually modified
-    Tag:
-      type: object
-      properties:
-        versionNumber:
-          type: integer
-          description: Version number
-        lastModifiedBy:
-          type: object
-          properties:
-            login:
-              type: string
-        lastModifiedOn:
-          type: string
-          format: date-time
-          description: Timestamp of last modification
-    SchemaColumn:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Column name
-        type:
-          type: string
-          description: Column data type (e.g., string, bigint, double, boolean, date)
-        meaning:
-          type: string
-          description: Semantic meaning assigned to the column
-        maxLength:
-          type: integer
-          description: Maximum length for string columns
     CreateDatasetRequest:
       type: object
       required:
@@ -301,18 +301,18 @@ components:
           type: object
           description: Format-specific parameters
   parameters:
-    projectKey:
-      name: projectKey
-      in: path
-      required: true
-      description: Unique project key identifier
-      schema:
-        type: string
     datasetName:
       name: datasetName
       in: path
       required: true
       description: Dataset name within the project
+      schema:
+        type: string
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      description: Unique project key identifier
       schema:
         type: string
   securitySchemes:

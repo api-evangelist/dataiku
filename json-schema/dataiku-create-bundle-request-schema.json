@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dataiku/main/json-schema/dataiku-create-bundle-request-schema.json",
+  "title": "CreateBundleRequest",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dataiku-bundles-api-openapi.yml#/components/schemas/CreateBundleRequest",
+  "type": "object",
+  "required": [
+    "bundleId"
+  ],
+  "properties": {
+    "bundleId": {
+      "type": "string",
+      "description": "Identifier for the new bundle"
+    }
+  }
+}

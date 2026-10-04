@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dataiku/main/json-schema/dataiku-global-apikey-schema.json",
+  "title": "GlobalAPIKey",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dataiku-global-api-keys-api-openapi.yml#/components/schemas/GlobalAPIKey",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "API key identifier"
+    },
+    "key": {
+      "type": "string",
+      "description": "The API key value"
+    },
+    "label": {
+      "type": "string",
+      "description": "Label for the API key"
+    },
+    "createdOn": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Creation timestamp"
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "User who created the key"
+    },
+    "globalPermissions": {
+      "type": "object",
+      "description": "Global permissions granted"
+    }
+  }
+}

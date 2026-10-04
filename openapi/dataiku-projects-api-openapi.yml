@@ -138,37 +138,6 @@ paths:
           description: Project not found
 components:
   schemas:
-    CreateProjectRequest:
-      type: object
-      required:
-      - projectKey
-      - name
-      properties:
-        projectKey:
-          type: string
-          description: Unique project key (uppercase letters and numbers)
-          pattern: ^[A-Z][A-Z0-9_]*$
-        name:
-          type: string
-          description: Display name for the project
-        owner:
-          type: string
-          description: Login of the project owner
-    ProjectSummary:
-      type: object
-      properties:
-        projectKey:
-          type: string
-          description: Unique project key
-        name:
-          type: string
-          description: Display name of the project
-        owner:
-          type: string
-          description: Login of the project owner
-        projectStatus:
-          type: string
-          description: Current status of the project
     ProjectMetadata:
       type: object
       properties:
@@ -189,6 +158,21 @@ components:
         checklists:
           type: object
           description: Checklists for the project
+    Tag:
+      type: object
+      properties:
+        versionNumber:
+          type: integer
+          description: Version number
+        lastModifiedBy:
+          type: object
+          properties:
+            login:
+              type: string
+        lastModifiedOn:
+          type: string
+          format: date-time
+          description: Timestamp of last modification
     Project:
       type: object
       properties:
@@ -211,21 +195,37 @@ components:
         description:
           type: string
           description: Short description of the project
-    Tag:
+    ProjectSummary:
       type: object
       properties:
-        versionNumber:
-          type: integer
-          description: Version number
-        lastModifiedBy:
-          type: object
-          properties:
-            login:
-              type: string
-        lastModifiedOn:
+        projectKey:
           type: string
-          format: date-time
-          description: Timestamp of last modification
+          description: Unique project key
+        name:
+          type: string
+          description: Display name of the project
+        owner:
+          type: string
+          description: Login of the project owner
+        projectStatus:
+          type: string
+          description: Current status of the project
+    CreateProjectRequest:
+      type: object
+      required:
+      - projectKey
+      - name
+      properties:
+        projectKey:
+          type: string
+          description: Unique project key (uppercase letters and numbers)
+          pattern: ^[A-Z][A-Z0-9_]*$
+        name:
+          type: string
+          description: Display name for the project
+        owner:
+          type: string
+          description: Login of the project owner
   parameters:
     projectKey:
       name: projectKey

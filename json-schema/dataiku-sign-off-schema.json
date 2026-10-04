@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dataiku/main/json-schema/dataiku-sign-off-schema.json",
+  "title": "SignOff",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dataiku-artifact-sign-offs-api-openapi.yml#/components/schemas/SignOff",
+  "type": "object",
+  "properties": {
+    "stepId": {
+      "type": "string",
+      "description": "Sign-off step identifier"
+    },
+    "stepName": {
+      "type": "string",
+      "description": "Step display name"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "NOT_STARTED",
+        "IN_PROGRESS",
+        "APPROVED",
+        "REJECTED",
+        "DELEGATED"
+      ],
+      "description": "Current sign-off status"
+    },
+    "reviews": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/SignOffReview"
+      },
+      "description": "Reviews submitted for this step"
+    },
+    "delegatedTo": {
+      "type": "string",
+      "description": "User the step was delegated to"
+    }
+  },
+  "$defs": {
+    "SignOffReview": {
+      "type": "object",
+      "properties": {
+        "reviewer": {
+          "type": "string",
+          "description": "Login of the reviewer"
+        },
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "APPROVED",
+            "REJECTED"
+          ],
+          "description": "Review outcome"
+        },
+        "comment": {
+          "type": "string",
+          "description": "Review comment"
+        },
+        "reviewedOn": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Review timestamp"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dataiku/main/json-schema/dataiku-managed-folder-schema.json",
+  "title": "ManagedFolder",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dataiku-managed-folders-api-openapi.yml#/components/schemas/ManagedFolder",
+  "type": "object",
+  "properties": {
+    "projectKey": {
+      "type": "string",
+      "description": "Project key"
+    },
+    "id": {
+      "type": "string",
+      "description": "Managed folder identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Managed folder name"
+    },
+    "type": {
+      "type": "string",
+      "description": "Storage type"
+    }
+  }
+}

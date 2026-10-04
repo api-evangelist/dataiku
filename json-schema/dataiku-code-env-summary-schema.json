@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dataiku/main/json-schema/dataiku-code-env-summary-schema.json",
+  "title": "CodeEnvSummary",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dataiku-code-envs-api-openapi.yml#/components/schemas/CodeEnvSummary",
+  "type": "object",
+  "properties": {
+    "envName": {
+      "type": "string",
+      "description": "Code environment name"
+    },
+    "envLang": {
+      "type": "string",
+      "enum": [
+        "PYTHON",
+        "R"
+      ],
+      "description": "Programming language"
+    }
+  }
+}

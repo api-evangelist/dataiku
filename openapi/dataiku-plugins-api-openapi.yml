@@ -59,22 +59,6 @@ paths:
           description: Plugin not found
 components:
   schemas:
-    PluginSummary:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Plugin identifier
-        version:
-          type: string
-          description: Plugin version
-        label:
-          type: string
-          description: Display label
-        installedOn:
-          type: integer
-          format: int64
-          description: Installation timestamp
     Plugin:
       type: object
       properties:
@@ -93,6 +77,22 @@ components:
         author:
           type: string
           description: Plugin author
+        installedOn:
+          type: integer
+          format: int64
+          description: Installation timestamp
+    PluginSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Plugin identifier
+        version:
+          type: string
+          description: Plugin version
+        label:
+          type: string
+          description: Display label
         installedOn:
           type: integer
           format: int64

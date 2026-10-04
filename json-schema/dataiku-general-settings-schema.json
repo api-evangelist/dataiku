@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dataiku/main/json-schema/dataiku-general-settings-schema.json",
+  "title": "GeneralSettings",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dataiku-general-settings-api-openapi.yml#/components/schemas/GeneralSettings",
+  "type": "object",
+  "properties": {
+    "permissions": {
+      "type": "object",
+      "description": "Global permission settings"
+    },
+    "ldapSettings": {
+      "type": "object",
+      "description": "LDAP configuration"
+    },
+    "ssoSettings": {
+      "type": "object",
+      "description": "SSO configuration"
+    },
+    "theme": {
+      "type": "object",
+      "description": "UI theme settings"
+    }
+  }
+}

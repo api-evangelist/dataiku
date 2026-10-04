@@ -138,6 +138,21 @@ paths:
         '404':
           description: Generation not found
 components:
+  parameters:
+    serviceId:
+      name: serviceId
+      in: path
+      required: true
+      description: Unique service identifier
+      schema:
+        type: string
+    generationId:
+      name: generationId
+      in: path
+      required: true
+      description: Generation (version) identifier
+      schema:
+        type: string
   schemas:
     Endpoint:
       type: object
@@ -194,21 +209,6 @@ components:
           type: integer
           format: int64
           description: Creation timestamp
-  parameters:
-    generationId:
-      name: generationId
-      in: path
-      required: true
-      description: Generation (version) identifier
-      schema:
-        type: string
-    serviceId:
-      name: serviceId
-      in: path
-      required: true
-      description: Unique service identifier
-      schema:
-        type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

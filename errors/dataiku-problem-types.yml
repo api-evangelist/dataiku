@@ -1,0 +1,48 @@
+generated: '2026-10-03'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/dataiku-artifact-sign-offs-api-openapi.yml
+- openapi/dataiku-artifacts-api-openapi.yml
+- openapi/dataiku-authentication-api-openapi.yml
+- openapi/dataiku-blueprint-versions-api-openapi.yml
+- openapi/dataiku-blueprints-api-openapi.yml
+- openapi/dataiku-bundles-api-openapi.yml
+- openapi/dataiku-code-envs-api-openapi.yml
+- openapi/dataiku-connections-api-openapi.yml
+- openapi/dataiku-custom-fields-api-openapi.yml
+- openapi/dataiku-datasets-api-openapi.yml
+- openapi/dataiku-general-settings-api-openapi.yml
+- openapi/dataiku-generations-api-openapi.yml
+format: custom
+envelope:
+  media_type: null
+  schema: null
+coverage:
+  operations: 88
+  statuses_declared: 4
+problems:
+- status: 400
+  title: Bad Request
+  description: Invalid request
+  operations: 12
+  media_types: []
+  schema: null
+- status: 401
+  title: Unauthorized
+  description: Unauthorized
+  operations: 22
+  media_types: []
+  schema: null
+- status: 404
+  title: Not Found
+  description: Project not found
+  operations: 60
+  media_types: []
+  schema: null
+- status: 409
+  title: Conflict
+  description: Dataset name already exists
+  operations: 3
+  media_types: []
+  schema: null

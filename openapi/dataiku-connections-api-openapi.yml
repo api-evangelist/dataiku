@@ -58,6 +58,14 @@ paths:
         '404':
           description: Connection not found
 components:
+  parameters:
+    connectionName:
+      name: connectionName
+      in: path
+      required: true
+      description: Connection name
+      schema:
+        type: string
   schemas:
     Connection:
       type: object
@@ -86,14 +94,6 @@ components:
         type:
           type: string
           description: Connection type (e.g., PostgreSQL, S3, HDFS)
-  parameters:
-    connectionName:
-      name: connectionName
-      in: path
-      required: true
-      description: Connection name
-      schema:
-        type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

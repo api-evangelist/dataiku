@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dataiku/main/json-schema/dataiku-job-summary-schema.json",
+  "title": "JobSummary",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dataiku-jobs-api-openapi.yml#/components/schemas/JobSummary",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique job identifier"
+    },
+    "projectKey": {
+      "type": "string",
+      "description": "Project key"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "NOT_STARTED",
+        "RUNNING",
+        "DONE",
+        "FAILED",
+        "ABORTED"
+      ],
+      "description": "Current state of the job"
+    },
+    "initiator": {
+      "type": "string",
+      "description": "User who started the job"
+    },
+    "startTime": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Job start time as epoch milliseconds"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dataiku/main/json-schema/dataiku-model-evaluation-store-summary-schema.json",
+  "title": "ModelEvaluationStoreSummary",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dataiku-model-evaluation-stores-api-openapi.yml#/components/schemas/ModelEvaluationStoreSummary",
+  "type": "object",
+  "properties": {
+    "projectKey": {
+      "type": "string",
+      "description": "Project key"
+    },
+    "id": {
+      "type": "string",
+      "description": "Model evaluation store identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name"
+    }
+  }
+}

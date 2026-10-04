@@ -45,21 +45,6 @@ paths:
           description: Invalid query
 components:
   schemas:
-    SqlQueryResult:
-      type: object
-      properties:
-        columns:
-          type: array
-          items:
-            type: string
-          description: Column names
-        rows:
-          type: array
-          items:
-            type: array
-            items:
-              type: string
-          description: Result rows
     SqlQueryRequest:
       type: object
       required:
@@ -82,6 +67,21 @@ components:
           items:
             type: string
           description: SQL statements to execute after the main query
+    SqlQueryResult:
+      type: object
+      properties:
+        columns:
+          type: array
+          items:
+            type: string
+          description: Column names
+        rows:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+          description: Result rows
   securitySchemes:
     apiKeyAuth:
       type: apiKey

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dataiku/main/json-schema/dataiku-start-job-request-schema.json",
+  "title": "StartJobRequest",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dataiku-jobs-api-openapi.yml#/components/schemas/StartJobRequest",
+  "type": "object",
+  "required": [
+    "outputs"
+  ],
+  "properties": {
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "projectKey": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "DATASET",
+              "MANAGED_FOLDER",
+              "SAVED_MODEL"
+            ]
+          }
+        }
+      },
+      "description": "List of outputs to build"
+    }
+  }
+}

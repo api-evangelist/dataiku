@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dataiku/main/json-schema/dataiku-create-blueprint-request-schema.json",
+  "title": "CreateBlueprintRequest",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dataiku-blueprints-api-openapi.yml#/components/schemas/CreateBlueprintRequest",
+  "type": "object",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Blueprint display name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Blueprint description"
+    },
+    "icon": {
+      "type": "string",
+      "description": "Icon identifier"
+    }
+  }
+}

@@ -1,0 +1,241 @@
+generated: '2026-10-03'
+method: derived
+generator: derive-mcp-candidate.py
+source:
+- openapi/dataiku-artifact-sign-offs-api-openapi.yml
+- openapi/dataiku-artifacts-api-openapi.yml
+- openapi/dataiku-authentication-api-openapi.yml
+- openapi/dataiku-blueprint-versions-api-openapi.yml
+- openapi/dataiku-blueprints-api-openapi.yml
+- openapi/dataiku-bundles-api-openapi.yml
+- openapi/dataiku-code-envs-api-openapi.yml
+- openapi/dataiku-connections-api-openapi.yml
+- openapi/dataiku-custom-fields-api-openapi.yml
+- openapi/dataiku-datasets-api-openapi.yml
+- openapi/dataiku-general-settings-api-openapi.yml
+- openapi/dataiku-generations-api-openapi.yml
+- openapi/dataiku-global-api-keys-api-openapi.yml
+- openapi/dataiku-groups-api-openapi.yml
+- openapi/dataiku-jobs-api-openapi.yml
+- openapi/dataiku-managed-folders-api-openapi.yml
+- openapi/dataiku-meanings-api-openapi.yml
+- openapi/dataiku-metrics-api-openapi.yml
+- openapi/dataiku-model-evaluation-stores-api-openapi.yml
+- openapi/dataiku-plugins-api-openapi.yml
+- openapi/dataiku-projects-api-openapi.yml
+- openapi/dataiku-recipes-api-openapi.yml
+- openapi/dataiku-roles-api-openapi.yml
+- openapi/dataiku-saved-models-api-openapi.yml
+- openapi/dataiku-scenarios-api-openapi.yml
+- openapi/dataiku-services-api-openapi.yml
+- openapi/dataiku-sql-queries-api-openapi.yml
+- openapi/dataiku-users-api-openapi.yml
+status: candidate
+deployment:
+  mode: none
+  auth: unknown
+  verified: probed
+note: No MCP server was found. The pre-flight posted tools/list to /mcp on api.dataiku.com, api.pypi.org, pypi.org, www.dataiku.com; verdict absent.
+  Candidate tools below are derived from the 88 operation(s) in the provider's own OpenAPI (40 listed); they describe what a server WOULD expose,
+  not one that exists.
+tools:
+- name: list_artifact_sign_offs
+  operationId: listArtifactSignOffs
+  method: GET
+  path: /artifacts/{artifactId}/sign-offs
+  description: Dataiku List artifact sign-offs
+- name: list_artifacts
+  operationId: listArtifacts
+  method: GET
+  path: /artifacts
+  description: Dataiku List artifacts
+- name: list_auth_keys
+  operationId: listAuthKeys
+  method: GET
+  path: /auth/keys
+  description: Dataiku List authentication keys
+- name: list_blueprint_versions
+  operationId: listBlueprintVersions
+  method: GET
+  path: /blueprints/{blueprintId}/versions
+  description: Dataiku List blueprint versions
+- name: list_blueprints
+  operationId: listBlueprints
+  method: GET
+  path: /blueprints
+  description: Dataiku List blueprints
+- name: list_bundles
+  operationId: listBundles
+  method: GET
+  path: /projects/{projectKey}/bundles
+  description: Dataiku List bundles
+- name: list_code_envs
+  operationId: listCodeEnvs
+  method: GET
+  path: /admin/code-envs
+  description: Dataiku List code environments
+- name: list_connections
+  operationId: listConnections
+  method: GET
+  path: /admin/connections
+  description: Dataiku List connections
+- name: get_artifact_custom_fields
+  operationId: getArtifactCustomFields
+  method: GET
+  path: /artifacts/{artifactId}/custom-fields
+  description: Dataiku Get artifact custom fields
+- name: list_datasets
+  operationId: listDatasets
+  method: GET
+  path: /projects/{projectKey}/datasets
+  description: Dataiku List datasets
+- name: get_general_settings
+  operationId: getGeneralSettings
+  method: GET
+  path: /admin/general-settings
+  description: Dataiku Get general settings
+- name: list_generations
+  operationId: listGenerations
+  method: GET
+  path: /services/{serviceId}/generations
+  description: Dataiku List generations
+- name: list_global_apikeys
+  operationId: listGlobalAPIKeys
+  method: GET
+  path: /admin/globalAPIKeys
+  description: Dataiku List global API keys
+- name: list_groups
+  operationId: listGroups
+  method: GET
+  path: /admin/groups
+  description: Dataiku List groups
+- name: list_jobs
+  operationId: listJobs
+  method: GET
+  path: /projects/{projectKey}/jobs
+  description: Dataiku List jobs
+- name: list_managed_folders
+  operationId: listManagedFolders
+  method: GET
+  path: /projects/{projectKey}/managedfolders
+  description: Dataiku List managed folders
+- name: list_meanings
+  operationId: listMeanings
+  method: GET
+  path: /meanings
+  description: Dataiku List meanings
+- name: get_metrics
+  operationId: getMetrics
+  method: GET
+  path: /metrics
+  description: Dataiku Get API node metrics
+- name: list_model_evaluation_stores
+  operationId: listModelEvaluationStores
+  method: GET
+  path: /projects/{projectKey}/modelevaluationstores
+  description: Dataiku List model evaluation stores
+- name: list_plugins
+  operationId: listPlugins
+  method: GET
+  path: /plugins
+  description: Dataiku List plugins
+- name: list_projects
+  operationId: listProjects
+  method: GET
+  path: /projects
+  description: Dataiku List projects
+- name: list_recipes
+  operationId: listRecipes
+  method: GET
+  path: /projects/{projectKey}/recipes
+  description: Dataiku List recipes
+- name: list_roles
+  operationId: listRoles
+  method: GET
+  path: /roles
+  description: Dataiku List roles
+- name: list_saved_models
+  operationId: listSavedModels
+  method: GET
+  path: /projects/{projectKey}/savedmodels
+  description: Dataiku List saved models
+- name: list_scenarios
+  operationId: listScenarios
+  method: GET
+  path: /projects/{projectKey}/scenarios
+  description: Dataiku List scenarios
+- name: list_services
+  operationId: listServices
+  method: GET
+  path: /services
+  description: Dataiku List deployed services
+- name: execute_sql_query
+  operationId: executeSqlQuery
+  method: POST
+  path: /sql/queries
+  description: Dataiku Execute a SQL query
+- name: list_govern_users
+  operationId: listGovernUsers
+  method: GET
+  path: /users
+  description: Dataiku List Govern users
+- name: get_artifact_sign_off
+  operationId: getArtifactSignOff
+  method: GET
+  path: /artifacts/{artifactId}/sign-offs/{signOffStepId}
+  description: Dataiku Get sign-off step details
+- name: create_artifact
+  operationId: createArtifact
+  method: POST
+  path: /artifacts
+  description: Dataiku Create an artifact
+- name: create_auth_key
+  operationId: createAuthKey
+  method: POST
+  path: /auth/keys
+  description: Dataiku Create an authentication key
+- name: create_blueprint_version
+  operationId: createBlueprintVersion
+  method: POST
+  path: /blueprints/{blueprintId}/versions
+  description: Dataiku Create a blueprint version
+- name: create_blueprint
+  operationId: createBlueprint
+  method: POST
+  path: /blueprints
+  description: Dataiku Create a blueprint
+- name: create_bundle
+  operationId: createBundle
+  method: POST
+  path: /projects/{projectKey}/bundles
+  description: Dataiku Create a bundle
+- name: get_code_env
+  operationId: getCodeEnv
+  method: GET
+  path: /admin/code-envs/{envLang}/{envName}
+  description: Dataiku Get code environment details
+- name: get_connection
+  operationId: getConnection
+  method: GET
+  path: /admin/connections/{connectionName}
+  description: Dataiku Get connection details
+- name: set_artifact_custom_fields
+  operationId: setArtifactCustomFields
+  method: PUT
+  path: /artifacts/{artifactId}/custom-fields
+  description: Dataiku Set artifact custom fields
+- name: create_dataset
+  operationId: createDataset
+  method: POST
+  path: /projects/{projectKey}/datasets
+  description: Dataiku Create a dataset
+- name: set_general_settings
+  operationId: setGeneralSettings
+  method: PUT
+  path: /admin/general-settings
+  description: Dataiku Update general settings
+- name: import_generation
+  operationId: importGeneration
+  method: POST
+  path: /services/{serviceId}/generations
+  description: Dataiku Import a generation

@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dataiku/main/json-schema/dataiku-blueprint-version-schema.json",
+  "title": "BlueprintVersion",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dataiku-blueprint-versions-api-openapi.yml#/components/schemas/BlueprintVersion",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Version identifier"
+    },
+    "blueprintId": {
+      "type": "string",
+      "description": "Parent blueprint ID"
+    },
+    "versionNumber": {
+      "type": "integer",
+      "description": "Version number"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "DRAFT",
+        "PUBLISHED",
+        "ARCHIVED"
+      ],
+      "description": "Version status"
+    },
+    "fieldSettings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/FieldSetting"
+      },
+      "description": "Custom field definitions"
+    },
+    "signOffConfiguration": {
+      "$ref": "#/$defs/SignOffConfiguration"
+    },
+    "createdOn": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Creation timestamp"
+    }
+  },
+  "$defs": {
+    "FieldSetting": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Field identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Field display name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Field description"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "TEXT",
+            "LONG_TEXT",
+            "NUMBER",
+            "BOOLEAN",
+            "DATE",
+            "SELECT",
+            "MULTISELECT",
+            "USER",
+            "USERS"
+          ],
+          "description": "Field type"
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Whether the field is required"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Available options for SELECT and MULTISELECT types"
+        }
+      }
+    },
+    "SignOffConfiguration": {
+      "type": "object",
+      "properties": {
+        "steps": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SignOffStep"
+          },
+          "description": "Ordered list of sign-off steps"
+        }
+      }
+    },
+    "SignOffStep": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Step identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Step display name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Step description"
+        },
+        "requiredReviewers": {
+          "type": "integer",
+          "description": "Number of required reviewers"
+        },
+        "assigneeType": {
+          "type": "string",
+          "enum": [
+            "ROLE",
+            "USER",
+            "GROUP"
+          ],
+          "description": "How reviewers are assigned"
+        }
+      }
+    }
+  }
+}

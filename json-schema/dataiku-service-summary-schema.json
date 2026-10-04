@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dataiku/main/json-schema/dataiku-service-summary-schema.json",
+  "title": "ServiceSummary",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dataiku-services-api-openapi.yml#/components/schemas/ServiceSummary",
+  "type": "object",
+  "properties": {
+    "serviceId": {
+      "type": "string",
+      "description": "Unique service identifier"
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the service is enabled"
+    },
+    "activeGeneration": {
+      "type": "string",
+      "description": "Currently active generation identifier"
+    },
+    "generationCount": {
+      "type": "integer",
+      "description": "Number of available generations"
+    }
+  }
+}

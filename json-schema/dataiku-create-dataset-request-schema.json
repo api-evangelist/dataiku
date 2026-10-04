@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dataiku/main/json-schema/dataiku-create-dataset-request-schema.json",
+  "title": "CreateDatasetRequest",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dataiku-datasets-api-openapi.yml#/components/schemas/CreateDatasetRequest",
+  "type": "object",
+  "required": [
+    "name",
+    "type"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Dataset name"
+    },
+    "type": {
+      "type": "string",
+      "description": "Dataset type"
+    },
+    "params": {
+      "type": "object",
+      "description": "Type-specific parameters"
+    },
+    "formatType": {
+      "type": "string",
+      "description": "Data format type"
+    },
+    "formatParams": {
+      "type": "object",
+      "description": "Format-specific parameters"
+    }
+  }
+}

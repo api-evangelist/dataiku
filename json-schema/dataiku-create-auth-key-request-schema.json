@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dataiku/main/json-schema/dataiku-create-auth-key-request-schema.json",
+  "title": "CreateAuthKeyRequest",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dataiku-authentication-api-openapi.yml#/components/schemas/CreateAuthKeyRequest",
+  "type": "object",
+  "properties": {
+    "label": {
+      "type": "string",
+      "description": "Descriptive label for the key"
+    },
+    "allowedServices": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of services this key can access"
+    }
+  }
+}
