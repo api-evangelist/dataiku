@@ -1,0 +1,54 @@
+slug: dataiku
+provider: Dataiku
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: Saved Models
+  spec_file: dataiku-saved-models-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.85
+  evidence: GET /projects/{projectKey}/savedmodels/{savedModelId} getSavedModel; schemas SavedModel, ModelVersion
+  reason: Operations list and inspect trained ML models and their versions, which is AI/ML model lifecycle
+    management (MLOps).
+- tag: Model Evaluation Stores
+  spec_file: dataiku-model-evaluation-stores-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.8
+  evidence: GET /projects/{projectKey}/modelevaluationstores listModelEvaluationStores; schema ModelEvaluationStoreSummary
+  reason: Model evaluation stores hold ML model evaluation/drift results — squarely AI/ML model lifecycle
+    and MLOps management.
+- tag: Artifact Sign-Offs
+  spec_file: dataiku-artifact-sign-offs-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.78
+  evidence: '"manage AI governance workflows, including blueprints, blueprint versions, artifacts, custom
+    fields, sign-offs, reviews, roles, and compliance workflows for responsible AI management"; POST /artifacts/{artifactId}/sign-offs/{signOffStepId}/reviews
+    addSignOffReview'
+  reason: Sign-off and review steps on governed AI artefacts are responsible-AI governance, which the
+    frame places under Artificial Intelligence Management (AI/ML model lifecycle, responsible AI).
+- tag: Artifacts
+  spec_file: dataiku-artifacts-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.72
+  evidence: POST /artifacts createArtifact; "Public REST API for interacting with Dataiku Govern to manage
+    AI governance workflows ... artifacts ... for responsible AI management"
+  reason: Artifacts here are the governed objects (models, projects) inside Dataiku Govern's responsible-AI
+    workflow, so the surface realises AI/ML governance rather than generic document or asset management.
