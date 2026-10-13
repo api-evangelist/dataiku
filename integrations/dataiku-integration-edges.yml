@@ -1,0 +1,68 @@
+generated: '2026-10-13'
+method: searched
+checked:
+- https://aws.amazon.com/marketplace/
+- https://azuremarketplace.microsoft.com/
+marketplace_apps: []
+edges:
+- partner_name: AWS Marketplace
+  partner: amazon-web-services
+  partner_match: aggregator
+  type: marketplace
+  marketplace: aws-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=e1caba7e-4de4-45af-ae8b-dfa202006ac1
+  listing_count: 1
+  apps:
+  - Dataiku for Enterprise AI (Non U.S. Markets)
+  seller_name: Dataiku
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
+- partner_name: AWS Marketplace
+  partner: amazon-web-services
+  partner_match: aggregator
+  type: marketplace
+  marketplace: aws-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=seller-wgv5pglpv6576
+  listing_count: 1
+  apps:
+  - Dataiku for Enterprise AI
+  seller_name: Dataiku
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
+- partner_name: Microsoft Azure Marketplace
+  partner: microsoft-azure
+  partner_match: aggregator
+  type: marketplace
+  marketplace: azure-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=Dataiku%20Inc
+  listing_count: 1
+  apps:
+  - Dataiku for Enterprise AI
+  seller_name: Dataiku Inc
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
+- partner_name: Microsoft Azure Marketplace
+  partner: microsoft-azure
+  partner_match: aggregator
+  type: marketplace
+  marketplace: azure-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=Dataiku%20SAS
+  listing_count: 2
+  apps:
+  - Dataiku for Enterprise AI
+  - Dataiku Trial
+  seller_name: Dataiku SAS
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
