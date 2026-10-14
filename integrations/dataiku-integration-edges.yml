@@ -3,6 +3,7 @@ method: searched
 checked:
 - https://aws.amazon.com/marketplace/
 - https://azuremarketplace.microsoft.com/
+- https://plugins.jetbrains.com/
 marketplace_apps: []
 edges:
 - partner_name: AWS Marketplace
@@ -66,3 +67,20 @@ edges:
   seller_name: Dataiku SAS
   detected_by: sweep-cloud-marketplaces.py
   detected: '2026-10-13'
+- partner_name: JetBrains Marketplace
+  partner: jetbrains
+  partner_match: aggregator
+  type: marketplace
+  marketplace: jetbrains
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://plugins.jetbrains.com/vendor/335a40ec-ef47-494a-b6ae-ac7033a25ddd
+  listing_count: 1
+  apps:
+  - Dataiku DSS
+  publisher_name: Dataiku
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
+source:
+- https://plugins.jetbrains.com/
