@@ -2,29 +2,23 @@
 kin_checks:
   slug: dataiku
   schema_version: 0.23.0
-  scored_at: '2026-10-03'
-  run_ts: 2026-10-03T024842
+  scored_at: '2026-10-11'
+  run_ts: 2026-10-11T110117
   note: Actionable checks (missed + partial) in `checks`, plus the ids that did not
     apply in `na`. Everything else in rubric/scoring-0.23.0.yml was earned; counts
     below let you verify that.
   counts:
     total: 153
-    earned: 29
-    partial: 30
-    missed: 68
+    earned: 34
+    partial: 36
+    missed: 57
     na: 26
   checks:
-  - id: description_substantive
-    status: missed
-  - id: newsroom_present
-    status: missed
   - id: leadership_present
     status: missed
   - id: base_url_per_api
     status: missed
   - id: well_known_published
-    status: missed
-  - id: llms_txt_published
     status: missed
   - id: apis_json_self_hosted
     status: missed
@@ -44,15 +38,9 @@ kin_checks:
       (unknown)
   - id: asyncapi_present
     status: missed
-  - id: json_schema_present
-    status: missed
-  - id: json_schema_per_resource
-    status: missed
   - id: json_ld_class_depth
     status: missed
   - id: domain_standard_conformance
-    status: missed
-  - id: conformance_declared
     status: missed
   - id: overlay_published
     status: missed
@@ -75,25 +63,18 @@ kin_checks:
     status: missed
   - id: console_or_sandbox
     status: missed
-  - id: agent_skill_present
-    status: missed
   - id: pricing_link
     status: missed
-    detail: pointer liveness 0.0
   - id: terms_of_service
     status: missed
     detail: pointer liveness 0.0
   - id: compliance_published
-    status: missed
-  - id: trust_center
     status: missed
   - id: reg_oauth_scopes
     status: missed
   - id: reg_terms_of_service
     status: missed
     detail: pointer liveness 0.0
-  - id: reg_compliance_published
-    status: missed
   - id: reg_named_standard_conformance
     status: missed
   - id: reg_sbom
@@ -138,11 +119,7 @@ kin_checks:
     status: missed
   - id: idempotency
     status: missed
-  - id: error_semantics
-    status: missed
   - id: event_surface_described
-    status: missed
-  - id: agent_skills
     status: missed
   - id: well_known_catalog
     status: missed
@@ -241,6 +218,12 @@ kin_checks:
     earned: 3.6
     detail: 28 of 28 openapi documents pass; credited at 90% because of their provenance
       (unknown)
+  - id: json_schema_present
+    status: partial
+    earned: 5.4
+  - id: json_schema_per_resource
+    status: partial
+    earned: 3.6
   - id: rules_present
     status: partial
     earned: 2.5
@@ -253,6 +236,9 @@ kin_checks:
   - id: vocabulary_published
     status: partial
     earned: 4.5
+  - id: conformance_declared
+    status: partial
+    earned: 5.4
   - id: rate_limits_documented
     status: partial
     earned: 2.0
@@ -262,6 +248,9 @@ kin_checks:
   - id: postman_present
     status: partial
     earned: 0.5
+  - id: agent_skill_present
+    status: partial
+    earned: 2.7
   - id: plans_present
     status: partial
     earned: 2.0
@@ -276,14 +265,22 @@ kin_checks:
     status: partial
     earned: 3.5
     detail: 'grade: bearer'
+  - id: error_semantics
+    status: partial
+    earned: 1.0
+    detail: 'grade: derived'
   - id: openapi_examples
     status: partial
     earned: 1.75
     detail: 'grade: documented'
   - id: rate_limit_signal
     status: partial
-    earned: 3.5
-    detail: 'grade: documented'
+    earned: 0.88
+    detail: 'grade: derived'
+  - id: agent_skills
+    status: partial
+    earned: 4.5
+    detail: 'authorship: unknown'
   na:
   - asyncapi_3_x
   - channels_defined
